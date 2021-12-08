@@ -1,11 +1,15 @@
 package com.website.eUniversity.model.client;
 
+import java.util.Date;
+
 public class Response<T> {
     private int code;
 
     private String message;
 
     private T data;
+
+    private final Date date = new Date();
 
     public Response<T> success(T data, String message) {
         this.data = data;
@@ -14,8 +18,7 @@ public class Response<T> {
         return this;
     }
 
-    public Response<T> error(T data, String message, int code) {
-        this.data = data;
+    public Response error(String message, int code) {
         this.message = message;
         this.code = code;
         return this;

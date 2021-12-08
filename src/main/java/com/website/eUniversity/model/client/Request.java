@@ -5,10 +5,9 @@ import java.util.Date;
 public class Request<T> {
     private T data;
 
-    private Date date;
+    private final Date date = new Date();
 
     public Request(T data) {
-        this.date = new Date();
         this.data = data;
     }
 
