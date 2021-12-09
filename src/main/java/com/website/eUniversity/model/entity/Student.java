@@ -1,4 +1,4 @@
-package com.website.eUniversity.model;
+package com.website.eUniversity.model.entity;
 
 import javax.persistence.*;
 
@@ -18,12 +18,17 @@ public class Student {
     @Column(name = "full_name")
     private String fullName;
 
+    @OneToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
+
     public Student() { }
 
-    public Student(String login, String password, String fullName) {
+    public Student(String login, String password, String fullName, Account account) {
         this.login = login;
         this.password = password;
         this.fullName = fullName;
+        this.account = account;
     }
 
     public String getFullName() {
@@ -56,5 +61,13 @@ public class Student {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

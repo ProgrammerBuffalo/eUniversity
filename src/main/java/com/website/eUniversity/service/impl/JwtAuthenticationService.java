@@ -8,6 +8,8 @@ import com.website.eUniversity.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,26 +22,11 @@ import java.util.ArrayList;
 public class JwtAuthenticationService implements IAuthenticationService {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Override
     public JwtDTO register(RegistrationDTO registrationDTO) {
         return null;
-    }
-
-    public void authenticate(AuthorizationDTO authorizationDTO) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authorizationDTO.getLogin(), authorizationDTO.getPassword()));
-    }
-
-    @Override
-    public UserDetails getUserDetails(String login) {
-        return userDetailsService.loadUserByUsername(login);
     }
 
     @Override
@@ -55,6 +42,11 @@ public class JwtAuthenticationService implements IAuthenticationService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User(username, "qwerty", new ArrayList<>());
+        return new User("eldar", "qwerty", new ArrayList<>());
+    }
+
+    @Override
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        return null;
     }
 }

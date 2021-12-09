@@ -8,9 +8,12 @@ import com.website.eUniversity.service.IAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,19 +30,20 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    public Response<JwtDTO> registrate(RegistrationDTO registrationDTO) {
+    public Response<JwtDTO> register(RegistrationDTO registrationDTO) {
         return null;
     }
 
-    public Response<String> authorize(AuthorizationDTO authorizationDTO) {
+    @PostMapping("/authorize")
+    public Response<String> authorize(@RequestBody(required = false) AuthorizationDTO authorizationDTO) {
         try {
-            authenticationService.authenticate(authorizationDTO);
+            authenticationService.authenticate(new UsernamePasswordAuthenticationToken(authorizationDTO.getLogin(), authorizationDTO.getPassword()));
         }
         catch (BadCredentialsException ex) {
             return new Response<JwtDTO>().error("Token is not valid", 404);
         }
 
-        UserDetails userDetails = authenticationService.getUserDetails(authorizationDTO.getLogin());
+        UserDetails userDetails = authenticationService.loadUserByUsername(authorizationDTO.getLogin());
 
         String jwt = jwtTokenUtil.generateToken(userDetails);
 

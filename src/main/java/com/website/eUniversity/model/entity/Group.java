@@ -1,4 +1,4 @@
-package com.website.eUniversity.model;
+package com.website.eUniversity.model.entity;
 
 import javax.persistence.*;
 
