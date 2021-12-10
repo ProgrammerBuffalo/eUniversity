@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,26 +9,21 @@ import javax.persistence.*;
 public class Student {
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "uuid2", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(columnDefinition="uniqueidentifier")
     private String id;
-
-    @Column(unique = true)
-    private String login;
-
-    @Column(name = "password")
-    private String password;
 
     @Column(name = "full_name")
     private String fullName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
     public Student() { }
 
-    public Student(String login, String password, String fullName, Account account) {
-        this.login = login;
-        this.password = password;
+    public Student(String fullName, Account account) {
         this.fullName = fullName;
         this.account = account;
     }
@@ -37,22 +34,6 @@ public class Student {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getId() {

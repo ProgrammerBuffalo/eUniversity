@@ -8,7 +8,8 @@ import javax.persistence.*;
 public class Account {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "login")
     private String login;
@@ -19,4 +20,44 @@ public class Account {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public Account() { }
+
+    public Account(String login, String password, Role role) {
+        this.login = login;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

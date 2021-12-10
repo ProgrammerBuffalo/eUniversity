@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,12 +9,15 @@ import javax.persistence.*;
 public class Teacher {
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "uuid2", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(columnDefinition="uniqueidentifier")
     private String id;
 
     @Column(name = "full_name")
     private String fullName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 

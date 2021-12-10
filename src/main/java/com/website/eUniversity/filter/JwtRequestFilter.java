@@ -1,5 +1,6 @@
 package com.website.eUniversity.filter;
 
+import com.website.eUniversity.service.IAccountDetailsService;
 import com.website.eUniversity.service.impl.JwtAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
 import org.hibernate.annotations.Filter;
@@ -22,7 +23,7 @@ import java.io.IOException;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JwtAuthenticationService jwtAuthenticationService;
+    private IAccountDetailsService accountDetailsService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -40,7 +41,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (userLogin != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.jwtAuthenticationService.loadUserByUsername(userLogin);
+            UserDetails userDetails = this.accountDetailsService.loadUserByUsername(userLogin);
 
             if(jwtTokenUtil.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
