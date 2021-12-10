@@ -1,0 +1,1 @@
+This is a folder of components. All components will be moved to angular folder
