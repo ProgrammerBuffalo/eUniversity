@@ -1,11 +1,17 @@
 package com.website.eUniversity.service.impl;
 
+import com.website.eUniversity.exception.TokenExpiredException;
+import com.website.eUniversity.exception.TokenNotFoundException;
 import com.website.eUniversity.model.dto.identification.AuthorizationDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
+import com.website.eUniversity.model.dto.identification.TokensDTO;
+import com.website.eUniversity.model.entity.RefreshToken;
 import com.website.eUniversity.repository.IAccountRepository;
+import com.website.eUniversity.repository.IRefreshTokenRepository;
 import com.website.eUniversity.service.IAccountDetailsService;
 import com.website.eUniversity.service.IAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
+import com.website.eUniversity.util.RefreshTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,11 +19,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class JwtAuthenticationService implements IAuthenticationService {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private RefreshTokenUtil refreshTokenUtil;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -28,8 +39,11 @@ public class JwtAuthenticationService implements IAuthenticationService {
     @Autowired
     private IAccountRepository accountRepository;
 
+    @Autowired
+    private IRefreshTokenRepository refreshTokenRepository;
+
     @Override
-    public String authorize(AuthorizationDTO authorizationDTO) {
+    public TokensDTO authorize(AuthorizationDTO authorizationDTO) {
         Authentication authentication = new
                 UsernamePasswordAuthenticationToken(authorizationDTO.getLogin(), authorizationDTO.getPassword());
 
@@ -38,14 +52,25 @@ public class JwtAuthenticationService implements IAuthenticationService {
         UserDetails userDetails = accountDetailsService.loadUserByUsername(authentication.getPrincipal().toString());
 
         String jwt = jwtTokenUtil.generateToken(userDetails);
+        String rt = refreshTokenUtil.generateRefreshToken(userDetails);
 
-        return jwt;
+        return new TokensDTO(jwt, rt);
     }
 
     @Override
-    public String refreshToken() {
+    @Transactional
+    public TokensDTO refreshToken(String refreshToken) throws TokenExpiredException, TokenNotFoundException {
+        RefreshToken rt = refreshTokenUtil.validateRefreshToken(refreshToken);
 
-        return null;
+        rt.setExpired(true);
+        rt = refreshTokenRepository.save(rt);
+
+        UserDetails userDetails = accountDetailsService.loadUserByUsername(rt.getAccount().getLogin());
+
+        String newJwt = jwtTokenUtil.generateToken(userDetails);
+        String newRt = refreshTokenUtil.generateRefreshToken(userDetails);
+
+        return new TokensDTO(newJwt, newRt);
     }
 
 }

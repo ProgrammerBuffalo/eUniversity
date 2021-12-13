@@ -1,9 +1,11 @@
 package com.website.eUniversity.model.client;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.Date;
 
 public class Response<T> {
-    private int code;
+    private int statusCode;
 
     private String message;
 
@@ -14,22 +16,14 @@ public class Response<T> {
     public Response<T> success(T data, String message) {
         this.data = data;
         this.message = message;
-        this.code = 200;
+        this.statusCode = 200;
         return this;
     }
 
-    public Response error(String message, int code) {
+    public Response error(String message, int statusCode) {
         this.message = message;
-        this.code = code;
+        this.statusCode = statusCode;
         return this;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public String getMessage() {
@@ -47,4 +41,10 @@ public class Response<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) { this.statusCode = statusCode; }
 }

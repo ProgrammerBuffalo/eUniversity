@@ -1,12 +1,11 @@
 package com.website.eUniversity.repository;
 
-import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface IAccountRepository extends JpaRepository<Account, Integer> {
+public interface IRefreshTokenRepository extends JpaRepository<RefreshToken, Integer> {
 
-    Optional<Account> findAccountByLogin(String login);
+    Optional<RefreshToken> findByToken(String token);
 }

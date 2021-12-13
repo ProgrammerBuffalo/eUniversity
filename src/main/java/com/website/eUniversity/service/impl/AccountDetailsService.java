@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountDetailsService implements IAccountDetailsService {
@@ -22,11 +23,15 @@ public class AccountDetailsService implements IAccountDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findAccountByLogin(username);
+        Optional<Account> account = accountRepository.findAccountByLogin(username);
+
+        if(!account.isPresent()) {
+            throw new UsernameNotFoundException("Account not found");
+        }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(account.getRole().name()));
+        grantedAuthorities.add(new SimpleGrantedAuthority(account.get().getRole().name()));
 
-        return new User(account.getLogin(), account.getPassword(), grantedAuthorities);
+        return new User(account.get().getLogin(), account.get().getPassword(), grantedAuthorities);
     }
 }

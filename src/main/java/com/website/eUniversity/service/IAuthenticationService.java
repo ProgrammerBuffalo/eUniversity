@@ -1,11 +1,14 @@
 package com.website.eUniversity.service;
 
+import com.website.eUniversity.exception.TokenExpiredException;
+import com.website.eUniversity.exception.TokenNotFoundException;
 import com.website.eUniversity.model.dto.identification.AuthorizationDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
+import com.website.eUniversity.model.dto.identification.TokensDTO;
 
 public interface IAuthenticationService {
 
-    String authorize(AuthorizationDTO authorizationDTO);
+    TokensDTO authorize(AuthorizationDTO authorizationDTO);
 
-    String refreshToken();
+    TokensDTO refreshToken(String refreshToken) throws TokenExpiredException, TokenNotFoundException;
 }
