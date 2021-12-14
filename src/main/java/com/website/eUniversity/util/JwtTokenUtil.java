@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenUtil implements Serializable {
 
-    public static final long JWT_TOKEN_VALIDITY = 60;
+    @Value("${jwt.expiration}")
+    private long JWT_TOKEN_VALIDITY;
 
     @Value("${jwt.secret}")
     private String secretKey;
@@ -51,7 +52,7 @@ public class JwtTokenUtil implements Serializable {
     private String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000 * 60))
                 .signWith(SignatureAlgorithm.HS512, secretKey).compact();
     }
 
