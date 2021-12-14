@@ -1,13 +1,12 @@
 package com.website.eUniversity.controller;
 
-import com.website.eUniversity.exception.TokenExpiredException;
-import com.website.eUniversity.exception.TokenNotFoundException;
+import com.website.eUniversity.exception.RefreshTokenExpiredException;
+import com.website.eUniversity.exception.RefreshTokenNotFoundException;
 import com.website.eUniversity.model.client.Response;
 import com.website.eUniversity.model.dto.identification.AuthorizationDTO;
 import com.website.eUniversity.model.dto.identification.TokensDTO;
 import com.website.eUniversity.service.IAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
-import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +31,7 @@ public class AuthenticationController {
 
     @PostMapping("/refresh-tokens")
     public Response<TokensDTO> refreshTokens(@RequestHeader(required = true, name = "Rt") String rt)
-            throws TokenExpiredException, TokenNotFoundException {
+            throws RefreshTokenExpiredException, RefreshTokenNotFoundException {
         return new Response<TokensDTO>().success(authenticationService.refreshToken(rt),
                 "Tokens are created successfully");
     }

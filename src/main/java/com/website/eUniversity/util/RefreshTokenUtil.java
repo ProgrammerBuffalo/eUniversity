@@ -1,19 +1,17 @@
 package com.website.eUniversity.util;
 
-import com.website.eUniversity.exception.TokenExpiredException;
-import com.website.eUniversity.exception.TokenNotFoundException;
+import com.website.eUniversity.exception.RefreshTokenExpiredException;
+import com.website.eUniversity.exception.RefreshTokenNotFoundException;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.RefreshToken;
 import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.IRefreshTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
@@ -48,24 +46,24 @@ public class RefreshTokenUtil {
         return refreshToken.getToken();
     }
 
-    public RefreshToken validateRefreshToken(String token) throws TokenNotFoundException, TokenExpiredException {
+    public RefreshToken validateRefreshToken(String token) throws RefreshTokenNotFoundException, RefreshTokenExpiredException {
         Date now = new Date();
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByToken(token);
 
         if(!refreshToken.isPresent())
-            throw new TokenNotFoundException();
+            throw new RefreshTokenNotFoundException();
 
-        if(refreshToken.get().isExpired() || refreshToken.get().getExpiredAt().compareTo(new Date()) > 0)
-            throw new TokenExpiredException();
+        if(refreshToken.get().isExpired() || refreshToken.get().getExpiredAt().compareTo(new Date()) < 0)
+            throw new RefreshTokenExpiredException();
 
         return refreshToken.get();
     }
 
-    public boolean revokeRefreshToken(String token) throws TokenNotFoundException {
+    public boolean revokeRefreshToken(String token) throws RefreshTokenNotFoundException {
         Optional<RefreshToken> refreshToken = refreshTokenRepository.findByToken(token);
 
         if(!refreshToken.isPresent())
-            throw new TokenNotFoundException();
+            throw new RefreshTokenNotFoundException();
 
         refreshToken.get().setExpired(true);
 

@@ -1,9 +1,8 @@
 package com.website.eUniversity.service.impl;
 
-import com.website.eUniversity.exception.TokenExpiredException;
-import com.website.eUniversity.exception.TokenNotFoundException;
+import com.website.eUniversity.exception.RefreshTokenExpiredException;
+import com.website.eUniversity.exception.RefreshTokenNotFoundException;
 import com.website.eUniversity.model.dto.identification.AuthorizationDTO;
-import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.dto.identification.TokensDTO;
 import com.website.eUniversity.model.entity.RefreshToken;
 import com.website.eUniversity.repository.IAccountRepository;
@@ -59,7 +58,7 @@ public class JwtAuthenticationService implements IAuthenticationService {
 
     @Override
     @Transactional
-    public TokensDTO refreshToken(String refreshToken) throws TokenExpiredException, TokenNotFoundException {
+    public TokensDTO refreshToken(String refreshToken) throws RefreshTokenExpiredException, RefreshTokenNotFoundException {
         RefreshToken rt = refreshTokenUtil.validateRefreshToken(refreshToken);
 
         rt.setExpired(true);
