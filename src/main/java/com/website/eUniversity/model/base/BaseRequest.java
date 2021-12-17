@@ -1,13 +1,13 @@
-package com.website.eUniversity.model.client;
+package com.website.eUniversity.model.base;
 
 import java.util.Date;
 
-public class Request<T> {
+public class BaseRequest<T> {
     private T data;
 
     private final Date date = new Date();
 
-    public Request(T data) {
+    public BaseRequest(T data) {
         this.data = data;
     }
 

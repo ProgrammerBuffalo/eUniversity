@@ -1,7 +1,7 @@
 package com.website.eUniversity.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.website.eUniversity.model.client.Response;
+import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.service.IFilterExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +24,6 @@ public class FilterExceptionHandler implements IFilterExceptionHandler {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
         response.getWriter().write(objectMapper.writeValueAsString
-                (new Response<String>().error(ex.getMessage(), status.value())));
+                (new BaseResponse<String>().error(ex.getMessage(), status.value())));
     }
 }

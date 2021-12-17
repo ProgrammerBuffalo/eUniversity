@@ -2,7 +2,7 @@ package com.website.eUniversity.controller;
 
 import com.website.eUniversity.exception.RefreshTokenExpiredException;
 import com.website.eUniversity.exception.RefreshTokenNotFoundException;
-import com.website.eUniversity.model.client.Response;
+import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.identification.AuthorizationDTO;
 import com.website.eUniversity.model.dto.identification.TokensDTO;
 import com.website.eUniversity.service.IAuthenticationService;
@@ -24,20 +24,20 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authorize")
-    public Response<TokensDTO> authorize(@RequestBody(required = false) AuthorizationDTO authorizationDTO) {
-        return new Response<TokensDTO>().success(authenticationService.authorize(authorizationDTO),
+    public BaseResponse<TokensDTO> authorize(@RequestBody(required = false) AuthorizationDTO authorizationDTO) {
+        return new BaseResponse<TokensDTO>().success(authenticationService.authorize(authorizationDTO),
                 "Tokens are created successfully");
     }
 
     @PostMapping("/refresh-tokens")
-    public Response<TokensDTO> refreshTokens(@RequestHeader(required = true, name = "Rt") String rt)
+    public BaseResponse<TokensDTO> refreshTokens(@RequestHeader(required = true, name = "Rt") String rt)
             throws RefreshTokenExpiredException, RefreshTokenNotFoundException {
-        return new Response<TokensDTO>().success(authenticationService.refreshToken(rt),
+        return new BaseResponse<TokensDTO>().success(authenticationService.refreshToken(rt),
                 "Tokens are created successfully");
     }
 
     @PostMapping("/logout")
-    public Response<String> logout() {
+    public BaseResponse<String> logout() {
         return null;
     }
 

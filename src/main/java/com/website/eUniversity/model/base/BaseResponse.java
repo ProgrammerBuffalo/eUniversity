@@ -1,10 +1,8 @@
-package com.website.eUniversity.model.client;
-
-import org.springframework.http.HttpStatus;
+package com.website.eUniversity.model.base;
 
 import java.util.Date;
 
-public class Response<T> {
+public class BaseResponse<T> {
     private int statusCode;
 
     private String message;
@@ -13,14 +11,14 @@ public class Response<T> {
 
     private final Date date = new Date();
 
-    public Response<T> success(T data, String message) {
+    public BaseResponse<T> success(T data, String message) {
         this.data = data;
         this.message = message;
         this.statusCode = 200;
         return this;
     }
 
-    public Response error(String message, int statusCode) {
+    public BaseResponse error(String message, int statusCode) {
         this.message = message;
         this.statusCode = statusCode;
         return this;
