@@ -14,9 +14,14 @@ export class AuthenticationService {
   }
 
   login(login: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/authentication/authorize`, {login, password})
-      .pipe(map(jwt => {
-        return jwt;
-      }));
+    const body = {"login": "teacher1", "password": "teacher1"}
+    return this.http.post<any>(`${environment.apiUrl}/authentication/authorize`, body).subscribe({
+      next: data => {
+        return data;
+      },
+      error: error => {
+        console.log("Error");
+      }
+    });
   }
 }

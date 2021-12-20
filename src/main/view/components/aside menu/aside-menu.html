@@ -1,23 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-	<link rel="stylesheet" href="style.css">
-	<title>Aside menu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+	 <link rel="stylesheet" href="../../general/null.css">
+    <title>Aside menu</title>
 </head>
 <body>
-	<div class="sidebar">
-		<a href="#" class="link">Students</a>
-		<a href="#" class="link">Teachers</a>
-		<a href="#" class="link">Admins</a>
-	</div>
-	<div class="wrapper">
-		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit voluptate est rem! Laborum corrupti magni quo dolorum
-		voluptatem ipsa suscipit. Nisi voluptas deleniti, eaque ab obcaecati dignissimos nihil eligendi ea?</p>
-	</div>
-	<script src="app.js"></script>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)"  class="closeBtn" onclick="closeNav()">&times;</a>
+        <a href="#">Users</a>
+        <a href="#">Groups</a>
+        <a href="#">Lessons</a>
+        <a href="#">Materials</a>
+    </div>
+
+    <div id="main">
+        <h2>Animated Sidenav Example</h2>
+        <p>Click on the element below to open the side navigation menu.</p>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
