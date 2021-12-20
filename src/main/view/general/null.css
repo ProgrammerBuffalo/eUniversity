@@ -1,6 +1,7 @@
-* {
+*, *:before, *:after {
   padding: 0;
   margin: 0;
+  border: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -221,5 +222,9 @@ input[type="checkbox"], input[type="radio"] {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0;
+}
+
+li {
+  list-style: none;
 }
 /*# sourceMappingURL=null.css.map */

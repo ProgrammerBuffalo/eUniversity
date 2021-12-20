@@ -1,0 +1,178 @@
+$header-color: #61c8d1;
+$text-color: #fff;
+
+
+
+html,body {
+	height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+	max-width: 1180px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+.header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $header-color;
+		z-index: 2;
+	}
+
+	&__body {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		height: 80px;
+		align-items: center;
+	}
+
+	&__list {
+		display: flex;
+		position: relative;
+		z-index: 2;
+		list-style: none;
+		font-size: 1.5rem;
+		li {
+			list-style: none;
+			margin-left: 20px;
+		}
+	}
+
+	&__link {
+		color: $text-color;
+		text-transform: uppercase;
+		font-size: 1.125rem;
+	}
+
+	&__logo {
+		flex: 0 0 60px;
+		border-radius: 50%;
+		overflow: hidden;
+		position: relative;
+		z-index: 3;
+		img {
+			max-width: 100%;
+			display: block;
+		}
+	}
+
+	@media(max-width: 767px) {
+		&__burger {
+			display: block;
+			position: relative;
+			width: 30px;
+			height: 20px;
+			position: relative;
+			z-index: 3;
+			&:before,
+			&:after {
+				content: "";
+				background-color: $text-color;
+				position: absolute;
+				width: 100%;
+				height: 2px;
+				left: 0;
+			}
+
+			&:before {
+				top: 0;
+			}
+
+			&:after {
+				bottom: 0;
+			}
+
+			span {
+				position: absolute;
+				background-color: $text-color;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				top: 9px;
+				transition: all 0.3s ease 0s;
+			}
+		}
+
+		&__burger.active {
+			&:before {
+				transform: rotate(45deg);
+				top: 9px;
+			}
+
+			&:after {
+				transform: rotate(-45deg);
+				bottom: 9px;
+			}
+
+			span {
+				transform: scale(0);
+			}
+		}
+
+		&__menu {
+			position: fixed;
+			top: -100%;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgb(55,137,144);
+background: linear-gradient(0deg, rgba(55,137,144,1) 4%, rgba(97,200,209,1) 100%);
+			padding: 70px 10px 20px 10px;
+			transition: all 0.3s ease 0s;
+			overflow: auto;
+		}
+		&__menu.active {
+			top: 0;
+		}
+
+		&__body {
+			height: 50px;
+		}
+
+		&__logo {
+			flex: 0 0 40px;
+		}
+
+		&__list {
+			display: block;
+
+			li {
+				margin: 0 0 20px 0;
+			}
+		}
+	}
+}
+
+@media(max-width: 767px) {
+	.content {
+		padding-top: 60px;
+	}
+	.body {
+		overflow: hidden;
+	}
+}
+
+.content {
+	padding-top: 100px;
+	&__text {
+		font-size: 1.125rem;
+		line-height: 150%;
+		
+		p {
+			margin-left: 20px;
+		}
+	}
+}

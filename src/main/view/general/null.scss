@@ -42,10 +42,11 @@ $color: #000 !default;
 
 // Corrects block display not defined in IE6/7/8/9 & FF3
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+*, *:before, *:after {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
 }
 
 // Corrects inline-block display not defined in IE6/7/8/9 & FF3
@@ -505,4 +506,8 @@ input {
         	*width: 13px; // 3
     	}
     }
+}
+
+li {
+	list-style: none;
 }
