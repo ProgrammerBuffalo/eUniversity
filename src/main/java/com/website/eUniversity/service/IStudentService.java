@@ -1,14 +1,12 @@
 package com.website.eUniversity.service;
 
-import com.website.eUniversity.model.dto.StudentDTO;
+import com.website.eUniversity.model.dto.entity.StudentDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
+import com.website.eUniversity.service.base.IUserService;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface IStudentService  {
-    StudentDTO register(RegistrationDTO registrationDTO);
+public interface IStudentService extends IUserService<StudentDTO> {
 
-    void delete(String uuid);
-
-    List<StudentDTO> getStudentList();
 }

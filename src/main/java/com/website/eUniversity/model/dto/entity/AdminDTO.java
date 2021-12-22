@@ -1,12 +1,13 @@
 package com.website.eUniversity.model.dto.entity;
 
 import com.website.eUniversity.model.dto.entity.base.UserDTO;
+import com.website.eUniversity.model.entity.Admin;
 
-public class TeacherDTO extends UserDTO {
+public class AdminDTO extends UserDTO {
 
-    public TeacherDTO() { }
+    public AdminDTO() { }
 
-    public TeacherDTO(String fullName, String login, String password) {
+    public AdminDTO(String fullName, String login, String password) {
         this.fullName = fullName;
         this.login = login;
         this.password = password;
