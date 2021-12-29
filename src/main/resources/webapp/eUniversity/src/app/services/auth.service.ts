@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PrepareApi } from './prepare-api';
+import { Observable } from 'rxjs';
+import { LoginDTO } from '../core/DTOs/login-dto';
+import { RegDTO } from '../core/DTOs/reg-dto';
 
 
 @Injectable({
@@ -8,17 +11,21 @@ import { PrepareApi } from './prepare-api';
 })
 export class AuthService {
 
-  private readonly controllerName: string = 'Auth';
+  private readonly controllerName: string = 'authentication';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  login() {
-      this.http.get(PrepareApi.prepare(this.controllerName, ''));
+  login(dto: LoginDTO): Observable<String> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'authorize');
+    let params = {};
+    return this.http.get<string>(url);
   }
 
-  register() {
-
+  register(dto: RegDTO) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'reg');
+    let params = {};
+    return this.http.get<string>(url);
   }
 }
