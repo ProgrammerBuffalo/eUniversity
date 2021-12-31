@@ -7,7 +7,7 @@ import com.website.eUniversity.model.dto.identification.TokensDTO;
 import com.website.eUniversity.model.entity.RefreshToken;
 import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.IRefreshTokenRepository;
-import com.website.eUniversity.service.IAccountDetailsService;
+import com.website.eUniversity.service.base.IAccountDetailsService;
 import com.website.eUniversity.service.IAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
 import com.website.eUniversity.util.RefreshTokenUtil;

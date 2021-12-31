@@ -1,39 +1,39 @@
 package com.website.eUniversity.model.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Groups")
-public class Group {
+@Table(name = "Disciplines")
+public class Discipline {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "group_id")
-    private List<Student> students;
-
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @Transient
     private List<GroupDiscipline> groupDisciplines;
 
-    public Group() {
+    public Discipline() {
+
     }
 
-    public Group(int id, String name) {
+    public Discipline(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -45,14 +45,6 @@ public class Group {
         this.name = name;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
     public List<GroupDiscipline> getGroupDisciplines() {
         return groupDisciplines;
     }
@@ -62,10 +54,9 @@ public class Group {
     }
 
     // public List<GroupDiscipline> getGroupDisciplines() {
-    //     return groupDisciplines;
+    //      return groupDisciplines;
     // }
 
     // public void setGroupDisciplines(List<GroupDiscipline> groupDisciplines) {
-    //     this.groupDisciplines = groupDisciplines;
-    // }
+//    }
 }

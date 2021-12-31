@@ -4,13 +4,11 @@ import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.entity.TeacherDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
-import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.model.entity.Teacher;
 import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.ITeacherRepository;
 import com.website.eUniversity.service.ITeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

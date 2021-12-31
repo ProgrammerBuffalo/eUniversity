@@ -3,6 +3,7 @@ package com.website.eUniversity.model.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Teachers")
@@ -21,11 +22,20 @@ public class Teacher {
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
+    @OneToMany(mappedBy = "teacher")
+    private List<GroupDiscipline> groupDisciplines;
+
     public Teacher() { }
 
     public Teacher(String fullName, Account account) {
         this.fullName = fullName;
         this.account = account;
+    }
+
+    public Teacher(String fullName, Account account, List<GroupDiscipline> groupDisciplines) {
+        this.fullName = fullName;
+        this.account = account;
+        this.groupDisciplines = groupDisciplines;
     }
 
     public Account getAccount() {
@@ -50,5 +60,13 @@ public class Teacher {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public List<GroupDiscipline> getGroupDisciplines() {
+        return groupDisciplines;
+    }
+
+    public void setGroupDisciplines(List<GroupDiscipline> groupDisciplines) {
+        this.groupDisciplines = groupDisciplines;
     }
 }

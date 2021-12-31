@@ -1,6 +1,5 @@
 package com.website.eUniversity.service.base;
 
-import com.website.eUniversity.model.dto.entity.StudentDTO;
 import com.website.eUniversity.model.dto.entity.base.UserDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 

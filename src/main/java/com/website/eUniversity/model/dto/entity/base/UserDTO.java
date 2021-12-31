@@ -1,6 +1,9 @@
 package com.website.eUniversity.model.dto.entity.base;
 
 public abstract class UserDTO {
+
+    protected String id;
+
     protected String fullName;
 
     protected String login;
@@ -9,7 +12,8 @@ public abstract class UserDTO {
 
     public UserDTO() { }
 
-    public UserDTO(String fullName, String login, String password) {
+    public UserDTO(String id, String fullName, String login, String password) {
+        this.id = id;
         this.fullName = fullName;
         this.login = login;
         this.password = password;
@@ -37,5 +41,13 @@ public abstract class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
