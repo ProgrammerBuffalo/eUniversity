@@ -1,4 +1,4 @@
-package com.website.eUniversity.service;
+package com.website.eUniversity.service.base;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
