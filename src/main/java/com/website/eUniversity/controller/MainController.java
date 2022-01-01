@@ -11,6 +11,6 @@ public class MainController {
     @GetMapping("get")
     public String get()
     {
-        return "ok";
+        return "hello emil";
     }
 }
