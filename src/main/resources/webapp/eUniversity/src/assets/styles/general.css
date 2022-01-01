@@ -1,9 +1,7 @@
 /*CONTAINER*/
 .container {
   max-width: 1180px;
-  height: 100%;
   margin: 0 auto;
-  padding: 0 10px;
 }
 
 .table-container {
@@ -72,6 +70,16 @@
 }
 
 /*BUTTONS*/
+/*TEXT*/
+.text-danger {
+  display: block;
+  font-size: 1rem;
+  color: #ff3d26;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+/*TEXT*/
 /*GENERAL BLOCKS*/
 .admin-block {
   width: 100%;
