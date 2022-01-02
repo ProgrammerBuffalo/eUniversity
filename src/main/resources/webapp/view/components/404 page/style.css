@@ -1,8 +1,10 @@
-body {
+.body {
   background-image: url("../../images/404-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
+  width: 100vw;
+  height: 100vh;
 }
 
 .notfound {
