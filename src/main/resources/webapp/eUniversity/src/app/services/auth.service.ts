@@ -17,7 +17,7 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  login(dto: LoginDTO): Observable<String> {
+  login(dto: LoginDTO): Observable<any> {
     let url: string = PrepareApi.prepare(this.controllerName, 'authorize');
     let params = {};
     return this.http.get<string>(url);
@@ -27,5 +27,15 @@ export class AuthService {
     let url: string = PrepareApi.prepare(this.controllerName, 'reg');
     let params = {};
     return this.http.get<string>(url);
+  }
+
+  logout() {
+    console.log('logout');
+    //localStorage.removeItem('user');
+  }
+
+  temp(){
+    let url: string = PrepareApi.prepare('main', 'get');
+    return this.http.get(url);
   }
 }

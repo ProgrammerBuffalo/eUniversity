@@ -15,6 +15,7 @@ const routes: Routes = [
     path: 'Admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
+  { path: 'page-404', component: Page404Component },
   { path: '**', component: Page404Component }
 ];
 
