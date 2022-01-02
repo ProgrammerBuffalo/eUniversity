@@ -1,7 +1,7 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
-import com.website.eUniversity.model.dto.StudentDTO;
+import com.website.eUniversity.model.dto.entity.StudentDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Student;
@@ -23,12 +23,18 @@ public class StudentService implements IStudentService {
     @Autowired
     private IAccountRepository accountRepository;
 
+    // After mssql will be added
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
+
     @Override
     @Transactional
     public StudentDTO register(RegistrationDTO registrationDTO) {
         StudentDTO studentDTO = new StudentDTO();
         try {
-            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), Role.TEACHER));
+            //String encryptedPassword = passwordEncoder.encode(registrationDTO.getPassword());
+
+            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), Role.STUDENT));
             Student student = studentRepository.save(new Student(registrationDTO.getFullName(), account));
             studentDTO.setLogin(student.getAccount().getLogin());
             studentDTO.setPassword(student.getAccount().getPassword());
@@ -51,7 +57,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public List<StudentDTO> getStudentList() {
+    public List<StudentDTO> getUserList() {
         return studentRepository.findAllStudents();
     }
 }

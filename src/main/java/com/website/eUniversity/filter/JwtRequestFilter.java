@@ -1,14 +1,9 @@
 package com.website.eUniversity.filter;
 
-import com.website.eUniversity.service.IAccountDetailsService;
+import com.website.eUniversity.service.base.IAccountDetailsService;
 import com.website.eUniversity.service.IFilterExceptionHandler;
-import com.website.eUniversity.service.impl.JwtAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
-import org.hibernate.annotations.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -26,7 +21,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 

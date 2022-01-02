@@ -2,7 +2,7 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.repository.IAccountRepository;
-import com.website.eUniversity.service.IAccountDetailsService;
+import com.website.eUniversity.service.base.IAccountDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

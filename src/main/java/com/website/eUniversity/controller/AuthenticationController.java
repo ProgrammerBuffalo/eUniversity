@@ -7,11 +7,15 @@ import com.website.eUniversity.model.dto.identification.AuthorizationDTO;
 import com.website.eUniversity.model.dto.identification.TokensDTO;
 import com.website.eUniversity.service.IAuthenticationService;
 import com.website.eUniversity.util.JwtTokenUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/authentication")
+@Api(value = "Authentication controller", description = "Designed for authorization and token generation")
 public class AuthenticationController {
 
     private final IAuthenticationService authenticationService;
@@ -24,12 +28,14 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authorize")
+    @ApiOperation("Accepts login and password, if the entered data is correct, method returns *Access* and *Refresh* tokens")
     public BaseResponse<TokensDTO> authorize(@RequestBody(required = false) AuthorizationDTO authorizationDTO) {
         return new BaseResponse<TokensDTO>().success(authenticationService.authorize(authorizationDTO),
                 "Tokens are created successfully");
     }
 
     @PostMapping("/refresh-tokens")
+    @ApiOperation("Accepts refresh token as Header \"RT\", if refresh token is correct, method returns new *Access* and *Refresh* tokens")
     public BaseResponse<TokensDTO> refreshTokens(@RequestHeader(required = true, name = "Rt") String rt)
             throws RefreshTokenExpiredException, RefreshTokenNotFoundException {
         return new BaseResponse<TokensDTO>().success(authenticationService.refreshToken(rt),
@@ -37,6 +43,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/logout")
+    @ApiOperation("For log out (under development)")
     public BaseResponse<String> logout() {
         return null;
     }
