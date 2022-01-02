@@ -4,6 +4,7 @@ import { PrepareApi } from './prepare-api';
 import { Observable } from 'rxjs';
 import { LoginDTO } from '../core/DTOs/login-dto';
 import { RegDTO } from '../core/DTOs/reg-dto';
+import { User } from '../core/models/user';
 
 
 @Injectable({
@@ -17,16 +18,10 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  login(dto: LoginDTO): Observable<any> {
+  login(dto: LoginDTO): Observable<User> {
     let url: string = PrepareApi.prepare(this.controllerName, 'authorize');
     let params = {};
-    return this.http.get<string>(url);
-  }
-
-  register(dto: RegDTO) {
-    let url: string = PrepareApi.prepare(this.controllerName, 'reg');
-    let params = {};
-    return this.http.get<string>(url);
+    return this.http.post<User>(url, dto);
   }
 
   logout() {
@@ -34,8 +29,16 @@ export class AuthService {
     //localStorage.removeItem('user');
   }
 
-  temp(){
-    let url: string = PrepareApi.prepare('main', 'get');
-    return this.http.get(url);
+  refreshTokens(rt: string) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'refresh-tokens');
+    let params = { rt: rt };
+    return this.http.post(url, params);
   }
+
+  temp() {
+    let url: string = PrepareApi.prepare('main', 'get');
+    return this.http.get(url, { responseType: 'text' });
+  }
+
+
 }

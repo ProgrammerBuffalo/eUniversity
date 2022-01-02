@@ -4,7 +4,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { Role } from '../core/models/role';
 
 const routes: Routes = [
-  { path: '', component: undefined, canActivate: [AuthGuard], data: { roles: [Role.Admin] } }
+  { path: '', component: undefined, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
 ];
 
 @NgModule({

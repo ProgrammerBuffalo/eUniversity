@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Role } from 'src/app/core/models/role';
 import { User } from 'src/app/core/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = new FormGroup({
       login: new FormControl('', Validators.required),
@@ -36,10 +38,27 @@ export class LoginComponent implements OnInit {
     //this.authService.login().subscribe((data: String) => {console.log(data)});
   }
 
+  /**
+   * TODO: remove role
+   */
   signIn(): void {
     if (this.loginForm.valid)
-      this.authService.login(this.loginForm.value).subscribe(data => {
-        localStorage.setItem('user', data.user);
+      this.authService.login(this.loginForm.value).subscribe((data: User) => {
+
+        data.role = Role.Admin;
+
+        if (data.role == Role.Admin) {
+          console.log('Admin login');
+          this.router.navigate(['/Admin']);
+        }
+        else if (data.role == Role.Teacher) {
+          console.log('Teacher login');
+          this.router.navigate(['/Student']);
+        }
+        else {
+          console.log('Student login');
+          this.router.navigate(['/Teacher']);
+        }
       });
   }
 
