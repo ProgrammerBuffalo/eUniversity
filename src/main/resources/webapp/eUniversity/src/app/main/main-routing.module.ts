@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Role } from '../core/models/role';
+import { AuthGuard } from '../guards/auth.guard';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 
 const routes: Routes = [
-  { path: '', component: AsideMenuComponent },
-  { path: 'AsideMenu', component: AsideMenuComponent }
+  { path: '', component: AsideMenuComponent, canActivate: [AuthGuard], data: { roles: [Role.Student] } },
+
+  { path: 'AsideMenu', component: AsideMenuComponent, canActivate: [AuthGuard], data: { roles: [Role.Student] } }
 ];
 
 @NgModule({

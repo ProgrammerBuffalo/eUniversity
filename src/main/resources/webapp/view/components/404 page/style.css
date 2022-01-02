@@ -1,0 +1,78 @@
+body {
+  background-image: url("../../images/404-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.notfound {
+  height: 100%;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.notfound__title {
+  font-size: 5rem;
+  color: #d7b8ff;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.notfound__text {
+  color: #bf8fff;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.notfound__button {
+  margin: 0 auto;
+  border-radius: 30px;
+  padding: 10px;
+  font-size: 2rem;
+  background-color: #eedfff;
+  color: #b05bff;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.notfound__button:hover {
+  background-color: #b05bff;
+  color: #eedfff;
+}
+
+@media (max-width: 1180px) {
+  .notfound {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .notfound__title {
+    font-size: 4rem;
+  }
+  .notfound__text {
+    font-size: 2rem;
+  }
+  .notfound__button {
+    font-size: 2rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */
