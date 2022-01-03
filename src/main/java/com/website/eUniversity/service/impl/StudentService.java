@@ -34,11 +34,11 @@ public class StudentService implements IStudentService {
         try {
             //String encryptedPassword = passwordEncoder.encode(registrationDTO.getPassword());
 
-            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), Role.STUDENT));
-            Student student = studentRepository.save(new Student(registrationDTO.getFullName(), account));
+            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.STUDENT));
+            Student student = studentRepository.save(new Student(account));
             studentDTO.setLogin(student.getAccount().getLogin());
             studentDTO.setPassword(student.getAccount().getPassword());
-            studentDTO.setFullName(student.getFullName());
+            studentDTO.setFullName(student.getAccount().getFullName());
         }
         catch (Exception ex) {
             throw ex;

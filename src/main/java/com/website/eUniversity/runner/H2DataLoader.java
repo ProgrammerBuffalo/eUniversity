@@ -25,9 +25,9 @@ public class H2DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        studentService.register(new RegistrationDTO("student1", "student1", "Eldar Eyvazov", 0));
-        studentService.register(new RegistrationDTO("student2", "student2", "Emil Abbas", 0));
-        teacherService.register(new RegistrationDTO("teacher1", "teacher1", "Dmitriy", 0));
-        adminService.register(new RegistrationDTO("admin1", "admin1", "Administer", 0));
+        studentService.register(new RegistrationDTO("student1", "student1", "Eldar Eyvazov", 20));
+        studentService.register(new RegistrationDTO("student2", "student2", "Emil Abbas", 10));
+        teacherService.register(new RegistrationDTO("teacher1", "teacher1", "Dmitriy", 30));
+        adminService.register(new RegistrationDTO("admin1", "admin1", "Administer", 40));
     }
 }

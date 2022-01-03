@@ -6,10 +6,7 @@ public class AdminDTO extends UserDTO {
 
     public AdminDTO() { }
 
-    public AdminDTO(String id, String fullName, String login, String password) {
-        this.id = id;
-        this.fullName = fullName;
-        this.login = login;
-        this.password = password;
+    public AdminDTO(String id, String fullName, Integer age, String login, String password) {
+        super(id, fullName, age, login, password);
     }
 }

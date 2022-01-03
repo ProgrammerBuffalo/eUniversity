@@ -11,8 +11,9 @@ import java.util.List;
 public interface IGroupRepository extends JpaRepository<Group, Integer> {
 
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentShortInfoDTO" +
-            " (s.fullName)" +
-            " FROM Student s INNER JOIN Group g on s.group = g" +
+            " (a.fullName)" +
+            " FROM Student s INNER JOIN Account a on s.account = a " +
+            "                INNER JOIN Group g on s.group = g" +
             " WHERE g.id = :id")
     List<StudentShortInfoDTO> findAllStudents(@Param("id") Integer groupId);
 

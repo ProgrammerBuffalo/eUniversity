@@ -34,11 +34,11 @@ public class TeacherService implements ITeacherService {
         try {
             //String encryptedPassword = passwordEncoder.encode(registrationDTO.getPassword());
 
-            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), Role.TEACHER));
-            Teacher teacher = teacherRepository.save(new Teacher(registrationDTO.getFullName(), account));
+            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.TEACHER));
+            Teacher teacher = teacherRepository.save(new Teacher(account));
             teacherDTO.setLogin(teacher.getAccount().getLogin());
             teacherDTO.setPassword(teacher.getAccount().getPassword());
-            teacherDTO.setFullName(teacher.getFullName());
+            teacherDTO.setFullName(teacher.getAccount().getFullName());
         }
         catch (Exception ex) {
             throw ex;

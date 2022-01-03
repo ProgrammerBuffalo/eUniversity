@@ -34,11 +34,11 @@ public class AdminService implements IAdminService {
         try {
             //String encryptedPassword = passwordEncoder.encode(registrationDTO.getPassword());
 
-            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), Role.ADMIN));
-            Admin admin = adminRepository.save(new Admin(registrationDTO.getFullName(), account));
+            Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.ADMIN));
+            Admin admin = adminRepository.save(new Admin(account));
             adminDTO.setLogin(admin.getAccount().getLogin());
             adminDTO.setPassword(admin.getAccount().getPassword());
-            adminDTO.setFullName(admin.getFullName());
+            adminDTO.setFullName(admin.getAccount().getFullName());
         }
         catch (Exception ex) {
             throw ex;

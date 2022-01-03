@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface IAdminRepository extends JpaRepository<Admin, String> {
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.AdminDTO(ad.id, ad.fullName, acc.login, acc.password)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.AdminDTO(acc.id, acc.fullName, acc.age, acc.login, acc.password)" +
             " FROM Admin ad INNER JOIN Account acc on ad.account.id = acc.id")
     List<AdminDTO> findAllAdmins();
 }

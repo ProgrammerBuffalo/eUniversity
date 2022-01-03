@@ -9,13 +9,8 @@ import javax.persistence.*;
 public class Admin {
 
     @Id
-    @GenericGenerator(name = "generator", strategy = "uuid2", parameters = {})
-    @GeneratedValue(generator = "generator")
-    @Column(columnDefinition="uniqueidentifier")
-    private String id;
-
-    @Column(name = "full_name")
-    private String fullName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "account_id", nullable = false)
@@ -23,24 +18,15 @@ public class Admin {
 
     public Admin() { }
 
-    public Admin(String fullName, Account account) {
-        this.fullName = fullName;
+    public Admin(Account account) {
         this.account = account;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,12 +1,12 @@
 package com.website.eUniversity.model.dto.identification;
 
-public class AuthorizationDTO {
+public class AuthorizationRequestDTO {
 
     private String login;
 
     private String password;
 
-    public AuthorizationDTO(String login, String password) {
+    public AuthorizationRequestDTO(String login, String password) {
         this.login = login;
         this.password = password;
     }

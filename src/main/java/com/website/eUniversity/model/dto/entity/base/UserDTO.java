@@ -10,13 +10,16 @@ public abstract class UserDTO {
 
     protected String password;
 
+    private Integer age;
+
     public UserDTO() { }
 
-    public UserDTO(String id, String fullName, String login, String password) {
+    public UserDTO(String id, String fullName, Integer age, String login, String password) {
         this.id = id;
         this.fullName = fullName;
         this.login = login;
         this.password = password;
+        this.age = age;
     }
 
     public String getFullName() {
