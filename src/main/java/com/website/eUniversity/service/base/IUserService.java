@@ -8,7 +8,9 @@ import java.util.List;
 public interface IUserService <T extends UserDTO> {
     T register(RegistrationDTO registrationDTO);
 
-    void delete(String uuid);
+    T update(T user);
+
+    String delete(String uuid);
 
     List<T> getUserList();
 }

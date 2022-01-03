@@ -8,14 +8,17 @@ import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.IStudentRepository;
 import com.website.eUniversity.service.IStudentService;
+import com.website.eUniversity.service.func.AccountSaver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class StudentService implements IStudentService {
+public class StudentService extends AccountSaver implements IStudentService {
 
     @Autowired
     private IStudentRepository studentRepository;
@@ -47,9 +50,16 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void delete(String uuid) {
+    public StudentDTO update(StudentDTO user) {
+        Account account = saveAccount(user);
+        return new StudentDTO(account.getId(), account.getFullName(), account.getAge(), account.getLogin(), null);
+    }
+
+    @Override
+    public String delete(String uuid) {
         try {
             studentRepository.deleteById(uuid);
+            return uuid;
         }
         catch (Exception ex) {
             throw ex;
