@@ -1,5 +1,6 @@
 package com.website.eUniversity.service.impl;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.exception.RefreshTokenExpiredException;
 import com.website.eUniversity.exception.RefreshTokenNotFoundException;
 import com.website.eUniversity.model.dto.identification.AuthorizationRequestDTO;
@@ -45,14 +46,14 @@ public class JwtAuthenticationService implements IAuthenticationService {
     private IRefreshTokenRepository refreshTokenRepository;
 
     @Override
-    public AuthorizationResponseDTO authorize(AuthorizationRequestDTO authorizationDTO) {
+    public AuthorizationResponseDTO authorize(AuthorizationRequestDTO authorizationDTO) throws NotFoundException {
         Authentication authentication = new
                 UsernamePasswordAuthenticationToken(authorizationDTO.getLogin(), authorizationDTO.getPassword());
 
         Optional<Account> account = accountRepository.findAccountByLoginAndPassword(authorizationDTO.getLogin(), authorizationDTO.getPassword());
 
         if(!account.isPresent()) {
-            throw new UsernameNotFoundException("Account not found");
+            throw new NotFoundException("Account not found");
         }
 
         authentication = authenticationManager.authenticate(authentication);
