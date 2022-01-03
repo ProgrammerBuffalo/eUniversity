@@ -12,7 +12,6 @@
 }
 
 .modal-content {
-  font-family: 'mainFont';
   position: relative;
   background-color: #fefefe;
   margin: auto;
@@ -30,27 +29,9 @@
   height: auto;
 }
 
-.modal__label {
-  font-family: monsterrat-normal !important;
-  margin-top: 20px !important;
-  font-size: 0.7em !important;
-}
-
-.modal__input {
-  font-family: monsterrat-light !important;
-  font-size: 0.8em !important;
-}
-
 .modal__close {
   margin: 30px !important;
   float: right !important;
-}
-
-.error {
-  font-size: 15px !important;
-  color: red !important;
-  margin-left: 5px;
-  display: none;
 }
 
 .close {
@@ -65,14 +46,6 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
-
-.modal__btn {
-  width: 100% !important;
-  font-size: 0.8em !important;
-  margin-top: 30px !important;
-  margin-bottom: 30px !important;
-  border-radius: 10px !important;
 }
 
 @-webkit-keyframes animatetop {
