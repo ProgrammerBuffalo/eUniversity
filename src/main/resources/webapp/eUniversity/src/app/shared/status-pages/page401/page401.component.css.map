@@ -2,8 +2,8 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "style.scss"
+        "page401.component.scss"
     ],
     "names": [],
-    "file": "style.css"
+    "file": "page401.component.css"
 }

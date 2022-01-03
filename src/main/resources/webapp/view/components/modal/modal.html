@@ -1,0 +1,72 @@
+<div class="modal" id="registerModal">
+  <div class="modal-content" style="width: 500px">
+    <span id="closeRegisterModal" class="close">&times;</span>
+
+    <form name="registerForm" id="registerForm" method="post">
+      <div class="form-group">
+        <label id="nicknameLabelReg" class="modal__label">Nickname: </label>
+        <p class="error"></p>
+        <input
+          id="nicknameInputReg"
+          type="text"
+          class="form-control modal__input"
+          placeholder="nickname"
+        />
+      </div>
+
+      <div class="form-group">
+        <label id="emailLabelReg" class="modal__label">Email: </label>
+        <p class="error"></p>
+        <input
+          id="emailInputReg"
+          type="email"
+          class="form-control modal__input"
+          placeholder="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label id="passwordLabelReg" class="modal__label">Password: </label>
+        <p class="error"></p>
+        <input
+          id="passwordInputReg"
+          type="password"
+          class="form-control modal__input"
+          placeholder="password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label id="passwordConfirmationLabelReg" class="modal__label"
+          >Confirm password:
+        </label>
+        <p class="error"></p>
+        <input
+          id="passwordConfirmationInputReg"
+          type="password"
+          class="form-control modal__input"
+          placeholder="confirm password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label id="avatarLabelReg" class="modal__label">Avatar: </label>
+        <p class="error"></p>
+        <input
+          id="avatarInputReg"
+          type="file"
+          class="form-control modal__input"
+        />
+      </div>
+
+      <input
+        type="button"
+        id="registerBtnOut"
+        class="btn btn-danger modal__btn"
+        name="registerBtn"
+        value="Register"
+      />
+      <p class="error"></p>
+    </form>
+  </div>
+</div>
