@@ -67,4 +67,39 @@ public class AccountsController {
         return new BaseResponse<AdminDTO>().success(adminService.register(registrationDTO), "Admin is added");
     }
 
+    @PutMapping("/update-student")
+    @ApiOperation("Update student")
+    public BaseResponse<StudentDTO> updateStudent(@RequestBody StudentDTO studentDTO) {
+        return new BaseResponse<StudentDTO>().success(studentService.update(studentDTO), "Student is updated");
+    }
+
+    @PutMapping("/update-teacher")
+    @ApiOperation("Update teacher")
+    public BaseResponse<TeacherDTO> updateTeacher(@RequestBody TeacherDTO teacherDTO) {
+        return new BaseResponse<TeacherDTO>().success(teacherService.update(teacherDTO), "Teacher is updated");
+    }
+
+    @PutMapping("/update-admin")
+    @ApiOperation("Update admin")
+    public BaseResponse<AdminDTO> updateAdmin(@RequestBody AdminDTO adminDTO) {
+        return new BaseResponse<AdminDTO>().success(adminService.update(adminDTO), "Admin is updated");
+    }
+
+    @DeleteMapping("/delete-student")
+    @ApiOperation("Delete student")
+    public BaseResponse<String> deleteStudent(@RequestParam(name = "id") String id) {
+        return new BaseResponse<String>().success(studentService.delete(id), "Student is deleted");
+    }
+
+    @DeleteMapping("/delete-teacher")
+    @ApiOperation("Delete teacher")
+    public BaseResponse<String> deleteTeacher(@RequestParam(name = "id") String id) {
+        return new BaseResponse<String>().success(teacherService.delete(id), "Teacher is deleted");
+    }
+
+    @DeleteMapping("/delete-admin")
+    @ApiOperation("Delete admin")
+    public BaseResponse<String> deleteAdmin(@RequestParam(name = "id") String id) {
+        return new BaseResponse<String>().success(adminService.delete(id), "Admin is deleted");
+    }
 }

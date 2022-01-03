@@ -12,7 +12,7 @@ public interface ITeacherRepository extends JpaRepository<Teacher, String> {
 
     void deleteById(String id);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.TeacherDTO(t.id, t.fullName, a.login, a.password)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.TeacherDTO(a.id, a.fullName, a.age, a.login, a.password)" +
             " FROM Teacher t INNER JOIN Account a on t.account.id = a.id")
     List<TeacherDTO> findAllTeachers();
 }

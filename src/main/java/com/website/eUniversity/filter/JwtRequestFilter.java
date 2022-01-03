@@ -36,13 +36,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    private Set<String> skipUrls = new HashSet<>();
-    private AntPathMatcher pathMatcher = new AntPathMatcher();
-
-    public JwtRequestFilter() {
-        skipUrls.add("/authentication/authorize");
-    }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -85,10 +78,4 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) {
-        return skipUrls.stream().anyMatch(p -> pathMatcher.match(p, request.getRequestURI()));
-    }
-
 }

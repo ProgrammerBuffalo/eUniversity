@@ -76,7 +76,7 @@ public class GroupService implements IGroupService {
         group.getStudents().add(student);
         groupRepository.save(group);
 
-        return new StudentShortInfoDTO(student.getFullName());
+        return new StudentShortInfoDTO(student.getAccount().getFullName());
     }
 
     @Override
@@ -88,7 +88,7 @@ public class GroupService implements IGroupService {
 
         groupDisciplineRepository.save(new GroupDiscipline(group, discipline, teacher));
 
-        return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getFullName());
+        return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
     @Override
@@ -100,7 +100,7 @@ public class GroupService implements IGroupService {
         group.getStudents().remove(student);
         groupRepository.save(group);
 
-        return new StudentShortInfoDTO(student.getFullName());
+        return new StudentShortInfoDTO(student.getAccount().getFullName());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class GroupService implements IGroupService {
 
         groupDisciplineRepository.delete(new GroupDiscipline(group, discipline, teacher));
 
-        return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getFullName());
+        return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
     private Student findStudent(String studentId) {

@@ -14,7 +14,8 @@ public interface IStudentRepository extends JpaRepository<Student, String> {
 
     Optional<Student> findById(String id);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(s.id, s.fullName, a.login, a.password)" +
-            " FROM Student s INNER JOIN Account a on s.account.id = a.id")
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(a.id, a.fullName, a.age, a.login, a.password)" +
+            " FROM Student s INNER JOIN Account a on s.account.id = a.id" +
+            "                INNER JOIN Group g on s.group = g")
     List<StudentDTO> findAllStudents();
 }

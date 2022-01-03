@@ -25,10 +25,6 @@ public class AccountDetailsService implements IAccountDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Account> account = accountRepository.findAccountByLogin(username);
 
-        if(!account.isPresent()) {
-            throw new UsernameNotFoundException("Account not found");
-        }
-
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(account.get().getRole().name()));
 
