@@ -19,7 +19,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
       if (err.status == 401) {
         this.authService.logout();
-        this.router.navigate(['/Login']);
+        this.router.navigate(['/login']);
       }
       else if (err.status == 404) {
         this.router.navigate(['/404-page']);

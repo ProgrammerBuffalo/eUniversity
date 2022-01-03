@@ -29,8 +29,10 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   ngOnInit(): void {
-    this.authService.temp().subscribe();
-    //let user: User = new User(1, 'aa', 'token', Role.Admin);
+    let user: User = new User(1, 'aa', 'token', Role.Admin);
+    sessionStorage.setItem('user', JSON.stringify(user));
+
+    //this.authService.temp().subscribe();
     //localStorage.setItem('user', JSON.stringify(user));
 
     //this.authService.login().subscribe(data => console.log(data));
@@ -49,15 +51,15 @@ export class LoginComponent implements OnInit {
 
         if (data.role == Role.Admin) {
           console.log('Admin login');
-          this.router.navigate(['/Admin']);
+          this.router.navigate(['/admin']);
         }
         else if (data.role == Role.Teacher) {
           console.log('Teacher login');
-          this.router.navigate(['/Student']);
+          this.router.navigate(['/student']);
         }
         else {
           console.log('Student login');
-          this.router.navigate(['/Teacher']);
+          this.router.navigate(['/teacher']);
         }
       });
   }
