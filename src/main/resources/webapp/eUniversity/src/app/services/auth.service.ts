@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { PrepareApi } from './prepare-api';
 import { Observable } from 'rxjs';
 import { LoginDTO } from '../core/DTOs/login-dto';
-import { RegDTO } from '../core/DTOs/reg-dto';
 import { User } from '../core/models/user';
 
 
@@ -34,11 +33,5 @@ export class AuthService {
     let params = { rt: rt };
     return this.http.post(url, params);
   }
-
-  temp() {
-    let url: string = PrepareApi.prepare('main', 'get');
-    return this.http.get(url, { responseType: 'text' });
-  }
-
 
 }

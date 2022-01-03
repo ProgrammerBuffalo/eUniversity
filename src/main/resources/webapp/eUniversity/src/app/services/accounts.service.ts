@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AddAdminDTO } from '../core/DTOs/admin/add-admin-dto';
+import { AddStudentDTO } from '../core/DTOs/admin/add-student-dto';
+import { AddTeacherDTO } from '../core/DTOs/admin/add-teacher-dto';
 import { RegDTO } from '../core/DTOs/reg-dto';
+import { Student } from '../core/models/admin/student';
 import { PrepareApi } from './prepare-api';
 
 @Injectable({
@@ -8,13 +13,13 @@ import { PrepareApi } from './prepare-api';
 })
 export class AccountService {
 
-  private readonly controllerName: string = '/admin-panel/accounts';
+  private readonly controllerName: string = 'admin-panel/accounts';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  registerAdmin(dto: RegDTO) {
+  registerAdmin(dto: AddAdminDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-admin');
     return this.http.post(url, dto);
   }
@@ -29,7 +34,13 @@ export class AccountService {
     return this.http.put(url, dto);
   }
 
-  registerTeacher(dto: RegDTO) {
+  deleteAdmin(id: number) {
+    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let params = { id: id };
+    return this.http.delete(url, { params: params });
+  }
+
+  registerTeacher(dto: AddTeacherDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-teacher');
     return this.http.post(url, dto);
   }
@@ -44,14 +55,14 @@ export class AccountService {
     return this.http.put(url, dto);
   }
 
-  registerStudent(dto: RegDTO) {
+  registerStudent(dto: AddStudentDTO): Observable<number> {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-student');
-    return this.http.post(url, dto);
+    return this.http.post<number>(url, dto);
   }
 
-  getStudents() {
+  getStudents(): Observable<Student[]> {
     let url: string = PrepareApi.prepare(this.controllerName, 'students');
-    return this.http.get(url);
+    return this.http.get<Student[]>(url);
   }
 
   updateStudents(dto: RegDTO) {

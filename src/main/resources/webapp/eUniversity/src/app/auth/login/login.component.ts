@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   ngOnInit(): void {
-    let user: User = new User(1, 'aa', 'token', Role.Admin);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    //let user: User = new User(1, 'aa', 'token', Role.Admin);
+    //sessionStorage.setItem('user', JSON.stringify(user));
 
     //this.authService.temp().subscribe();
     //localStorage.setItem('user', JSON.stringify(user));

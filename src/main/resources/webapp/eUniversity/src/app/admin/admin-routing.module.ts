@@ -3,10 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { Role } from '../core/models/role';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AdminListComponent } from './admin/admin-list/admin-list.component';
-import { StudentListComponent } from './student/student-list/student-list.component';
-import { AsideMenuComponent } from '../main/aside-menu/aside-menu.component';
-import { TeacherListComponent } from './teacher/teacher-list/teacher-list.component';
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { AdminListComponent } from './admin-list/admin-list.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Panel', pathMatch: 'full' },
