@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("h2")
-public class H2DataLoader implements ApplicationRunner {
+public class DataLoader implements ApplicationRunner {
 
     @Autowired
     private IAdminService adminService;
