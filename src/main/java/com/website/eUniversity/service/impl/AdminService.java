@@ -57,9 +57,10 @@ public class AdminService extends AccountSaver implements IAdminService {
     }
 
     @Override
+    @Transactional
     public String delete(String uuid) {
         try {
-            adminRepository.deleteById(uuid);
+            adminRepository.deleteByAccount_Id(uuid);
             return uuid;
         }
         catch (Exception ex) {

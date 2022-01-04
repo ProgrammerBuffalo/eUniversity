@@ -59,9 +59,10 @@ public class TeacherService extends AccountSaver implements ITeacherService {
     }
 
     @Override
+    @Transactional
     public String delete(String uuid) {
         try {
-            teacherRepository.deleteById(uuid);
+            teacherRepository.deleteByAccount_Id(uuid);
             return uuid;
         }
         catch (Exception ex) {

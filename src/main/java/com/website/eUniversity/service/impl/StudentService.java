@@ -58,9 +58,10 @@ public class StudentService extends AccountSaver implements IStudentService {
     }
 
     @Override
+    @Transactional
     public String delete(String uuid) {
         try {
-            studentRepository.deleteById(uuid);
+            studentRepository.deleteByAccount_Id(uuid);
             return uuid;
         }
         catch (Exception ex) {

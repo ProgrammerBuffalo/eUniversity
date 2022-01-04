@@ -13,8 +13,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JoinColumn(name = "account_id", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval=true)
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @ManyToOne

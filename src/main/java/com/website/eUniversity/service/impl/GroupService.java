@@ -17,6 +17,9 @@ import java.util.Optional;
 public class GroupService implements IGroupService {
 
     @Autowired
+    private IAccountRepository accountRepository;
+
+    @Autowired
     private IGroupRepository groupRepository;
 
     @Autowired
@@ -116,7 +119,12 @@ public class GroupService implements IGroupService {
     }
 
     private Student findStudent(String studentId) {
-        Optional<Student> student = studentRepository.findById(studentId);
+        Optional<Account> account = accountRepository.findAccountById(studentId);
+
+        if(!account.isPresent())
+            return null;
+
+        Optional<Student> student = studentRepository.findByAccount(account.get());
 
         if(!student.isPresent())
             return null;
@@ -132,7 +140,12 @@ public class GroupService implements IGroupService {
     }
 
     private Teacher findTeacher(String teacherId) {
-        Optional<Teacher> teacher = teacherRepository.findById(teacherId);
+        Optional<Account> account = accountRepository.findAccountById(teacherId);
+
+        if(!account.isPresent())
+            return null;
+
+        Optional<Teacher> teacher = teacherRepository.findByAccount(account.get());
 
         if(!teacher.isPresent())
             return null;
