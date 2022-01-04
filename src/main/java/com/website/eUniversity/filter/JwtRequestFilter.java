@@ -63,10 +63,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 }
             }
         }
-        catch (BadCredentialsException ex) {
-            filterExceptionHandler.handleException(response, HttpStatus.FORBIDDEN, ex);
-            return;
-        }
         catch (JwtException ex) {
             filterExceptionHandler.handleException(response, HttpStatus.UNAUTHORIZED, ex);
             return;

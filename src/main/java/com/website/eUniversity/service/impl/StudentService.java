@@ -39,6 +39,8 @@ public class StudentService extends AccountSaver implements IStudentService {
 
             Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.STUDENT));
             Student student = studentRepository.save(new Student(account));
+            studentDTO.setId(student.getAccount().getId());
+            studentDTO.setAge(student.getAccount().getAge());
             studentDTO.setLogin(student.getAccount().getLogin());
             studentDTO.setPassword(student.getAccount().getPassword());
             studentDTO.setFullName(student.getAccount().getFullName());
