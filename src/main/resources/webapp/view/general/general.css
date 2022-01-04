@@ -199,4 +199,24 @@ select {
 }
 
 /*INPUTS*/
+/*TABLE*/
+.td-blue {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.td-blue:hover {
+  background-color: #bec5ff !important;
+}
+
+.td-red {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.td-red:hover {
+  background-color: #ffb1b1 !important;
+}
+
+/*TABLE*/
 /*# sourceMappingURL=general.css.map */

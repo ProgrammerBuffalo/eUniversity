@@ -84,7 +84,6 @@ html, body {
     position: relative;
     width: 30px;
     height: 20px;
-    position: relative;
     z-index: 3;
   }
   .header__burger:before, .header__burger:after {

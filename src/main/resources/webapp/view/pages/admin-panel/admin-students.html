@@ -47,71 +47,70 @@
       crossorigin="anonymous"
     ></script>
 
-    <title>Aside menu</title>
+    <title>Admin students</title>
   </head>
 
   <body>
     <aside>
       <!--ASIDE MENU-->
       <div class="nav-side-menu">
-        <div class="brand">
-          <div class="brand-logo">
-            <img src="../../images/header-logo.jpg" alt="header logo" />
-          </div>
-          <h2>EUniversity</h2>
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="../../images/header-logo.jpg" alt="header logo" />
         </div>
-
-        <div class="menu-list">
-          <ul id="menu-content" class="menu-content collapse out">
-            <li>
-              <a href="admin-panel.html">
-                <i class="fas fa-home fa-lg"></i> Home
-              </a>
-            </li>
-
-            <li
-              data-toggle="collapse"
-              data-target="#accounts"
-              class="collapsed"
-            >
-              <a
-                ><i class="fa fa-users fa-lg"></i> Accounts
-                <span class="arrow"></span
-              ></a>
-            </li>
-            <ul class="sub-menu collapse" id="accounts">
-              <li><a href="admin-students.html">Students</a></li>
-              <li><a href="admin-teachers.html">Teachers</a></li>
-              <li><a href="admin-admins.html">Admins</a></li>
-            </ul>
-
-            <li
-              data-toggle="collapse"
-              class="active"
-              data-target="#groups"
-              class="collapsed"
-            >
-              <a
-                ><i class="fa fa-users fa-lg"></i> Groups
-                <span class="arrow"></span
-              ></a>
-            </li>
-            <ul class="sub-menu collapse" id="groups">
-              <li class="active"><a href="admin-groups.html">Groups</a></li>
-              <li><a href="admin-groups-students.html">Students</a></li>
-              <li>
-                <a href="admin-groups-teachers.html">Teachers & Disciplines</a>
-              </li>
-            </ul>
-
-            <li>
-              <a href="#">
-                <i class="fa fa-solid fa-book-open fa-lg"></i> Materials
-              </a>
-            </li>
-          </ul>
+        <h2>EUniversity</h2>
+        <div class="burger">
+          <span></span>
         </div>
       </div>
+
+      <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+          <li>
+            <a href="admin-panel.html">
+              <i class="fas fa-home fa-lg"></i> Home
+            </a>
+          </li>
+
+          <li data-toggle="collapse" data-target="#accounts" class="collapsed">
+            <a
+              ><i class="fa fa-users fa-lg"></i> Accounts
+              <span class="arrow"></span
+            ></a>
+          </li>
+          <ul class="sub-menu collapse" id="accounts">
+            <li><a href="admin-students.html">Students</a></li>
+            <li><a href="admin-teachers.html">Teachers</a></li>
+            <li><a href="admin-admins.html">Admins</a></li>
+          </ul>
+
+          <li
+            data-toggle="collapse"
+            class="active"
+            data-target="#groups"
+            class="collapsed"
+          >
+            <a
+              ><i class="fa fa-users fa-lg"></i> Groups
+              <span class="arrow"></span
+            ></a>
+          </li>
+          <ul class="sub-menu collapse" id="groups">
+            <li class="active"><a href="admin-groups.html">Groups</a></li>
+            <li><a href="admin-groups-students.html">Students</a></li>
+            <li>
+              <a href="admin-groups-teachers.html">Teachers & Disciplines</a>
+            </li>
+          </ul>
+
+          <li>
+            <a href="#">
+              <i class="fa fa-solid fa-book-open fa-lg"></i> Materials
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
       <!--ASIDE MENU-->
     </aside>
 
@@ -141,13 +140,13 @@
                   <td>John Johnson</td>
                   <td>JohnJohnson</td>
                   <td>JohnJohnson123</td>
-                  <td>
+                  <td class="td-blue">
                     <div class="table-btn change-btn">
                       <i class="fas fa-pencil-alt"></i>
                     </div>
                   </td>
-                  <td>
-                    <div class="table-btn">
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
                       <i class="fas fa-times"></i>
                     </div>
                   </td>
@@ -158,13 +157,13 @@
                   <td>Jack Jackson</td>
                   <td>JackJackson</td>
                   <td>JackJackson123</td>
-                  <td>
+                  <td class="td-blue">
                     <div class="table-btn change-btn">
                       <i class="fas fa-pencil-alt"></i>
                     </div>
                   </td>
-                  <td>
-                    <div class="table-btn">
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
                       <i class="fas fa-times"></i>
                     </div>
                   </td>
@@ -175,13 +174,13 @@
                   <td>Tom Tomson</td>
                   <td>TomTomson</td>
                   <td>TomTomson123</td>
-                  <td>
+                  <td class="td-blue">
                     <div class="table-btn change-btn">
                       <i class="fas fa-pencil-alt"></i>
                     </div>
                   </td>
-                  <td>
-                    <div class="table-btn">
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
                       <i class="fas fa-times"></i>
                     </div>
                   </td>
@@ -192,13 +191,13 @@
                   <td>Daniel Radcliffe</td>
                   <td>DanielRadcliffe</td>
                   <td>DanielRadcliffe123</td>
-                  <td>
+                  <td class="td-blue">
                     <div class="table-btn change-btn">
                       <i class="fas fa-pencil-alt"></i>
                     </div>
                   </td>
-                  <td>
-                    <div class="table-btn">
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
                       <i class="fas fa-times"></i>
                     </div>
                   </td>

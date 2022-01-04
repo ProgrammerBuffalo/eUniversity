@@ -17,5 +17,14 @@
 	&__title {
 		flex: 1 0 90%;
 	}
+	@media(max-width: 1000px) {
+		&__title {
+			flex: 1 0 70%;
+		}
+	}
+}
+
+.table-btn {
+	cursor: pointer;
 }
 
