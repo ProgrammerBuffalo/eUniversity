@@ -23,7 +23,7 @@ public class RefreshToken {
     @Column(name = "isExpired")
     private boolean isExpired;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
