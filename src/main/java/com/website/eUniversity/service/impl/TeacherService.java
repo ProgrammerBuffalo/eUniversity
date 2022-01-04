@@ -40,6 +40,8 @@ public class TeacherService extends AccountSaver implements ITeacherService {
 
             Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.TEACHER));
             Teacher teacher = teacherRepository.save(new Teacher(account));
+            teacherDTO.setId(teacher.getAccount().getId());
+            teacherDTO.setAge(teacher.getAccount().getAge());
             teacherDTO.setLogin(teacher.getAccount().getLogin());
             teacherDTO.setPassword(teacher.getAccount().getPassword());
             teacherDTO.setFullName(teacher.getAccount().getFullName());

@@ -36,7 +36,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/refresh-tokens")
-    @ApiOperation("Accepts refresh token as Header \"RT\", if refresh token is correct, method returns new *Access* and *Refresh* tokens")
+    @ApiOperation("Accepts refresh token as Header \"Rt\", if refresh token is correct, method returns new *Access* and *Refresh* tokens")
     public ResponseEntity<BaseResponse<AuthorizationResponseDTO>> refreshTokens(@RequestHeader(required = true, name = "Rt") String rt)
             throws RefreshTokenExpiredException, RefreshTokenNotFoundException {
         return ResponseEntity.ok(new BaseResponse<AuthorizationResponseDTO>().success(authenticationService.refreshToken(rt),
