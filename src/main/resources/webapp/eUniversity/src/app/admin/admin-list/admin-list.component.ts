@@ -42,69 +42,69 @@ export class AdminListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.getStudents().subscribe((data: Student[]) => {
-      this.students = data;
-    })
+    // this.accountService.getStudents().subscribe((data: Student[]) => {
+    //   this.students = data;
+    // })
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  // showAddModal() {
+  //   this.showAddPopup = true;
 
-    this.editForm.get('login')!.setValue('');
-    this.editForm.get('password')!.setValue('');
-    this.editForm.get('fullName')!.setValue('');
-    this.editForm.get('age')!.setValue('');
-  }
+  //   this.editForm.get('login')!.setValue('');
+  //   this.editForm.get('password')!.setValue('');
+  //   this.editForm.get('fullName')!.setValue('');
+  //   this.editForm.get('age')!.setValue('');
+  // }
 
-  showEditModal(student: Student) {
-    this.showEditPopup = true;
+  // showEditModal(student: Student) {
+  //   this.showEditPopup = true;
 
-    this.editForm.get('login')!.setValue(student.login);
-    this.editForm.get('fullName')!.setValue(student.fullName);
-    this.editForm.get('age')!.setValue(student.age);
-  }
+  //   this.editForm.get('login')!.setValue(student.login);
+  //   this.editForm.get('fullName')!.setValue(student.fullName);
+  //   this.editForm.get('age')!.setValue(student.age);
+  // }
 
-  closeEditModal() {
-    this.showEditPopup = false;
-  }
+  // closeEditModal() {
+  //   this.showEditPopup = false;
+  // }
 
-  closeAddModal() {
-    this.showAddPopup = false;
-  }
+  // closeAddModal() {
+  //   this.showAddPopup = false;
+  // }
 
-  addStudent() {
-    if (this.addForm.valid)
-      this.accountService.registerStudent(this.addForm.value).subscribe({
-        next: (data: number) => {
+  // addStudent() {
+  //   if (this.addForm.valid)
+  //     this.accountService.registerStudent(this.addForm.value).subscribe({
+  //       next: (data: number) => {
 
-        },
-        error: (data) => {
-          alert(data);
-        }
-      });
-  }
+  //       },
+  //       error: (data) => {
+  //         alert(data);
+  //       }
+  //     });
+  // }
 
-  updateStudent() {
-    if (this.editForm.valid)
-      this.accountService.updateStudents(this.editForm.value).subscribe({
-        next: data => {
+  // updateStudent() {
+  //   if (this.editForm.valid)
+  //     this.accountService.updateStudents(this.editForm.value).subscribe({
+  //       next: data => {
 
-        },
-        error: data => {
+  //       },
+  //       error: data => {
 
-        }
-      });
-  }
+  //       }
+  //     });
+  // }
 
-  removeStudent(id: number) {
-    this.accountService.deleteAdmin(1).subscribe({
-      next: (data) => {
+  // removeStudent(id: number) {
+  //   this.accountService.deleteAdmin(1).subscribe({
+  //     next: (data) => {
 
-      },
-      error: data => {
-        alert('cant remove this student');
-      }
-    })
-  }
+  //     },
+  //     error: data => {
+  //       alert('cant remove this student');
+  //     }
+  //   })
+  // }
 
 }

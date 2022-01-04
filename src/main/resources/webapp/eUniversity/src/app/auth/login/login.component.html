@@ -8,7 +8,8 @@
   <div class="form__group">
     <input type="password" class="form__field" placeholder="Password" formControlName="password" />
     <label class="form__label">Password</label>
-    <small *ngIf="password?.invalid && (password?.touched || password?.dirty)">password is required</small>
+    <small class="text-danger" *ngIf="password?.invalid && (password?.touched || password?.dirty)">password is
+      required</small>
   </div>
 
   <input type="submit" value="Sign In" (click)="signIn()" />

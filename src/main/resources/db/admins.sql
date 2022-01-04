@@ -1,0 +1,1 @@
+insert into admins values ('34585868-E968-4754-B1B1-9E159688811C')

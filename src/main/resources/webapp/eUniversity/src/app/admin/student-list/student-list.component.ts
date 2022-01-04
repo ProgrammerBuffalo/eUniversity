@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/update-student-dto';
 import { Student } from 'src/app/core/models/admin/student';
+import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { AccountService } from 'src/app/services/accounts.service';
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.scss']
+  styleUrls: ['../../shared/table-block.scss', '../../shared/modal.scss', '../../shared/input.scss']
 })
 export class StudentListComponent implements OnInit {
   showAddPopup: boolean;
@@ -17,6 +19,20 @@ export class StudentListComponent implements OnInit {
 
   addForm: FormGroup;
   editForm: FormGroup;
+
+  get addLogin() { return this.addForm.get('login'); }
+
+  get addPassword() { return this.addForm.get('password'); }
+
+  get addFullName() { return this.addForm.get('fullName'); }
+
+  get addAge() { return this.addForm.get('age'); }
+
+  get editLogin() { return this.editForm.get('login'); }
+
+  get editFullName() { return this.editForm.get('fullName'); }
+
+  get editAge() { return this.editForm.get('age'); }
 
   constructor(
     private accountService: AccountService
@@ -41,9 +57,9 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.getStudents().subscribe((data: Student[]) => {
-      this.students = data;
-    })
+    this.accountService.getStudents().subscribe((data: BaseResponse<Student[]>) => {
+      this.students = data.data;
+    });
   }
 
   showAddModal() {
@@ -56,7 +72,9 @@ export class StudentListComponent implements OnInit {
   }
 
   showEditModal(student: Student) {
+    console.log(student);
     this.showEditPopup = true;
+    this.selectedStudent = student;
 
     this.editForm.get('login')!.setValue(student.login);
     this.editForm.get('fullName')!.setValue(student.fullName);
@@ -74,8 +92,9 @@ export class StudentListComponent implements OnInit {
   addStudent() {
     if (this.addForm.valid)
       this.accountService.registerStudent(this.addForm.value).subscribe({
-        next: (data: number) => {
-
+        next: (data: string) => {
+          let student: Student = new Student(data, this.addLogin?.value, this.addFullName?.value, this.addAge?.value);
+          this.students.unshift(student);
         },
         error: (data) => {
           alert(data);
@@ -84,19 +103,25 @@ export class StudentListComponent implements OnInit {
   }
 
   updateStudent() {
-    if (this.editForm.valid)
-      this.accountService.updateStudents(this.editForm.value).subscribe({
-        next: data => {
+    if (this.editForm.valid) {
+      let dto: UpdateStudentDTO = new UpdateStudentDTO(
+        this.selectedStudent.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
+      this.accountService.updateStudent(dto).subscribe({
+        next: data => {
+          this.selectedStudent.login = this.editLogin?.value;
+          this.selectedStudent.fullName = this.editFullName?.value;
+          this.selectedStudent.age = this.editAge?.value;
         },
         error: data => {
-
+          alert('this login alredy exsists');
         }
       });
+    }
   }
 
-  removeStudent(id: number) {
-    this.accountService.deleteAdmin(1).subscribe({
+  removeStudent(id: string) {
+    this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
 
       },

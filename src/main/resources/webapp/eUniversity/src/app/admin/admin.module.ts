@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
@@ -21,7 +23,8 @@ import { StudentListComponent } from './student-list/student-list.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

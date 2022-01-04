@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { AddAdminDTO } from '../core/DTOs/admin/add-admin-dto';
 import { AddStudentDTO } from '../core/DTOs/admin/add-student-dto';
 import { AddTeacherDTO } from '../core/DTOs/admin/add-teacher-dto';
+import { UpdateStudentDTO } from '../core/DTOs/admin/update-student-dto';
 import { RegDTO } from '../core/DTOs/reg-dto';
 import { Student } from '../core/models/admin/student';
+import { BaseResponse } from '../core/models/base/base-response';
 import { PrepareApi } from './prepare-api';
 
 @Injectable({
@@ -55,19 +57,30 @@ export class AccountService {
     return this.http.put(url, dto);
   }
 
-  registerStudent(dto: AddStudentDTO): Observable<number> {
+  deleteTeacher(id: string) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
+    let params = { id: id };
+    return this.http.delete(url, { params: params });
+  }
+
+  registerStudent(dto: AddStudentDTO): Observable<string> {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-student');
-    return this.http.post<number>(url, dto);
+    return this.http.post<string>(url, dto);
   }
 
-  getStudents(): Observable<Student[]> {
+  getStudents(): Observable<BaseResponse<Student[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'students');
-    return this.http.get<Student[]>(url);
+    return this.http.get<BaseResponse<Student[]>>(url);
   }
 
-  updateStudents(dto: RegDTO) {
+  updateStudent(dto: UpdateStudentDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'update-student');
     return this.http.put(url, dto);
   }
 
+  deleteStudent(id: string) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
+    let params = { id: id };
+    return this.http.delete(url, { params: params });
+  }
 }

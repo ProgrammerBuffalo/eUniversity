@@ -1,15 +1,14 @@
-import { Role } from "./role";
+import { Role } from "./auth/role";
 
 export class User {
-  id: number;
+  id: string;
   fullName: string;
-  token: string;
   role: Role
 
-  constructor(id: number, fullName: string, token: string, role: Role) {
+  constructor(id: string, fullName: string,  role: Role) {
     this.id = id;
     this.fullName = fullName;
-    this.token = token;
     this.role = role;
   }
 }
+

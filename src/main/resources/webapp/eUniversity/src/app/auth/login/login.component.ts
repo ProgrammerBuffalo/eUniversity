@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Role } from 'src/app/core/models/role';
-import { User } from 'src/app/core/models/user';
+import { Auth } from 'src/app/core/models/auth/auth';
+import { Role } from 'src/app/core/models/auth/role';
+import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -40,26 +41,35 @@ export class LoginComponent implements OnInit {
     //this.authService.login().subscribe((data: String) => {console.log(data)});
   }
 
-  /**
-   * TODO: remove role
-   */
   signIn(): void {
     if (this.loginForm.valid)
-      this.authService.login(this.loginForm.value).subscribe((data: User) => {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (data: BaseResponse<Auth>) => {
+          console.log(data);
+          this.authService.saveUser(data.data);
+          //let user: User = new User(data.data.id, data.data.fullName, data.data.jwtToken, data.data.role);
 
-        data.role = Role.Admin;
+          //sessionStorage.setItem('user', JSON.stringify(user));
+          //localStorage.setItem('rt', data.data.refreshToken);
 
-        if (data.role == Role.Admin) {
-          console.log('Admin login');
-          this.router.navigate(['/admin']);
-        }
-        else if (data.role == Role.Teacher) {
-          console.log('Teacher login');
-          this.router.navigate(['/student']);
-        }
-        else {
-          console.log('Student login');
-          this.router.navigate(['/teacher']);
+          if (data.data.role == Role.Admin) {
+            console.log('Admin login');
+            this.router.navigate(['/Admin']);
+          }
+          else if (data.data.role == Role.Teacher) {
+            console.log('Teacher login');
+            this.router.navigate(['/Teacher']);
+          }
+          else if (data.data.role == Role.Student) {
+            console.log('Student login');
+            this.router.navigate(['/Student']);
+          }
+          else {
+            console.log('Announ login');
+          }
+        },
+        error: (data) => {
+          alert(data);
         }
       });
   }

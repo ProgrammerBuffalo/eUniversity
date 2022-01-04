@@ -1,0 +1,3 @@
+Dont read this file yet
+
+1)в auth-login необходимо нажать на пустой input чтобы писать тескт нажатие на placeholder не работает

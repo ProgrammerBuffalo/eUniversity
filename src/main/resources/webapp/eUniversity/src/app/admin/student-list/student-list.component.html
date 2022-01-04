@@ -1,4 +1,3 @@
-<p>student-list works!</p>
 <div class="admin-block">
   <div class="admin-block__header">
     <h3 class="admin-block__title">Students list</h3>
@@ -43,26 +42,37 @@
 
 <div class="modal" *ngIf="showAddPopup">
   <div class="modal-content" style="width: 500px">
-    <span id="closeStudentsAddBtn" class="close" (click)="closeAddModal()">&times;</span>
-    <form class="register">
+    <span class="close" (click)="closeAddModal()">&times;</span>
+    <form class="register" [formGroup]="addForm">
       <div class="form-group">
         <span>Login: </span>
-        <input type="text" class="form-field" placeholder="Login">
+        <input type="text" class="form-field" placeholder="Login" formControlName="login">
+        <small class="text-danger" *ngIf="addLogin?.invalid && (addLogin?.touched || addLogin?.dirty)">login is
+          required</small>
       </div>
 
       <div class="form-group">
         <span>Password: </span>
-        <input type="text" class="form-field" placeholder="Password">
+        <input type="text" class="form-field" placeholder="Password" formControlName="password">
+        <small class="text-danger" *ngIf="addPassword?.invalid && (addPassword?.touched || addPassword?.dirty)">password
+          is
+          required</small>
       </div>
 
       <div class="form-group">
         <span>Full name: </span>
-        <input type="text" class="form-field" placeholder="Full name">
+        <input type="text" class="form-field" placeholder="Full name" formControlName="fullName">
+        <small class="text-danger" *ngIf="addFullName?.invalid && (addFullName?.touched || addFullName?.dirty)">full
+          name
+          is
+          required</small>
       </div>
 
       <div class="form-group">
         <span>Age: </span>
-        <input type="number" class="form-field" placeholder="Age">
+        <input type="number" class="form-field" placeholder="Age" formControlName="age">
+        <small class="text-danger" *ngIf="addAge?.invalid && (addAge?.touched || addAge?.dirty)">age is
+          required</small>
       </div>
       <input type="submit" class="btn btn-danger" value="Add student" (click)="addStudent()">
     </form>
@@ -71,21 +81,29 @@
 
 <div class="modal" *ngIf="showEditPopup">
   <div class="modal-content" style="width: 500px">
-    <span id="closeStudentsAddBtn" class="close" (click)="closeEditModal()">&times;</span>
-    <form class="register">
+    <span class="close" (click)="closeEditModal()">&times;</span>
+    <form class="register" [formGroup]="editForm">
       <div class="form-group">
         <span>Login: </span>
-        <input type="text" class="form-field" placeholder="Login">
+        <input type="text" class="form-field" placeholder="Login" formControlName="login">
+        <small class="text-danger" *ngIf="editLogin?.invalid && (editLogin?.touched || editLogin?.dirty)">login is
+          required</small>
       </div>
 
       <div class="form-group">
         <span>Full name: </span>
-        <input type="text" class="form-field" placeholder="Full name">
+        <input type="text" class="form-field" placeholder="Full name" formControlName="fullName">
+        <small class="text-danger" *ngIf="editFullName?.invalid && (editFullName?.touched || editFullName?.dirty)">full
+          name
+          is
+          required</small>
       </div>
 
       <div class="form-group">
         <span>Age: </span>
-        <input type="number" class="form-field" placeholder="Age">
+        <input type="number" class="form-field" placeholder="Age" formControlName="age">
+        <small class="text-danger" *ngIf="editAge?.invalid && (editAge?.touched || editAge?.dirty)">age is
+          required</small>
       </div>
       <input type="submit" class="btn btn-danger" value="Update student" (click)="updateStudent()">
     </form>
