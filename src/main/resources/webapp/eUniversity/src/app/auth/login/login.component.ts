@@ -53,15 +53,12 @@ export class LoginComponent implements OnInit {
           //localStorage.setItem('rt', data.data.refreshToken);
 
           if (data.data.role == Role.Admin) {
-            console.log('Admin login');
             this.router.navigate(['/Admin']);
           }
           else if (data.data.role == Role.Teacher) {
-            console.log('Teacher login');
             this.router.navigate(['/Teacher']);
           }
           else if (data.data.role == Role.Student) {
-            console.log('Student login');
             this.router.navigate(['/Student']);
           }
           else {

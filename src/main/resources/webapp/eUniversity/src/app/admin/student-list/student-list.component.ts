@@ -92,9 +92,10 @@ export class StudentListComponent implements OnInit {
   addStudent() {
     if (this.addForm.valid)
       this.accountService.registerStudent(this.addForm.value).subscribe({
-        next: (data: string) => {
-          let student: Student = new Student(data, this.addLogin?.value, this.addFullName?.value, this.addAge?.value);
-          this.students.unshift(student);
+        next: (data) => {
+          console.log(data);
+          //let student: Student = new Student(data, this.addLogin?.value, this.addFullName?.value, this.addAge?.value);
+          //this.students.unshift(student);
         },
         error: (data) => {
           alert(data);
@@ -123,9 +124,13 @@ export class StudentListComponent implements OnInit {
   removeStudent(id: string) {
     this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
-
+        console.log(data);
+        for (let i = 0; i < this.students.length; i++) {
+          if (this.students[i].id == id)
+            this.students = this.students.slice(i, 1);
+        }
       },
-      error: data => {
+      error: (data) => {
         alert('cant remove this student');
       }
     })

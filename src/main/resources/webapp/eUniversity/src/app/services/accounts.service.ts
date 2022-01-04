@@ -63,9 +63,9 @@ export class AccountService {
     return this.http.delete(url, { params: params });
   }
 
-  registerStudent(dto: AddStudentDTO): Observable<string> {
+  registerStudent(dto: AddStudentDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-student');
-    return this.http.post<string>(url, dto);
+    return this.http.post(url, dto);
   }
 
   getStudents(): Observable<BaseResponse<Student[]>> {
@@ -79,7 +79,7 @@ export class AccountService {
   }
 
   deleteStudent(id: string) {
-    let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
+    let url: string = PrepareApi.prepare(this.controllerName, 'delete-student');
     let params = { id: id };
     return this.http.delete(url, { params: params });
   }

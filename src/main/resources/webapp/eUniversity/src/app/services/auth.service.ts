@@ -25,7 +25,6 @@ export class AuthService {
   }
 
   logout() {
-    console.log('logout');
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('jwtToken');
   }

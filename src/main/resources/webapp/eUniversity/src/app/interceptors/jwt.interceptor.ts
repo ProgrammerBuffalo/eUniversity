@@ -8,8 +8,6 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('interceptor jwt');
-
     let jwtToken: string = sessionStorage.getItem('jwtToken')!;
 
     if (jwtToken) {

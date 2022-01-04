@@ -20,7 +20,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError(err => {
       if (err.status == 401 || err.status == 403) {
-        console.log('401');
 
         this.authService.logout();
 
@@ -31,12 +30,9 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         this.authService.refreshTokens(rt).subscribe({
           next: (data: BaseResponse<Auth>) => {
-            console.log(data);
             this.authService.saveUser(data.data);
-            console.log('token is refreshed');
           },
           error: (data) => {
-            console.log('rt token error');
             this.router.navigate(['/Login']);
           }
         });
