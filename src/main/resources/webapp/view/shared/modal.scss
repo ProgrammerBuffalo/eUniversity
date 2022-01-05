@@ -55,6 +55,25 @@
     }
 }
 
+@keyframes animatetopMobile {
+	from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 100px;
+        opacity: 1
+    }
+}
+
+@media(max-width: 767px) {
+	.modal-content {
+		top: 100px;
+		animation-name: animatetopMobile;
+	}
+}
+
 @media(max-width: 640px) {
     .modal-content {
         width: 400px !important;

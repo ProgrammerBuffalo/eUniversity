@@ -189,15 +189,6 @@
   border-color: var(--group-border-focus);
 }
 
-select {
-  padding: 10px;
-  font-size: 18px;
-  width: 100%;
-  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  margin-bottom: 30px;
-}
-
 /*INPUTS*/
 /*TABLE*/
 .td-blue {
