@@ -92,10 +92,10 @@ export class StudentListComponent implements OnInit {
   addStudent() {
     if (this.addForm.valid)
       this.accountService.registerStudent(this.addForm.value).subscribe({
-        next: (data) => {
-          console.log(data);
+        next: (data : BaseResponse<Student>) => {
+          //console.log(data);
           //let student: Student = new Student(data, this.addLogin?.value, this.addFullName?.value, this.addAge?.value);
-          //this.students.unshift(student);
+          this.students.unshift(data.data);
         },
         error: (data) => {
           alert(data);
@@ -127,7 +127,7 @@ export class StudentListComponent implements OnInit {
         console.log(data);
         for (let i = 0; i < this.students.length; i++) {
           if (this.students[i].id == id)
-            this.students = this.students.slice(i, 1);
+            this.students.splice(i, 1);
         }
       },
       error: (data) => {

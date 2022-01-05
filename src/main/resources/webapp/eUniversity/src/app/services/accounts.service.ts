@@ -63,9 +63,9 @@ export class AccountService {
     return this.http.delete(url, { params: params });
   }
 
-  registerStudent(dto: AddStudentDTO) {
+  registerStudent(dto: AddStudentDTO): Observable<BaseResponse<Student>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-student');
-    return this.http.post(url, dto);
+    return this.http.post<BaseResponse<Student>>(url, dto);
   }
 
   getStudents(): Observable<BaseResponse<Student[]>> {

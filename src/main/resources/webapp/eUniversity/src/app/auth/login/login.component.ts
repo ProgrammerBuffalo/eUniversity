@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (data) => {
-          alert(data);
+          //alert(data);
         }
       });
   }
