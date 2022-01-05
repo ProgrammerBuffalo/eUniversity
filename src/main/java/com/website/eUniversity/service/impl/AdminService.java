@@ -38,6 +38,8 @@ public class AdminService extends AccountSaver implements IAdminService {
 
             Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.ADMIN));
             Admin admin = adminRepository.save(new Admin(account));
+            adminDTO.setId(admin.getAccount().getId());
+            adminDTO.setAge(admin.getAccount().getAge());
             adminDTO.setLogin(admin.getAccount().getLogin());
             adminDTO.setPassword(admin.getAccount().getPassword());
             adminDTO.setFullName(admin.getAccount().getFullName());
@@ -55,9 +57,10 @@ public class AdminService extends AccountSaver implements IAdminService {
     }
 
     @Override
+    @Transactional
     public String delete(String uuid) {
         try {
-            adminRepository.deleteById(uuid);
+            adminRepository.deleteByAccount_Id(uuid);
             return uuid;
         }
         catch (Exception ex) {

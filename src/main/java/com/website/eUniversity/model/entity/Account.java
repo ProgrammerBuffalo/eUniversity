@@ -3,6 +3,7 @@ import com.website.eUniversity.model.Role;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Accounts")
@@ -28,6 +29,9 @@ public class Account {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RefreshToken> refreshTokenList;
 
     public Account() { }
 
