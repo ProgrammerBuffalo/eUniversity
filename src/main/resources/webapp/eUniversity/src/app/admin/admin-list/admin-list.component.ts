@@ -1,23 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Student } from 'src/app/core/models/admin/student';
+import { UpdateAdminDTO } from 'src/app/core/DTOs/admin/update-admin-dto';
+import { Admin } from 'src/app/core/models/admin/admin';
+import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { AccountService } from 'src/app/services/accounts.service';
 
 @Component({
   selector: 'app-admin-list',
   templateUrl: './admin-list.component.html',
-  styleUrls: ['./admin-list.component.scss']
+  styleUrls: ['../../shared/table-block.scss', '../../shared/modal.scss', '../../shared/input.scss']
 })
 export class AdminListComponent implements OnInit {
 
   showAddPopup: boolean;
   showEditPopup: boolean;
 
-  selectedStudent!: Student;
-  students: Student[];
+  selectedAdmin!: Admin;
+  admins: Admin[];
 
   addForm: FormGroup;
   editForm: FormGroup;
+
+  get addLogin() { return this.addForm.get('login'); }
+
+  get addPassword() { return this.addForm.get('password'); }
+
+  get addFullName() { return this.addForm.get('fullName'); }
+
+  get addAge() { return this.addForm.get('age'); }
+
+  get editLogin() { return this.editForm.get('login'); }
+
+  get editFullName() { return this.editForm.get('fullName'); }
+
+  get editAge() { return this.editForm.get('age'); }
 
   constructor(
     private accountService: AccountService
@@ -29,82 +45,92 @@ export class AdminListComponent implements OnInit {
       login: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       fullName: new FormControl('', Validators.required),
-      age: new FormControl('', Validators.required)
+      age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
     this.editForm = new FormGroup({
       login: new FormControl('', Validators.required),
       fullName: new FormControl('', Validators.required),
-      age: new FormControl('', Validators.required)
+      age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
-    this.students = [];
+    this.admins = [];
   }
 
   ngOnInit(): void {
-    // this.accountService.getStudents().subscribe((data: Student[]) => {
-    //   this.students = data;
-    // })
+    this.accountService.getAdmins().subscribe((data: BaseResponse<Admin[]>) => {
+      this.admins = data.data;
+    });
   }
 
-  // showAddModal() {
-  //   this.showAddPopup = true;
+  showAddModal() {
+    this.showAddPopup = true;
 
-  //   this.editForm.get('login')!.setValue('');
-  //   this.editForm.get('password')!.setValue('');
-  //   this.editForm.get('fullName')!.setValue('');
-  //   this.editForm.get('age')!.setValue('');
-  // }
+    this.editForm.get('login')!.setValue('');
+    this.editForm.get('password')!.setValue('');
+    this.editForm.get('fullName')!.setValue('');
+    this.editForm.get('age')!.setValue('');
+  }
 
-  // showEditModal(student: Student) {
-  //   this.showEditPopup = true;
+  showEditModal(admin: Admin) {
+    console.log(admin);
+    this.showEditPopup = true;
+    this.selectedAdmin = admin;
 
-  //   this.editForm.get('login')!.setValue(student.login);
-  //   this.editForm.get('fullName')!.setValue(student.fullName);
-  //   this.editForm.get('age')!.setValue(student.age);
-  // }
+    this.editForm.get('login')!.setValue(admin.login);
+    this.editForm.get('fullName')!.setValue(admin.fullName);
+    this.editForm.get('age')!.setValue(admin.age);
+  }
 
-  // closeEditModal() {
-  //   this.showEditPopup = false;
-  // }
+  closeEditModal() {
+    this.showEditPopup = false;
+  }
 
-  // closeAddModal() {
-  //   this.showAddPopup = false;
-  // }
+  closeAddModal() {
+    this.showAddPopup = false;
+  }
 
-  // addStudent() {
-  //   if (this.addForm.valid)
-  //     this.accountService.registerStudent(this.addForm.value).subscribe({
-  //       next: (data: number) => {
+  addAdmin() {
+    if (this.addForm.valid)
+      this.accountService.registerAdmin(this.addForm.value).subscribe({
+        next: (data: BaseResponse<Admin>) => {
+          this.admins.unshift(data.data);
+        },
+        error: (data) => {
+          alert('can`t add admin');
+        }
+      });
+  }
 
-  //       },
-  //       error: (data) => {
-  //         alert(data);
-  //       }
-  //     });
-  // }
+  updateAdmin() {
+    if (this.editForm.valid) {
+      let dto: UpdateAdminDTO = new UpdateAdminDTO(
+        this.selectedAdmin.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
-  // updateStudent() {
-  //   if (this.editForm.valid)
-  //     this.accountService.updateStudents(this.editForm.value).subscribe({
-  //       next: data => {
+      this.accountService.updateAdmin(dto).subscribe({
+        next: (data) => {
+          this.selectedAdmin.login = this.editLogin?.value;
+          this.selectedAdmin.fullName = this.editFullName?.value;
+          this.selectedAdmin.age = this.editAge?.value;
+        },
+        error: (data) => {
+          alert('this login alredy exsists');
+        }
+      });
+    }
+  }
 
-  //       },
-  //       error: data => {
-
-  //       }
-  //     });
-  // }
-
-  // removeStudent(id: number) {
-  //   this.accountService.deleteAdmin(1).subscribe({
-  //     next: (data) => {
-
-  //     },
-  //     error: data => {
-  //       alert('cant remove this student');
-  //     }
-  //   })
-  // }
-
+  removeAdmin(id: string) {
+    this.accountService.deleteAdmin(id).subscribe({
+      next: (data) => {
+        for (let i = 0; i < this.admins.length; i++) {
+          if (this.admins[i].id == id)
+            this.admins.splice(i, 1);
+        }
+      },
+      error: (data) => {
+        alert('cant remove this student');
+      }
+    })
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Role } from '../core/models/auth/role';
-import { AuthGuard } from '../guards/auth.guard';
+import { AuthGuard } from '../core/guards/auth.guard';
 import { AsideMenuComponent } from './aside-menu/aside-menu.component';
 
 const routes: Routes = [

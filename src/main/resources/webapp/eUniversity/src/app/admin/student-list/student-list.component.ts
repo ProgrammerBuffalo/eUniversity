@@ -44,13 +44,13 @@ export class StudentListComponent implements OnInit {
       login: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       fullName: new FormControl('', Validators.required),
-      age: new FormControl('', Validators.required)
+      age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
     this.editForm = new FormGroup({
       login: new FormControl('', Validators.required),
       fullName: new FormControl('', Validators.required),
-      age: new FormControl('', Validators.required)
+      age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
     this.students = [];
@@ -93,12 +93,10 @@ export class StudentListComponent implements OnInit {
     if (this.addForm.valid)
       this.accountService.registerStudent(this.addForm.value).subscribe({
         next: (data: BaseResponse<Student>) => {
-          //console.log(data);
-          //let student: Student = new Student(data, this.addLogin?.value, this.addFullName?.value, this.addAge?.value);
           this.students.unshift(data.data);
         },
         error: (data) => {
-          alert(data);
+          alert('can`t add student');
         }
       });
   }
@@ -109,12 +107,12 @@ export class StudentListComponent implements OnInit {
         this.selectedStudent.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
       this.accountService.updateStudent(dto).subscribe({
-        next: data => {
+        next: (data) => {
           this.selectedStudent.login = this.editLogin?.value;
           this.selectedStudent.fullName = this.editFullName?.value;
           this.selectedStudent.age = this.editAge?.value;
         },
-        error: data => {
+        error: (data) => {
           alert('this login alredy exsists');
         }
       });
@@ -124,7 +122,6 @@ export class StudentListComponent implements OnInit {
   removeStudent(id: string) {
     this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
-        console.log(data);
         for (let i = 0; i < this.students.length; i++) {
           if (this.students[i].id == id)
             this.students.splice(i, 1);

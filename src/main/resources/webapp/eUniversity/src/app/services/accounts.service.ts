@@ -4,9 +4,12 @@ import { Observable } from 'rxjs';
 import { AddAdminDTO } from '../core/DTOs/admin/add-admin-dto';
 import { AddStudentDTO } from '../core/DTOs/admin/add-student-dto';
 import { AddTeacherDTO } from '../core/DTOs/admin/add-teacher-dto';
+import { UpdateAdminDTO } from '../core/DTOs/admin/update-admin-dto';
 import { UpdateStudentDTO } from '../core/DTOs/admin/update-student-dto';
-import { RegDTO } from '../core/DTOs/reg-dto';
+import { UpdateTeacherDTO } from '../core/DTOs/admin/update-teacher-dto';
+import { Admin } from '../core/models/admin/admin';
 import { Student } from '../core/models/admin/student';
+import { Teacher } from '../core/models/admin/teacher';
 import { BaseResponse } from '../core/models/base/base-response';
 import { PrepareApi } from './prepare-api';
 
@@ -21,38 +24,38 @@ export class AccountService {
     private http: HttpClient
   ) { }
 
-  registerAdmin(dto: AddAdminDTO) {
+  registerAdmin(dto: AddAdminDTO): Observable<BaseResponse<Admin>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-admin');
-    return this.http.post(url, dto);
+    return this.http.post<BaseResponse<Admin>>(url, dto);
   }
 
-  getAdmins() {
+  getAdmins(): Observable<BaseResponse<Admin[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'admins');
-    return this.http.get(url);
+    return this.http.get<BaseResponse<Admin[]>>(url);
   }
 
-  updateAdmin(dto: RegDTO) {
+  updateAdmin(dto: UpdateAdminDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'update-admin');
     return this.http.put(url, dto);
   }
 
-  deleteAdmin(id: number) {
+  deleteAdmin(id: string) {
     let url: string = PrepareApi.prepare(this.controllerName, '');
     let params = { id: id };
     return this.http.delete(url, { params: params });
   }
 
-  registerTeacher(dto: AddTeacherDTO) {
+  registerTeacher(dto: AddTeacherDTO): Observable<BaseResponse<Teacher>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'register-teacher');
-    return this.http.post(url, dto);
+    return this.http.post<BaseResponse<Teacher>>(url, dto);
   }
 
-  getTeachers() {
+  getTeachers(): Observable<BaseResponse<Teacher[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'teachers');
-    return this.http.get(url);
+    return this.http.get<BaseResponse<Teacher[]>>(url);
   }
 
-  updateTeachers(dto: RegDTO) {
+  updateTeachers(dto: UpdateTeacherDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
     return this.http.put(url, dto);
   }
