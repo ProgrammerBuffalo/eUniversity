@@ -1,16 +1,16 @@
 <form class="container" [formGroup]="loginForm">
-  <div class="form__group">
-    <input type="text" class="form__field" placeholder="Login" formControlName="login" />
-    <label class="form__label">Login</label>
-    <small class="text-danger" *ngIf="login?.invalid && (login?.touched || login?.dirty)">login is required</small>
-  </div>
+    <div class="form__group">
+        <input type="text" class="form__input" placeholder="Login" formControlName="login" />
+        <label class="form__text">Login</label>
+        <small class="text-danger" *ngIf="login?.invalid && (login?.touched || login?.dirty)">login is required</small>
+    </div>
 
-  <div class="form__group">
-    <input type="password" class="form__field" placeholder="Password" formControlName="password" />
-    <label class="form__label">Password</label>
-    <small class="text-danger" *ngIf="password?.invalid && (password?.touched || password?.dirty)">password is
+    <div class="form__group">
+        <input type="password" class="form__input" placeholder="Password" formControlName="password" />
+        <label class="form__text">Password</label>
+        <small class="text-danger" *ngIf="password?.invalid && (password?.touched || password?.dirty)">password is
       required</small>
-  </div>
+    </div>
 
-  <input type="submit" value="Sign In" (click)="signIn()" />
+    <input type="submit" value="Sign In" class="btn btn-info mt-20" (click)="signIn()" />
 </form>
