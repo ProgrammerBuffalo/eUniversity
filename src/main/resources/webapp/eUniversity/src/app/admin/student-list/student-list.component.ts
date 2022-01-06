@@ -92,7 +92,7 @@ export class StudentListComponent implements OnInit {
   addStudent() {
     if (this.addForm.valid)
       this.accountService.registerStudent(this.addForm.value).subscribe({
-        next: (data : BaseResponse<Student>) => {
+        next: (data: BaseResponse<Student>) => {
           //console.log(data);
           //let student: Student = new Student(data, this.addLogin?.value, this.addFullName?.value, this.addAge?.value);
           this.students.unshift(data.data);
