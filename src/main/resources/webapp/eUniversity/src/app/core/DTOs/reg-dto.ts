@@ -1,4 +1,4 @@
-import { Role } from "../models/role";
+import { Role } from "../models/auth/role";
 
 export class RegDTO {
   login: string

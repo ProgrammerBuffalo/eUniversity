@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { PrepareApi } from './prepare-api';
 import { Observable } from 'rxjs';
 import { LoginDTO } from '../core/DTOs/login-dto';
-import { RegDTO } from '../core/DTOs/reg-dto';
+import { User } from '../core/models/user';
+import { BaseResponse } from '../core/models/base/base-response';
+import { Auth } from '../core/models/auth/auth';
 
 
 @Injectable({
@@ -17,15 +19,36 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
-  login(dto: LoginDTO): Observable<String> {
+  login(dto: LoginDTO): Observable<BaseResponse<Auth>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'authorize');
-    let params = {};
-    return this.http.get<string>(url);
+    return this.http.post<BaseResponse<Auth>>(url, dto);
   }
 
-  register(dto: RegDTO) {
-    let url: string = PrepareApi.prepare(this.controllerName, 'reg');
-    let params = {};
-    return this.http.get<string>(url);
+  logout() {
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('jwtToken');
   }
+
+  refreshTokens(rt: string): Observable<BaseResponse<Auth>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'refresh-tokens');
+    let headers = { Rt: rt };
+    return this.http.post<BaseResponse<Auth>>(url, { headers: headers });
+  }
+
+  saveUser(data: Auth) {
+    let user = new User(data.id, data.fullName, data.role);
+
+    localStorage.setItem('rt', data.refreshToken);
+    sessionStorage.setItem('jwtToken', data.jwtToken);
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getRefrehToken(): string {
+    return localStorage.getItem('rt')!;
+  }
+
+  getJwtToken(): string {
+    return sessionStorage.getItem('jwtToken')!;
+  }
+
 }

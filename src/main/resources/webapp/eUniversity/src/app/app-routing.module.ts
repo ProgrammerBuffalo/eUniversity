@@ -8,13 +8,14 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'Main',
+    path: 'Auth',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
     path: 'Admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
+  { path: 'page-404', component: Page404Component },
   { path: '**', component: Page404Component }
 ];
 
