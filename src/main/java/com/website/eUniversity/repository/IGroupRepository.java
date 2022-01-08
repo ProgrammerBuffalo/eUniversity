@@ -1,5 +1,6 @@
 package com.website.eUniversity.repository;
 
+import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.StudentShortInfoDTO;
 import com.website.eUniversity.model.entity.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,7 @@ public interface IGroupRepository extends JpaRepository<Group, Integer> {
             " WHERE g.id = :id")
     List<StudentShortInfoDTO> findAllStudents(@Param("id") Integer groupId);
 
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(g.id, g.name)" +
+                   "FROM Group g")
+    List<DDLResponseDTO<Integer>> getAllGroupsDDL();
 }

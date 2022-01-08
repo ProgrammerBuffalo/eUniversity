@@ -45,13 +45,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().and()
-                .authorizeRequests()
-                .antMatchers("/admin-panel/**").hasAuthority("ADMIN")
-                .anyRequest().authenticated().and()
-                .exceptionHandling().and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http.csrf().disable().cors().disable();
+                //.authorizeRequests()
+                //.antMatchers("/admin-panel/**").hasAuthority("ADMIN")
+                //.anyRequest().authenticated().and()
+                //.exceptionHandling().and().sessionManagement()
+                //.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        //http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.headers().frameOptions().disable();
     }

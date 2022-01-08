@@ -1,8 +1,6 @@
 package com.website.eUniversity.service.impl;
 
-import com.website.eUniversity.model.dto.entity.GroupDisciplineRequestDTO;
-import com.website.eUniversity.model.dto.entity.GroupDisciplineTeacherDTO;
-import com.website.eUniversity.model.dto.entity.StudentShortInfoDTO;
+import com.website.eUniversity.model.dto.entity.*;
 import com.website.eUniversity.model.entity.*;
 import com.website.eUniversity.repository.*;
 import com.website.eUniversity.service.IGroupService;
@@ -118,15 +116,20 @@ public class GroupService implements IGroupService {
         return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
+    @Override
+    public List<StudentDTO> getStudentsByGroup(Integer groupId) {
+        return studentRepository.getAllByGroup(groupId);
+    }
+
     private Student findStudent(String studentId) {
         Optional<Account> account = accountRepository.findAccountById(studentId);
 
-        if(!account.isPresent())
+        if (!account.isPresent())
             return null;
 
         Optional<Student> student = studentRepository.findByAccount(account.get());
 
-        if(!student.isPresent())
+        if (!student.isPresent())
             return null;
         return student.get();
     }
@@ -134,7 +137,7 @@ public class GroupService implements IGroupService {
     private Group findGroup(Integer groupId) {
         Optional<Group> group = groupRepository.findById(groupId);
 
-        if(!group.isPresent())
+        if (!group.isPresent())
             return null;
         return group.get();
     }
@@ -142,12 +145,12 @@ public class GroupService implements IGroupService {
     private Teacher findTeacher(String teacherId) {
         Optional<Account> account = accountRepository.findAccountById(teacherId);
 
-        if(!account.isPresent())
+        if (!account.isPresent())
             return null;
 
         Optional<Teacher> teacher = teacherRepository.findByAccount(account.get());
 
-        if(!teacher.isPresent())
+        if (!teacher.isPresent())
             return null;
         return teacher.get();
     }
@@ -155,8 +158,13 @@ public class GroupService implements IGroupService {
     private Discipline findDiscipline(Integer disciplineId) {
         Optional<Discipline> discipline = disciplineRepository.findById(disciplineId);
 
-        if(!discipline.isPresent())
+        if (!discipline.isPresent())
             return null;
         return discipline.get();
+    }
+
+    @Override
+    public List<DDLResponseDTO<Integer>> getGroupsDDL() {
+        return groupRepository.getAllGroupsDDL();
     }
 }

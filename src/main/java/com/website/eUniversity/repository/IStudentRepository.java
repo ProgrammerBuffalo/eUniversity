@@ -25,4 +25,8 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
             " FROM Student s INNER JOIN Account a on s.account.id = a.id" +
             "                INNER JOIN Group g on s.group = g")
     List<StudentDTO> findAllStudents();
+
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(s.account.id, s.account.fullName, s.account.age, s.account.login, s.account.password)" +
+                   "FROM Student s WHERE s.group.id = ?1")
+    List<StudentDTO> getAllByGroup(Integer groupId);
 }

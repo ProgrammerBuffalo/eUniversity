@@ -1,9 +1,8 @@
 package com.website.eUniversity.controller.admin;
 
 import com.website.eUniversity.model.base.BaseResponse;
-import com.website.eUniversity.model.dto.entity.GroupDisciplineRequestDTO;
-import com.website.eUniversity.model.dto.entity.GroupDisciplineTeacherDTO;
-import com.website.eUniversity.model.dto.entity.StudentShortInfoDTO;
+import com.website.eUniversity.model.dto.entity.*;
+import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.service.IGroupService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,8 +22,14 @@ public class GroupsController {
 
     @GetMapping("/get-students-group")
     @ApiOperation("Returns students of requested group")
-    public ResponseEntity<BaseResponse<List<StudentShortInfoDTO>>> getStudentsGroup(@RequestParam(name = "group_id") Integer group_id) {
-        return ResponseEntity.ok(new BaseResponse<List<StudentShortInfoDTO>>().success(groupService.getAllStudents(group_id), "Students are returned"));
+    public ResponseEntity<BaseResponse<List<StudentShortInfoDTO>>> getStudentsGroup(@RequestParam(name = "groupId") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<List<StudentShortInfoDTO>>().success(groupService.getAllStudents(groupId), "Students are returned"));
+    }
+
+    @GetMapping("/get-students-by-group")
+    @ApiOperation("Returns students of requested group")
+    public  ResponseEntity<BaseResponse<List<StudentDTO>>> getStudentsByGroup(@RequestParam(name = "groupId") Integer groupId){
+        return  ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(groupService.getStudentsByGroup(groupId), "Students are returned"));
     }
 
     @GetMapping("/get-all-groups")
@@ -33,17 +38,23 @@ public class GroupsController {
         return ResponseEntity.ok(new BaseResponse<List<GroupDisciplineTeacherDTO>>().success(groupService.getAllGroupDisciplineTeacher(), "Ok"));
     }
 
+    @GetMapping("/get-all-groups-dll")
+    @ApiOperation("Returns all groups for dropdown")
+    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getAllGroupsDDL(){
+        return  ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(groupService.getGroupsDDL(), "Ok"));
+    }
+
     @PostMapping("/attach-student")
     @ApiOperation("Add requested student to requested group")
-    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestParam(name = "group_id") Integer group_id,
-                                                                           @RequestParam(name = "student_id") String student_id) {
-        return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(student_id, group_id), "OK"));
+    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestParam(name = "groupId") Integer groupId,
+                                                                           @RequestParam(name = "studentId") String studentId) {
+        return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(studentId, groupId), "OK"));
     }
 
     @PostMapping("/add-group")
     @ApiOperation("Add new group")
-    public ResponseEntity<BaseResponse<String>> addGroup(@RequestParam(name = "group_name") String group_name) {
-        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.addGroup(group_name), "OK"));
+    public ResponseEntity<BaseResponse<String>> addGroup(@RequestParam(name = "groupName") String groupName) {
+        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.addGroup(groupName), "OK"));
     }
 
     @PostMapping("/attach-discipline")
@@ -54,9 +65,9 @@ public class GroupsController {
 
     @PutMapping("/edit-group-info")
     @ApiOperation("Edits group's info")
-    public ResponseEntity<BaseResponse<String>> editGroup(@RequestParam(name = "group_id") Integer group_id,
-                                                          @RequestParam(name = "group_name") String group_name) {
-        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.editGroup(group_id, group_name), "OK"));
+    public ResponseEntity<BaseResponse<String>> editGroup(@RequestParam(name = "groupId") Integer groupId,
+                                                          @RequestParam(name = "groupName") String groupName) {
+        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.editGroup(groupId, groupName), "OK"));
     }
 
     @DeleteMapping("/detach-discipline")
@@ -67,15 +78,15 @@ public class GroupsController {
 
     @DeleteMapping("/detach-student")
     @ApiOperation("Remove student from requested group")
-    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> detachStudent(@RequestParam(name = "group_id") Integer group_id,
-                                                                           @RequestParam(name = "student_id") String student_id) {
-        return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.detachStudent(student_id, group_id), "OK"));
+    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> detachStudent(@RequestParam(name = "groupId") Integer groupId,
+                                                                           @RequestParam(name = "studentId") String studentId) {
+        return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.detachStudent(studentId, groupId), "OK"));
     }
 
-    @DeleteMapping("delete-group")
+    @DeleteMapping("/delete-group")
     @ApiOperation("Deletes group")
-    public ResponseEntity<BaseResponse<String>> deleteGroup(@RequestParam(name = "group_id") Integer group_id) {
-        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.deleteGroup(group_id), "OK"));
+    public ResponseEntity<BaseResponse<String>> deleteGroup(@RequestParam(name = "groupId") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.deleteGroup(groupId), "OK"));
     }
 
 }

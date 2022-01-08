@@ -1,14 +1,13 @@
 package com.website.eUniversity.service;
 
-import com.website.eUniversity.model.dto.entity.GroupDisciplineRequestDTO;
-import com.website.eUniversity.model.dto.entity.GroupDisciplineTeacherDTO;
-import com.website.eUniversity.model.dto.entity.StudentShortInfoDTO;
-
+import com.website.eUniversity.model.dto.entity.*;
 import java.util.List;
 
 public interface IGroupService {
 
     List<StudentShortInfoDTO> getAllStudents(Integer groupId);
+
+    List<StudentDTO> getStudentsByGroup(Integer group_id);
 
     List<GroupDisciplineTeacherDTO> getAllGroupDisciplineTeacher();
 
@@ -25,4 +24,6 @@ public interface IGroupService {
     StudentShortInfoDTO detachStudent(String studentId, Integer groupId);
 
     GroupDisciplineTeacherDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
+
+    List<DDLResponseDTO<Integer>> getGroupsDDL();
 }
