@@ -10,6 +10,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { StudentListComponent } from './student-list/student-list.component';
+import { DisciplineListComponent } from './discipline-list/discipline-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { StudentListComponent } from './student-list/student-list.component';
     TeacherListComponent,
     StudentListComponent,
     AsideMenuComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    DisciplineListComponent
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { Role } from '../core/models/auth/role';
+import { DisciplineListComponent } from './discipline-list/discipline-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Panel', pathMatch: 'full' },
@@ -22,7 +23,9 @@ const routes: Routes = [
 
       { path: 'teacher-list', component: TeacherListComponent },
 
-      { path: 'admin-list', component: AdminListComponent }
+      { path: 'admin-list', component: AdminListComponent },
+
+      { path: 'discipline-list', component: DisciplineListComponent }
     ]
   },
 ];
