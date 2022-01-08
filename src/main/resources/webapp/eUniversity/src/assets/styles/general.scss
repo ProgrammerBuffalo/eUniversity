@@ -1,315 +1,425 @@
 :root {
-    --input-color: #99A3BA;
-    --input-border: #CDD9ED;
-    --input-background: #fff;
-    --input-placeholder: #CBD1DC;
-    --input-border-focus: #275EFE;
-    --group-color: var(--input-color);
-    --group-border: var(--input-border);
-    --group-background: #EEF4FF;
-    --group-color-focus: #fff;
-    --group-border-focus: var(--input-border-focus);
-    --group-background-focus: #678EFE;
+  --input-color: #99a3ba;
+  --input-border: #cdd9ed;
+  --input-background: #fff;
+  --input-placeholder: #cbd1dc;
+  --input-border-focus: #275efe;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #eef4ff;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678efe;
 }
-
 
 /*CONTAINER*/
 
 .container {
-    max-width: 1180px;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 10px;
+  max-width: 1180px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
 .table-container {
-    width: 100%;
-    @media(max-width: 500px) {
-        max-width: 500px;
-        overflow: scroll;
-    }
+  width: 100%;
+  @media (max-width: 500px) {
+    max-width: 500px;
+    overflow: scroll;
+  }
 }
 
-
 /*CONTAINER*/
-
 
 /*BUTTONS*/
 
 .btn {
-    width: 100%;
-    padding: 0.6rem 1.8rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease 0s;
-    font-size: 2rem;
+  width: 100%;
+  padding: 0.6rem 1.8rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+  font-size: 2rem;
 }
 
 .btn-success {
-    background-color: #51d45c;
-    color: #005707;
-    &:hover {
-        background-color: #45b44e;
-        color: #fff;
-    }
+  background-color: #51d45c;
+  color: #005707;
+  &:hover {
+    background-color: #45b44e;
+    color: #fff;
+  }
 }
 
 .btn-info {
-    background-color: #86c6fa;
-    color: #000d57;
-    &:hover {
-        background-color: #508ec0;
-        color: #fff;
-    }
+  background-color: #86c6fa;
+  color: #000d57;
+  &:hover {
+    background-color: #508ec0;
+    color: #fff;
+  }
 }
 
 .btn-danger {
-    background-color: #fa8686;
-    color: #570000;
-    &:hover {
-        background-color: #d36161;
-        color: #fff;
-    }
+  background-color: #fa8686;
+  color: #570000;
+  &:hover {
+    background-color: #d36161;
+    color: #fff;
+  }
 }
 
 .btn-warning {
-    background-color: #ffc14e;
-    color: #573900;
-    &:hover {
-        background-color: #dda030;
-        color: #fff;
-    }
+  background-color: #ffc14e;
+  color: #573900;
+  &:hover {
+    background-color: #dda030;
+    color: #fff;
+  }
 }
 
-
 /*BUTTONS*/
-
 
 /*INPUTS*/
 
 .form-field {
-    display: block;
-    width: 100%;
-    padding: 8px 16px;
-    line-height: 25px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: inherit;
-    border-radius: 6px;
-    -webkit-appearance: none;
-    color: var(--input-color);
-    border: 1px solid var(--input-border);
-    background: var(--input-background);
-    transition: border .3s ease;
-    &::placeholder {
-        color: var(--input-placeholder);
-    }
-    &:focus {
-        outline: none;
-        border-color: var(--input-border-focus);
-    }
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  color: var(--input-color);
+  border: 1px solid var(--input-border);
+  background: var(--input-background);
+  transition: border 0.3s ease;
+  &::placeholder {
+    color: var(--input-placeholder);
+  }
+  &:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+  }
 }
 
 .form-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  & > span,
+  .form-field {
+    white-space: nowrap;
+    display: block;
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+  }
+  .form-field {
     position: relative;
-    display: flex;
-    width: 100%;
-    margin-bottom: 30px;
-    &>span,
-    .form-field {
-        white-space: nowrap;
-        display: block;
-        &:not(:first-child):not(:last-child) {
-            border-radius: 0;
-        }
-        &:first-child {
-            border-radius: 6px 0 0 6px;
-        }
-        &:last-child {
-            border-radius: 0 6px 6px 0;
-        }
-        &:not(:first-child) {
-            margin-left: -1px;
-        }
+    z-index: 1;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  & > span {
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--group-color);
+    background: var(--group-background);
+    border: 1px solid var(--group-border);
+    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+  }
+  &:focus-within {
+    & > span {
+      color: var(--group-color-focus);
+      background: var(--group-background-focus);
+      border-color: var(--group-border-focus);
     }
-    .form-field {
-        position: relative;
-        z-index: 1;
-        flex: 1 1 auto;
-        width: 1%;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    &>span {
-        text-align: center;
-        padding: 8px 12px;
-        font-size: 14px;
-        line-height: 25px;
-        color: var(--group-color);
-        background: var(--group-background);
-        border: 1px solid var(--group-border);
-        transition: background .3s ease, border .3s ease, color .3s ease;
-    }
-    &:focus-within {
-        &>span {
-            color: var(--group-color-focus);
-            background: var(--group-background-focus);
-            border-color: var(--group-border-focus);
-        }
-    }
+  }
 }
 
 .bootstrap-select {
-    width: 100% !important;
+  width: 100% !important;
 }
 
-
 /*INPUTS*/
-
 
 /*TABLE*/
 
 .td-blue {
-    transition: all 0.3s ease 0s;
-    &:hover {
-        background-color: #bec5ff !important;
-    }
+  transition: all 0.3s ease 0s;
+  &:hover {
+    background-color: #bec5ff !important;
+  }
 }
 
 .td-red {
-    transition: all 0.3s ease 0s;
-    &:hover {
-        background-color: #ffb1b1 !important;
-    }
+  transition: all 0.3s ease 0s;
+  &:hover {
+    background-color: #ffb1b1 !important;
+  }
 }
 
-
 /*TABLE*/
-
 
 /*MARGINS & PADDINGS*/
 
 .m-0 {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 .m-10 {
-    margin: 10px !important;
+  margin: 10px !important;
 }
 
 .m-20 {
-    margin: 20px !important;
+  margin: 20px !important;
 }
 
 .m-30 {
-    margin: 30px !important;
+  margin: 30px !important;
 }
 
 .m-40 {
-    margin: 40px !important;
+  margin: 40px !important;
 }
 
 .m-50 {
-    margin: 50px !important;
+  margin: 50px !important;
 }
 
 .ml-0 {
-    margin-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .ml-10 {
-    margin-left: 10px !important;
+  margin-left: 10px !important;
 }
 
 .ml-20 {
-    margin-left: 20px !important;
+  margin-left: 20px !important;
 }
 
 .ml-30 {
-    margin-left: 30px !important;
+  margin-left: 30px !important;
 }
 
 .ml-40 {
-    margin-left: 40px !important;
+  margin-left: 40px !important;
 }
 
 .ml-50 {
-    margin-left: 50px !important;
+  margin-left: 50px !important;
 }
 
 .mr-0 {
-    margin-right: 0 !important;
+  margin-right: 0 !important;
 }
 
 .mr-10 {
-    margin-right: 10px !important;
+  margin-right: 10px !important;
 }
 
 .mr-20 {
-    margin-right: 20px !important;
+  margin-right: 20px !important;
 }
 
 .mr-30 {
-    margin-right: 30px !important;
+  margin-right: 30px !important;
 }
 
 .mr-40 {
-    margin-right: 40px !important;
+  margin-right: 40px !important;
 }
 
 .mr-50 {
-    margin-right: 50px !important;
+  margin-right: 50px !important;
 }
 
 .mt-0 {
-    margin-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 .mt-10 {
-    margin-top: 10px !important;
+  margin-top: 10px !important;
 }
 
 .mt-20 {
-    margin-top: 20px !important;
+  margin-top: 20px !important;
 }
 
 .mt-30 {
-    margin-top: 30px !important;
+  margin-top: 30px !important;
 }
 
 .mt-40 {
-    margin-top: 40px !important;
+  margin-top: 40px !important;
 }
 
 .mt-50 {
-    margin-top: 50px !important;
+  margin-top: 50px !important;
 }
 
 .mb-0 {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .mb-10 {
-    margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
 
 .mb-20 {
-    margin-bottom: 20px !important;
+  margin-bottom: 20px !important;
 }
 
 .mb-30 {
-    margin-bottom: 30px !important;
+  margin-bottom: 30px !important;
 }
 
 .mb-40 {
-    margin-bottom: 40px !important;
+  margin-bottom: 40px !important;
 }
 
 .mb-50 {
-    margin-bottom: 50px !important;
+  margin-bottom: 50px !important;
+}
+/*MARGINS & PADDINGS*/
+
+/*FLEX*/
+.flex {
+  display: flex !important;
 }
 
+.f-between {
+  justify-content: space-between !important;
+}
 
-/*MARGINS & PADDINGS*/
+.gap-10 {
+  column-gap: 10px !important;
+}
+.gap-20 {
+  column-gap: 20px !important;
+}
+.gap-30 {
+  column-gap: 30px !important;
+}
+.gap-40 {
+  column-gap: 40px !important;
+}
+.gap-50 {
+  column-gap: 50px !important;
+}
+
+.fw-10 {
+  flex: 1 0 10% !important;
+}
+
+.fw-20 {
+  flex: 1 0 20% !important;
+}
+.fw-30 {
+  flex: 1 0 30% !important;
+}
+.fw-40 {
+  flex: 1 0 40% !important;
+}
+.fw-50 {
+  flex: 1 0 50% !important;
+}
+.fw-60 {
+  flex: 1 0 60% !important;
+}
+.fw-70 {
+  flex: 1 0 70% !important;
+}
+.fw-80 {
+  flex: 1 0 80% !important;
+}
+.fw-90 {
+  flex: 1 0 90% !important;
+}
+.fw-100 {
+  flex: 1 0 100% !important;
+}
+/*FLEX*/
+
+/*FONT-SIZES*/
+.fz-10 {
+  font-size: 16px !important;
+}
+.fz-12 {
+  font-size: 16px !important;
+}
+.fz-14 {
+  font-size: 16px !important;
+}
+.fz-16 {
+  font-size: 16px !important;
+}
+.fz-18 {
+  font-size: 16px !important;
+}
+.fz-20 {
+  font-size: 16px !important;
+}
+.fz-22 {
+  font-size: 16px !important;
+}
+.fz-24s {
+  font-size: 16px !important;
+}
+/*FONT-SIZES*/
+
+/*WIDTH*/
+.w-0 {
+  width: 0 !important;
+}
+.w-10 {
+  width: 10% !important;
+}
+.w-20 {
+  width: 20% !important;
+}
+.w-30 {
+  width: 30% !important;
+}
+.w-40 {
+  width: 40% !important;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-60 {
+  width: 60% !important;
+}
+.w-70 {
+  width: 70% !important;
+}
+.w-80 {
+  width: 80% !important;
+}
+.w-90 {
+  width: 90% !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+/*WIDTH*/
