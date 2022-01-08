@@ -5,6 +5,8 @@ public class UpdateDisciplineDTO {
 
     String name;
 
+    String shortName;
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -19,5 +21,13 @@ public class UpdateDisciplineDTO {
 
     public String getName() {
         return name;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getShortName() {
+        return shortName;
     }
 }

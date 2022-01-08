@@ -16,6 +16,9 @@ public class Discipline {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "shortName")
+    private  String shortName;
+
     @OneToMany
     @Transient
     private List<GroupDiscipline> groupDisciplines;
@@ -24,9 +27,10 @@ public class Discipline {
 
     }
 
-    public Discipline(int id, String name) {
+    public Discipline(int id, String name, String shortName) {
         this.id = id;
         this.name = name;
+        this.shortName = shortName;
     }
 
     public Integer getId() {
@@ -43,6 +47,14 @@ public class Discipline {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getShortName() {
+        return shortName;
     }
 
     public List<GroupDiscipline> getGroupDisciplines() {

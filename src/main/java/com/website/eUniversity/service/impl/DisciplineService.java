@@ -23,6 +23,7 @@ public class DisciplineService implements IDisciplineService {
     public Integer save(AddDisciplineDTO disciplineDTO) {
         Discipline discipline = new Discipline();
         discipline.setName(disciplineDTO.getName());
+        discipline.setShortName(disciplineDTO.getShortName());
 
         disciplineRepository.save(discipline);
         return discipline.getId();
@@ -44,6 +45,7 @@ public class DisciplineService implements IDisciplineService {
         Discipline discipline = disciplineRepository.findById(disciplineDTO.getId()).get();
 
         discipline.setName(disciplineDTO.getName());
+        discipline.setShortName(disciplineDTO.getShortName());
 
         disciplineRepository.save(discipline);
     }

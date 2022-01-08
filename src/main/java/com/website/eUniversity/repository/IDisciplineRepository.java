@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface IDisciplineRepository extends JpaRepository<Discipline, Integer> {
 
-    @Query(value = "SELECT new com.website.eUniversity.model.entity.Discipline(d.id, d.name)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.entity.Discipline(d.id, d.name, d.shortName)" +
             "FROM Discipline d")
     List<Discipline> getAll();
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(d.id, d.name)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(d.id, d.shortName)" +
             "FROM Discipline d")
     List<DDLResponseDTO<Integer>> getDisciplineDDL();
 }
