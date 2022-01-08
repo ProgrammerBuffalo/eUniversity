@@ -1,7 +1,6 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
-import com.website.eUniversity.model.dto.entity.StudentDTO;
 import com.website.eUniversity.model.dto.entity.TeacherDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
@@ -11,7 +10,6 @@ import com.website.eUniversity.repository.ITeacherRepository;
 import com.website.eUniversity.service.ITeacherService;
 import com.website.eUniversity.service.func.AccountSaver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

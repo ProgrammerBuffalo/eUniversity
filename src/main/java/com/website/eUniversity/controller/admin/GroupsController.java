@@ -2,7 +2,6 @@ package com.website.eUniversity.controller.admin;
 
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.entity.*;
-import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.service.IGroupService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,16 +19,17 @@ public class GroupsController {
     @Autowired
     private IGroupService groupService;
 
-    @GetMapping("/get-students-group")
-    @ApiOperation("Returns students of requested group")
-    public ResponseEntity<BaseResponse<List<StudentShortInfoDTO>>> getStudentsGroup(@RequestParam(name = "groupId") Integer groupId) {
-        return ResponseEntity.ok(new BaseResponse<List<StudentShortInfoDTO>>().success(groupService.getAllStudents(groupId), "Students are returned"));
-    }
+//dont remove maybe use later
+//    @GetMapping("/get-students-group")
+//    @ApiOperation("Returns students of requested group")
+//    public ResponseEntity<BaseResponse<List<StudentShortInfoDTO>>> getStudentsGroup(@RequestParam(name = "groupId") Integer groupId) {
+//        return ResponseEntity.ok(new BaseResponse<List<StudentShortInfoDTO>>().success(groupService.getAllStudents(groupId), "Students are returned"));
+//    }
 
     @GetMapping("/get-students-by-group")
     @ApiOperation("Returns students of requested group")
-    public  ResponseEntity<BaseResponse<List<StudentDTO>>> getStudentsByGroup(@RequestParam(name = "groupId") Integer groupId){
-        return  ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(groupService.getStudentsByGroup(groupId), "Students are returned"));
+    public ResponseEntity<BaseResponse<List<StudentDTO>>> getStudentsByGroup(@RequestParam(name = "groupId") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(groupService.getStudentsByGroup(groupId), "Students are returned"));
     }
 
     @GetMapping("/get-all-groups")
@@ -38,18 +38,18 @@ public class GroupsController {
         return ResponseEntity.ok(new BaseResponse<List<GroupDisciplineTeacherDTO>>().success(groupService.getAllGroupDisciplineTeacher(), "Ok"));
     }
 
-    @GetMapping("/get-all-groups-dll")
+    @GetMapping("/get-all-groups-ddl")
     @ApiOperation("Returns all groups for dropdown")
-    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getAllGroupsDDL(){
-        return  ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(groupService.getGroupsDDL(), "Ok"));
+    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getAllGroupsDDL() {
+        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(groupService.getGroupsDDL(), "Ok"));
     }
 
-    @PostMapping("/attach-student")
-    @ApiOperation("Add requested student to requested group")
-    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestParam(name = "groupId") Integer groupId,
-                                                                           @RequestParam(name = "studentId") String studentId) {
-        return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(studentId, groupId), "OK"));
-    }
+   @PostMapping("/attach-student")
+   @ApiOperation("Add requested student to requested group")
+   public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestParam(name = "groupId") Integer groupId,
+                                                                          @RequestParam(name = "studentId") String studentId) {
+       return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(studentId, groupId), "OK"));
+   }
 
     @PostMapping("/add-group")
     @ApiOperation("Add new group")
