@@ -1,0 +1,77 @@
+<form class="register">
+	<div class="form-group">
+		<span>Teacher name: </span>
+		<input type="text" class="form-field" placeholder="Teacher name">
+	</div>
+	<div class="flex f-between gap-50 mb-20">
+		<select class="selectpicker" data-live-search="true" name="disciplines" id="disciplines">
+			<option selected value="programming">Programming</option>
+			<option value="it-essentials">IT Essentials</option>
+			<option value="web-design">Web design</option>
+		</select>
+		<input type="button" class="btn btn-danger" value="Attach ">
+	</div>
+
+	<!--TABLE-DISCIPLINE-MODAL COMPONENT-->
+	<div class="table-block fz-12">
+		<div class="table-block__header">
+			<h3 class="table-block__title">Disciplines list</h3>
+		</div>
+		<div class="table-block__content">
+			<div class="table-container">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Discipline name</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<th>1</th>
+							<td>Programming</td>
+							<td class="td-red">
+								<div class="table-btn remove-btn">
+									<i class="fas fa-times"></i>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th>1</th>
+							<td>IT Essentials</td>
+							<td class="td-red">
+								<div class="table-btn remove-btn">
+									<i class="fas fa-times"></i>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th>3</th>
+							<td>Web design</td>
+							<td class="td-red">
+								<div class="table-btn remove-btn">
+									<i class="fas fa-times"></i>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th>4</th>
+							<td>Project management</td>
+							<td class="td-red">
+								<div class="table-btn remove-btn">
+									<i class="fas fa-times"></i>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--TABLE-DISCIPLINE-MODAL COMPONENT-->
+	<input type="submit" class="btn btn-danger mt-20" value="Add teacher"></input>
+</form>
