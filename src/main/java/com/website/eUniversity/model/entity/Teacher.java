@@ -1,6 +1,5 @@
 package com.website.eUniversity.model.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;

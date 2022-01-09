@@ -2,7 +2,6 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.entity.AdminDTO;
-import com.website.eUniversity.model.dto.entity.TeacherDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Admin;

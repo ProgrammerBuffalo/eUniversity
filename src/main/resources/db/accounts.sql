@@ -11,3 +11,8 @@ insert into accounts values ('34585868-E968-4754-B1B1-9E159688811C', 21, 'aa', '
 insert into accounts values ('0277437C-3F5C-474F-907E-F6EA26D2FC82', 12, 'bb', 'bb', 'bb', 'STUDENT');
 insert into accounts values ('0F570B46-6C4F-427F-B0E8-2CCD9526E3E8', 43, 'cc', 'cc', 'cc', 'STUDENT');
 insert into accounts values ('52B6D25C-F16C-409B-9A18-DB084C57A2BA', 22, 'dd', 'dd', 'dd', 'STUDENT');
+
+insert into accounts values ('61a92ee8-9187-4504-bff5-3b22a8e5723e', 41, 'teacher1', 'teacher1', 'teacher1', 'TEACHER');
+insert into accounts values ('a99c992f-19ca-4a5b-ac02-f46ef8e752bb', 42, 'teacher2', 'teacher2', 'teacher2', 'TEACHER');
+insert into accounts values ('0bd41a1e-0154-4d48-890b-9424ce03dda9', 43, 'teacher3', 'teacher3', 'teacher3', 'TEACHER');
+insert into accounts values ('a1a538bb-b301-4932-bba9-b830c5685a09', 44, 'teacher4', 'teacher4', 'teacher4', 'TEACHER');

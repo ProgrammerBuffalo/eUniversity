@@ -4,8 +4,12 @@ import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.discipline.AddDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.discipline.UpdateDisciplineDTO;
+import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
+import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
+import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
 import com.website.eUniversity.model.entity.Discipline;
 import com.website.eUniversity.service.IDisciplineService;
+import com.website.eUniversity.service.ITeacherDisciplineService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +26,15 @@ public class DisciplineController {
     @Autowired
     private IDisciplineService disciplineService;
 
+    @Autowired
+    private ITeacherDisciplineService teacherDisciplineService;
+
     @PostMapping("/add-discipline")
     @ApiOperation("adds new discipline")
     public ResponseEntity<BaseResponse<Integer>> addDiscipline(@RequestBody AddDisciplineDTO dto) {
-        try{
+        try {
             return ResponseEntity.ok(new BaseResponse<Integer>().success(disciplineService.save(dto), "Student is added"));
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().body(new BaseResponse().error("such discipline already exists", 400));
         }
     }
@@ -49,7 +55,7 @@ public class DisciplineController {
     @ApiOperation("updates discipline")
     public ResponseEntity<BaseResponse<Object>> updateDiscipline(@RequestBody UpdateDisciplineDTO disciplineDTO) {
         disciplineService.update(disciplineDTO);
-        return ResponseEntity.ok(new BaseResponse<>().success(null, "aa"));
+        return ResponseEntity.ok(new BaseResponse<>().success(null, ""));
     }
 
     @DeleteMapping("/delete-discipline")
@@ -58,4 +64,42 @@ public class DisciplineController {
         disciplineService.delete(id);
         return ResponseEntity.ok(new BaseResponse<>().success(null, ""));
     }
+
+    @GetMapping("/get-teachers-short-disciplines")
+    @ApiOperation("")
+    public ResponseEntity<BaseResponse<List<ITeacherShortDisciplinesDTO>>> getTeachersDisciplines() {
+        return ResponseEntity.ok(new BaseResponse<List<ITeacherShortDisciplinesDTO>>().success(teacherDisciplineService.getTeachersShortDisciplines(), ""));
+    }
+
+    @GetMapping("/get-teacher-disciplines")
+    @ApiOperation("")
+    public ResponseEntity<BaseResponse<List<ITeacherDisciplineDTO>>> getTeacherDisciplines(@RequestParam("teacherId") Integer teacherId) {
+        return ResponseEntity.ok(new BaseResponse<List<ITeacherDisciplineDTO>>().success(teacherDisciplineService.getTeacherDisciplines(teacherId), ""));
+    }
+
+    @GetMapping("/get-teacher-short-disciplines")
+    @ApiOperation("")
+    public ResponseEntity<BaseResponse<ITeacherShortDisciplinesDTO>> getTeacherShortDisciplines(@RequestParam("teacherId") Integer teacherId) {
+        return ResponseEntity.ok(new BaseResponse<ITeacherShortDisciplinesDTO>().success(teacherDisciplineService.getTeacherShortDisciplines(teacherId), ""));
+    }
+
+    @PostMapping("/attach-discipline")
+    @ApiOperation("")
+    public ResponseEntity<BaseResponse<Object>> assignDiscipline(@RequestBody AttachDisciplineDTO dto) {
+        try {
+            teacherDisciplineService.attachDiscipline(dto);
+            return ResponseEntity.ok(new BaseResponse<>().success(null, "new discipline attached to teacher"));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(new BaseResponse<>().error("can`t add same discipline to teacher", 400));
+        }
+    }
+
+    @DeleteMapping("/detach-discipline")
+    @ApiOperation("")
+    public ResponseEntity<BaseResponse<Object>> detachDiscipline(@RequestParam("teacherId") Integer teacherId,
+                                                                 @RequestParam("disciplineId") Integer disciplineId) {
+        teacherDisciplineService.detachDiscipline(teacherId, disciplineId);
+        return ResponseEntity.ok(new BaseResponse<>().success(null, "discipline detached from teacher"));
+    }
+
 }

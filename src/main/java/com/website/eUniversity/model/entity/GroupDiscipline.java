@@ -1,9 +1,6 @@
 package com.website.eUniversity.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "GroupsDisciplines")
@@ -11,7 +8,7 @@ public class GroupDiscipline {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
@@ -35,11 +32,11 @@ public class GroupDiscipline {
         this.teacher = teacher;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
