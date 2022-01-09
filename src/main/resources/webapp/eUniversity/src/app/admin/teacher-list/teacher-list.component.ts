@@ -73,7 +73,6 @@ export class TeacherListComponent implements OnInit {
   }
 
   showEditModal(teacher: Teacher) {
-    console.log(teacher);
     this.showEditPopup = true;
     this.selectedTeacher = teacher;
 
@@ -95,6 +94,8 @@ export class TeacherListComponent implements OnInit {
       this.accountService.registerTeacher(this.addForm.value).subscribe({
         next: (data: BaseResponse<Teacher>) => {
           this.teachers.unshift(data.data);
+
+          this.showAddPopup = false;
         },
         error: (data) => {
           alert('can`t add student');
@@ -112,6 +113,8 @@ export class TeacherListComponent implements OnInit {
           this.selectedTeacher.login = this.editLogin?.value;
           this.selectedTeacher.fullName = this.editFullName?.value;
           this.selectedTeacher.age = this.editAge?.value;
+
+          this.showEditPopup = false;
         },
         error: (data) => {
           alert('this login alredy exsists');
@@ -123,7 +126,6 @@ export class TeacherListComponent implements OnInit {
   removeTeacher(id: string) {
     this.accountService.deleteTeacher(id).subscribe({
       next: (data) => {
-        console.log(data);
         for (let i = 0; i < this.teachers.length; i++) {
           if (this.teachers[i].id == id)
             this.teachers.splice(i, 1);

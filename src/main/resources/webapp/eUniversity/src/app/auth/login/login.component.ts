@@ -30,27 +30,13 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   ngOnInit(): void {
-    //let user: User = new User(1, 'aa', 'token', Role.Admin);
-    //sessionStorage.setItem('user', JSON.stringify(user));
-
-    //this.authService.temp().subscribe();
-    //localStorage.setItem('user', JSON.stringify(user));
-
-    //this.authService.login().subscribe(data => console.log(data));
-
-    //this.authService.login().subscribe((data: String) => {console.log(data)});
   }
 
   signIn(): void {
     if (this.loginForm.valid)
       this.authService.login(this.loginForm.value).subscribe({
         next: (data: BaseResponse<Auth>) => {
-          console.log(data);
           this.authService.saveUser(data.data);
-          //let user: User = new User(data.data.id, data.data.fullName, data.data.jwtToken, data.data.role);
-
-          //sessionStorage.setItem('user', JSON.stringify(user));
-          //localStorage.setItem('rt', data.data.refreshToken);
 
           if (data.data.role == Role.Admin) {
             this.router.navigate(['/Admin']);

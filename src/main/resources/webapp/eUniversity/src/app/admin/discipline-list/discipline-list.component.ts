@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpdateDisciplineDTO } from 'src/app/core/DTOs/admin/update-discipline-dto';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination';
 import { Discipline } from 'src/app/core/models/admin/discipline';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
+import { Pagination } from 'src/app/core/models/pagination';
 import { DisciplineService } from 'src/app/services/discipline.service';
 
 @Component({
@@ -11,6 +13,8 @@ import { DisciplineService } from 'src/app/services/discipline.service';
   styleUrls: ['../../shared/table-block.scss', '../../shared/modal.scss', '../../shared/input.scss']
 })
 export class DisciplineListComponent implements OnInit {
+
+  pagination: PaginationDTO;
 
   showAddPopup: boolean;
   showEditPopup: boolean;
@@ -23,7 +27,11 @@ export class DisciplineListComponent implements OnInit {
 
   get addName() { return this.addForm.get('name'); }
 
+  get addShortName() { return this.addForm.get('shortName'); }
+
   get editName() { return this.editForm.get('name'); }
+
+  get editShortName() { return this.editForm.get('shortName'); }
 
   constructor(
     private disciplineService: DisciplineService
@@ -33,18 +41,21 @@ export class DisciplineListComponent implements OnInit {
 
     this.addForm = new FormGroup({
       name: new FormControl('', Validators.required),
+      shortName: new FormControl('', Validators.required)
     });
 
     this.editForm = new FormGroup({
       name: new FormControl('', Validators.required),
+      shortName: new FormControl('', Validators.required)
     });
 
     this.disciplines = [];
+    this.pagination = new PaginationDTO('', 0, 5);
   }
 
   ngOnInit(): void {
-    this.disciplineService.getDisciplines().subscribe((data: BaseResponse<Discipline[]>) => {
-      this.disciplines = data.data;
+    this.disciplineService.getDisciplines(this.pagination).subscribe((res: BaseResponse<Discipline[]>) => {
+      this.disciplines = res.data;
     });
   }
 
@@ -52,6 +63,7 @@ export class DisciplineListComponent implements OnInit {
     this.showAddPopup = true;
 
     this.editForm.get('name')!.setValue('');
+    this.editForm.get('shortName')!.setValue('');
   }
 
   showEditModal(discipline: Discipline) {
@@ -59,6 +71,7 @@ export class DisciplineListComponent implements OnInit {
     this.selectedDiscipline = discipline;
 
     this.editForm.get('name')!.setValue(discipline.name);
+    this.editForm.get('shortName')?.setValue(discipline.shortName);
   }
 
   closeEditModal() {
@@ -72,8 +85,11 @@ export class DisciplineListComponent implements OnInit {
   addDiscipline() {
     if (this.addForm.valid)
       this.disciplineService.addDiscipline(this.addForm.value).subscribe({
-        next: (data: BaseResponse<Discipline>) => {
-          this.disciplines.unshift(data.data);
+        next: (data: BaseResponse<number>) => {
+          let discipline: Discipline = new Discipline(data.data, this.addName?.value, this.addShortName?.value);
+          this.disciplines.unshift(discipline);
+
+          this.showAddPopup = false;
         },
         error: (data) => {
           alert('can`t add discipline');
@@ -83,11 +99,11 @@ export class DisciplineListComponent implements OnInit {
 
   updateDiscipline() {
     if (this.editForm.valid) {
-      let dto: UpdateDisciplineDTO = new UpdateDisciplineDTO(this.selectedDiscipline.id, this.editName?.value);
+      let dto: UpdateDisciplineDTO = new UpdateDisciplineDTO(this.selectedDiscipline.id, this.editName?.value, this.editShortName?.value);
 
       this.disciplineService.updateDiscipline(dto).subscribe({
         next: (data) => {
-          this.selectedDiscipline.name = this.editName?.value;
+          this.showEditPopup = false;
         },
         error: (data) => {
           alert('this discipline alredy exsists');

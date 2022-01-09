@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AdminRoutingModule } from './admin-routing.module';
@@ -11,6 +11,7 @@ import { AdminListComponent } from './admin-list/admin-list.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { DisciplineListComponent } from './discipline-list/discipline-list.component';
+import { TeacherDisciplineListComponent } from './teacher-discipline-list/teacher-discipline-list.component';
 
 
 @NgModule({
@@ -20,13 +21,15 @@ import { DisciplineListComponent } from './discipline-list/discipline-list.compo
     StudentListComponent,
     AsideMenuComponent,
     AdminPanelComponent,
-    DisciplineListComponent
+    DisciplineListComponent,
+    TeacherDisciplineListComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

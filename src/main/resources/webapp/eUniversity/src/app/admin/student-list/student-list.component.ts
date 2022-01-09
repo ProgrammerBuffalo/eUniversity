@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/update-student-dto';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
-import { DDL } from 'src/app/core/models/ddl';
 import { AccountService } from 'src/app/services/accounts.service';
 import { GroupService } from 'src/app/services/group.service';
 
@@ -97,6 +96,8 @@ export class StudentListComponent implements OnInit {
       this.accountService.registerStudent(this.addForm.value).subscribe({
         next: (data: BaseResponse<Student>) => {
           this.students.unshift(data.data);
+
+          this.showAddPopup = false;
         },
         error: (data) => {
           alert('can`t add student');
@@ -114,6 +115,8 @@ export class StudentListComponent implements OnInit {
           this.selectedStudent.login = this.editLogin?.value;
           this.selectedStudent.fullName = this.editFullName?.value;
           this.selectedStudent.age = this.editAge?.value;
+
+          this.showEditPopup = false;
         },
         error: (data) => {
           alert('this login alredy exsists');

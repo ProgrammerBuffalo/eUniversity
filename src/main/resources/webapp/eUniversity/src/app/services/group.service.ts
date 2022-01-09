@@ -11,18 +11,18 @@ import { PrepareApi } from './prepare-api';
 })
 export class GroupService {
 
-  private readonly controllerName: string = '/admin-panel/groups';
+  private readonly controllerName: string = 'admin-panel/groups';
 
   constructor(
     private http: HttpClient
   ) { }
 
   getAllGroupsDDL(): Observable<BaseResponse<DDL<number>[]>> {
-    let url: string = PrepareApi.prepare(this.controllerName, 'get-students-group');
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-all-groups-ddl');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
-  getStudentsByGroup(id: string): Observable<BaseResponse<Student[]>> {
+  getStudentsByGroup(id: number): Observable<BaseResponse<Student[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-students-by-group');
     let param = { groupId: id }
     return this.http.get<BaseResponse<Student[]>>(url, { params: param });

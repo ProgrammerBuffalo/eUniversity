@@ -73,7 +73,6 @@ export class AdminListComponent implements OnInit {
   }
 
   showEditModal(admin: Admin) {
-    console.log(admin);
     this.showEditPopup = true;
     this.selectedAdmin = admin;
 
@@ -95,6 +94,7 @@ export class AdminListComponent implements OnInit {
       this.accountService.registerAdmin(this.addForm.value).subscribe({
         next: (data: BaseResponse<Admin>) => {
           this.admins.unshift(data.data);
+          this.showAddPopup = false;
         },
         error: (data) => {
           alert('can`t add admin');
@@ -112,6 +112,8 @@ export class AdminListComponent implements OnInit {
           this.selectedAdmin.login = this.editLogin?.value;
           this.selectedAdmin.fullName = this.editFullName?.value;
           this.selectedAdmin.age = this.editAge?.value;
+
+          this.showEditPopup = false;
         },
         error: (data) => {
           alert('this login alredy exsists');

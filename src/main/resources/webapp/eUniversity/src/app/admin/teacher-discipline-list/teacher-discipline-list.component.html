@@ -1,0 +1,180 @@
+<div class="table-block">
+  <div class="table-block__header">
+    <h3 class="table-block__title">Teachers & disciplines list</h3>
+  </div>
+
+  <!-- <select class="form-select" (change)="disciplineChange($event)">
+    <option selected value="group1">Group 1</option>
+    <option value="group2">Group 2</option>
+    <option value="group3">Group 3</option>
+  </select> -->
+
+  <div class="table-block__content">
+    <div class="table-container">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Teacher</th>
+            <th>Disciplines</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of teachersShortDisciplines">
+            <th>{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.shortDisciplines}}</td>
+            <td class="td-blue">
+              <div class="table-btn change-btn" (click)="showEditModal(item)">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </td>
+          </tr>
+
+          <!-- <tr>
+            <th>1</th>
+            <td>John Johnson</td>
+            <td>Discipine 1, Discipline 2</td>
+            <td class="td-blue">
+              <div class="table-btn change-btn">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>1</th>
+            <td>Jack Jackson</td>
+            <td>Discipline 3, Discipline 4</td>
+            <td class="td-blue">
+              <div class="table-btn change-btn">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>1</th>
+            <td>Tom Tomson</td>
+            <td>Discipline 5, Disicpline 6</td>
+            <td class="td-blue">
+              <div class="table-btn change-btn">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>1</th>
+            <td>Daniel Radcliffe</td>
+            <td>Discipline 7, Discipline 8</td>
+            <td class="td-blue">
+              <div class="table-btn change-btn">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" *ngIf="showEditPopup">
+  <div class="modal-content" style="width: 500px">
+    <span class="close" (click)="closeEditModal()">&times;</span>
+    <span>Teacher name: {{selectedTeacherDisciplines.name}}</span>
+
+    <form class="register" [formGroup]="editForm">
+      <!-- <div class="form-group">
+
+        <input type="text" class="form-field" placeholder="Teacher name">
+      </div> -->
+
+      <div class="flex f-between gap-50 mb-20">
+        <select class="form-select" formControlName='disciplineId'>
+          <option value="0">Select discipline</option>
+          <option value="{{item.id}}" *ngFor="let item of disciplines">{{item.name}}</option>
+          <!-- <option selected value="group1">Group 1</option>
+          <option value="group2">Group 2</option>
+          <option value="group3">Group 3</option> -->
+        </select>
+
+        <input type="button" class="btn btn-danger" value="Attach" (click)="attachDiscipline()">
+      </div>
+
+
+      <div class="table-block fz-12">
+        <div class="table-block__header">
+          <h3 class="table-block__title">Disciplines list</h3>
+        </div>
+        <div class="table-block__content">
+          <div class="table-container">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Discipline name</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of teacherDisciplines">
+                  <th>{{item.id}}</th>
+                  <td>{{item.name}}</td>
+                  <td class="td-red">
+                    <div class="table-btn remove-btn" (click)="detachDiscipline(item.id)">
+                      <i class="fas fa-times"></i>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- <tr>
+                  <th>1</th>
+                  <td>Programming</td>
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
+                      <i class="fas fa-times"></i>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>1</th>
+                  <td>IT Essentials</td>
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
+                      <i class="fas fa-times"></i>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>3</th>
+                  <td>Web design</td>
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
+                      <i class="fas fa-times"></i>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>4</th>
+                  <td>Project management</td>
+                  <td class="td-red">
+                    <div class="table-btn remove-btn">
+                      <i class="fas fa-times"></i>
+                    </div>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
