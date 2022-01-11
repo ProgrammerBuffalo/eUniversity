@@ -4,7 +4,6 @@ import { UpdateDisciplineDTO } from 'src/app/core/DTOs/admin/update-discipline-d
 import { PaginationDTO } from 'src/app/core/DTOs/pagination';
 import { Discipline } from 'src/app/core/models/admin/discipline';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
-import { Pagination } from 'src/app/core/models/pagination';
 import { DisciplineService } from 'src/app/services/discipline.service';
 
 @Component({
@@ -70,6 +69,8 @@ export class DisciplineListComponent implements OnInit {
     this.showEditPopup = true;
     this.selectedDiscipline = discipline;
 
+    console.log(discipline);
+
     this.editForm.get('name')!.setValue(discipline.name);
     this.editForm.get('shortName')?.setValue(discipline.shortName);
   }
@@ -92,7 +93,7 @@ export class DisciplineListComponent implements OnInit {
           this.showAddPopup = false;
         },
         error: (data) => {
-          alert('can`t add discipline');
+          alert('can`t add discipline with same name');
         }
       });
   }
@@ -101,9 +102,13 @@ export class DisciplineListComponent implements OnInit {
     if (this.editForm.valid) {
       let dto: UpdateDisciplineDTO = new UpdateDisciplineDTO(this.selectedDiscipline.id, this.editName?.value, this.editShortName?.value);
 
+      console.log(dto);
+
       this.disciplineService.updateDiscipline(dto).subscribe({
         next: (data) => {
           this.showEditPopup = false;
+          this.selectedDiscipline.name = dto.name;
+          this.selectedDiscipline.shortName = dto.shortName;
         },
         error: (data) => {
           alert('this discipline alredy exsists');

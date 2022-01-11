@@ -98,7 +98,7 @@ export class TeacherListComponent implements OnInit {
           this.showAddPopup = false;
         },
         error: (data) => {
-          alert('can`t add student');
+          alert('can`t add teacher');
         }
       });
   }
@@ -132,7 +132,7 @@ export class TeacherListComponent implements OnInit {
         }
       },
       error: (data) => {
-        alert('cant remove this student');
+        alert('cant remove this teacher');
       }
     })
   }
