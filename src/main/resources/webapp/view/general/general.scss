@@ -279,21 +279,46 @@
 .f-between {
 	justify-content: space-between !important;
 }
+.f-left {
+	justify-content: left !important;
+}
+.f-right {
+	justify-content: right !important;
+}
+.f-center {
+	justify-content: center !important;
+}
 
-.gap-10 {
+.col-gap-10 {
 	column-gap: 10px !important;
 }
-.gap-20 {
+.col-gap-20 {
 	column-gap: 20px !important;
 }
-.gap-30 {
+.col-gap-30 {
 	column-gap: 30px !important;
 }
-.gap-40 {
+.col-gap-40 {
 	column-gap: 40px !important;
 }
-.gap-50 {
+.col-gap-50 {
 	column-gap: 50px !important;
+}
+
+.row-gap-10 {
+	row-gap: 10px !important;
+}
+.row-gap-20 {
+	row-gap: 20px !important;
+}
+.row-gap-30 {
+	row-gap: 30px !important;
+}
+.row-gap-40 {
+	row-gap: 40px !important;
+}
+.row-gap-50 {
+	row-gap: 50px !important;
 }
 
 .fw-10 {

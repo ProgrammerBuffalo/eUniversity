@@ -1,0 +1,183 @@
+<!--WHAT TO USE
+-------------------------------------------------------------------------------------
+1. aside-menu component
+2. table-student-group component
+6. table-groups component
+------------------------------------------------------------------------------------>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="../../general/null.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+	<link rel="stylesheet" href="../../general/general.css" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="../../components/aside menu/style.css">
+	<link rel="stylesheet" href="../../components/modal/style.css" />
+	<link rel="stylesheet" href="../../shared/modal.css" />
+	<link rel="stylesheet" href="../../shared/table-block.css" />
+
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
+
+	<title>Students attachment</title>
+</head>
+
+<body>
+	<aside>
+		<!--ASIDE MENU-->
+		<div class="nav-side-menu">
+			<div class="brand">
+				<div class="brand-logo">
+					<img src="../../images/header-logo.jpg" alt="header logo" />
+				</div>
+				<h2>EUniversity</h2>
+				<div class="burger">
+					<span></span>
+				</div>
+			</div>
+
+			<div class="menu-list">
+				<ul id="menu-content" class="menu-content collapse out">
+					<li>
+						<a href="admin-panel.html">
+							<i class="fas fa-home fa-lg"></i> Home
+						</a>
+					</li>
+
+					<li data-toggle="collapse" data-target="#accounts" class="collapsed">
+						<a><i class="fa fa-users fa-lg"></i> Accounts
+							<span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="accounts">
+						<li><a href="admin-students.html">Students</a></li>
+						<li><a href="admin-teachers.html">Teachers</a></li>
+						<li><a href="admin-admins.html">Admins</a></li>
+						<li><a href="admin-students-attachment.html">Students attachment</a></li>
+					</ul>
+
+					<li data-toggle="collapse" class="active" data-target="#groups" class="collapsed">
+						<a><i class="fa fa-users fa-lg"></i> Groups
+							<span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="groups">
+						<li class="active"><a href="admin-groups.html">Groups</a></li>
+						<li><a href="admin-groups-students.html">Students</a></li>
+						<li>
+							<a href="admin-groups-teachers.html">Teachers & Disciplines</a>
+						</li>
+					</ul>
+
+					<li>
+						<a href="#">
+							<i class="fa fa-solid fa-book-open fa-lg"></i> Materials
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--ASIDE MENU-->
+	</aside>
+
+	<main class="main">
+		<!--TABLE-STUDENT-GROUP COMPONENT-->
+		<div class="table-block">
+			<div class="table-block__header">
+				<h3 class="table-block__title">Students in group</h3>
+			</div>
+
+			<div class="flex f-between col-gap-50 ">
+				<select class="selectpicker w-70" data-live-search="true" name="disciplines" id="disciplines">
+					<option selected disabled style="display: none;">Choose group</option>
+					<option value="gr1">Group 1</option>
+					<option value="gr2">Group 2</option>
+					<option value="gr3">Group 3</option>
+				</select>
+				<div class="flex col-gap-20 w-50">
+					<select class="selectpicker w-100" data-live-search="true" name="disciplines" id="disciplines">
+						<option selected disabled style="display: none;">Choose student</option>
+						<option value="st1">Student1</option>
+						<option value="st2">Student 2</option>
+						<option value="st3">Student 3</option>
+					</select>
+					<div class="btn btn-danger add-btn w-30">Attach</div>
+				</div>
+
+			</div>
+			<div class="table-block__content">
+				<div class="table-container">
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Student name</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>John Johnson</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>2</th>
+								<td>Jack Jackson</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>3</th>
+								<td>Tom tomson</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>4</th>
+								<td>Nick Nickson</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--TABLE-STUDENT-GROUP COMPONENT-->
+	</main>
+	<script src="../../components/aside menu/app.js"></script>
+	<script src="../../components/modal/app.js"></script>
+	<script src="app.js"></script>
+</body>
+
+</html>
