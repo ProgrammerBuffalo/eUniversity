@@ -12,6 +12,9 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { DisciplineListComponent } from './discipline-list/discipline-list.component';
 import { TeacherDisciplineListComponent } from './teacher-discipline-list/teacher-discipline-list.component';
+import { GroupListComponent } from './group-list/group-list.component';
+import { GroupStudentListComponent } from './group-student-list/group-student-list.component';
+import { GroupDisciplineListComponent } from './group-discipline-list/group-discipline-list.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { TeacherDisciplineListComponent } from './teacher-discipline-list/teache
     AdminPanelComponent,
     DisciplineListComponent,
     TeacherDisciplineListComponent,
+    GroupListComponent,
+    GroupStudentListComponent,
+    GroupDisciplineListComponent,
   ],
   imports: [
     CommonModule,

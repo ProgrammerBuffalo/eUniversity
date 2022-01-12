@@ -29,11 +29,9 @@
           <a><i class="fa fa-users fa-lg"></i> Groups <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="groups">
-          <li><a href="admin-groups.html">Groups</a></li>
-          <li><a href="admin-students.html">Students</a></li>
-          <li>
-            <a href="admin-teachers.html">Teachers</a>
-          </li>
+          <li routerLinkActive="active"><a routerLink="group-list">Groups</a></li>
+          <li routerLinkActive="active"><a routerLink="group-student-list">Students</a></li>
+          <li routerLinkActive="active"><a routerLink="group-discipline-list">Disciplines</a> </li>
         </ul>
         <li data-toggle="collapse" data-target="#disciplines" class="active collapsed">
           <a><i class="fas fa-swatchbook fa-lg"></i> Disciplines <span class="arrow"></span></a>

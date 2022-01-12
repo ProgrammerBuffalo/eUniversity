@@ -8,6 +8,9 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { Role } from '../core/models/auth/role';
 import { DisciplineListComponent } from './discipline-list/discipline-list.component';
 import { TeacherDisciplineListComponent } from './teacher-discipline-list/teacher-discipline-list.component';
+import { GroupListComponent } from './group-list/group-list.component';
+import { GroupStudentListComponent } from './group-student-list/group-student-list.component';
+import { GroupDisciplineListComponent } from './group-discipline-list/group-discipline-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Panel', pathMatch: 'full' },
@@ -28,7 +31,13 @@ const routes: Routes = [
 
       { path: 'discipline-list', component: DisciplineListComponent },
 
-      { path: 'teacher-discipline-list', component: TeacherDisciplineListComponent }
+      { path: 'teacher-discipline-list', component: TeacherDisciplineListComponent },
+
+      { path: 'group-list', component: GroupListComponent },
+
+      { path: 'group-student-list', component: GroupStudentListComponent },
+
+      { path: 'group-discipline-list', component: GroupDisciplineListComponent }
     ]
   },
 ];
