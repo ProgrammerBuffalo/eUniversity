@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Group } from '../core/models/admin/group';
 import { Student } from '../core/models/admin/student';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
@@ -17,20 +18,26 @@ export class GroupService {
     private http: HttpClient
   ) { }
 
-  addGroup() {
-
+  addGroup(name: string): Observable<BaseResponse<number>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'add-group');
+    return this.http.post<BaseResponse<number>>(url, name);
   }
 
-  getGroups() {
-
+  getAllGroups(): Observable<BaseResponse<Group[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-all-groups');
+    return this.http.get<BaseResponse<Group[]>>(url);
   }
 
-  updateGroup() {
-
+  updateGroup(id: number, name: string): Observable<BaseResponse<string>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'edit-group-info');
+    let params = { groupId: id, groupName: name };
+    return this.http.put<BaseResponse<string>>(url, params);
   }
 
-  removeGroup() {
-
+  removeGroup(id: number): Observable<BaseResponse<string>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'delete-group');
+    let params = { groupId: id };
+    return this.http.delete<BaseResponse<string>>(url, { params: params });
   }
 
   getAllGroupsDDL(): Observable<BaseResponse<DDL<number>[]>> {

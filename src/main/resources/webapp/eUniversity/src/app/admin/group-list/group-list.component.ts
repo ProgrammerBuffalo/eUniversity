@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/update-student-dto';
 import { Group } from 'src/app/core/models/admin/group';
-import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
-import { AccountService } from 'src/app/services/accounts.service';
 import { GroupService } from 'src/app/services/group.service';
 
 @Component({
@@ -45,9 +42,9 @@ export class GroupListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.accountService.getStudents().subscribe((data: BaseResponse<Student[]>) => {
-    //   this.groups = data.data;
-    // });
+    this.groupService.getAllGroups().subscribe((res: BaseResponse<Group[]>) => {
+      this.groups = res.data;
+    });
   }
 
   showAddModal() {
@@ -73,51 +70,42 @@ export class GroupListComponent implements OnInit {
   }
 
   addGroup() {
-    //if (this.addForm.valid)
-    // this.accountService.registerStudent(this.addForm.value).subscribe({
-    //   next: (data: BaseResponse<Student>) => {
-    //     this.groups.unshift(data.data);
-
-    //     this.showAddPopup = false;
-    //   },
-    //   error: (data) => {
-    //     alert('can`t add student');
-    //   }
-    // });
+    if (this.addForm.valid)
+      this.groupService.addGroup(this.addForm.value).subscribe({
+        next: (res) => {
+          let group: Group = new Group(res.data, this.addName?.value, new Date());
+          this.groups.unshift(group);
+        },
+        error: (res) => {
+          alert('group with this name already exsists');
+        }
+      })
   }
 
   updateGroup() {
-    if (this.editForm.valid) {
-      // let dto: UpdateStudentDTO = new UpdateStudentDTO(
-      //   this.selectedGroup.id, this.editName?.value, this.editFullName?.value, this.editAge?.value);
-
-      // this.accountService.updateStudent(dto).subscribe({
-      //   next: (data) => {
-      //     this.selectedGroup.login = this.editName?.value;
-      //     this.selectedGroup.fullName = this.editFullName?.value;
-      //     this.selectedGroup.age = this.editAge?.value;
-
-      //     this.showEditPopup = false;
-      //   },
-      //   error: (data) => {
-      //     alert('this login alredy exsists');
-      //   }
-      // });
-    }
+    if (this.editForm.valid)
+      this.groupService.updateGroup(this.selectedGroup.id, this.editName?.value).subscribe({
+        next: (res) => {
+          this.selectedGroup.name = this.editName?.value;
+        },
+        error: (res) => {
+          alert('group with this name already exsists');
+        }
+      });
   }
 
   removeGroup(id: number) {
-    // this.accountService.deleteStudent(id).subscribe({
-    //   next: (data) => {
-    //     for (let i = 0; i < this.groups.length; i++) {
-    //       if (this.groups[i].id == id)
-    //         this.groups.splice(i, 1);
-    //     }
-    //   },
-    //   error: (data) => {
-    //     alert('cant remove this student');
-    //   }
-    // })
+    this.groupService.removeGroup(id).subscribe({
+      next: (res) => {
+        for (let i = 0; i < this.groups.length; i++) {
+          if (this.groups[i].id == id)
+            this.groups.splice(i, 1);
+        }
+      },
+      error: (res) => {
+        alert('can`t remove group it has dependencies');
+      }
+    })
   }
 
 }
