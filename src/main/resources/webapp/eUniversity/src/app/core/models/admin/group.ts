@@ -1,11 +1,16 @@
+import { DateToSemestrPipe } from "../../pipes/date-to-semestr.pipe";
+
 export class Group {
   id: number;
   name: string;
-  creationData: Date;
+  creationDate: Date;
+  semester: number;
 
   constructor(id: number, name: string, creationData: Date) {
     this.id = id;
     this.name = name;
-    this.creationData = creationData;
+    this.creationDate = creationData;
+    let pipe: DateToSemestrPipe = new DateToSemestrPipe();
+    this.semester = pipe.transform(this.creationDate);
   }
 }

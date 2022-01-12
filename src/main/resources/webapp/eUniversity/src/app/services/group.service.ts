@@ -17,6 +17,22 @@ export class GroupService {
     private http: HttpClient
   ) { }
 
+  addGroup() {
+
+  }
+
+  getGroups() {
+
+  }
+
+  updateGroup() {
+
+  }
+
+  removeGroup() {
+
+  }
+
   getAllGroupsDDL(): Observable<BaseResponse<DDL<number>[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-all-groups-ddl');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);

@@ -17,9 +17,26 @@
         </thead>
 
         <tbody>
-          <tr>
+          <tr *ngFor="let item of groups">
+            <th>{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.creationDate | date}}</td>
+            <td>{{item.semester}}</td>
+            <td class="td-blue">
+              <div class="table-btn change-btn" (click)="showEditModal(item)">
+                <i class="fas fa-pencil-alt"></i>
+              </div>
+            </td>
+            <td class="td-red">
+              <div class="table-btn remove-btn" (click)="removeGroup(item.id)">
+                <i class="fas fa-times"></i>
+              </div>
+            </td>
+          </tr>
+
+          <!-- <tr>
             <th>1</th>
-            <td>Group 1 {{students}}</td>
+            <td>Group 1</td>
             <td>12.01.2021</td>
             <td>2</td>
             <td class="td-blue">
@@ -83,35 +100,35 @@
                 <i class="fas fa-times"></i>
               </div>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<div class="modal">
+<div class="modal" *ngIf="showAddPopup">
   <div class="modal-content" style="width: 500px">
-    <span class="close">&times;</span>
+    <span class="close" (click)="closeAddModal()">&times;</span>
     <form class="register">
       <div class="form-group">
         <span>Name: </span>
         <input type="text" class="form-field" placeholder="Name">
       </div>
-      <input type="submit" class="btn btn-danger" value="Add group">
+      <input type="submit" class="btn btn-danger" value="Add group" (click)="addGroup()">
     </form>
   </div>
 </div>
 
-<div class="modal">
+<div class="modal" *ngIf="showEditPopup">
   <div class="modal-content" style="width: 500px">
-    <span class="close">&times;</span>
+    <span class="close" (click)="closeEditModal()">&times;</span>
     <form class="register">
       <div class="form-group">
         <span>Name: </span>
         <input type="text" class="form-field" placeholder="Name">
       </div>
-      <input type="submit" class="btn btn-info" value="Save changes">
+      <input type="submit" class="btn btn-info" value="Save changes" (click)="updateGroup()">
     </form>
   </div>
 </div>
