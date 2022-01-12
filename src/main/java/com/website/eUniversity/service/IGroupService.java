@@ -9,7 +9,7 @@ public interface IGroupService {
 
     List<StudentDTO> getStudentsByGroup(Integer group_id);
 
-    List<GroupDisciplineTeacherDTO> getAllGroupDisciplineTeacher();
+    List<GroupDisciplineResponseDTO> getByGroupIdTeachersAndDisciplines(Integer id);
 
     String addGroup(String groupName);
 
@@ -19,11 +19,11 @@ public interface IGroupService {
 
     StudentShortInfoDTO attachStudent(String studentId, Integer groupId);
 
-    GroupDisciplineTeacherDTO attachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
+    GroupDisciplineResponseDTO attachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
 
     StudentShortInfoDTO detachStudent(String studentId, Integer groupId);
 
-    GroupDisciplineTeacherDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
+    GroupDisciplineResponseDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
 
     List<DDLResponseDTO<Integer>> getGroupsDDL();
 }

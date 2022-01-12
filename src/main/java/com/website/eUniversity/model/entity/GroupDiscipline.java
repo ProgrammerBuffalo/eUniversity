@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.entity.GroupDisciplineResponseDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +23,13 @@ public class GroupDiscipline {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    public static GroupDisciplineResponseDTO fromEntityToDto(GroupDiscipline groupDiscipline) {
+        return new GroupDisciplineResponseDTO(
+                groupDiscipline.group.getName(),
+                groupDiscipline.discipline.getName(),
+                groupDiscipline.teacher.getAccount().getFullName());
+    }
 
     public GroupDiscipline() {
 

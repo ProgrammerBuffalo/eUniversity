@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupService implements IGroupService {
@@ -38,8 +39,14 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public List<GroupDisciplineTeacherDTO> getAllGroupDisciplineTeacher() {
-        return groupDisciplineRepository.findAllGroupsWithDisciplines();
+    public List<GroupDisciplineResponseDTO> getByGroupIdTeachersAndDisciplines(Integer id) {
+        List<GroupDiscipline> groupDisciplineList = groupDisciplineRepository.findByGroupIdTeachersAndDisciplines(id);
+
+        System.out.println(groupDisciplineList.size());
+
+        return groupDisciplineList.stream()
+                .map(GroupDiscipline::fromEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -82,14 +89,14 @@ public class GroupService implements IGroupService {
 
     @Override
     @Transactional
-    public GroupDisciplineTeacherDTO attachDiscipline(GroupDisciplineRequestDTO groupDiscipline) {
+    public GroupDisciplineResponseDTO attachDiscipline(GroupDisciplineRequestDTO groupDiscipline) {
         Teacher teacher = findTeacher(groupDiscipline.getTeacherId());
         Group group = findGroup(groupDiscipline.getGroupId());
         Discipline discipline = findDiscipline(groupDiscipline.getDisciplineId());
 
         groupDisciplineRepository.save(new GroupDiscipline(group, discipline, teacher));
 
-        return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
+        return new GroupDisciplineResponseDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
     @Override
@@ -106,14 +113,14 @@ public class GroupService implements IGroupService {
 
     @Override
     @Transactional
-    public GroupDisciplineTeacherDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline) {
+    public GroupDisciplineResponseDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline) {
         Teacher teacher = findTeacher(groupDiscipline.getTeacherId());
         Group group = findGroup(groupDiscipline.getGroupId());
         Discipline discipline = findDiscipline(groupDiscipline.getDisciplineId());
 
         groupDisciplineRepository.delete(new GroupDiscipline(group, discipline, teacher));
 
-        return new GroupDisciplineTeacherDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
+        return new GroupDisciplineResponseDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
     @Override

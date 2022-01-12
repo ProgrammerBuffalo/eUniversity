@@ -19,23 +19,16 @@ public class GroupsController {
     @Autowired
     private IGroupService groupService;
 
-//dont remove maybe use later
-//    @GetMapping("/get-students-group")
-//    @ApiOperation("Returns students of requested group")
-//    public ResponseEntity<BaseResponse<List<StudentShortInfoDTO>>> getStudentsGroup(@RequestParam(name = "groupId") Integer groupId) {
-//        return ResponseEntity.ok(new BaseResponse<List<StudentShortInfoDTO>>().success(groupService.getAllStudents(groupId), "Students are returned"));
-//    }
-
     @GetMapping("/get-students-by-group")
-    @ApiOperation("Returns students of requested group")
+    @ApiOperation("Returns students of requested group by id")
     public ResponseEntity<BaseResponse<List<StudentDTO>>> getStudentsByGroup(@RequestParam(name = "groupId") Integer groupId) {
         return ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(groupService.getStudentsByGroup(groupId), "Students are returned"));
     }
 
-    @GetMapping("/get-all-groups")
-    @ApiOperation("Returns all groups with discipline and teacher")
-    public ResponseEntity<BaseResponse<List<GroupDisciplineTeacherDTO>>> getAllGroups() {
-        return ResponseEntity.ok(new BaseResponse<List<GroupDisciplineTeacherDTO>>().success(groupService.getAllGroupDisciplineTeacher(), "Ok"));
+    @GetMapping("/get-group")
+    @ApiOperation("Returns group's disciplines and teachers by id")
+    public ResponseEntity<BaseResponse<List<GroupDisciplineResponseDTO>>> getAllGroups(@RequestParam(name = "groupId") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<List<GroupDisciplineResponseDTO>>().success(groupService.getByGroupIdTeachersAndDisciplines(groupId), "Ok"));
     }
 
     @GetMapping("/get-all-groups-ddl")
@@ -57,10 +50,10 @@ public class GroupsController {
         return ResponseEntity.ok(new BaseResponse<String>().success(groupService.addGroup(groupName), "OK"));
     }
 
-    @PostMapping("/attach-discipline")
+    @PostMapping("/attach-teacher-discipline")
     @ApiOperation("Add discipline and teacher to requested group")
-    public ResponseEntity<BaseResponse<GroupDisciplineTeacherDTO>> attachDiscipline(@RequestBody GroupDisciplineRequestDTO groupDisciplineRequestDTO) {
-        return ResponseEntity.ok(new BaseResponse<GroupDisciplineTeacherDTO>().success(groupService.attachDiscipline(groupDisciplineRequestDTO), "OK"));
+    public ResponseEntity<BaseResponse<GroupDisciplineResponseDTO>> attachDiscipline(@RequestBody GroupDisciplineRequestDTO groupDisciplineRequestDTO) {
+        return ResponseEntity.ok(new BaseResponse<GroupDisciplineResponseDTO>().success(groupService.attachDiscipline(groupDisciplineRequestDTO), "OK"));
     }
 
     @PutMapping("/edit-group-info")
@@ -70,10 +63,10 @@ public class GroupsController {
         return ResponseEntity.ok(new BaseResponse<String>().success(groupService.editGroup(groupId, groupName), "OK"));
     }
 
-    @DeleteMapping("/detach-discipline")
+    @DeleteMapping("/detach-teacher-discipline")
     @ApiOperation("Remove discipline and teacher from requested group")
-    public ResponseEntity<BaseResponse<GroupDisciplineTeacherDTO>> detachDiscipline(@RequestBody GroupDisciplineRequestDTO groupDisciplineRequestDTO) {
-        return ResponseEntity.ok(new BaseResponse<GroupDisciplineTeacherDTO>().success(groupService.detachDiscipline(groupDisciplineRequestDTO), "OK"));
+    public ResponseEntity<BaseResponse<GroupDisciplineResponseDTO>> detachDiscipline(@RequestBody GroupDisciplineRequestDTO groupDisciplineRequestDTO) {
+        return ResponseEntity.ok(new BaseResponse<GroupDisciplineResponseDTO>().success(groupService.detachDiscipline(groupDisciplineRequestDTO), "OK"));
     }
 
     @DeleteMapping("/detach-student")
