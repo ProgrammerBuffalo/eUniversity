@@ -33,7 +33,7 @@ public class DisciplineController {
     @ApiOperation("adds new discipline")
     public ResponseEntity<BaseResponse<Integer>> addDiscipline(@RequestBody AddDisciplineDTO dto) {
         try {
-            return ResponseEntity.ok(new BaseResponse<Integer>().success(disciplineService.save(dto), "Student is added"));
+            return ResponseEntity.ok(new BaseResponse<Integer>().success(disciplineService.save(dto), "discipline is added"));
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(new BaseResponse().error("such discipline already exists", 400));
         }
@@ -42,64 +42,64 @@ public class DisciplineController {
     @GetMapping("/get-all-disciplines")
     @ApiOperation("gets all disciplines")
     public ResponseEntity<BaseResponse<List<Discipline>>> getAllDisciplines() {
-        return ResponseEntity.ok(new BaseResponse<List<Discipline>>().success(disciplineService.getAllDisciplines(), "get`s all disciplines"));
+        return ResponseEntity.ok(new BaseResponse<List<Discipline>>().success(disciplineService.getAllDisciplines(), "list of disciplines are returned"));
     }
 
     @GetMapping("/get-disciplines-dll")
     @ApiOperation("get all disciplines for drop down")
     public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getDisciplinesDDL() {
-        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(disciplineService.getDisciplinesDDL(), "get`s all disciplines for drop down"));
+        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(disciplineService.getDisciplinesDDL(), "list of disciplines are returned for drop down"));
     }
 
     @PutMapping("/update-discipline")
     @ApiOperation("updates discipline")
     public ResponseEntity<BaseResponse<Object>> updateDiscipline(@RequestBody UpdateDisciplineDTO disciplineDTO) {
         disciplineService.update(disciplineDTO);
-        return ResponseEntity.ok(new BaseResponse<>().success(null, ""));
+        return ResponseEntity.ok(new BaseResponse<>().success(null, "discipline is updated"));
     }
 
     @DeleteMapping("/delete-discipline")
     @ApiOperation("deletes discipline")
     public ResponseEntity<BaseResponse<Object>> deleteDiscipline(@RequestParam(name = "id") Integer id) {
         disciplineService.delete(id);
-        return ResponseEntity.ok(new BaseResponse<>().success(null, ""));
+        return ResponseEntity.ok(new BaseResponse<>().success(null, "discipline is deleted"));
     }
 
     @GetMapping("/get-teachers-short-disciplines")
-    @ApiOperation("")
+    @ApiOperation("gets teachers with there discipline in one string in short format")
     public ResponseEntity<BaseResponse<List<ITeacherShortDisciplinesDTO>>> getTeachersDisciplines() {
-        return ResponseEntity.ok(new BaseResponse<List<ITeacherShortDisciplinesDTO>>().success(teacherDisciplineService.getTeachersShortDisciplines(), ""));
+        return ResponseEntity.ok(new BaseResponse<List<ITeacherShortDisciplinesDTO>>().success(teacherDisciplineService.getTeachersShortDisciplines(), "teachers with short disciplines are returned"));
     }
 
     @GetMapping("/get-teacher-disciplines")
-    @ApiOperation("")
+    @ApiOperation("gets list of disciplines of the teacher")
     public ResponseEntity<BaseResponse<List<ITeacherDisciplineDTO>>> getTeacherDisciplines(@RequestParam("teacherId") Integer teacherId) {
-        return ResponseEntity.ok(new BaseResponse<List<ITeacherDisciplineDTO>>().success(teacherDisciplineService.getTeacherDisciplines(teacherId), ""));
+        return ResponseEntity.ok(new BaseResponse<List<ITeacherDisciplineDTO>>().success(teacherDisciplineService.getTeacherDisciplines(teacherId), "list of disciplines of teacher"));
     }
 
     @GetMapping("/get-teacher-short-disciplines")
-    @ApiOperation("")
+    @ApiOperation("gets a string with disciplines in short format")
     public ResponseEntity<BaseResponse<ITeacherShortDisciplinesDTO>> getTeacherShortDisciplines(@RequestParam("teacherId") Integer teacherId) {
-        return ResponseEntity.ok(new BaseResponse<ITeacherShortDisciplinesDTO>().success(teacherDisciplineService.getTeacherShortDisciplines(teacherId), ""));
+        return ResponseEntity.ok(new BaseResponse<ITeacherShortDisciplinesDTO>().success(teacherDisciplineService.getTeacherShortDisciplines(teacherId), "string with short disciplines"));
     }
 
     @PostMapping("/attach-discipline")
-    @ApiOperation("")
+    @ApiOperation("attach`s new discipline to a teacher")
     public ResponseEntity<BaseResponse<Object>> assignDiscipline(@RequestBody AttachDisciplineDTO dto) {
         try {
             teacherDisciplineService.attachDiscipline(dto);
-            return ResponseEntity.ok(new BaseResponse<>().success(null, "new discipline attached to teacher"));
+            return ResponseEntity.ok(new BaseResponse<>().success(null, "new discipline is attached to teacher"));
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(new BaseResponse<>().error("can`t add same discipline to teacher", 400));
         }
     }
 
     @DeleteMapping("/detach-discipline")
-    @ApiOperation("")
+    @ApiOperation("detach`s a discipline from teacher")
     public ResponseEntity<BaseResponse<Object>> detachDiscipline(@RequestParam("teacherId") Integer teacherId,
                                                                  @RequestParam("disciplineId") Integer disciplineId) {
         teacherDisciplineService.detachDiscipline(teacherId, disciplineId);
-        return ResponseEntity.ok(new BaseResponse<>().success(null, "discipline detached from teacher"));
+        return ResponseEntity.ok(new BaseResponse<>().success(null, "discipline is detached from teacher"));
     }
 
 }

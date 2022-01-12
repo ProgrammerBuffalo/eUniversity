@@ -12,12 +12,12 @@ import java.util.List;
 
 public interface ITeacherDisciplineRepository extends JpaRepository<TeacherDiscipline, Integer> {
 
-    @Query(value = "SELECT td.teacher_id AS id, a.full_name AS name, STRING_AGG(d.short_name, ', ') AS shortDisciplines" +
-            " FROM teacher_discipline td" +
-            " INNER JOIN teachers t ON t.id = td.teacher_id" +
-            " INNER JOIN disciplines d ON d.id = td.discipline_id" +
+    @Query(value = "SELECT t.id, a.full_name AS name, STRING_AGG(d.short_name, ', ') AS shortDisciplines" +
+            " FROM teachers t" +
+            " LEFT JOIN teacher_discipline td ON td.teacher_id = t.id" +
+            " LEFT JOIN disciplines d ON d.id = td.discipline_id" +
             " INNER JOIN accounts a ON a.id = t.account_id" +
-            " GROUP BY td.teacher_id, a.full_name", nativeQuery = true)
+            " GROUP BY t.id, a.full_name", nativeQuery = true)
     List<ITeacherShortDisciplinesDTO> getTeachersShortDisciplines();
 
     @Query(value = "SELECT td.discipline_id AS id, d.[name]" +

@@ -131,7 +131,7 @@ export class AdminListComponent implements OnInit {
         }
       },
       error: (data) => {
-        alert('cant remove this student');
+        alert('cant remove this admin');
       }
     })
   }
