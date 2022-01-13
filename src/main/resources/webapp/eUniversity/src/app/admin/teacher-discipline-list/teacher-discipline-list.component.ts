@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+declare var $: any;
+
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttachDisciplineDTO } from 'src/app/core/DTOs/admin/attach-discipline-dto';
 import { TeacherDiscipline } from 'src/app/core/models/admin/teacher-discipline';
@@ -7,6 +9,7 @@ import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { TeacherDisciplineService } from 'src/app/services/teacher-discipline.service';
+import 'bootstrap-select';
 
 @Component({
   selector: 'app-teacher-discipline-list',
@@ -29,12 +32,17 @@ export class TeacherDisciplineListComponent implements OnInit {
     private teacherDisciplineService: TeacherDisciplineService,
     private disciplineService: DisciplineService
   ) {
+
+
     this.showEditPopup = false;
 
     this.editForm = new FormGroup({
       disciplineId: new FormControl(0, Validators.required)
     });
+
   }
+
+
 
   get editDisciplineId(): number { return this.editForm.get('disciplineId')?.value }
 
@@ -48,6 +56,10 @@ export class TeacherDisciplineListComponent implements OnInit {
     });
   }
   
+
+  ngAfterContentChecked() {
+    $('.selectpicker').selectpicker();
+  }
 
   showEditModal(teacherShorDiscipline: TeacherShortDisciplines) {
     this.showEditPopup = true;
