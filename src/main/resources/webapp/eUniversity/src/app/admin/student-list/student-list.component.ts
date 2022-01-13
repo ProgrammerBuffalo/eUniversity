@@ -4,7 +4,6 @@ import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/update-student-dto';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { AccountService } from 'src/app/services/accounts.service';
-import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-student-list',
@@ -36,8 +35,7 @@ export class StudentListComponent implements OnInit {
   get editAge() { return this.editForm.get('age'); }
 
   constructor(
-    private accountService: AccountService,
-    private groupService: GroupService
+    private accountService: AccountService
   ) {
     this.showAddPopup = false;
     this.showEditPopup = false;

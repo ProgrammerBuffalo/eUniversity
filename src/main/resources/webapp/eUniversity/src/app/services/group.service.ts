@@ -45,9 +45,24 @@ export class GroupService {
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
+  //
   getStudentsByGroup(id: number): Observable<BaseResponse<Student[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-students-by-group');
     let param = { groupId: id }
     return this.http.get<BaseResponse<Student[]>>(url, { params: param });
+  }
+
+  //
+  attachStudent(groupId: number, studentId: number): Observable<BaseResponse<any>> {
+    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let params = { groupId: groupId, studentId: studentId };
+    return this.http.post<BaseResponse<any>>(url, params);
+  }
+
+  //
+  detachStudent(groupId: number, studentId: number) {
+    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let params = { groupId: groupId, studentId: studentId };
+    return this.http.delete<BaseResponse<any>>(url, { params: params });
   }
 }
