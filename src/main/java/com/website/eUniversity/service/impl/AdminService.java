@@ -37,7 +37,8 @@ public class AdminService extends AccountSaver implements IAdminService {
 
             Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.ADMIN));
             Admin admin = adminRepository.save(new Admin(account));
-            adminDTO.setId(admin.getAccount().getId());
+            adminDTO.setAccountId(admin.getAccount().getId());
+            adminDTO.setUserId(admin.getId());
             adminDTO.setAge(admin.getAccount().getAge());
             adminDTO.setLogin(admin.getAccount().getLogin());
             adminDTO.setPassword(admin.getAccount().getPassword());
@@ -52,7 +53,7 @@ public class AdminService extends AccountSaver implements IAdminService {
     @Override
     public AdminDTO update(AdminDTO user) {
         Account account = saveAccount(user);
-        return new AdminDTO(account.getId(), account.getFullName(), account.getAge(), account.getLogin(), null);
+        return new AdminDTO(account.getId(), user.getUserId(), account.getFullName(), account.getAge(), account.getLogin(), null);
     }
 
     @Override

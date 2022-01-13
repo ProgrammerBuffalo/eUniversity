@@ -8,12 +8,12 @@ public class StudentDTO extends UserDTO {
 
     public StudentDTO() { }
 
-    public StudentDTO(String id, String fullName, Integer age, String login, String password) {
-        super(id, fullName, age, login, password);
+    public StudentDTO(String account_id, Integer user_id, String fullName, Integer age, String login, String password) {
+        super(account_id, user_id, fullName, age, login, password);
     }
 
-    public StudentDTO(String id, String fullName, Integer age, String login, String password, String group) {
-        super(id, fullName, age, login, password);
+    public StudentDTO(String account_id, Integer user_id, String fullName, Integer age, String login, String password, String group) {
+        super(account_id, user_id, fullName, age, login, password);
         this.group = group;
     }
 
