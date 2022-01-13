@@ -1,6 +1,6 @@
 declare var $: any;
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttachDisciplineDTO } from 'src/app/core/DTOs/admin/attach-discipline-dto';
 import { TeacherDiscipline } from 'src/app/core/models/admin/teacher-discipline';
@@ -32,8 +32,6 @@ export class TeacherDisciplineListComponent implements OnInit {
     private teacherDisciplineService: TeacherDisciplineService,
     private disciplineService: DisciplineService
   ) {
-
-
     this.showEditPopup = false;
 
     this.editForm = new FormGroup({
@@ -41,8 +39,6 @@ export class TeacherDisciplineListComponent implements OnInit {
     });
 
   }
-
-
 
   get editDisciplineId(): number { return this.editForm.get('disciplineId')?.value }
 
@@ -55,7 +51,6 @@ export class TeacherDisciplineListComponent implements OnInit {
       this.disciplines = res.data;
     });
   }
-  
 
   ngAfterContentChecked() {
     $('.selectpicker').selectpicker();
