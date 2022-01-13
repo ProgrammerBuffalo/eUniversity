@@ -1,16 +1,32 @@
 body {
-  background-color: #eee;
+	background-color: #eee;
 }
 
 .main {
-  margin-left: 310px;
-  padding: 20px;
+	margin-left: 310px;
+	padding: 20px;
 }
 
 @media (max-width: 767px) {
-  .main {
-    margin-top: 70px;
-    margin-left: 0;
-  }
+	.main {
+		margin-top: 70px;
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 670px) {
+	.flex {
+		flex-direction: column;
+		row-gap: 20px;
+		width: 100% !important;
+	}
+
+	.w-70 {
+		width: 100% !important;
+	}
+
+	.w-30 {
+		width: 100% !important;
+	}
 }
 /*# sourceMappingURL=style.css.map */
