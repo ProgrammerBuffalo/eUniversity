@@ -47,6 +47,7 @@ export class TeacherDisciplineListComponent implements OnInit {
       this.disciplines = res.data;
     });
   }
+  
 
   showEditModal(teacherShorDiscipline: TeacherShortDisciplines) {
     this.showEditPopup = true;

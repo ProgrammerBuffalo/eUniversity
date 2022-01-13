@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AddGroupDTO } from '../core/DTOs/admin/add-group';
+import { UpdateGroupDTO } from '../core/DTOs/admin/updae-group';
 import { Group } from '../core/models/admin/group';
 import { Student } from '../core/models/admin/student';
 import { BaseResponse } from '../core/models/base/base-response';
@@ -18,20 +20,19 @@ export class GroupService {
     private http: HttpClient
   ) { }
 
-  addGroup(name: string): Observable<BaseResponse<number>> {
+  addGroup(dto: AddGroupDTO): Observable<BaseResponse<number>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'add-group');
-    return this.http.post<BaseResponse<number>>(url, name);
+    return this.http.post<BaseResponse<number>>(url, dto);
   }
 
   getAllGroups(): Observable<BaseResponse<Group[]>> {
-    let url: string = PrepareApi.prepare(this.controllerName, 'get-all-groups');
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-groups');
     return this.http.get<BaseResponse<Group[]>>(url);
   }
 
-  updateGroup(id: number, name: string): Observable<BaseResponse<string>> {
+  updateGroup(dto: UpdateGroupDTO): Observable<BaseResponse<string>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'edit-group-info');
-    let params = { groupId: id, groupName: name };
-    return this.http.put<BaseResponse<string>>(url, params);
+    return this.http.put<BaseResponse<string>>(url, dto);
   }
 
   removeGroup(id: number): Observable<BaseResponse<string>> {
@@ -42,6 +43,11 @@ export class GroupService {
 
   getAllGroupsDDL(): Observable<BaseResponse<DDL<number>[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-all-groups-ddl');
+    return this.http.get<BaseResponse<DDL<number>[]>>(url);
+  }
+
+  getAllStudentsWithoutGroup(): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-students-without-group');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UpdateGroupDTO } from 'src/app/core/DTOs/admin/updae-group';
 import { Group } from 'src/app/core/models/admin/group';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { GroupService } from 'src/app/services/group.service';
@@ -50,15 +51,14 @@ export class GroupListComponent implements OnInit {
   showAddModal() {
     this.showAddPopup = true;
 
-    this.editForm.get('name')!.setValue('');
+    this.editName?.setValue('');
   }
 
   showEditModal(group: Group) {
-    console.log(group);
     this.showEditPopup = true;
     this.selectedGroup = group;
 
-    this.editForm.get('name')!.setValue(group.name);
+    this.editName?.setValue(group.name);
   }
 
   closeEditModal() {
@@ -70,6 +70,7 @@ export class GroupListComponent implements OnInit {
   }
 
   addGroup() {
+    console.log(this.addForm.value);
     if (this.addForm.valid)
       this.groupService.addGroup(this.addForm.value).subscribe({
         next: (res) => {
@@ -83,8 +84,9 @@ export class GroupListComponent implements OnInit {
   }
 
   updateGroup() {
-    if (this.editForm.valid)
-      this.groupService.updateGroup(this.selectedGroup.id, this.editName?.value).subscribe({
+    if (this.editForm.valid) {
+      let dto: UpdateGroupDTO = new UpdateGroupDTO(this.selectedGroup.id, this.editName?.value);
+      this.groupService.updateGroup(dto).subscribe({
         next: (res) => {
           this.selectedGroup.name = this.editName?.value;
         },
@@ -92,6 +94,7 @@ export class GroupListComponent implements OnInit {
           alert('group with this name already exsists');
         }
       });
+    }
   }
 
   removeGroup(id: number) {
