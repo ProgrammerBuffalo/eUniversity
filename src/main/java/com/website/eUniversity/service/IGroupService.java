@@ -1,9 +1,12 @@
 package com.website.eUniversity.service;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.*;
 import java.util.List;
 
 public interface IGroupService {
+
+    List<GroupDTO> getAllGroups();
 
     List<StudentShortInfoDTO> getAllStudents(Integer groupId);
 
@@ -11,19 +14,21 @@ public interface IGroupService {
 
     List<GroupDisciplineResponseDTO> getByGroupIdTeachersAndDisciplines(Integer id);
 
-    String addGroup(String groupName);
+    Integer addGroup(String groupName);
 
-    String editGroup(Integer group_id, String groupName);
+    GroupDTO editGroup(Integer group_id, String groupName);
 
-    String deleteGroup(Integer group_id);
+    Integer deleteGroup(Integer group_id);
 
-    StudentShortInfoDTO attachStudent(String studentId, Integer groupId);
+    StudentShortInfoDTO attachStudent(Integer studentId, Integer groupId);
 
     GroupDisciplineResponseDTO attachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
 
-    StudentShortInfoDTO detachStudent(String studentId, Integer groupId);
+    StudentShortInfoDTO detachStudent(Integer studentId, Integer groupId);
 
-    GroupDisciplineResponseDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
+    GroupDisciplineResponseDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline) throws NotFoundException;
 
     List<DDLResponseDTO<Integer>> getGroupsDDL();
+
+    List<DDLResponseDTO<Integer>> findStudentsWithoutGroup();
 }

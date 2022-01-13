@@ -1,6 +1,7 @@
 package com.website.eUniversity.model.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,9 @@ public class Group {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "createdAt")
+    private Date date = new Date();
 
     @OneToMany
     @JoinColumn(name = "group_id")
@@ -61,11 +65,11 @@ public class Group {
         this.groupDisciplines = groupDisciplines;
     }
 
-    // public List<GroupDiscipline> getGroupDisciplines() {
-    //     return groupDisciplines;
-    // }
+    public Date getDate() {
+        return date;
+    }
 
-    // public void setGroupDisciplines(List<GroupDiscipline> groupDisciplines) {
-    //     this.groupDisciplines = groupDisciplines;
-    // }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

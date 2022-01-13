@@ -1,5 +1,6 @@
 package com.website.eUniversity.controller.admin;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.entity.*;
 import com.website.eUniversity.service.IGroupService;
@@ -19,15 +20,27 @@ public class GroupsController {
     @Autowired
     private IGroupService groupService;
 
+    @GetMapping("/get-students-without-group")
+    @ApiOperation("Returns all students without group")
+    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getStudentsNoGroup() {
+        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(groupService.findStudentsWithoutGroup(), "Students are returned"));
+    }
+
+    @GetMapping("/get-groups")
+    @ApiOperation("Returns all existing groups")
+    public ResponseEntity<BaseResponse<List<GroupDTO>>> getAllGroups() {
+        return ResponseEntity.ok(new BaseResponse<List<GroupDTO>>().success(groupService.getAllGroups(), "Groups successfully returned"));
+    }
+
     @GetMapping("/get-students-by-group")
     @ApiOperation("Returns students of requested group by id")
     public ResponseEntity<BaseResponse<List<StudentDTO>>> getStudentsByGroup(@RequestParam(name = "groupId") Integer groupId) {
         return ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(groupService.getStudentsByGroup(groupId), "Students are returned"));
     }
 
-    @GetMapping("/get-group")
+    @GetMapping("/get-group-teacher-discipline")
     @ApiOperation("Returns group's disciplines and teachers by id")
-    public ResponseEntity<BaseResponse<List<GroupDisciplineResponseDTO>>> getAllGroups(@RequestParam(name = "groupId") Integer groupId) {
+    public ResponseEntity<BaseResponse<List<GroupDisciplineResponseDTO>>> getGroupAllTeachersAndDisciplines(@RequestParam(name = "groupId") Integer groupId) {
         return ResponseEntity.ok(new BaseResponse<List<GroupDisciplineResponseDTO>>().success(groupService.getByGroupIdTeachersAndDisciplines(groupId), "Ok"));
     }
 
@@ -40,14 +53,14 @@ public class GroupsController {
    @PostMapping("/attach-student")
    @ApiOperation("Add requested student to requested group")
    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestParam(name = "groupId") Integer groupId,
-                                                                          @RequestParam(name = "studentId") String studentId) {
+                                                                          @RequestParam(name = "studentId") Integer studentId) {
        return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(studentId, groupId), "OK"));
    }
 
     @PostMapping("/add-group")
     @ApiOperation("Add new group")
-    public ResponseEntity<BaseResponse<String>> addGroup(@RequestParam(name = "groupName") String groupName) {
-        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.addGroup(groupName), "OK"));
+    public ResponseEntity<BaseResponse<Integer>> addGroup(@RequestParam(name = "groupName") String groupName) {
+        return ResponseEntity.ok(new BaseResponse<Integer>().success(groupService.addGroup(groupName), "OK"));
     }
 
     @PostMapping("/attach-teacher-discipline")
@@ -58,28 +71,28 @@ public class GroupsController {
 
     @PutMapping("/edit-group-info")
     @ApiOperation("Edits group's info")
-    public ResponseEntity<BaseResponse<String>> editGroup(@RequestParam(name = "groupId") Integer groupId,
+    public ResponseEntity<BaseResponse<GroupDTO>> editGroup(@RequestParam(name = "groupId") Integer groupId,
                                                           @RequestParam(name = "groupName") String groupName) {
-        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.editGroup(groupId, groupName), "OK"));
+        return ResponseEntity.ok(new BaseResponse<GroupDTO>().success(groupService.editGroup(groupId, groupName), "OK"));
     }
 
     @DeleteMapping("/detach-teacher-discipline")
     @ApiOperation("Remove discipline and teacher from requested group")
-    public ResponseEntity<BaseResponse<GroupDisciplineResponseDTO>> detachDiscipline(@RequestBody GroupDisciplineRequestDTO groupDisciplineRequestDTO) {
+    public ResponseEntity<BaseResponse<GroupDisciplineResponseDTO>> detachDiscipline(@RequestBody GroupDisciplineRequestDTO groupDisciplineRequestDTO) throws NotFoundException {
         return ResponseEntity.ok(new BaseResponse<GroupDisciplineResponseDTO>().success(groupService.detachDiscipline(groupDisciplineRequestDTO), "OK"));
     }
 
     @DeleteMapping("/detach-student")
     @ApiOperation("Remove student from requested group")
     public ResponseEntity<BaseResponse<StudentShortInfoDTO>> detachStudent(@RequestParam(name = "groupId") Integer groupId,
-                                                                           @RequestParam(name = "studentId") String studentId) {
+                                                                           @RequestParam(name = "studentId") Integer studentId) {
         return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.detachStudent(studentId, groupId), "OK"));
     }
 
     @DeleteMapping("/delete-group")
     @ApiOperation("Deletes group")
-    public ResponseEntity<BaseResponse<String>> deleteGroup(@RequestParam(name = "groupId") Integer groupId) {
-        return ResponseEntity.ok(new BaseResponse<String>().success(groupService.deleteGroup(groupId), "OK"));
+    public ResponseEntity<BaseResponse<Integer>> deleteGroup(@RequestParam(name = "groupId") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<Integer>().success(groupService.deleteGroup(groupId), "OK"));
     }
 
 }

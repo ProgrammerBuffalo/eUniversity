@@ -12,7 +12,7 @@ import java.util.List;
 public interface IGroupRepository extends JpaRepository<Group, Integer> {
 
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentShortInfoDTO" +
-            " (a.fullName)" +
+            " (s.id, a.fullName)" +
             " FROM Student s INNER JOIN Account a on s.account = a " +
             "                INNER JOIN Group g on s.group = g" +
             " WHERE g.id = :id")
@@ -21,4 +21,9 @@ public interface IGroupRepository extends JpaRepository<Group, Integer> {
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(g.id, g.name)" +
                    "FROM Group g")
     List<DDLResponseDTO<Integer>> getAllGroupsDDL();
+
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(s.id, s.account.fullName)" +
+            " FROM Student s LEFT OUTER JOIN Group g ON g.id = s.group.id" +
+            " WHERE s.group.id is null")
+    List<DDLResponseDTO<Integer>> findStudentsWithoutGroup();
 }

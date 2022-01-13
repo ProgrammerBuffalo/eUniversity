@@ -1,5 +1,6 @@
 package com.website.eUniversity.service.impl;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.*;
 import com.website.eUniversity.model.entity.*;
 import com.website.eUniversity.repository.*;
@@ -16,9 +17,6 @@ import java.util.stream.Collectors;
 public class GroupService implements IGroupService {
 
     @Autowired
-    private IAccountRepository accountRepository;
-
-    @Autowired
     private IGroupRepository groupRepository;
 
     @Autowired
@@ -32,6 +30,15 @@ public class GroupService implements IGroupService {
 
     @Autowired
     private IGroupDisciplineRepository groupDisciplineRepository;
+
+    @Override
+    public List<GroupDTO> getAllGroups() {
+        List<Group> groups = groupRepository.findAll();
+
+        return groups.stream()
+                .map(group -> new GroupDTO(group.getId(), group.getName(), group.getDate()))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<StudentShortInfoDTO> getAllStudents(Integer groupId) {
@@ -50,41 +57,41 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    public String addGroup(String groupName) {
+    public Integer addGroup(String groupName) {
         Group group = new Group();
         group.setName(groupName);
 
         groupRepository.save(group);
-        return group.getName();
+        return group.getId();
     }
 
     @Override
-    public String editGroup(Integer group_id, String groupName) {
+    public GroupDTO editGroup(Integer group_id, String groupName) {
         Group group = findGroup(group_id);
         group.setName(groupName);
 
         groupRepository.save(group);
-        return group.getName();
+        return new GroupDTO(group.getId(), group.getName());
     }
 
     @Override
-    public String deleteGroup(Integer group_id) {
+    public Integer deleteGroup(Integer group_id) {
         Group group = findGroup(group_id);
 
         groupRepository.delete(group);
-        return group.getName();
+        return group.getId();
     }
 
     @Override
     @Transactional
-    public StudentShortInfoDTO attachStudent(String studentId, Integer groupId) {
+    public StudentShortInfoDTO attachStudent(Integer studentId, Integer groupId) {
         Student student = findStudent(studentId);
         Group group = findGroup(groupId);
 
         group.getStudents().add(student);
         groupRepository.save(group);
 
-        return new StudentShortInfoDTO(student.getAccount().getFullName());
+        return new StudentShortInfoDTO(student.getId(), student.getAccount().getFullName());
     }
 
     @Override
@@ -96,31 +103,38 @@ public class GroupService implements IGroupService {
 
         groupDisciplineRepository.save(new GroupDiscipline(group, discipline, teacher));
 
-        return new GroupDisciplineResponseDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
+        return new GroupDisciplineResponseDTO(discipline.getId(), teacher.getId(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
     @Override
     @Transactional
-    public StudentShortInfoDTO detachStudent(String studentId, Integer groupId) {
+    public StudentShortInfoDTO detachStudent(Integer studentId, Integer groupId) {
         Student student = findStudent(studentId);
         Group group = findGroup(groupId);
 
         group.getStudents().remove(student);
         groupRepository.save(group);
 
-        return new StudentShortInfoDTO(student.getAccount().getFullName());
+        return new StudentShortInfoDTO(student.getId(), student.getAccount().getFullName());
     }
 
     @Override
     @Transactional
-    public GroupDisciplineResponseDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline) {
+    public GroupDisciplineResponseDTO detachDiscipline(GroupDisciplineRequestDTO groupDiscipline) throws NotFoundException {
         Teacher teacher = findTeacher(groupDiscipline.getTeacherId());
-        Group group = findGroup(groupDiscipline.getGroupId());
         Discipline discipline = findDiscipline(groupDiscipline.getDisciplineId());
 
-        groupDisciplineRepository.delete(new GroupDiscipline(group, discipline, teacher));
+        Group group = findGroup(groupDiscipline.getGroupId());
 
-        return new GroupDisciplineResponseDTO(group.getName(), discipline.getName(), teacher.getAccount().getFullName());
+        Optional<GroupDiscipline> grpDiscipline = groupDisciplineRepository.findByGroup_IdAndDiscipline_IdAndTeacher_Id(group.getId(), discipline.getId(), teacher.getId());
+
+        if(!grpDiscipline.isPresent()){
+            throw new NotFoundException("Group not found");
+        }
+
+        groupDisciplineRepository.delete(grpDiscipline.get());
+
+        return new GroupDisciplineResponseDTO(discipline.getId(), teacher.getId(), discipline.getName(), teacher.getAccount().getFullName());
     }
 
     @Override
@@ -128,13 +142,9 @@ public class GroupService implements IGroupService {
         return studentRepository.getAllByGroup(groupId);
     }
 
-    private Student findStudent(String studentId) {
-        Optional<Account> account = accountRepository.findAccountById(studentId);
+    private Student findStudent(Integer studentId) {
 
-        if (!account.isPresent())
-            return null;
-
-        Optional<Student> student = studentRepository.findByAccount(account.get());
+        Optional<Student> student = studentRepository.findById(studentId);
 
         if (!student.isPresent())
             return null;
@@ -149,13 +159,8 @@ public class GroupService implements IGroupService {
         return group.get();
     }
 
-    private Teacher findTeacher(String teacherId) {
-        Optional<Account> account = accountRepository.findAccountById(teacherId);
-
-        if (!account.isPresent())
-            return null;
-
-        Optional<Teacher> teacher = teacherRepository.findByAccount(account.get());
+    private Teacher findTeacher(Integer teacherId) {
+        Optional<Teacher> teacher = teacherRepository.findById(teacherId);
 
         if (!teacher.isPresent())
             return null;
@@ -173,5 +178,10 @@ public class GroupService implements IGroupService {
     @Override
     public List<DDLResponseDTO<Integer>> getGroupsDDL() {
         return groupRepository.getAllGroupsDDL();
+    }
+
+    @Override
+    public List<DDLResponseDTO<Integer>> findStudentsWithoutGroup() {
+        return groupRepository.findStudentsWithoutGroup();
     }
 }

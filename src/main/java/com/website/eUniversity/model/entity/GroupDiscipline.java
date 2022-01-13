@@ -26,7 +26,8 @@ public class GroupDiscipline {
 
     public static GroupDisciplineResponseDTO fromEntityToDto(GroupDiscipline groupDiscipline) {
         return new GroupDisciplineResponseDTO(
-                groupDiscipline.group.getName(),
+                groupDiscipline.discipline.getId(),
+                groupDiscipline.teacher.getId(),
                 groupDiscipline.discipline.getName(),
                 groupDiscipline.teacher.getAccount().getFullName());
     }

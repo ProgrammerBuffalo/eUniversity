@@ -13,8 +13,6 @@ import java.util.Optional;
 
 public interface IGroupDisciplineRepository extends JpaRepository<GroupDiscipline, Integer> {
 
-    Optional<GroupDiscipline> findByGroupAndDiscipline(Group group, Discipline discipline);
-
     @Query(value = "SELECT gd.id, g.id as group_id, d.id as discipline_id, t.id as teacher_id " +
             "       FROM Groups_Disciplines gd INNER JOIN Groups g on gd.group_id = g.id" +
             "                                  INNER JOIN Teachers t on gd.teacher_id = t.id" +
@@ -22,5 +20,9 @@ public interface IGroupDisciplineRepository extends JpaRepository<GroupDisciplin
             "                                  INNER JOIN Disciplines d on gd.discipline_id = d.id" +
             "       WHERE g.id = :id", nativeQuery = true)
     List<GroupDiscipline> findByGroupIdTeachersAndDisciplines(@Param("id") Integer groupId);
+
+    Optional<GroupDiscipline> findById(Integer id);
+
+    Optional<GroupDiscipline> findByGroup_IdAndDiscipline_IdAndTeacher_Id(Integer groupId, Integer disciplineId, Integer teacherId);
 
 }
