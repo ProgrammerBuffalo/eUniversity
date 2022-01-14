@@ -1,11 +1,8 @@
-declare var $: any;
-
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { GroupService } from 'src/app/services/group.service';
-import 'bootstrap-select';
 
 
 @Component({
@@ -43,19 +40,12 @@ export class GroupStudentListComponent implements OnInit {
     this.groupService.getAllStudentsWithoutGroup().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.studetnsDDL = res.data;
     });
-
-    //
-    this.groupService.getStudentsByGroup(1).subscribe((res: BaseResponse<Student[]>) => {
-      this.students = res.data;
-    })
-  }
-
-  ngAfterContentChecked() {
-    $('.selectpicker').selectpicker();
   }
 
   getStudentsByGroup() {
-
+    this.groupService.getStudentsByGroup(this.selectedGroup).subscribe((res: BaseResponse<Student[]>) => {
+      this.students = res.data;
+    })
   }
 
   attachStudent() {

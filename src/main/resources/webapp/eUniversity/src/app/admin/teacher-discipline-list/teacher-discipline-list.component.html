@@ -39,8 +39,7 @@
 
     <form class="register" [formGroup]="editForm">
       <div class="flex f-between gap-50 mb-20">
-        <select class="selectpicker" data-live-search="true" name="disciplines" id="disciplines"
-          formControlName='disciplineId'>
+        <select formControlName='disciplineId'>
           <option value="0">Select discipline</option>
           <option value="{{item.id}}" *ngFor="let item of disciplines">{{item.name}}</option>
         </select>

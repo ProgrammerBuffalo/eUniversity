@@ -1,4 +1,3 @@
-declare var $: any;
 
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,7 +8,6 @@ import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { TeacherDisciplineService } from 'src/app/services/teacher-discipline.service';
-import 'bootstrap-select';
 
 @Component({
   selector: 'app-teacher-discipline-list',
@@ -50,10 +48,6 @@ export class TeacherDisciplineListComponent implements OnInit {
     this.disciplineService.getDisciplinesDLL().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.disciplines = res.data;
     });
-  }
-
-  ngAfterContentChecked() {
-    $('.selectpicker').selectpicker();
   }
 
   showEditModal(teacherShorDiscipline: TeacherShortDisciplines) {
