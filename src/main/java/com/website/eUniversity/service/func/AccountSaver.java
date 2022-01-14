@@ -14,7 +14,7 @@ public class AccountSaver <T extends UserDTO> {
     private IAccountRepository accountRepository;
 
     protected Account saveAccount(T user) {
-        Optional<Account> account = accountRepository.findAccountById(user.getId());
+        Optional<Account> account = accountRepository.findAccountById(user.getAccountId());
 
         if(!account.isPresent()){
             throw new UsernameNotFoundException("Account not found");

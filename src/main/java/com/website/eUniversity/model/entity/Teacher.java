@@ -16,8 +16,11 @@ public class Teacher {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<GroupDiscipline> groupDisciplines;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<TeacherDiscipline> teacherDisciplines;
 
     public Teacher() { }
 

@@ -37,7 +37,8 @@ public class StudentService extends AccountSaver implements IStudentService {
 
             Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.STUDENT));
             Student student = studentRepository.save(new Student(account));
-            studentDTO.setId(student.getAccount().getId());
+            studentDTO.setAccountId(student.getAccount().getId());
+            studentDTO.setUserId(student.getId());
             studentDTO.setAge(student.getAccount().getAge());
             studentDTO.setLogin(student.getAccount().getLogin());
             studentDTO.setPassword(student.getAccount().getPassword());
@@ -52,7 +53,7 @@ public class StudentService extends AccountSaver implements IStudentService {
     @Override
     public StudentDTO update(StudentDTO user) {
         Account account = saveAccount(user);
-        return new StudentDTO(account.getId(), account.getFullName(), account.getAge(), account.getLogin(), null);
+        return new StudentDTO(account.getId(), user.getUserId(), account.getFullName(), account.getAge(), account.getLogin(), null);
     }
 
     @Override

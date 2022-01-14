@@ -12,11 +12,14 @@ public class Discipline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
-    @Column(name = "shortName")
-    private  String shortName;
+    @Column(name = "shortName", unique = true)
+    private String shortName;
+
+    @OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL)
+    private List<TeacherDiscipline> teacherDisciplines;
 
     @OneToMany
     @Transient
@@ -63,11 +66,4 @@ public class Discipline {
     public void setGroupDisciplines(List<GroupDiscipline> groupDisciplines) {
         this.groupDisciplines = groupDisciplines;
     }
-
-    // public List<GroupDiscipline> getGroupDisciplines() {
-    //      return groupDisciplines;
-    // }
-
-    // public void setGroupDisciplines(List<GroupDiscipline> groupDisciplines) {
-//    }
 }

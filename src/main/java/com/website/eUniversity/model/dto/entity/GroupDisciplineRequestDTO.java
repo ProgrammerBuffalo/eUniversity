@@ -8,9 +8,9 @@ public class GroupDisciplineRequestDTO {
 
     private Integer disciplineId;
 
-    private String teacherId;
+    private Integer teacherId;
 
-    public GroupDisciplineRequestDTO(Integer groupId, Integer disciplineId, String teacherId) {
+    public GroupDisciplineRequestDTO(Integer groupId, Integer disciplineId, Integer teacherId) {
         this.groupId = groupId;
         this.disciplineId = disciplineId;
         this.teacherId = teacherId;
@@ -32,11 +32,11 @@ public class GroupDisciplineRequestDTO {
         this.disciplineId = disciplineId;
     }
 
-    public String getTeacherId() {
+    public Integer getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(String teacherId) {
+    public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
     }
 }

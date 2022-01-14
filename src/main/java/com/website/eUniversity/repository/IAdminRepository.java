@@ -15,11 +15,13 @@ public interface IAdminRepository extends JpaRepository<Admin, Integer> {
 
     void deleteByAccount_Id(String id);
 
+    Optional<Admin> findById(Integer id);
+
     Optional<Admin> findByAccount(Account account);
 
-    Optional<Teacher> findByAccount_Id(String id);
+    Optional<Admin> findByAccount_Id(String id);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.AdminDTO(acc.id, acc.fullName, acc.age, acc.login, acc.password)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.AdminDTO(acc.id, ad.id, acc.fullName, acc.age, acc.login, acc.password)" +
             " FROM Admin ad INNER JOIN Account acc on ad.account.id = acc.id")
     List<AdminDTO> findAllAdmins();
 }

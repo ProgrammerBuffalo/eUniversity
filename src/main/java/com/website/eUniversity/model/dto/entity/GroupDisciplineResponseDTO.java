@@ -2,24 +2,19 @@ package com.website.eUniversity.model.dto.entity;
 
 public class GroupDisciplineResponseDTO {
 
-    private String groupName;
+    private Integer disciplineId;
+
+    private Integer teacherId;
 
     private String disciplineName;
 
     private String teacherName;
 
-    public GroupDisciplineResponseDTO(String groupName, String disciplineName, String teacherName) {
-        this.groupName = groupName;
+    public GroupDisciplineResponseDTO(Integer disciplineId, Integer teacherId, String disciplineName, String teacherName) {
+        this.disciplineId = disciplineId;
+        this.teacherId = teacherId;
         this.disciplineName = disciplineName;
         this.teacherName = teacherName;
-    }
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
     }
 
     public String getDisciplineName() {
@@ -36,5 +31,21 @@ public class GroupDisciplineResponseDTO {
 
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
+    }
+
+    public Integer getDisciplineId() {
+        return disciplineId;
+    }
+
+    public void setDisciplineId(Integer disciplineId) {
+        this.disciplineId = disciplineId;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 }

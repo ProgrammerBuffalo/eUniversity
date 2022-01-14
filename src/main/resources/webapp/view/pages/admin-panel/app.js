@@ -8,4 +8,23 @@ $(document).ready(() => {
 		document.getElementById("closeStudentsAddBtn"));
 })
 
-console.log(document.getElementById("select"));
+
+// const newTr = `
+// <tr >
+// 	<th contenteditable="true">Enter teacher</th>
+// 	<td contenteditable="true">Enter day</td>
+// 	<td contenteditable="true">Enter time</td>
+// 	<td class="td-red">
+// 		<div class="table-btn remove-btn">
+// 			<i class="fas fa-times"></i>
+// 		</div>
+// 	</td>
+// </tr >`;
+
+// const addBtns = document.getElementsByClassName('add-btn');
+
+// Array.prototype.forEach.call(addBtns, (btn) => {
+// 	btn.addEventListener('click', function (e) {
+// 		this.closest('.table-block').querySelector('tbody').innerHTML += newTr;
+// 	})
+// })

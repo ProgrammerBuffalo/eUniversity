@@ -38,7 +38,8 @@ public class TeacherService extends AccountSaver implements ITeacherService {
 
             Account account = accountRepository.save(new Account(registrationDTO.getLogin(), registrationDTO.getPassword(), registrationDTO.getFullName(), registrationDTO.getAge(), Role.TEACHER));
             Teacher teacher = teacherRepository.save(new Teacher(account));
-            teacherDTO.setId(teacher.getAccount().getId());
+            teacherDTO.setAccountId(teacher.getAccount().getId());
+            teacherDTO.setUserId(teacher.getId());
             teacherDTO.setAge(teacher.getAccount().getAge());
             teacherDTO.setLogin(teacher.getAccount().getLogin());
             teacherDTO.setPassword(teacher.getAccount().getPassword());
@@ -53,7 +54,7 @@ public class TeacherService extends AccountSaver implements ITeacherService {
     @Override
     public TeacherDTO update(TeacherDTO user) {
         Account account = saveAccount(user);
-        return new TeacherDTO(account.getId(), account.getFullName(), account.getAge(), account.getLogin(), null);
+        return new TeacherDTO(account.getId(), user.getUserId(), account.getFullName(), account.getAge(), account.getLogin(), null);
     }
 
     @Override

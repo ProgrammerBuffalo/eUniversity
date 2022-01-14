@@ -1,11 +1,8 @@
 <!--WHAT TO USE
 -------------------------------------------------------------------------------------
 1. aside-menu component
-2. table-student component
-3. modal component
-4. add-student component
-5. edit-student component
-6. table-student component
+2. table-student-group component
+6. table-groups component
 ------------------------------------------------------------------------------------>
 
 
@@ -27,7 +24,6 @@
 		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
-
 	<link rel="stylesheet" href="../../general/general.css" />
 	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="../../components/aside menu/style.css">
@@ -38,7 +34,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
 
-	<title>Admin students</title>
+	<title>Students attachment</title>
 </head>
 
 <body>
@@ -71,6 +67,7 @@
 						<li><a href="admin-students.html">Students</a></li>
 						<li><a href="admin-teachers.html">Teachers</a></li>
 						<li><a href="admin-admins.html">Admins</a></li>
+						<li><a href="admin-students-attachment.html">Students attachment</a></li>
 					</ul>
 
 					<li data-toggle="collapse" class="active" data-target="#groups" class="collapsed">
@@ -97,25 +94,37 @@
 	</aside>
 
 	<main class="main">
-		<!--TABLE-TEACHERS COMPONENT-->
+		<!--TABLE-STUDENT-GROUP COMPONENT-->
 		<div class="table-block">
 			<div class="table-block__header">
-				<h3 class="table-block__title">Teachers & Disciplines list</h3>
-				<div class="btn btn-danger add-btn mr-20">Add</div>
+				<h3 class="table-block__title">Students in group</h3>
 			</div>
-			<select class="selectpicker" data-live-search="true" name="groups" id="groups">
-				<option selected value="group1">Group 1</option>
-				<option value="group2">Group 2</option>
-				<option value="group3">Group 3</option>
-			</select>
+
+			<div class="flex f-between col-gap-50 ">
+				<select class="selectpicker w-70" data-live-search="true" name="disciplines" id="disciplines">
+					<option selected disabled style="display: none;">Choose group</option>
+					<option value="gr1">Group 1</option>
+					<option value="gr2">Group 2</option>
+					<option value="gr3">Group 3</option>
+				</select>
+				<div class="flex col-gap-20 w-50">
+					<select class="selectpicker w-100" data-live-search="true" name="disciplines" id="disciplines">
+						<option selected disabled style="display: none;">Choose student</option>
+						<option value="st1">Student1</option>
+						<option value="st2">Student 2</option>
+						<option value="st3">Student 3</option>
+					</select>
+					<div class="btn btn-danger add-btn w-30">Attach</div>
+				</div>
+
+			</div>
 			<div class="table-block__content">
 				<div class="table-container">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Teacher</th>
-								<th>Discipline</th>
+								<th>Student name</th>
 							</tr>
 						</thead>
 
@@ -123,12 +132,6 @@
 							<tr>
 								<th>1</th>
 								<td>John Johnson</td>
-								<td>Programming</td>
-								<td class="td-blue">
-									<div class="table-btn change-btn">
-										<i class="fas fa-pencil-alt"></i>
-									</div>
-								</td>
 								<td class="td-red">
 									<div class="table-btn remove-btn">
 										<i class="fas fa-times"></i>
@@ -137,14 +140,8 @@
 							</tr>
 
 							<tr>
-								<th>1</th>
+								<th>2</th>
 								<td>Jack Jackson</td>
-								<td>IT Essentials</td>
-								<td class="td-blue">
-									<div class="table-btn change-btn">
-										<i class="fas fa-pencil-alt"></i>
-									</div>
-								</td>
 								<td class="td-red">
 									<div class="table-btn remove-btn">
 										<i class="fas fa-times"></i>
@@ -153,14 +150,8 @@
 							</tr>
 
 							<tr>
-								<th>1</th>
-								<td>Tom Tomson</td>
-								<td>Web design</td>
-								<td class="td-blue">
-									<div class="table-btn change-btn">
-										<i class="fas fa-pencil-alt"></i>
-									</div>
-								</td>
+								<th>3</th>
+								<td>Tom tomson</td>
 								<td class="td-red">
 									<div class="table-btn remove-btn">
 										<i class="fas fa-times"></i>
@@ -169,14 +160,8 @@
 							</tr>
 
 							<tr>
-								<th>1</th>
-								<td>Daniel Radcliffe</td>
-								<td>Project Management</td>
-								<td class="td-blue">
-									<div class="table-btn change-btn">
-										<i class="fas fa-pencil-alt"></i>
-									</div>
-								</td>
+								<th>4</th>
+								<td>Nick Nickson</td>
 								<td class="td-red">
 									<div class="table-btn remove-btn">
 										<i class="fas fa-times"></i>
@@ -188,65 +173,9 @@
 				</div>
 			</div>
 		</div>
-		<!--TABLE-TEACHERS COMPONENT-->
-
-		<div class="modal" id="students-add">
-			<div class="modal-content" style="width: 500px">
-				<span id="closeStudentsAddBtn" class="close">&times;</span>
-				<!--ADD-TEACHER COMPONENT-->
-				<form class="register">
-					<div class="form-group">
-						<span>Teacher name: </span>
-						<input type="text" class="form-field" placeholder="Teacher name">
-					</div>
-
-					<select class="selectpicker" data-live-search="true" name="groups" id="groups">
-						<option selected value="group1">Group 1</option>
-						<option value="group2">Group 2</option>
-						<option value="group3">Group 3</option>
-					</select>
-
-					<select class="selectpicker" data-live-search="true" name="disciplines" id="disciplines">
-						<option selected value="programming">Programming</option>
-						<option value="it-essentials">IT Essentials</option>
-						<option value="web-design">Web design</option>
-					</select>
-					<input style="margin-top: 20px;" type="submit" class="btn btn-danger" value="Add teacher"></input>
-				</form>
-				<!--ADD-TEACHER COMPONENT-->
-			</div>
-		</div>
-
-
-		<div class="modal" id="students-change">
-			<div class="modal-content" style="width: 500px">
-				<span id="closeStudentsChangeBtn" class="close">&times;</span>
-				<!--EDIT-TEACHER COMPONENT-->
-				<form class="register">
-					<div class="form-group">
-						<span>Teacher name: </span>
-						<input type="text" class="form-field" placeholder="Teacher name">
-					</div>
-
-					<select class="selectpicker" data-live-search="true" name="groups" id="groups">
-						<option selected value="group1">Group 1</option>
-						<option value="group2">Group 2</option>
-						<option value="group3">Group 3</option>
-					</select>
-
-					<select class="selectpicker" data-live-search="true" name="disciplines" id="disciplines">
-						<option selected value="programming">Programming</option>
-						<option value="it-essentials">IT Essentials</option>
-						<option value="web-design">Web design</option>
-					</select>
-					<input type="submit" class="btn btn-info" value="Save changes"></input>
-				</form>
-				<!--EDIT-TEACHER COMPONENT-->
-			</div>
-		</div>
-
-
+		<!--TABLE-STUDENT-GROUP COMPONENT-->
 	</main>
+	<script src="../../components/aside menu/app.js"></script>
 	<script src="../../components/modal/app.js"></script>
 	<script src="app.js"></script>
 </body>
