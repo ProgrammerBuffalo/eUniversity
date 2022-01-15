@@ -1,5 +1,6 @@
 package com.website.eUniversity.repository;
 
+import com.website.eUniversity.model.dto.entity.TeacherDisciplineNamesDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
 import com.website.eUniversity.model.entity.TeacherDiscipline;
@@ -25,6 +26,8 @@ public interface ITeacherDisciplineRepository extends JpaRepository<TeacherDisci
             " INNER JOIN disciplines d ON d.id = td.discipline_id" +
             " WHERE td.teacher_id = :id", nativeQuery = true)
     List<ITeacherDisciplineDTO> getTeacherDisciplines(@Param("id") Integer teacherId);
+
+    List<TeacherDiscipline> getTeacherDisciplinesByTeacher_Id(Integer teacherId);
 
     @Query(value = "SELECT td.teacher_id AS id, a.full_name AS [name], STRING_AGG(d.short_name, ', ') AS shortDisciplines" +
             " FROM teacher_discipline td" +

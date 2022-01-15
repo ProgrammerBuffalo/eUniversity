@@ -7,5 +7,3 @@ $(document).ready(() => {
 		document.getElementsByClassName("add-btn"),
 		document.getElementById("closeStudentsAddBtn"));
 })
-
-console.log(document.getElementById("select"));

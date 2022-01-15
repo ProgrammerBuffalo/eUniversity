@@ -83,6 +83,12 @@ public class DisciplineController {
         return ResponseEntity.ok(new BaseResponse<ITeacherShortDisciplinesDTO>().success(teacherDisciplineService.getTeacherShortDisciplines(teacherId), "string with short disciplines"));
     }
 
+    @GetMapping("/get-teacher-disciplines-ddl")
+    @ApiOperation("gets list of disciplines of the teacher")
+    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getTeacherDisciplineDDL(@RequestParam("teacherId") Integer teacherId) {
+        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(teacherDisciplineService.getTeacherDisciplineNames(teacherId), "list of disciplines of teacher"));
+    }
+
     @PostMapping("/attach-discipline")
     @ApiOperation("attach`s new discipline to a teacher")
     public ResponseEntity<BaseResponse<Object>> assignDiscipline(@RequestBody AttachDisciplineDTO dto) {
