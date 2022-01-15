@@ -2,8 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddGroupDTO } from '../core/DTOs/admin/add-group';
+import { AttachStudentDTO } from '../core/DTOs/admin/attach-student-dto';
+import { GroupDisciplineDTO as GroupDisciplineDTO } from '../core/DTOs/admin/group-discipline-dto';
 import { UpdateGroupDTO } from '../core/DTOs/admin/updae-group';
 import { Group } from '../core/models/admin/group';
+import { GroupDiscipline } from '../core/models/admin/group-discipline';
 import { Student } from '../core/models/admin/student';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
@@ -51,24 +54,36 @@ export class GroupService {
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
-  //
   getStudentsByGroup(id: number): Observable<BaseResponse<Student[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-students-by-group');
     let param = { groupId: id }
     return this.http.get<BaseResponse<Student[]>>(url, { params: param });
   }
 
-  //
-  attachStudent(groupId: number, studentId: number): Observable<BaseResponse<any>> {
-    let url: string = PrepareApi.prepare(this.controllerName, '');
-    let params = { groupId: groupId, studentId: studentId };
-    return this.http.post<BaseResponse<any>>(url, params);
+  attachStudent(dto: AttachStudentDTO): Observable<BaseResponse<any>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'attach-student');
+    return this.http.post<BaseResponse<any>>(url, dto);
   }
 
-  //
   detachStudent(groupId: number, studentId: number) {
-    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let url: string = PrepareApi.prepare(this.controllerName, 'detach-student');
     let params = { groupId: groupId, studentId: studentId };
     return this.http.delete<BaseResponse<any>>(url, { params: params });
+  }
+
+  getTeacherWithDisciplines(groupId: number): Observable<BaseResponse<GroupDiscipline[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-group-teacher-discipline');
+    let params = { groupId: groupId };
+    return this.http.get<BaseResponse<GroupDiscipline[]>>(url, { params: params });
+  }
+
+  addTeacherWithDiscipline(dto: GroupDisciplineDTO): Observable<BaseResponse<GroupDiscipline>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'attach-teacher-discipline');
+    return this.http.post<BaseResponse<GroupDiscipline>>(url, dto);
+  }
+
+  detachTeacherWithDiscipline(dto: GroupDisciplineDTO) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'detach-teacher-discipline');
+    return this.http.delete(url, { body: dto });
   }
 }

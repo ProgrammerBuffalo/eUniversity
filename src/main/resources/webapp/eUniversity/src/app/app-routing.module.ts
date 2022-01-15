@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Page404Component } from './shared/status-pages/page404/page404.component';
+import { Page404Component } from './shared/page404/page404.component';
 
 const routes: Routes = [
   {
@@ -16,6 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   { path: 'page-404', component: Page404Component },
+  { path: 'page-505', component: Page404Component },
   { path: '**', component: Page404Component }
 ];
 

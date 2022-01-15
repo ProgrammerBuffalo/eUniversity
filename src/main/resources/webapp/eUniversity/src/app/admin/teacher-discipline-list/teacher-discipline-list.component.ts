@@ -7,7 +7,7 @@ import { TeacherShortDisciplines } from 'src/app/core/models/admin/teacher-short
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { DisciplineService } from 'src/app/services/discipline.service';
-import { TeacherDisciplineService } from 'src/app/services/teacher-discipline.service';
+import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-teacher-discipline-list',
@@ -27,7 +27,7 @@ export class TeacherDisciplineListComponent implements OnInit {
   editForm: FormGroup;
 
   constructor(
-    private teacherDisciplineService: TeacherDisciplineService,
+    private teacherDisciplineService: TeacherService,
     private disciplineService: DisciplineService
   ) {
     this.showEditPopup = false;

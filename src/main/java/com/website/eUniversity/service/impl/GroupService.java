@@ -3,6 +3,7 @@ package com.website.eUniversity.service.impl;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.*;
 import com.website.eUniversity.model.dto.entity.group.AddGroupDTO;
+import com.website.eUniversity.model.dto.entity.group.AttachStudentDTO;
 import com.website.eUniversity.model.dto.entity.group.UpdateGroupDTO;
 import com.website.eUniversity.model.entity.*;
 import com.website.eUniversity.repository.*;
@@ -86,9 +87,9 @@ public class GroupService implements IGroupService {
 
     @Override
     @Transactional
-    public StudentShortInfoDTO attachStudent(Integer studentId, Integer groupId) {
-        Student student = findStudent(studentId);
-        Group group = findGroup(groupId);
+    public StudentShortInfoDTO attachStudent(AttachStudentDTO dto) {
+        Student student = findStudent(dto.getStudentId());
+        Group group = findGroup(dto.getGroupId());
 
         group.getStudents().add(student);
         groupRepository.save(group);

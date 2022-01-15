@@ -106,9 +106,9 @@ export class TeacherListComponent implements OnInit {
   updateTeacher() {
     if (this.editForm.valid) {
       let dto: UpdateTeacherDTO = new UpdateTeacherDTO(
-        this.selectedTeacher.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
+        this.selectedTeacher.accountId, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
-      this.accountService.updateStudent(dto).subscribe({
+      this.accountService.updateTeacher(dto).subscribe({
         next: (data) => {
           this.selectedTeacher.login = this.editLogin?.value;
           this.selectedTeacher.fullName = this.editFullName?.value;
@@ -127,7 +127,7 @@ export class TeacherListComponent implements OnInit {
     this.accountService.deleteTeacher(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.teachers.length; i++) {
-          if (this.teachers[i].id == id)
+          if (this.teachers[i].accountId == id)
             this.teachers.splice(i, 1);
         }
       },

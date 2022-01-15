@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttachStudentDTO } from 'src/app/core/DTOs/admin/attach-student-dto';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
@@ -45,14 +46,41 @@ export class GroupStudentListComponent implements OnInit {
   getStudentsByGroup() {
     this.groupService.getStudentsByGroup(this.selectedGroup).subscribe((res: BaseResponse<Student[]>) => {
       this.students = res.data;
-    })
+      console.log(this.students)
+    });
   }
 
   attachStudent() {
-
+    if (this.selectedGroup != 0) {
+      let dto: AttachStudentDTO = new AttachStudentDTO(this.selectedGroup, this.selectedStudent);
+      this.groupService.attachStudent(dto).subscribe({
+        next: (res: any) => {
+          this.students.unshift(new Student('', res.data.id, res.data.fullName, '', 0));
+          console.log(this.students);
+          for (let i = 0; i < this.studetnsDDL.length; i++) {
+            if (this.studetnsDDL[i].id == this.selectedStudent)
+              this.studetnsDDL.splice(i, 1);
+          }
+        },
+        error: (data: any) => {
+          alert(data.message);
+        }
+      });
+    }
   }
 
-  detachStudent() {
-
+  detachStudent(student: Student) {
+    this.groupService.detachStudent(this.selectedGroup, student.userId).subscribe({
+      next: (data: any) => {
+        this.studetnsDDL.push(new DDL<number>(student.userId, student.fullName));
+        for (let i = 0; i < this.students.length; i++) {
+          if (this.students[i].userId == student.userId)
+            this.students.splice(i, 1);
+        }
+      },
+      error: (data: any) => {
+        alert(data.message);
+      }
+    });
   }
 }

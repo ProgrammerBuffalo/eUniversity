@@ -72,7 +72,6 @@ export class StudentListComponent implements OnInit {
   }
 
   showEditModal(student: Student) {
-    console.log(student);
     this.showEditPopup = true;
     this.selectedStudent = student;
 
@@ -106,7 +105,7 @@ export class StudentListComponent implements OnInit {
   updateStudent() {
     if (this.editForm.valid) {
       let dto: UpdateStudentDTO = new UpdateStudentDTO(
-        this.selectedStudent.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
+        this.selectedStudent.accountId, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
       this.accountService.updateStudent(dto).subscribe({
         next: (data) => {
@@ -127,7 +126,7 @@ export class StudentListComponent implements OnInit {
     this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.students.length; i++) {
-          if (this.students[i].id == id)
+          if (this.students[i].accountId == id)
             this.students.splice(i, 1);
         }
       },

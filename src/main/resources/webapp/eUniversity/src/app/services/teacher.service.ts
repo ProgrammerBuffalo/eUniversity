@@ -6,12 +6,12 @@ import { TeacherDiscipline } from '../core/models/admin/teacher-discipline';
 import { TeacherShortDisciplines } from '../core/models/admin/teacher-short-disciplines';
 import { AttachDisciplineDTO } from '../core/DTOs/admin/attach-discipline-dto';
 import { PrepareApi } from './prepare-api';
-
+import { DDL } from '../core/models/ddl';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherDisciplineService {
+export class TeacherService {
 
   private controllerName: string = 'admin-panel/discipline'
 
@@ -33,6 +33,12 @@ export class TeacherDisciplineService {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-teacher-disciplines')
     let params = { teacherId: teacherId };
     return this.http.get<BaseResponse<TeacherDiscipline[]>>(url, { params: params });
+  }
+
+  getTeacherDisciplinesDDL(teacherId: number): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-teacher-disciplines-ddl');
+    let params = { teacherId: teacherId };
+    return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: params });
   }
 
   getTeacherShortDisciplines(teacherId: number): Observable<BaseResponse<TeacherShortDisciplines>> {

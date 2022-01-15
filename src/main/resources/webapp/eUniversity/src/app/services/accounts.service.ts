@@ -40,7 +40,7 @@ export class AccountService {
   }
 
   deleteAdmin(id: string) {
-    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let url: string = PrepareApi.prepare(this.controllerName, 'delete-admin');
     let params = { id: id };
     return this.http.delete(url, { params: params });
   }
@@ -55,13 +55,13 @@ export class AccountService {
     return this.http.get<BaseResponse<Teacher[]>>(url);
   }
 
-  updateTeachers(dto: UpdateTeacherDTO) {
+  updateTeacher(dto: UpdateTeacherDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
     return this.http.put(url, dto);
   }
 
   deleteTeacher(id: string) {
-    let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
+    let url: string = PrepareApi.prepare(this.controllerName, 'delete-teacher');
     let params = { id: id };
     return this.http.delete(url, { params: params });
   }

@@ -70,7 +70,6 @@ export class GroupListComponent implements OnInit {
   }
 
   addGroup() {
-    console.log(this.addForm.value);
     if (this.addForm.valid)
       this.groupService.addGroup(this.addForm.value).subscribe({
         next: (res) => {

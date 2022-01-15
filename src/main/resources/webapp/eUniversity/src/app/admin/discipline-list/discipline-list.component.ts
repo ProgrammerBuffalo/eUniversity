@@ -69,8 +69,6 @@ export class DisciplineListComponent implements OnInit {
     this.showEditPopup = true;
     this.selectedDiscipline = discipline;
 
-    console.log(discipline);
-
     this.editForm.get('name')!.setValue(discipline.name);
     this.editForm.get('shortName')?.setValue(discipline.shortName);
   }
@@ -101,8 +99,6 @@ export class DisciplineListComponent implements OnInit {
   updateDiscipline() {
     if (this.editForm.valid) {
       let dto: UpdateDisciplineDTO = new UpdateDisciplineDTO(this.selectedDiscipline.id, this.editName?.value, this.editShortName?.value);
-
-      console.log(dto);
 
       this.disciplineService.updateDiscipline(dto).subscribe({
         next: (data) => {

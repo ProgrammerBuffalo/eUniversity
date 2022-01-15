@@ -3,6 +3,7 @@ package com.website.eUniversity.service;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.*;
 import com.website.eUniversity.model.dto.entity.group.AddGroupDTO;
+import com.website.eUniversity.model.dto.entity.group.AttachStudentDTO;
 import com.website.eUniversity.model.dto.entity.group.UpdateGroupDTO;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface IGroupService {
 
     Integer deleteGroup(Integer group_id);
 
-    StudentShortInfoDTO attachStudent(Integer studentId, Integer groupId);
+    StudentShortInfoDTO attachStudent(AttachStudentDTO dto);
 
     GroupDisciplineResponseDTO attachDiscipline(GroupDisciplineRequestDTO groupDiscipline);
 

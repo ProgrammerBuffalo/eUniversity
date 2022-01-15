@@ -105,7 +105,7 @@ export class AdminListComponent implements OnInit {
   updateAdmin() {
     if (this.editForm.valid) {
       let dto: UpdateAdminDTO = new UpdateAdminDTO(
-        this.selectedAdmin.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
+        this.selectedAdmin.accountId, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
       this.accountService.updateAdmin(dto).subscribe({
         next: (data) => {
@@ -126,7 +126,7 @@ export class AdminListComponent implements OnInit {
     this.accountService.deleteAdmin(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.admins.length; i++) {
-          if (this.admins[i].id == id)
+          if (this.admins[i].accountId == id)
             this.admins.splice(i, 1);
         }
       },
