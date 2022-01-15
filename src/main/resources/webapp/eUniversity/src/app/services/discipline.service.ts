@@ -33,7 +33,7 @@ export class DisciplineService {
   }
 
   getDisciplinesDLL(): Observable<BaseResponse<DDL<number>[]>> {
-    let url = PrepareApi.prepare(this.controllerName, 'get-disciplines-dll');
+    let url = PrepareApi.prepare(this.controllerName, 'get-disciplines-ddl');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 

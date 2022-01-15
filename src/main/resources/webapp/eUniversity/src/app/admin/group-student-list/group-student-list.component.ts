@@ -46,7 +46,6 @@ export class GroupStudentListComponent implements OnInit {
   getStudentsByGroup() {
     this.groupService.getStudentsByGroup(this.selectedGroup).subscribe((res: BaseResponse<Student[]>) => {
       this.students = res.data;
-      console.log(this.students)
     });
   }
 
@@ -56,7 +55,6 @@ export class GroupStudentListComponent implements OnInit {
       this.groupService.attachStudent(dto).subscribe({
         next: (res: any) => {
           this.students.unshift(new Student('', res.data.id, res.data.fullName, '', 0));
-          console.log(this.students);
           for (let i = 0; i < this.studetnsDDL.length; i++) {
             if (this.studetnsDDL[i].id == this.selectedStudent)
               this.studetnsDDL.splice(i, 1);
