@@ -1,8 +1,10 @@
+declare var $: any;
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { GroupService } from 'src/app/services/group.service';
+import 'bootstrap-select';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class GroupStudentListComponent implements OnInit {
   selectedStudent: number;
 
   students: Student[];
+  data = ['data1', 'data2', 'data3'];
 
   constructor(
     private groupService: GroupService
@@ -40,6 +43,12 @@ export class GroupStudentListComponent implements OnInit {
     this.groupService.getAllStudentsWithoutGroup().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.studetnsDDL = res.data;
     });
+    setTimeout(() => {
+      this.data.push('data4');
+    }, 1000);
+    setTimeout(() => {
+      $('.selectpicker2').selectpicker('refresh');
+    }, 1000);
   }
 
   getStudentsByGroup() {
