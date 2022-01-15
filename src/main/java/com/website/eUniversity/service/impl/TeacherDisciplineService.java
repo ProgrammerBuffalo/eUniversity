@@ -1,7 +1,6 @@
 package com.website.eUniversity.service.impl;
 
-import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.TeacherDisciplineNamesDTO;
+import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @Service
 public class TeacherDisciplineService implements ITeacherDisciplineService {
@@ -45,11 +42,15 @@ public class TeacherDisciplineService implements ITeacherDisciplineService {
         return teacherDisciplineRepository.getTeacherShortDisciplines(teacherId);
     }
 
+//    public List<IDDLResponseDTO<Integer>> getTeacherDisciplineNames(Integer teacherId) {
+
     @Override
-    public List<DDLResponseDTO<Integer>> getTeacherDisciplineNames(Integer teacherId) {
-        return teacherDisciplineRepository.getTeacherDisciplinesByTeacher_Id(teacherId)
-                .stream().map(TeacherDiscipline::fromEntityToDtoDDL)
-                .collect(Collectors.toList());
+    public List<IDDLResponseDTO<Integer>> getTeacherDisciplineNames(Integer teacherId) {
+//        return teacherDisciplineRepository.getTeacherDisciplinesByTeacher_Id(teacherId)
+//                .stream().map(TeacherDiscipline::fromEntityToDtoDDL)
+//                .collect(Collectors.toList());
+
+        return teacherDisciplineRepository.getDisciplineTeachers(teacherId);
     }
 
     @Override

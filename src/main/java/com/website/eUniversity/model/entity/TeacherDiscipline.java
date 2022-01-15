@@ -3,7 +3,6 @@ package com.website.eUniversity.model.entity;
 
 import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.GroupDisciplineResponseDTO;
-import com.website.eUniversity.model.dto.entity.TeacherDisciplineNamesDTO;
 
 import javax.persistence.*;
 
@@ -23,9 +22,9 @@ public class TeacherDiscipline {
     @JoinColumn(name = "discipline_id")
     private Discipline discipline;
 
-    public static DDLResponseDTO<Integer> fromEntityToDtoDDL(TeacherDiscipline groupDiscipline) {
-        return new DDLResponseDTO<>(groupDiscipline.discipline.getId(), groupDiscipline.discipline.getName());
-    }
+//    public static DDLResponseDTO<Integer> fromEntityToDtoDDL(TeacherDiscipline groupDiscipline) {
+//        return new DDLResponseDTO<>(groupDiscipline.discipline.getId(), groupDiscipline.discipline.getName());
+//    }
 
     public TeacherDiscipline() {
 

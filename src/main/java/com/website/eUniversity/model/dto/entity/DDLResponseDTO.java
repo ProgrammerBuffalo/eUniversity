@@ -1,6 +1,6 @@
 package com.website.eUniversity.model.dto.entity;
 
-public class DDLResponseDTO<T> {
+public class DDLResponseDTO<T> implements IDDLResponseDTO {
     public T id;
 
     public String name;
