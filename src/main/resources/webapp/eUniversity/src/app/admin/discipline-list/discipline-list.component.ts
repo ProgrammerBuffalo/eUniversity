@@ -117,8 +117,10 @@ export class DisciplineListComponent implements OnInit {
     this.disciplineService.deleteDiscipline(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.disciplines.length; i++) {
-          if (this.disciplines[i].id == id)
+          if (this.disciplines[i].id == id) {
             this.disciplines.splice(i, 1);
+            break;
+          }
         }
       },
       error: (data) => {

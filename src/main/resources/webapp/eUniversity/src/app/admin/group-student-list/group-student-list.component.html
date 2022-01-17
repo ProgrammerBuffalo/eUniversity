@@ -4,13 +4,13 @@
   </div>
 
   <div class="flex f-between col-gap-50 ">
-    <select class="w-70" (change)="getStudentsByGroup()" [(ngModel)]="selectedGroup">
+    <select class="selectpicker2 w-70" (change)="getStudentsByGroup()" [(ngModel)]="selectedGroup">
       <option value="0">Choose group</option>
       <option *ngFor="let item of groupsDDL" value="{{item.id}}">{{item.name}}</option>
     </select>
 
     <div class="flex col-gap-20 w-50">
-      <select class="w-100" [(ngModel)]="selectedStudent">
+      <select class="selectpicker2 w-100" [(ngModel)]="selectedStudent">
         <option value="0">Choose student</option>
         <option *ngFor="let item of studetnsDDL" value="{{item.id}}">{{item.name}}</option>
       </select>

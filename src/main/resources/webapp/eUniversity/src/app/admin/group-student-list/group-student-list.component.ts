@@ -3,6 +3,7 @@ import { AttachStudentDTO } from 'src/app/core/DTOs/admin/attach-student-dto';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
+import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { GroupService } from 'src/app/services/group.service';
 
 
@@ -41,6 +42,8 @@ export class GroupStudentListComponent implements OnInit {
     this.groupService.getAllStudentsWithoutGroup().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.studetnsDDL = res.data;
     });
+
+    refreshSelectPicker(100);
   }
 
   getStudentsByGroup() {
@@ -56,9 +59,12 @@ export class GroupStudentListComponent implements OnInit {
         next: (res: any) => {
           this.students.unshift(new Student('', res.data.id, res.data.fullName, '', 0));
           for (let i = 0; i < this.studetnsDDL.length; i++) {
-            if (this.studetnsDDL[i].id == this.selectedStudent)
+            if (this.studetnsDDL[i].id == this.selectedStudent) {
               this.studetnsDDL.splice(i, 1);
+              break;
+            }
           }
+          refreshSelectPicker();
         },
         error: (data: any) => {
           alert(data.message);
@@ -72,9 +78,12 @@ export class GroupStudentListComponent implements OnInit {
       next: (data: any) => {
         this.studetnsDDL.push(new DDL<number>(student.userId, student.fullName));
         for (let i = 0; i < this.students.length; i++) {
-          if (this.students[i].userId == student.userId)
+          if (this.students[i].userId == student.userId) {
             this.students.splice(i, 1);
+            break;
+          }
         }
+        refreshSelectPicker();
       },
       error: (data: any) => {
         alert(data.message);

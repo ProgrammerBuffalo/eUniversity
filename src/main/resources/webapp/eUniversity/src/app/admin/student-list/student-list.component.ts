@@ -126,8 +126,10 @@ export class StudentListComponent implements OnInit {
     this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.students.length; i++) {
-          if (this.students[i].accountId == id)
+          if (this.students[i].accountId == id) {
             this.students.splice(i, 1);
+            break;
+          }
         }
       },
       error: (data) => {

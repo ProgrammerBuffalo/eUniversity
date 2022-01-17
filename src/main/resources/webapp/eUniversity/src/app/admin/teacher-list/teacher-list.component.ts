@@ -58,8 +58,8 @@ export class TeacherListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.getTeachers().subscribe((data: BaseResponse<Teacher[]>) => {
-      this.teachers = data.data;
+    this.accountService.getTeachers().subscribe((res: BaseResponse<Teacher[]>) => {
+      this.teachers = res.data;
     });
   }
 
@@ -127,8 +127,10 @@ export class TeacherListComponent implements OnInit {
     this.accountService.deleteTeacher(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.teachers.length; i++) {
-          if (this.teachers[i].accountId == id)
+          if (this.teachers[i].accountId == id) {
             this.teachers.splice(i, 1);
+            break;
+          }
         }
       },
       error: (data) => {

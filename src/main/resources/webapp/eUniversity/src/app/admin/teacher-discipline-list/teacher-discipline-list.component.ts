@@ -6,6 +6,7 @@ import { TeacherDiscipline } from 'src/app/core/models/admin/teacher-discipline'
 import { TeacherShortDisciplines } from 'src/app/core/models/admin/teacher-short-disciplines';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
+import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 
@@ -47,6 +48,7 @@ export class TeacherDisciplineListComponent implements OnInit {
 
     this.disciplineService.getDisciplinesDLL().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.disciplines = res.data;
+      refreshSelectPicker();
     });
   }
 

@@ -100,8 +100,10 @@ export class GroupListComponent implements OnInit {
     this.groupService.removeGroup(id).subscribe({
       next: (res) => {
         for (let i = 0; i < this.groups.length; i++) {
-          if (this.groups[i].id == id)
+          if (this.groups[i].id == id) {
             this.groups.splice(i, 1);
+            break;
+          }
         }
       },
       error: (res) => {

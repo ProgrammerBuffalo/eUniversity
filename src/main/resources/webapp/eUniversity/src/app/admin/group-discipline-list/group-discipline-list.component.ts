@@ -3,6 +3,7 @@ import { GroupDisciplineDTO } from 'src/app/core/DTOs/admin/group-discipline-dto
 import { GroupDiscipline } from 'src/app/core/models/admin/group-discipline';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
+import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { GroupService } from 'src/app/services/group.service';
 import { TeacherService } from 'src/app/services/teacher.service';
@@ -24,7 +25,7 @@ export class GroupDisciplineListComponent implements OnInit {
   selectedTeacherId;
   selectedDisciplineId;
 
-   showAddPopup: boolean;
+  showAddPopup: boolean;
 
   constructor(
     private groupService: GroupService,
@@ -51,7 +52,9 @@ export class GroupDisciplineListComponent implements OnInit {
 
     this.disciplineService.getDisciplinesDLL().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.disciplinesDDL = res.data;
-    })
+    });
+
+    refreshSelectPicker(100);
   }
 
   groupChange() {
@@ -64,6 +67,7 @@ export class GroupDisciplineListComponent implements OnInit {
     this.selectedTeacherId = 0;
     this.teacherService.getDisciplineTeachersDDL(this.selectedDisciplineId).subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.teachersDDL = res.data;
+      refreshSelectPicker();
     });
   }
 
@@ -87,8 +91,10 @@ export class GroupDisciplineListComponent implements OnInit {
       next: (res: any) => {
         for (let i = 0; i < this.groupDisciplines.length; i++) {
           if (this.groupDisciplines[i].disciplineId == groupDiscipline.disciplineId
-            && this.groupDisciplines[i].teacherId == groupDiscipline.teacherId)
+            && this.groupDisciplines[i].teacherId == groupDiscipline.teacherId) {
             this.groupDisciplines.splice(i, 1);
+            break;
+          }
         }
       },
       error: (res: any) => {
