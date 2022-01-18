@@ -69,7 +69,8 @@ public class AdminService extends AccountSaver implements IAdminService {
     }
 
     @Override
-    public List<AdminDTO> getUserList() {
-        return adminRepository.findAllAdmins();
+    public List<AdminDTO> getUserList(String search) {
+        System.out.println("my search   " +  search);
+        return adminRepository.findAllAdmins(search);
     }
 }

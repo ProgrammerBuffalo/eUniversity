@@ -32,20 +32,20 @@ public class AccountsController {
 
     @GetMapping("/students")
     @ApiOperation("Returns students")
-    public ResponseEntity<BaseResponse<List<StudentDTO>>> getStudents() {
-        return ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(studentService.getUserList(), "Students are returned"));
+    public ResponseEntity<BaseResponse<List<StudentDTO>>> getStudents(@RequestParam("search") String search) {
+        return ResponseEntity.ok(new BaseResponse<List<StudentDTO>>().success(studentService.getUserList(search), "Students are returned"));
     }
 
     @GetMapping("/teachers")
     @ApiOperation("Returns teachers")
-    public ResponseEntity<BaseResponse<List<TeacherDTO>>> getTeachers() {
-        return ResponseEntity.ok(new BaseResponse<List<TeacherDTO>>().success(teacherService.getUserList(), "Teachers are returned"));
+    public ResponseEntity<BaseResponse<List<TeacherDTO>>> getTeachers(@RequestParam("search") String search) {
+        return ResponseEntity.ok(new BaseResponse<List<TeacherDTO>>().success(teacherService.getUserList(search), "Teachers are returned"));
     }
 
     @GetMapping("/admins")
     @ApiOperation("Returns admins")
-    public ResponseEntity<BaseResponse<List<AdminDTO>>> getAdmins() {
-        return ResponseEntity.ok(new BaseResponse<List<AdminDTO>>().success(adminService.getUserList(), "Teachers are returned"));
+    public ResponseEntity<BaseResponse<List<AdminDTO>>> getAdmins(@RequestParam("search") String search) {
+        return ResponseEntity.ok(new BaseResponse<List<AdminDTO>>().success(adminService.getUserList(search), "Teachers are returned"));
     }
 
     @PostMapping("/register-student")

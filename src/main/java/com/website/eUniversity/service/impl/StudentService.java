@@ -69,7 +69,7 @@ public class StudentService extends AccountSaver implements IStudentService {
     }
 
     @Override
-    public List<StudentDTO> getUserList() {
-        return studentRepository.findAllStudents();
+    public List<StudentDTO> getUserList(String search) {
+        return studentRepository.findAllStudents(search);
     }
 }

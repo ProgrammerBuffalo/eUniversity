@@ -70,7 +70,7 @@ public class TeacherService extends AccountSaver implements ITeacherService {
     }
 
     @Override
-    public List<TeacherDTO> getUserList() {
-        return teacherRepository.findAllTeachers();
+    public List<TeacherDTO> getUserList(String search) {
+        return teacherRepository.findAllTeachers(search);
     }
 }

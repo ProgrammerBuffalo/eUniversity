@@ -12,5 +12,5 @@ public interface IUserService <T extends UserDTO> {
 
     String delete(String uuid);
 
-    List<T> getUserList();
+    List<T> getUserList(String search);
 }

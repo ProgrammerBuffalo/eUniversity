@@ -5,6 +5,7 @@ import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +22,12 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
 
     Optional<Student> findByAccount_Id(String id);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(a.id, s.id, a.fullName, a.age, a.login, a.password)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(a.id, s.id, a.fullName, a.age, a.login, a.password, g.name)" +
             " FROM Student s INNER JOIN Account a on s.account.id = a.id" +
-            "                INNER JOIN Group g on s.group = g")
-    List<StudentDTO> findAllStudents();
+            "                LEFT JOIN Group g on s.group = g" +
+            "                WHERE a.fullName LIKE %:search% OR a.login LIKE %:search% OR g.name LIKE %:search%" +
+            "                ORDER BY s.id DESC")
+    List<StudentDTO> findAllStudents(@Param("search") String search);
 
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(s.account.id, s.id, s.account.fullName, s.account.age, s.account.login, s.account.password)" +
                    "FROM Student s WHERE s.group.id = ?1")
