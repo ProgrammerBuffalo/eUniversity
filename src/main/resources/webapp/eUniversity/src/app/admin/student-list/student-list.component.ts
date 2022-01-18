@@ -16,6 +16,7 @@ export class StudentListComponent implements OnInit {
 
   selectedStudent!: Student;
   students: Student[];
+  search: string;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -54,11 +55,12 @@ export class StudentListComponent implements OnInit {
     });
 
     this.students = [];
+    this.search = '';
   }
 
   ngOnInit(): void {
-    this.accountService.getStudents().subscribe((data: BaseResponse<Student[]>) => {
-      this.students = data.data;
+    this.accountService.getStudents(this.search).subscribe((res: BaseResponse<Student[]>) => {
+      this.students = res.data;
     });
   }
 
@@ -136,6 +138,12 @@ export class StudentListComponent implements OnInit {
         alert('cant remove this student');
       }
     })
+  }
+
+  searchStudents() {
+    this.accountService.getStudents(this.search).subscribe((res: BaseResponse<Student[]>) => {
+      this.students = res.data;
+    });
   }
 
 }

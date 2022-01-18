@@ -17,6 +17,7 @@ export class AdminListComponent implements OnInit {
 
   selectedAdmin!: Admin;
   admins: Admin[];
+  search: string;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -55,11 +56,12 @@ export class AdminListComponent implements OnInit {
     });
 
     this.admins = [];
+    this.search = '';
   }
 
   ngOnInit(): void {
-    this.accountService.getAdmins().subscribe((data: BaseResponse<Admin[]>) => {
-      this.admins = data.data;
+    this.accountService.getAdmins(this.search).subscribe((res: BaseResponse<Admin[]>) => {
+      this.admins = res.data;
     });
   }
 
@@ -136,5 +138,11 @@ export class AdminListComponent implements OnInit {
         alert('cant remove this admin');
       }
     })
+  }
+
+  searchAdmins() {
+    this.accountService.getAdmins(this.search).subscribe((res: BaseResponse<Admin[]>) => {
+      this.admins = res.data;
+    });
   }
 }

@@ -57,7 +57,7 @@ export class GroupStudentListComponent implements OnInit {
       let dto: AttachStudentDTO = new AttachStudentDTO(this.selectedGroup, this.selectedStudent);
       this.groupService.attachStudent(dto).subscribe({
         next: (res: any) => {
-          this.students.unshift(new Student('', res.data.id, res.data.fullName, '', 0));
+          this.students.unshift(new Student('', res.data.id, res.data.fullName, '', 0, ''));
           for (let i = 0; i < this.studetnsDDL.length; i++) {
             if (this.studetnsDDL[i].id == this.selectedStudent) {
               this.studetnsDDL.splice(i, 1);
