@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddGroupDTO } from '../core/DTOs/admin/add-group';
+import { AddScheduleDTO } from '../core/DTOs/admin/add-schedule.dto';
 import { AttachStudentDTO } from '../core/DTOs/admin/attach-student-dto';
 import { GroupDisciplineDTO } from '../core/DTOs/admin/group-discipline-dto';
 import { UpdateGroupDTO } from '../core/DTOs/admin/updae-group';
 import { Group } from '../core/models/admin/group';
 import { GroupDiscipline } from '../core/models/admin/group-discipline';
+import { Schedule, ScheduleDiscipline } from '../core/models/admin/schedule';
 import { Student } from '../core/models/admin/student';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
@@ -85,5 +87,45 @@ export class GroupService {
   detachGroupDiscipline(dto: GroupDisciplineDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'detach-teacher-discipline');
     return this.http.delete(url, { body: dto });
+  }
+
+  //
+  getGroupSchedule(groupId: number) {
+    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let params = { groupId: groupId };
+    //return this.http.get(url, { params: params });
+  }
+
+  //
+  tempGetGroupsDDL() {
+    let temp: DDL<number>[] = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }, { id: 3, name: 'group3' }];
+    return temp;
+  }
+
+  //
+  tempGetTeachersDDL() {
+    let temp: DDL<number>[] = [{ id: 11, name: 'aa' }, { id: 22, name: 'bb' }, { id: 33, name: 'cc' }]
+    return temp;
+  }
+
+  //
+  tempAddSchedule(dto: AddScheduleDTO) {
+    console.log(dto);
+    // let url: string = PrepareApi.prepare(this.controllerName, '');
+    // this.http.post(url, dto);
+  }
+
+  //
+  getSchedules(groupId: number) {
+    let scheduleDiscipline: ScheduleDiscipline[] = [
+      { teacherName: 'teacher1', weekId: 1, timeTo: new Date(), timeFrom: new Date() },
+      { teacherName: 'teacher2', weekId: 2, timeTo: new Date(), timeFrom: new Date() },
+      { teacherName: 'teacher3', weekId: 3, timeTo: new Date(), timeFrom: new Date() }];
+
+    let schedule: Schedule[] = [
+      { disciplineId: 11, disciplineName: 'dis1', scheduleDiscipline },
+      { disciplineId: 12, disciplineName: 'dis2', scheduleDiscipline }];
+
+    return schedule;
   }
 }

@@ -11,6 +11,7 @@ import { TeacherDisciplineListComponent } from './teacher-discipline-list/teache
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupStudentListComponent } from './group-student-list/group-student-list.component';
 import { GroupDisciplineListComponent } from './group-discipline-list/group-discipline-list.component';
+import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Panel', pathMatch: 'full' },
@@ -18,8 +19,8 @@ const routes: Routes = [
   {
     path: 'Panel',
     component: AdminPanelComponent,
-    canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.Admin] },
     children: [
       { path: '', component: StudentListComponent },
 
@@ -37,7 +38,9 @@ const routes: Routes = [
 
       { path: 'group-student-list', component: GroupStudentListComponent },
 
-      { path: 'group-discipline-list', component: GroupDisciplineListComponent }
+      { path: 'group-discipline-list', component: GroupDisciplineListComponent },
+
+      { path: 'group-schedule-list', component: ScheduleListComponent }
     ]
   },
 ];
