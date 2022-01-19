@@ -1,0 +1,8 @@
+insert into groups_disciplines values (3, 1, 3)
+insert into groups_disciplines values (3, 2, 5)
+insert into groups_disciplines values (5, 2, 6)
+insert into groups_disciplines values (2, 2, 2)
+insert into groups_disciplines values (4, 1, 6)
+insert into groups_disciplines values (2, 5, 2)
+insert into groups_disciplines values (3, 5, 5)
+insert into groups_disciplines values (5, 5, 6)

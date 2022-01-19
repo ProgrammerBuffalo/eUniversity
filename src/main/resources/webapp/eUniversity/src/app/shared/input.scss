@@ -77,3 +77,13 @@ width: 100%;
 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 margin-bottom: 30px;
 }
+
+.input-group {
+	width: 100% !important;
+	height: 100% !important;
+	z-index: 1 !important;
+
+	input {
+		height: 100% !important;
+	}
+}

@@ -5,8 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DateToSemestrPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: Date, ...args: unknown[]): number {
+    console.log(value);
+    return 1;
   }
 
 }

@@ -3,6 +3,9 @@ package com.website.eUniversity.controller.admin;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.entity.*;
+import com.website.eUniversity.model.dto.entity.group.AddGroupDTO;
+import com.website.eUniversity.model.dto.entity.group.AttachStudentDTO;
+import com.website.eUniversity.model.dto.entity.group.UpdateGroupDTO;
 import com.website.eUniversity.service.IGroupService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -52,15 +55,14 @@ public class GroupsController {
 
    @PostMapping("/attach-student")
    @ApiOperation("Add requested student to requested group")
-   public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestParam(name = "groupId") Integer groupId,
-                                                                          @RequestParam(name = "studentId") Integer studentId) {
-       return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(studentId, groupId), "OK"));
+   public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestBody AttachStudentDTO dto) {
+       return ResponseEntity.ok(new BaseResponse<StudentShortInfoDTO>().success(groupService.attachStudent(dto), "OK"));
    }
 
     @PostMapping("/add-group")
     @ApiOperation("Add new group")
-    public ResponseEntity<BaseResponse<Integer>> addGroup(@RequestParam(name = "groupName") String groupName) {
-        return ResponseEntity.ok(new BaseResponse<Integer>().success(groupService.addGroup(groupName), "OK"));
+    public ResponseEntity<BaseResponse<Integer>> addGroup(@RequestBody AddGroupDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<Integer>().success(groupService.addGroup(dto), "OK"));
     }
 
     @PostMapping("/attach-teacher-discipline")
@@ -71,9 +73,8 @@ public class GroupsController {
 
     @PutMapping("/edit-group-info")
     @ApiOperation("Edits group's info")
-    public ResponseEntity<BaseResponse<GroupDTO>> editGroup(@RequestParam(name = "groupId") Integer groupId,
-                                                          @RequestParam(name = "groupName") String groupName) {
-        return ResponseEntity.ok(new BaseResponse<GroupDTO>().success(groupService.editGroup(groupId, groupName), "OK"));
+    public ResponseEntity<BaseResponse<GroupDTO>> editGroup(@RequestBody UpdateGroupDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<GroupDTO>().success(groupService.editGroup(dto), "OK"));
     }
 
     @DeleteMapping("/detach-teacher-discipline")

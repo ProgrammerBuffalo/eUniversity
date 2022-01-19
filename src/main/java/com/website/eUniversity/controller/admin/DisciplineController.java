@@ -2,6 +2,7 @@ package com.website.eUniversity.controller.admin;
 
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
+import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.discipline.AddDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.discipline.UpdateDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
@@ -45,7 +46,7 @@ public class DisciplineController {
         return ResponseEntity.ok(new BaseResponse<List<Discipline>>().success(disciplineService.getAllDisciplines(), "list of disciplines are returned"));
     }
 
-    @GetMapping("/get-disciplines-dll")
+    @GetMapping("/get-disciplines-ddl")
     @ApiOperation("get all disciplines for drop down")
     public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getDisciplinesDDL() {
         return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(disciplineService.getDisciplinesDDL(), "list of disciplines are returned for drop down"));
@@ -81,6 +82,12 @@ public class DisciplineController {
     @ApiOperation("gets a string with disciplines in short format")
     public ResponseEntity<BaseResponse<ITeacherShortDisciplinesDTO>> getTeacherShortDisciplines(@RequestParam("teacherId") Integer teacherId) {
         return ResponseEntity.ok(new BaseResponse<ITeacherShortDisciplinesDTO>().success(teacherDisciplineService.getTeacherShortDisciplines(teacherId), "string with short disciplines"));
+    }
+
+    @GetMapping("/get-discipline-teachers-ddl")
+    @ApiOperation("gets list of teachers that can teach selected discipline")
+    public ResponseEntity<BaseResponse<List<IDDLResponseDTO<Integer>>>> getTeacherDisciplineDDL(@RequestParam("teacherId") Integer teacherId) {
+        return ResponseEntity.ok(new BaseResponse<List<IDDLResponseDTO<Integer>>>().success(teacherDisciplineService.getTeacherDisciplineNames(teacherId), "list of teachers for ddl"));
     }
 
     @PostMapping("/attach-discipline")

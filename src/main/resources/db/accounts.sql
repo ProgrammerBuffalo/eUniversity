@@ -16,3 +16,12 @@ insert into accounts values ('61a92ee8-9187-4504-bff5-3b22a8e5723e', 41, 'teache
 insert into accounts values ('a99c992f-19ca-4a5b-ac02-f46ef8e752bb', 42, 'teacher2', 'teacher2', 'teacher2', 'TEACHER');
 insert into accounts values ('0bd41a1e-0154-4d48-890b-9424ce03dda9', 43, 'teacher3', 'teacher3', 'teacher3', 'TEACHER');
 insert into accounts values ('a1a538bb-b301-4932-bba9-b830c5685a09', 44, 'teacher4', 'teacher4', 'teacher4', 'TEACHER');
+
+--S-2 Emil
+insert into accounts values ('7dad27f9-8127-449c-8620-bf2da57e6ac5', 21, 'a1', 'a1','a1','STUDENT');
+insert into accounts values ('af445cf0-e56a-4ca1-aacc-91f6703158a2', 22, 'a2', 'a2','a2','STUDENT');
+insert into accounts values ('3f7b1c87-c07a-4568-af64-14e4a19fbff7', 23, 'a3', 'a3','a3','STUDENT');
+insert into accounts values ('109d2e13-5038-4629-830a-349f9b71fa76', 24, 'a4', 'a4','a4','STUDENT');
+insert into accounts values ('afc02350-f906-4503-832c-d9dbb5fe181d', 25, 'a5', 'a5','a5','STUDENT');
+insert into accounts values ('24897dc8-9a91-4b4f-8be7-f2a9df5ff4a5', 26, 'a6', 'a6','a6','STUDENT');
+insert into accounts values ('923779e1-57ff-41a3-a229-fd0a8f6dabfa', 27, 'a7', 'a7','a7','STUDENT');

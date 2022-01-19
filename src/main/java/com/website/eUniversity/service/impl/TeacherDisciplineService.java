@@ -1,5 +1,6 @@
 package com.website.eUniversity.service.impl;
 
+import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
@@ -39,6 +40,17 @@ public class TeacherDisciplineService implements ITeacherDisciplineService {
     @Override
     public ITeacherShortDisciplinesDTO getTeacherShortDisciplines(Integer teacherId) {
         return teacherDisciplineRepository.getTeacherShortDisciplines(teacherId);
+    }
+
+//    public List<IDDLResponseDTO<Integer>> getTeacherDisciplineNames(Integer teacherId) {
+
+    @Override
+    public List<IDDLResponseDTO<Integer>> getTeacherDisciplineNames(Integer teacherId) {
+//        return teacherDisciplineRepository.getTeacherDisciplinesByTeacher_Id(teacherId)
+//                .stream().map(TeacherDiscipline::fromEntityToDtoDDL)
+//                .collect(Collectors.toList());
+
+        return teacherDisciplineRepository.getDisciplineTeachers(teacherId);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.website.eUniversity.service;
 
+import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
@@ -13,6 +14,8 @@ public interface ITeacherDisciplineService {
     List<ITeacherDisciplineDTO> getTeacherDisciplines(Integer teacherId);
 
     ITeacherShortDisciplinesDTO getTeacherShortDisciplines(Integer teacherId);
+
+    List<IDDLResponseDTO<Integer>> getTeacherDisciplineNames(Integer teacherId);
 
     void attachDiscipline(AttachDisciplineDTO dto);
 

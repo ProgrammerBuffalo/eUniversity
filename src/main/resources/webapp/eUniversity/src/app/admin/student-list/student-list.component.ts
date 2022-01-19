@@ -4,7 +4,6 @@ import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/update-student-dto';
 import { Student } from 'src/app/core/models/admin/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { AccountService } from 'src/app/services/accounts.service';
-import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-student-list',
@@ -17,6 +16,7 @@ export class StudentListComponent implements OnInit {
 
   selectedStudent!: Student;
   students: Student[];
+  search: string;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -36,8 +36,7 @@ export class StudentListComponent implements OnInit {
   get editAge() { return this.editForm.get('age'); }
 
   constructor(
-    private accountService: AccountService,
-    private groupService: GroupService
+    private accountService: AccountService
   ) {
     this.showAddPopup = false;
     this.showEditPopup = false;
@@ -56,11 +55,12 @@ export class StudentListComponent implements OnInit {
     });
 
     this.students = [];
+    this.search = '';
   }
 
   ngOnInit(): void {
-    this.accountService.getStudents().subscribe((data: BaseResponse<Student[]>) => {
-      this.students = data.data;
+    this.accountService.getStudents(this.search).subscribe((res: BaseResponse<Student[]>) => {
+      this.students = res.data;
     });
   }
 
@@ -74,7 +74,6 @@ export class StudentListComponent implements OnInit {
   }
 
   showEditModal(student: Student) {
-    console.log(student);
     this.showEditPopup = true;
     this.selectedStudent = student;
 
@@ -108,7 +107,7 @@ export class StudentListComponent implements OnInit {
   updateStudent() {
     if (this.editForm.valid) {
       let dto: UpdateStudentDTO = new UpdateStudentDTO(
-        this.selectedStudent.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
+        this.selectedStudent.accountId, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
       this.accountService.updateStudent(dto).subscribe({
         next: (data) => {
@@ -129,14 +128,22 @@ export class StudentListComponent implements OnInit {
     this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.students.length; i++) {
-          if (this.students[i].id == id)
+          if (this.students[i].accountId == id) {
             this.students.splice(i, 1);
+            break;
+          }
         }
       },
       error: (data) => {
         alert('cant remove this student');
       }
     })
+  }
+
+  searchStudents() {
+    this.accountService.getStudents(this.search).subscribe((res: BaseResponse<Student[]>) => {
+      this.students = res.data;
+    });
   }
 
 }
