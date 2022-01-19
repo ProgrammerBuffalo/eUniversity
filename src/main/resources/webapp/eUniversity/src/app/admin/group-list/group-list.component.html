@@ -21,7 +21,7 @@
             <th>{{item.id}}</th>
             <td>{{item.name}}</td>
             <td>{{item.date | date}}</td>
-            <td>{{item.semester}}</td>
+            <td>{{item.date | semestr}}</td>
             <td class="td-blue">
               <div class="table-btn change-btn" (click)="showEditModal(item)">
                 <i class="fas fa-pencil-alt"></i>

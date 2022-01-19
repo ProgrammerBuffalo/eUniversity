@@ -32,39 +32,6 @@
               </div>
             </td>
           </tr>
-
-          <!-- <tr>
-            <td>Jack Jackson</td>
-            <td>Tuesday</td>
-            <td>12:00 - 13:30</td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Tom Tomson</td>
-            <td>Wednesday</td>
-            <td>12:00 - 13:30</td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Nick Nickson</td>
-            <td>Thursday</td>
-            <td>12:00 - 13:30</td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr> -->
         </tbody>
       </table>
     </div>
@@ -78,7 +45,7 @@
 
     <form class="register" [formGroup]="addForm">
       <select class="selectpicker2 mb-20" data-live-search="true" formControlName='teacherId'>
-        <option selected class="d-none">Select teacher</option>
+        <option value="0" selected>Select teacher</option>
         <option *ngFor="let item of teachersDDL" value="{{item.id}}">{{item.name}}</option>
       </select>
       <small class="text-danger" *ngIf="addTeacher?.invalid && (addTeacher?.touched || addTeacher?.dirty)">Teacher is

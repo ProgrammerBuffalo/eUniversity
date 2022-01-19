@@ -110,7 +110,6 @@ export class GroupService {
 
   //
   tempAddSchedule(dto: AddScheduleDTO) {
-    console.log(dto);
     // let url: string = PrepareApi.prepare(this.controllerName, '');
     // this.http.post(url, dto);
   }

@@ -4,12 +4,9 @@
     <div class="btn btn-danger add-btn" (click)="showAddModal()">Add</div>
 
   </div>
-  <select name="group" [(ngModel)]="selectedGroupId" (change)="groupChange()">
+  <select class="selectpicker2" name="group" [(ngModel)]="selectedGroupId" (change)="groupChange()">
     <option value="0" selected>Select Group</option>
     <option *ngFor="let item of groupsDDL" value="{{item.id}}">{{item.name}}</option>
-    <!-- <option value="group1">Group 1</option>
-    <option value="group2">Group 2</option>
-    <option value="group3">Group 3</option> -->
   </select>
 
   <div class="table-block__content">
@@ -34,70 +31,6 @@
               </div>
             </td>
           </tr>
-
-          <!-- <tr>
-            <th>1</th>
-            <td>Programming</td>
-            <td>John Johnson</td>
-            <td class="td-blue">
-              <div class="table-btn change-btn">
-                <i class="fas fa-pencil-alt"></i>
-              </div>
-            </td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <th>2</th>
-            <td>IT Essentials</td>
-            <td>Jack Jackson</td>
-            <td class="td-blue">
-              <div class="table-btn change-btn">
-                <i class="fas fa-pencil-alt"></i>
-              </div>
-            </td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <th>3</th>
-            <td>Web design</td>
-            <td>Tom Tomson</td>
-            <td class="td-blue">
-              <div class="table-btn change-btn">
-                <i class="fas fa-pencil-alt"></i>
-              </div>
-            </td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <th>4</th>
-            <td>Project Management</td>
-            <td>Daniel Radcliffe</td>
-            <td class="td-blue">
-              <div class="table-btn change-btn">
-                <i class="fas fa-pencil-alt"></i>
-              </div>
-            </td>
-            <td class="td-red">
-              <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
-              </div>
-            </td>
-          </tr> -->
         </tbody>
       </table>
     </div>
@@ -107,51 +40,19 @@
 <div class="modal" *ngIf="showAddPopup">
   <div class="modal-content" style="width: 500px">
     <span class="close" (click)="closeAddModal()">&times;</span>
-    <form class="register">
-      <select name="discipline" [(ngModel)]="selectedDisciplineId" (change)="diciplineChanged()">
+    <form class="register" [formGroup]="addForm">
+      <select class="selectpicker2 mb-20" name="discipline" [(ngModel)]="selectedDisciplineId"
+        formControlName="discipline" (change)="diciplineChanged()">
         <option value="0" selected>Select discipline</option>
         <option *ngFor="let item of disciplinesDDL" value="{{item.id}}">{{item.name}}</option>
-        <!-- <option value="programming">Programming</option>
-        <option value="it-essentials">IT Essentials</option>
-        <option value="web-design">Web design</option>
-        <option value="project-management">Project management</option> -->
       </select>
 
-      <select name="teacher" [(ngModel)]="selectedTeacherId">
+      <select class="selectpicker2" name="teacher" [(ngModel)]="selectedTeacherId" formControlName="teacher">
         <option value="0" selected>Select teacher</option>
         <option *ngFor="let item of teachersDDL" value="{{item.id}}">{{item.name}}</option>
-        <!-- <option value="john">John Johnson</option>
-        <option value="jack">Jack Jackson</option>
-        <option value="tom">Tom Tomson</option>
-        <option value="daniel">Daniel Radcliffe</option> -->
       </select>
 
       <input type="submit" class="btn btn-danger mt-20" value="Attach" (click)="attachGroupDiscipline()">
     </form>
   </div>
 </div>
-
-<!--
-<div class="modal" id="students-change">
-  <div class="modal-content" style="width: 500px">
-    <span id="closeStudentsChangeBtn" class="close">&times;</span>
-    <form class="register">
-      <select>
-        <option selected class="d-none">Select discipline</option>
-        <option value="programming">Programming</option>
-        <option value="it-essentials">IT Essentials</option>
-        <option value="web-design">Web design</option>
-        <option value="project-management">Project management</option>
-      </select>
-
-      <select>
-        <option selected class="d-none">Select teacher</option>
-        <option value="john">John Johnson</option>
-        <option value="jack">Jack Jackson</option>
-        <option value="tom">Tom Tomson</option>
-        <option value="daniel">Daniel Radcliffe</option>
-      </select>
-      <input type="submit" class="btn btn-info mt-20" value="Save changes">
-    </form>
-  </div>
-</div> -->
