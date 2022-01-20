@@ -354,6 +354,16 @@
 	justify-content: center !important;
 }
 
+.align-left {
+	align-items: left !important;
+}
+.align-right {
+	align-items: right !important;
+}
+.align-center {
+	align-items: center !important;
+}
+
 .col-gap-10 {
 	column-gap: 10px !important;
 }
@@ -506,6 +516,42 @@
 	width: 100% !important;
 }
 /*WIDTH*/
+
+/*HEIGHT*/
+.h-0 {
+	height: 0 !important;
+}
+.h-10 {
+	height: 10% !important;
+}
+.h-20 {
+	height: 20% !important;
+}
+.h-30 {
+	height: 30% !important;
+}
+.h-40 {
+	height: 40% !important;
+}
+.h-50 {
+	height: 50% !important;
+}
+.h-60 {
+	height: 60% !important;
+}
+.h-70 {
+	height: 70% !important;
+}
+.h-80 {
+	height: 80% !important;
+}
+.h-90 {
+	height: 90% !important;
+}
+.h-100 {
+	height: 100% !important;
+}
+/*HEIGHT*/
 
 /*DISPLAYS*/
 .d-none {
