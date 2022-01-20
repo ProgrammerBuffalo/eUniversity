@@ -1,11 +1,11 @@
 export class UpdateStudentDTO {
-  id: string;
+  accountId: string;
   fullName: string;
   login: string;
   age: number;
 
-  constructor(id: string, fullName: string, login: string, age: number) {
-    this.id = id;
+  constructor(accountId: string, fullName: string, login: string, age: number) {
+    this.accountId = accountId;
     this.fullName = fullName;
     this.login = login;
     this.age = age;

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttachDisciplineDTO } from 'src/app/core/DTOs/admin/attach-discipline-dto';
@@ -5,8 +6,9 @@ import { TeacherDiscipline } from 'src/app/core/models/admin/teacher-discipline'
 import { TeacherShortDisciplines } from 'src/app/core/models/admin/teacher-short-disciplines';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
+import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { DisciplineService } from 'src/app/services/discipline.service';
-import { TeacherDisciplineService } from 'src/app/services/teacher-discipline.service';
+import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-teacher-discipline-list',
@@ -26,7 +28,7 @@ export class TeacherDisciplineListComponent implements OnInit {
   editForm: FormGroup;
 
   constructor(
-    private teacherDisciplineService: TeacherDisciplineService,
+    private teacherService: TeacherService,
     private disciplineService: DisciplineService
   ) {
     this.showEditPopup = false;
@@ -34,17 +36,19 @@ export class TeacherDisciplineListComponent implements OnInit {
     this.editForm = new FormGroup({
       disciplineId: new FormControl(0, Validators.required)
     });
+
   }
 
   get editDisciplineId(): number { return this.editForm.get('disciplineId')?.value }
 
   ngOnInit(): void {
-    this.teacherDisciplineService.getTeachersShortDisciplines().subscribe((res: BaseResponse<TeacherShortDisciplines[]>) => {
+    this.teacherService.getTeachersShortDisciplines().subscribe((res: BaseResponse<TeacherShortDisciplines[]>) => {
       this.teachersShortDisciplines = res.data;
     });
 
     this.disciplineService.getDisciplinesDLL().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.disciplines = res.data;
+      refreshSelectPicker();
     });
   }
 
@@ -53,7 +57,7 @@ export class TeacherDisciplineListComponent implements OnInit {
 
     this.selectedTeacherDisciplines = teacherShorDiscipline;
 
-    this.teacherDisciplineService.getTeacherDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherDiscipline[]>) => {
+    this.teacherService.getTeacherDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherDiscipline[]>) => {
       this.teacherDisciplines = res.data;
     });
   }
@@ -65,13 +69,13 @@ export class TeacherDisciplineListComponent implements OnInit {
   attachDiscipline() {
     let dto: AttachDisciplineDTO = new AttachDisciplineDTO(this.selectedTeacherDisciplines.id, this.editDisciplineId);
 
-    this.teacherDisciplineService.attachDiscipline(dto).subscribe({
+    this.teacherService.attachDiscipline(dto).subscribe({
       next: (res: any) => {
-        this.teacherDisciplineService.getTeacherDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherDiscipline[]>) => {
+        this.teacherService.getTeacherDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherDiscipline[]>) => {
           this.teacherDisciplines = res.data;
         });
 
-        this.teacherDisciplineService.getTeacherShortDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherShortDisciplines>) => {
+        this.teacherService.getTeacherShortDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherShortDisciplines>) => {
           this.selectedTeacherDisciplines.shortDisciplines = res.data.shortDisciplines;
         });
       },
@@ -82,13 +86,13 @@ export class TeacherDisciplineListComponent implements OnInit {
   }
 
   detachDiscipline(disciplineId: number) {
-    this.teacherDisciplineService.detachDiscipline(this.selectedTeacherDisciplines.id, disciplineId).subscribe((res: any) => {
+    this.teacherService.detachDiscipline(this.selectedTeacherDisciplines.id, disciplineId).subscribe((res: any) => {
       for (let i = 0; i < this.teacherDisciplines.length; i++) {
         if (this.teacherDisciplines[i].id == disciplineId)
           this.teacherDisciplines.splice(i, 1);
       }
 
-      this.teacherDisciplineService.getTeacherShortDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherShortDisciplines>) => {
+      this.teacherService.getTeacherShortDisciplines(this.selectedTeacherDisciplines.id).subscribe((res: BaseResponse<TeacherShortDisciplines>) => {
         this.selectedTeacherDisciplines.shortDisciplines = res.data.shortDisciplines;
       });
     });

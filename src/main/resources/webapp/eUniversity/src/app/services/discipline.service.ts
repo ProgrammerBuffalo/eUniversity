@@ -7,7 +7,6 @@ import { PaginationDTO } from '../core/DTOs/pagination';
 import { Discipline } from '../core/models/admin/discipline';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
-import { Pagination } from '../core/models/pagination';
 import { PrepareApi } from './prepare-api';
 
 @Injectable({
@@ -23,7 +22,6 @@ export class DisciplineService {
   ) { }
 
   addDiscipline(discipline: AddDisciplineDTO): Observable<BaseResponse<number>> {
-    console.log(discipline);
     let url = PrepareApi.prepare(this.controllerName, 'add-discipline');
     return this.http.post<BaseResponse<number>>(url, discipline);
   }
@@ -35,7 +33,7 @@ export class DisciplineService {
   }
 
   getDisciplinesDLL(): Observable<BaseResponse<DDL<number>[]>> {
-    let url = PrepareApi.prepare(this.controllerName, 'get-disciplines-dll');
+    let url = PrepareApi.prepare(this.controllerName, 'get-disciplines-ddl');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 

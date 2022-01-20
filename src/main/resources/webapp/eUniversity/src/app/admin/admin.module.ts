@@ -15,6 +15,9 @@ import { TeacherDisciplineListComponent } from './teacher-discipline-list/teache
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupStudentListComponent } from './group-student-list/group-student-list.component';
 import { GroupDisciplineListComponent } from './group-discipline-list/group-discipline-list.component';
+import { DateToSemestrPipe } from '../core/pipes/date-to-semestr.pipe';
+import { PipeModule } from '../core/pipes/pipe.module';
+import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 
 
 @NgModule({
@@ -29,13 +32,15 @@ import { GroupDisciplineListComponent } from './group-discipline-list/group-disc
     GroupListComponent,
     GroupStudentListComponent,
     GroupDisciplineListComponent,
+    ScheduleListComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PipeModule
   ]
 })
 export class AdminModule { }

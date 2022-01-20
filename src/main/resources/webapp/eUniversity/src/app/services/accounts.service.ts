@@ -29,9 +29,10 @@ export class AccountService {
     return this.http.post<BaseResponse<Admin>>(url, dto);
   }
 
-  getAdmins(): Observable<BaseResponse<Admin[]>> {
+  getAdmins(search: string): Observable<BaseResponse<Admin[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'admins');
-    return this.http.get<BaseResponse<Admin[]>>(url);
+    let params = { search: search };
+    return this.http.get<BaseResponse<Admin[]>>(url, { params: params });
   }
 
   updateAdmin(dto: UpdateAdminDTO) {
@@ -40,7 +41,7 @@ export class AccountService {
   }
 
   deleteAdmin(id: string) {
-    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let url: string = PrepareApi.prepare(this.controllerName, 'delete-admin');
     let params = { id: id };
     return this.http.delete(url, { params: params });
   }
@@ -50,18 +51,19 @@ export class AccountService {
     return this.http.post<BaseResponse<Teacher>>(url, dto);
   }
 
-  getTeachers(): Observable<BaseResponse<Teacher[]>> {
+  getTeachers(search: string): Observable<BaseResponse<Teacher[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'teachers');
-    return this.http.get<BaseResponse<Teacher[]>>(url);
+    let params = { search: search };
+    return this.http.get<BaseResponse<Teacher[]>>(url, { params: params });
   }
 
-  updateTeachers(dto: UpdateTeacherDTO) {
+  updateTeacher(dto: UpdateTeacherDTO) {
     let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
     return this.http.put(url, dto);
   }
 
   deleteTeacher(id: string) {
-    let url: string = PrepareApi.prepare(this.controllerName, 'update-teacher');
+    let url: string = PrepareApi.prepare(this.controllerName, 'delete-teacher');
     let params = { id: id };
     return this.http.delete(url, { params: params });
   }
@@ -71,9 +73,10 @@ export class AccountService {
     return this.http.post<BaseResponse<Student>>(url, dto);
   }
 
-  getStudents(): Observable<BaseResponse<Student[]>> {
+  getStudents(search: string): Observable<BaseResponse<Student[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'students');
-    return this.http.get<BaseResponse<Student[]>>(url);
+    let params = { search: search };
+    return this.http.get<BaseResponse<Student[]>>(url, { params: params });
   }
 
   updateStudent(dto: UpdateStudentDTO) {

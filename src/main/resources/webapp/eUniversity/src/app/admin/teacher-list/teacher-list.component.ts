@@ -17,6 +17,7 @@ export class TeacherListComponent implements OnInit {
 
   selectedTeacher!: Teacher;
   teachers: Teacher[];
+  search: string;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -55,11 +56,12 @@ export class TeacherListComponent implements OnInit {
     });
 
     this.teachers = [];
+    this.search = '';
   }
 
   ngOnInit(): void {
-    this.accountService.getTeachers().subscribe((data: BaseResponse<Teacher[]>) => {
-      this.teachers = data.data;
+    this.accountService.getTeachers(this.search).subscribe((res: BaseResponse<Teacher[]>) => {
+      this.teachers = res.data;
     });
   }
 
@@ -106,9 +108,9 @@ export class TeacherListComponent implements OnInit {
   updateTeacher() {
     if (this.editForm.valid) {
       let dto: UpdateTeacherDTO = new UpdateTeacherDTO(
-        this.selectedTeacher.id, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
+        this.selectedTeacher.accountId, this.editLogin?.value, this.editFullName?.value, this.editAge?.value);
 
-      this.accountService.updateStudent(dto).subscribe({
+      this.accountService.updateTeacher(dto).subscribe({
         next: (data) => {
           this.selectedTeacher.login = this.editLogin?.value;
           this.selectedTeacher.fullName = this.editFullName?.value;
@@ -127,14 +129,22 @@ export class TeacherListComponent implements OnInit {
     this.accountService.deleteTeacher(id).subscribe({
       next: (data) => {
         for (let i = 0; i < this.teachers.length; i++) {
-          if (this.teachers[i].id == id)
+          if (this.teachers[i].accountId == id) {
             this.teachers.splice(i, 1);
+            break;
+          }
         }
       },
       error: (data) => {
         alert('cant remove this teacher');
       }
     })
+  }
+
+  searchTeachers() {
+    this.accountService.getTeachers(this.search).subscribe((res: BaseResponse<Teacher[]>) => {
+      this.teachers = res.data;
+    });
   }
 
 }
