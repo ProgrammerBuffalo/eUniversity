@@ -1,0 +1,210 @@
+<!--WHAT TO USE
+1. ASIDE MENU COMPONENT
+2. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="../../general/null.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+	<link rel="stylesheet" href="../../general/general.css" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="../../components/aside menu/style.css">
+	<link rel="stylesheet" href="../../components/modal/style.css" />
+	<link rel="stylesheet" href="../../shared/modal.css" />
+	<link rel="stylesheet" href="../../shared/table-block.css" />
+	<link rel="stylesheet" href="../../components/admin-home/style.scss">
+
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
+
+	<title>Home page</title>
+</head>
+
+<body>
+	<aside>
+		<!--ASIDE MENU-->
+		<div class="nav-side-menu">
+			<div class="brand">
+				<div class="brand-logo">
+					<img src="../../images/header-logo.jpg" alt="header logo" />
+				</div>
+				<h2>EUniversity</h2>
+				<div class="burger">
+					<span></span>
+				</div>
+			</div>
+
+			<div class="menu-list">
+				<ul id="menu-content" class="menu-content collapse out">
+					<li>
+						<a href="admin-panel.html">
+							<i class="fas fa-home fa-lg"></i> Home
+						</a>
+					</li>
+
+					<li data-toggle="collapse" data-target="#accounts" class="collapsed">
+						<a><i class="fa fa-users fa-lg"></i> Accounts
+							<span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="accounts">
+						<li><a href="admin-students.html">Students</a></li>
+						<li><a href="admin-teachers.html">Teachers</a></li>
+						<li><a href="admin-admins.html">Admins</a></li>
+					</ul>
+
+					<li data-toggle="collapse" class="active" data-target="#groups" class="collapsed">
+						<a><i class="fa fa-users fa-lg"></i> Groups
+							<span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="groups">
+						<li class="active"><a href="admin-groups.html">Groups</a></li>
+						<li><a href="admin-groups-students.html">Students</a></li>
+						<li>
+							<a href="admin-groups-teachers.html">Teachers & Disciplines</a>
+						</li>
+					</ul>
+
+					<li>
+						<a href="#">
+							<i class="fa fa-solid fa-book-open fa-lg"></i> Materials
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--ASIDE MENU-->
+	</aside>
+
+	<main class="main">
+		<!--ADMIN-HOME COMPONENT-->
+		<div class="flex col-gap-20 mb-50">
+			<a href="#" class="fw-30">
+				<div class="fw-30 table-block table-block_green">
+					<div class="front">
+						<div class="table-block__header">
+							<h3 class="table-block__title fw-50">Students page</h3>
+							<img src="../../images/icons/student-icon.png" alt="student icon">
+						</div>
+					</div>
+					<div class="back">
+						<div class="flex align-center f-between h-100 w-100">
+							<p class="fw-90">This page is using for adding, editing and removing students.</p>
+							<i class="fas fa-arrow-right fw-10 fa-lg"></i>
+						</div>
+					</div>
+				</div>
+			</a>
+
+			<a href="#" class="fw-30">
+				<div class="table-block table-block_blue">
+					<div class="front">
+						<div class="table-block__header">
+							<h3 class="table-block__title fw-50">Teachers page</h3>
+							<img src="../../images/icons/teacher-icon.png" alt="teacher icon">
+						</div>
+					</div>
+
+					<div class="back">
+						<div class="flex align-center f-between h-100 w-100">
+							<p class="fw-90">This page is using for adding, editing and removing teachers.</p>
+							<i class="fas fa-arrow-right fw-10 fa-lg"></i>
+						</div>
+					</div>
+				</div>
+			</a>
+
+			<a href="#" class="fw-30">
+				<div class="fw-30 table-block table-block_red">
+					<div class="front">
+						<div class="table-block__header">
+							<h3 class="table-block__title fw-50">Disciplines page</h3>
+							<img src="../../images/icons/discipline-icon.png" alt="discipline icon">
+						</div>
+					</div>
+
+					<div class="back">
+						<div class="flex align-center f-between h-100 w-100">
+							<p class="fw-90">This page is using for adding, editing and removing disciplines.</p>
+							<i class="fas fa-arrow-right fw-10 fa-lg"></i>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="flex col-gap-20 mb-50">
+			<a href="#" class="fw-30">
+				<div class="fw-30 table-block table-block_orange">
+					<div class="front">
+						<div class="table-block__header">
+							<h3 class="table-block__title fw-50">Groups page</h3>
+							<img src="../../images/icons/groups-icon.png" alt="groups icon">
+						</div>
+					</div>
+					<div class="back">
+						<div class="flex align-center f-between h-100 w-100">
+							<p class="fw-90">This page is using for adding, editing and removing groups.</p>
+							<i class="fas fa-arrow-right fw-10 fa-lg"></i>
+						</div>
+					</div>
+				</div>
+			</a>
+
+			<a href="#" class="fw-30">
+				<div class="table-block table-block_violet">
+					<div class="front">
+						<div class="table-block__header">
+							<h3 class="table-block__title fw-50">Schedule page</h3>
+							<img src="../../images/icons/schedule-icon.png" alt="schedule icon">
+						</div>
+					</div>
+
+					<div class="back">
+						<div class="flex align-center f-between h-100 w-100">
+							<p class="fw-90">This page is using for adding, editing and removing schedule.</p>
+							<i class="fas fa-arrow-right fw-10 fa-lg"></i>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="flex col-gap-20">
+			<a href="#" class="fw-30">
+				<div class="fw-30 table-block table-block_yellow">
+					<div class="front">
+						<div class="table-block__header">
+							<h3 class="table-block__title fw-50">Groups page</h3>
+							<img src="../../images/icons/groups-icon.png" alt="groups icon">
+						</div>
+					</div>
+					<div class="back">
+						<div class="flex align-center f-between h-100 w-100">
+							<p class="fw-90">This page is using for adding, editing and removing groups.</p>
+							<i class="fas fa-arrow-right fw-10 fa-lg"></i>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<!--ADMIN-HOME COMPONENT-->
+	</main>
+
+</body>
+
+</html>
