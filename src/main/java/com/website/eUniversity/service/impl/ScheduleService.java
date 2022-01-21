@@ -29,7 +29,7 @@ public class ScheduleService implements IScheduleService {
 
     @Override
     public List<ScheduleDisciplineDTO> findScheduleForGroup(Integer groupId) {
-        List<Schedule> schedules = scheduleRepository.findByGroupDiscipline_Group_Id(groupId);
+        List<Schedule> schedules = scheduleRepository.findAllByGroupDiscipline_Group_Id(groupId);
 
         List<ScheduleDisciplineDTO> scheduleDisciplineDTOList = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class ScheduleService implements IScheduleService {
             if(itemScheduleDiscipline.isPresent())
                 itemScheduleDiscipline.get().getItemList().add(Schedule.toItemDto(schedule));
             else
-                scheduleDisciplineDTOList.add(Schedule.toDisciplineDto(schedule));
+                scheduleDisciplineDTOList.add(Schedule.toDisciplineDto(schedule).setItemList(new ArrayList<>(Arrays.asList(Schedule.toItemDto(schedule)))));
         }
 
         return scheduleDisciplineDTOList;
@@ -63,13 +63,9 @@ public class ScheduleService implements IScheduleService {
     }
 
     @Override
-    public ScheduleDisciplineDTO detachSchedule(Integer groupId, Integer disciplineId, Integer teacherId) throws NotFoundException {
-        Optional<GroupDiscipline> groupDiscipline = groupDisciplineRepository.findByGroup_IdAndDiscipline_IdAndTeacher_Id(groupId, disciplineId, teacherId);
+    public ScheduleDisciplineDTO detachSchedule(Integer scheduleId) throws NotFoundException {
 
-        if(!groupDiscipline.isPresent())
-            throw new NotFoundException("Group, Discipline or Teacher not found");
-
-        Optional<Schedule> schedule = scheduleRepository.findByGroupDiscipline(groupDiscipline.get());
+        Optional<Schedule> schedule = scheduleRepository.findById(scheduleId);
 
         if(!schedule.isPresent())
             throw new NotFoundException("Schedule not found");
