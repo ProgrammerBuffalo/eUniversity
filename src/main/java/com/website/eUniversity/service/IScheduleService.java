@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface IScheduleService {
 
-    List<ScheduleDisciplineDTO> findScheduleForGroup(Integer groupId);
+    List<ScheduleDisciplineDTO> findScheduleLessonsForGroup(Integer groupId);
+
+    List<ScheduleDisciplineDTO> findScheduleExamsForGroup(Integer groupId);
 
     ScheduleDisciplineDTO attachSchedule(AttachScheduleDTO attachScheduleDTO) throws NotFoundException;
 
