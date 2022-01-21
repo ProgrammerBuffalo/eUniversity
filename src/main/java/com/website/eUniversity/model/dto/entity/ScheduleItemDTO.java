@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class ScheduleItemDTO {
+    private Integer scheduleId;
+
     private Integer teacherId;
     private String teacherName;
 
@@ -21,7 +23,8 @@ public class ScheduleItemDTO {
     public ScheduleItemDTO() {
     }
 
-    public ScheduleItemDTO(Integer teacherId, String teacherName, Integer weekNum, Date from, Date to, String type) {
+    public ScheduleItemDTO(Integer scheduleId, Integer teacherId, String teacherName, Integer weekNum, Date from, Date to, String type) {
+        this.scheduleId = scheduleId;
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.weekNum = weekNum;
@@ -82,5 +85,15 @@ public class ScheduleItemDTO {
     public ScheduleItemDTO setType(String type) {
         this.type = type;
         return this;
+    }
+
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
+
+    public ScheduleItemDTO setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+        return this;
+
     }
 }

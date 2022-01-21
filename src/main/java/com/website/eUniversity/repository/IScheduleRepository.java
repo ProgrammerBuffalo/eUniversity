@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface IScheduleRepository extends JpaRepository<Schedule, Integer> {
 
-    List<Schedule> findByGroupDiscipline_Group_Id(Integer groupId);
+    List<Schedule> findAllByGroupDiscipline_Group_Id(Integer groupId);
 
     Optional<Schedule> findByGroupDiscipline(GroupDiscipline groupDiscipline);
 }

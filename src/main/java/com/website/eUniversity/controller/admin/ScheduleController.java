@@ -33,9 +33,7 @@ public class ScheduleController {
     }
 
     @DeleteMapping("/detach-schedule-row")
-    public ResponseEntity<BaseResponse<ScheduleDisciplineDTO>> detachRow(@RequestParam("groupId") Integer groupId,
-                                                                         @RequestParam("disciplineId") Integer disciplineId,
-                                                                         @RequestParam("teacherId") Integer teacherId) throws NotFoundException {
-        return ResponseEntity.ok(new BaseResponse<ScheduleDisciplineDTO>().success(scheduleService.detachSchedule(groupId, disciplineId, teacherId), "OK"));
+    public ResponseEntity<BaseResponse<ScheduleDisciplineDTO>> detachRow(@RequestParam("scheduleId") Integer scheduleId) throws NotFoundException {
+        return ResponseEntity.ok(new BaseResponse<ScheduleDisciplineDTO>().success(scheduleService.detachSchedule(scheduleId), "OK"));
     }
 }

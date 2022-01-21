@@ -38,6 +38,7 @@ public class Schedule {
 
     public static ScheduleItemDTO toItemDto(Schedule schedule) {
         return new ScheduleItemDTO()
+                .setScheduleId(schedule.getId())
                 .setTeacherId(schedule.groupDiscipline.getTeacher().getId())
                 .setTeacherName(schedule.groupDiscipline.getTeacher().getAccount().getFullName())
                 .setWeekNum(schedule.day)

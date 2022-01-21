@@ -12,5 +12,5 @@ public interface IScheduleService {
 
     ScheduleDisciplineDTO attachSchedule(AttachScheduleDTO attachScheduleDTO) throws NotFoundException;
 
-    ScheduleDisciplineDTO detachSchedule(Integer groupId, Integer disciplineId, Integer teacherId) throws NotFoundException;
+    ScheduleDisciplineDTO detachSchedule(Integer scheduleId) throws NotFoundException;
 }
