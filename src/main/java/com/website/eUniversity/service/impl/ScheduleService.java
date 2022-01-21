@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -29,9 +30,16 @@ public class ScheduleService implements IScheduleService {
 
     @Override
     public List<ScheduleDisciplineDTO> findScheduleForGroup(Integer groupId) {
-        List<Schedule> schedules = scheduleRepository.findAllByGroupDiscipline_Group_Id(groupId);
 
-        List<ScheduleDisciplineDTO> scheduleDisciplineDTOList = new ArrayList<>();
+        List<GroupDiscipline> groupDisciplineList = groupDisciplineRepository.findByGroupIdTeachersAndDisciplines(groupId);
+
+        List<ScheduleDisciplineDTO> scheduleDisciplineDTOList =  groupDisciplineList.stream().collect(Collectors.toMap(GroupDiscipline::getDisciplineId, id -> id, (id, val) -> id))
+                .values().stream().map(groupDiscipline -> new ScheduleDisciplineDTO()
+                        .setDisciplineId(groupDiscipline.getDiscipline().getId())
+                        .setDisciplineName(groupDiscipline.getDiscipline().getName()))
+                .collect(Collectors.toList());
+
+        List<Schedule> schedules = scheduleRepository.findAllByGroupDiscipline_Group_Id(groupId);
 
         for(Schedule schedule : schedules) {
             GroupDiscipline groupDiscipline = schedule.getGroupDiscipline();
@@ -41,8 +49,6 @@ public class ScheduleService implements IScheduleService {
 
             if(itemScheduleDiscipline.isPresent())
                 itemScheduleDiscipline.get().getItemList().add(Schedule.toItemDto(schedule));
-            else
-                scheduleDisciplineDTOList.add(Schedule.toDisciplineDto(schedule).setItemList(new ArrayList<>(Arrays.asList(Schedule.toItemDto(schedule)))));
         }
 
         return scheduleDisciplineDTOList;

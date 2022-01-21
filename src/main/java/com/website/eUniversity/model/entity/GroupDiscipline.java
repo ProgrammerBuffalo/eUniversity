@@ -75,4 +75,8 @@ public class GroupDiscipline {
         this.teacher = teacher;
     }
 
+    public Integer getDisciplineId() {
+        return discipline.getId();
+    }
+
 }

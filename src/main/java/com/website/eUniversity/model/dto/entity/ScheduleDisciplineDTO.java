@@ -12,7 +12,7 @@ public class ScheduleDisciplineDTO {
     private List<ScheduleItemDTO> itemList;
 
     public ScheduleDisciplineDTO() {
-
+        itemList = new ArrayList<>();
     }
 
     public ScheduleDisciplineDTO(Integer disciplineId, String disciplineName, List<ScheduleItemDTO> itemList) {
