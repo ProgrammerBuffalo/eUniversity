@@ -25,4 +25,5 @@ public interface IGroupDisciplineRepository extends JpaRepository<GroupDisciplin
 
     Optional<GroupDiscipline> findByGroup_IdAndDiscipline_IdAndTeacher_Id(Integer groupId, Integer disciplineId, Integer teacherId);
 
+    Optional<GroupDiscipline> findByGroup_Id(Integer id);
 }
