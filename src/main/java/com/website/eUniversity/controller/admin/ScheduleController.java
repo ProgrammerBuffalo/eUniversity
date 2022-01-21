@@ -21,9 +21,14 @@ public class ScheduleController {
     @Autowired
     private IScheduleService scheduleService;
 
-    @GetMapping("/get-group-schedule")
-    public ResponseEntity<BaseResponse<List<ScheduleDisciplineDTO>>> getGroupSchedule(@RequestParam("id") Integer groupId) {
-        return ResponseEntity.ok(new BaseResponse<List<ScheduleDisciplineDTO>>().success(scheduleService.findScheduleForGroup(groupId), "OK"));
+    @GetMapping("/get-group-schedule-lessons")
+    public ResponseEntity<BaseResponse<List<ScheduleDisciplineDTO>>> getGroupScheduleLessons(@RequestParam("id") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<List<ScheduleDisciplineDTO>>().success(scheduleService.findScheduleLessonsForGroup(groupId), "OK"));
+    }
+
+    @GetMapping("/get-group-schedule-exams")
+    public ResponseEntity<BaseResponse<List<ScheduleDisciplineDTO>>> getGroupScheduleExams(@RequestParam("id") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<List<ScheduleDisciplineDTO>>().success(scheduleService.findScheduleExamsForGroup(groupId), "OK"));
     }
 
     @PostMapping("/attach-schedule-row")
