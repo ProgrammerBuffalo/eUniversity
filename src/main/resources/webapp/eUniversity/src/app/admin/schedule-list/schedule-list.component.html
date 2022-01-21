@@ -24,8 +24,8 @@
         <tbody>
           <tr *ngFor="let item of schedule.scheduleDiscipline">
             <td>{{item.teacherName}}</td>
-            <td>{{item.weekId | week}}</td>
-            <td>{{item.timeFrom | date:'shortTime'}} - {{item.timeTo | date:'shortTime'}}</td>
+            <td>{{item.weekNum | week}}</td>
+            <td>{{item.from | date:'shortTime'}} - {{item.to | date:'shortTime'}}</td>
             <td class="td-red">
               <div class="table-btn remove-btn" (click)="removeSchedule()">
                 <i class="fas fa-times"></i>

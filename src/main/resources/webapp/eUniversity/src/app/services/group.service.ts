@@ -88,47 +88,5 @@ export class GroupService {
     let url: string = PrepareApi.prepare(this.controllerName, 'detach-teacher-discipline');
     return this.http.delete(url, { body: dto });
   }
-
-  //
-  getGroupSchedule(groupId: number) {
-    let url: string = PrepareApi.prepare(this.controllerName, '');
-    let params = { groupId: groupId };
-    //return this.http.get(url, { params: params });
-  }
-
-  //Observable<BaseResponse<DDL<number>[]>>
-  tempGetGroupDisciplinesDDL(groupId: number) {
-    let url: string = PrepareApi.prepare(this.controllerName, '');
-    let params = { groupId: groupId };
-    //return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: params });
-
-    let ddl: DDL<number>[] = [{ id: 1, name: 'dis1' }, { id: 1, name: 'dis2' }, { id: 1, name: 'dis3' }];
-    return ddl;
-  }
-
-  //
-  tempGetTeachersDDL() {
-    let temp: DDL<number>[] = [{ id: 11, name: 'aa' }, { id: 22, name: 'bb' }, { id: 33, name: 'cc' }]
-    return temp;
-  }
-
-  //
-  tempAddSchedule(dto: AddScheduleDTO) {
-    // let url: string = PrepareApi.prepare(this.controllerName, '');
-    // this.http.post(url, dto);
-  }
-
-  //
-  getSchedules(groupId: number) {
-    let scheduleDiscipline: ScheduleDiscipline[] = [
-      { teacherName: 'teacher1', weekId: 1, timeTo: new Date(), timeFrom: new Date() },
-      { teacherName: 'teacher2', weekId: 2, timeTo: new Date(), timeFrom: new Date() },
-      { teacherName: 'teacher3', weekId: 3, timeTo: new Date(), timeFrom: new Date() }];
-
-    let schedule: Schedule[] = [
-      { disciplineId: 11, disciplineName: 'dis1', scheduleDiscipline },
-      { disciplineId: 12, disciplineName: 'dis2', scheduleDiscipline }];
-
-    return schedule;
-  }
+  
 }

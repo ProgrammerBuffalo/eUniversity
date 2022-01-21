@@ -7,6 +7,8 @@ import { DDL } from 'src/app/core/models/ddl';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker'
 import { WeekDay, weeks } from 'src/app/core/util/weeks';
 import { GroupService } from 'src/app/services/group.service';
+import { ScheduleService } from 'src/app/services/schedule.service';
+import { LessonType, types } from 'src/app/core/models/admin/lesson-type'
 
 @Component({
   selector: 'app-schedule-list',
@@ -26,8 +28,12 @@ export class ScheduleListComponent implements OnInit {
   groupsDDL: DDL<number>[];
   teachersDDL: DDL<number>[];
   weeksDDL: WeekDay[];
+  typesDDL: DDL<number>[];
 
-  constructor(private groupService: GroupService) {
+  constructor(
+    private groupService: GroupService,
+    private scheduleService: ScheduleService
+  ) {
 
     this.schedules = [];
 
@@ -35,7 +41,6 @@ export class ScheduleListComponent implements OnInit {
     this.disciplineId = 0;
 
     this.showAddPopup = false;
-    this.weeksDDL = weeks;
 
     this.addForm = new FormGroup({
       teacherId: new FormControl('', Validators.required),
@@ -44,8 +49,10 @@ export class ScheduleListComponent implements OnInit {
       timeTo: new FormControl('', Validators.required)
     });
 
+    this.weeksDDL = weeks;
     this.groupsDDL = [];
     this.teachersDDL = [];
+    this.typesDDL = types;
   }
 
   get addTeacher() { return this.addForm.get('teacherId'); }
@@ -76,17 +83,18 @@ export class ScheduleListComponent implements OnInit {
     this.addTimeFrom?.setValue('');
 
     this.showAddPopup = true;
-    this.teachersDDL = this.groupService.tempGetTeachersDDL();
     refreshSelectPicker();
   }
 
   groupChanged() {
-    this.schedules = this.groupService.getSchedules(this.groupId);
+    this.scheduleService.getGroupSchedule(this.groupId).subscribe((res: BaseResponse<Schedule[]>) => {
+      this.schedules = res.data;
+    });
   }
 
   addSchedule() {
-    let dto: AddScheduleDTO = new AddScheduleDTO(this.groupId, this.disciplineId, this.addTeacher?.value, this.addWeek?.value, this.addTimeFrom?.value, this.addTimeTo?.value);
-    this.groupService.tempAddSchedule(dto);
+    // let dto: AddScheduleDTO = new AddScheduleDTO(this.groupId, this.disciplineId, this.addTeacher?.value, this.addWeek?.value, this.addTimeFrom?.value, this.addTimeTo?.value);
+    // this.groupService.tempAddSchedule(dto);
   }
 
   removeSchedule() {

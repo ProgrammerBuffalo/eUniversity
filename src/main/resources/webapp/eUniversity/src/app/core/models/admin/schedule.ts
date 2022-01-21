@@ -11,15 +11,21 @@ export class Schedule {
 }
 
 export class ScheduleDiscipline {
+  scheduleId: number;
+  teacherId: number;
   teacherName: string;
-  weekId: number;
-  timeFrom: Date;
-  timeTo: Date;
+  weekNum: number;
+  from: Date;
+  to: Date;
+  type: string;
 
-  constructor(teacherName: string, weekId: number, timeFrom: Date, timeTo: Date) {
+  constructor(scheduleId: number, teacherId: number, teacherName: string, weekNum: number, from: Date, to: Date, type: string) {
+    this.scheduleId = scheduleId;
+    this.teacherId = teacherId;
     this.teacherName = teacherName;
-    this.weekId = weekId;
-    this.timeFrom = timeFrom;
-    this.timeTo = timeTo;
+    this.weekNum = weekNum;
+    this.from = from;
+    this.to = to;
+    this.type = type;
   }
 }
