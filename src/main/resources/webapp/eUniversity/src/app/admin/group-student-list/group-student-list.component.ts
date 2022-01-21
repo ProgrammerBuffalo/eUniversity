@@ -35,7 +35,7 @@ export class GroupStudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.groupService.getAllGroupsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
+    this.groupService.getGroupsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.groupsDDL = res.data;
     });
 

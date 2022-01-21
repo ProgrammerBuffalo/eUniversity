@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddScheduleDTO } from 'src/app/core/DTOs/admin/add-schedule.dto';
 import { Schedule } from 'src/app/core/models/admin/schedule';
+import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker'
 import { WeekDay, weeks } from 'src/app/core/util/weeks';
@@ -43,7 +44,7 @@ export class ScheduleListComponent implements OnInit {
       timeTo: new FormControl('', Validators.required)
     });
 
-    this.groupsDDL = groupService.tempGetGroupsDDL();
+    this.groupsDDL = [];
     this.teachersDDL = [];
   }
 
@@ -56,7 +57,10 @@ export class ScheduleListComponent implements OnInit {
   get addTimeTo() { return this.addForm.get('timeTo'); }
 
   ngOnInit(): void {
-    refreshSelectPicker();
+    this.groupService.getGroupsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
+      this.groupsDDL = res.data;
+      refreshSelectPicker();
+    });
   }
 
   closeAddForm() {
@@ -76,7 +80,7 @@ export class ScheduleListComponent implements OnInit {
     refreshSelectPicker();
   }
 
-  getSchedules() {
+  groupChanged() {
     this.schedules = this.groupService.getSchedules(this.groupId);
   }
 

@@ -13,7 +13,7 @@
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
         <li>
-          <a href="admin-panel.html"> <i class="fas fa-home fa-lg"></i> Home </a>
+          <a routerLink="home"> <i class="fas fa-home fa-lg"></i> Home </a>
         </li>
 
         <li data-toggle="collapse" data-target="#accounts" class="collapsed">
@@ -25,6 +25,14 @@
           <li routerLinkActive="active"><a routerLink="admin-list">Admins</a></li>
         </ul>
 
+        <li data-toggle="collapse" data-target="#disciplines" class="collapsed">
+          <a><i class="fas fa-swatchbook fa-lg"></i> Disciplines <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="disciplines">
+          <li routerLinkActive="active"><a routerLink="discipline-list">Disciplines</a></li>
+          <li routerLinkActive="active"><a routerLink="teacher-discipline-list">Teachers Assign</a></li>
+        </ul>
+
         <li data-toggle="collapse" data-target="#groups" class="collapsed">
           <a><i class="fa fa-users fa-lg"></i> Groups <span class="arrow"></span></a>
         </li>
@@ -32,14 +40,14 @@
           <li routerLinkActive="active"><a routerLink="group-list">Groups</a></li>
           <li routerLinkActive="active"><a routerLink="group-student-list">Students</a></li>
           <li routerLinkActive="active"><a routerLink="group-discipline-list">Disciplines</a> </li>
-          <li routerLinkActive="active"><a routerLink="group-schedule-list">Schedule</a></li>
         </ul>
-        <li data-toggle="collapse" data-target="#disciplines" class="collapsed">
-          <a><i class="fas fa-swatchbook fa-lg"></i> Disciplines <span class="arrow"></span></a>
+
+        <li data-toggle="collapse" data-target="#schedule" class="collapsed">
+          <a><i class="fa fa-calendar-alt fa-lg"></i> Schedule <span class="arrow"></span></a>
         </li>
-        <ul class="sub-menu collapse" id="disciplines">
-          <li routerLinkActive="active"><a routerLink="discipline-list">Disciplines</a></li>
-          <li routerLinkActive="active"><a routerLink="teacher-discipline-list">Teachers Assign</a></li>
+        <ul class="sub-menu collapse" id="schedule">
+          <li routerLinkActive="active"><a routerLink="schedule-schedule-list">Schedule</a></li>
+          <li routerLinkActive="active"><a routerLink="schedule-exam-list">Exam</a></li>
         </ul>
 
         <li>

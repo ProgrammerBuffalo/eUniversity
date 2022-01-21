@@ -46,7 +46,7 @@ export class GroupService {
     return this.http.delete<BaseResponse<string>>(url, { params: params });
   }
 
-  getAllGroupsDDL(): Observable<BaseResponse<DDL<number>[]>> {
+  getGroupsDDL(): Observable<BaseResponse<DDL<number>[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-all-groups-ddl');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
@@ -96,10 +96,14 @@ export class GroupService {
     //return this.http.get(url, { params: params });
   }
 
-  //
-  tempGetGroupsDDL() {
-    let temp: DDL<number>[] = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }, { id: 3, name: 'group3' }];
-    return temp;
+  //Observable<BaseResponse<DDL<number>[]>>
+  tempGetGroupDisciplinesDDL(groupId: number) {
+    let url: string = PrepareApi.prepare(this.controllerName, '');
+    let params = { groupId: groupId };
+    //return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: params });
+
+    let ddl: DDL<number>[] = [{ id: 1, name: 'dis1' }, { id: 1, name: 'dis2' }, { id: 1, name: 'dis3' }];
+    return ddl;
   }
 
   //

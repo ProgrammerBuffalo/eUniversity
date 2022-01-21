@@ -18,6 +18,8 @@ import { GroupDisciplineListComponent } from './group-discipline-list/group-disc
 import { DateToSemestrPipe } from '../core/pipes/date-to-semestr.pipe';
 import { PipeModule } from '../core/pipes/pipe.module';
 import { ScheduleListComponent } from './schedule-list/schedule-list.component';
+import { HomeComponent } from './home/home.component';
+import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-list.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { ScheduleListComponent } from './schedule-list/schedule-list.component';
     GroupStudentListComponent,
     GroupDisciplineListComponent,
     ScheduleListComponent,
+    HomeComponent,
+    ScheduleExamListComponent,
   ],
   imports: [
     CommonModule,

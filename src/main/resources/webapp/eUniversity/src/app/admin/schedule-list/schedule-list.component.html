@@ -1,5 +1,5 @@
 <select class="selectpicker2 mb-20" data-live-search="true" name="groups" [(ngModel)]="groupId"
-  (change)="getSchedules()">
+  (change)="groupChanged()">
   <option value="0" class="d-none">Select Group</option>
   <option *ngFor="let item of groupsDDL" value="{{item.id}}">{{item.name}}</option>
 </select>
