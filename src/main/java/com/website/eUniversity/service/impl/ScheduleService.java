@@ -2,10 +2,13 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.AttachScheduleDTO;
+import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.ScheduleDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.ScheduleItemDTO;
+import com.website.eUniversity.model.entity.EducationalProcess;
 import com.website.eUniversity.model.entity.GroupDiscipline;
 import com.website.eUniversity.model.entity.Schedule;
+import com.website.eUniversity.repository.IEducationalProcessRepository;
 import com.website.eUniversity.repository.IGroupDisciplineRepository;
 import com.website.eUniversity.repository.IScheduleRepository;
 import com.website.eUniversity.service.IScheduleService;
@@ -28,6 +31,9 @@ public class ScheduleService implements IScheduleService {
     @Autowired
     private IGroupDisciplineRepository groupDisciplineRepository;
 
+    @Autowired
+    private IEducationalProcessRepository educationalProcessRepository;
+
     @Override
     public List<ScheduleDisciplineDTO> findScheduleLessonsForGroup(Integer groupId) {
         return findScheduleDiscipline(groupId, scheduleRepository.findAllLessonsByGroupId(groupId));
@@ -45,7 +51,12 @@ public class ScheduleService implements IScheduleService {
         if(!groupDiscipline.isPresent())
             throw new NotFoundException("Group, Discipline or Teacher not found");
 
-        Schedule schedule = new Schedule(attachScheduleDTO.getFrom(), attachScheduleDTO.getTo(), attachScheduleDTO.getWeekNum(), groupDiscipline.get());
+        Optional<EducationalProcess> educationalProcess = educationalProcessRepository.findById(attachScheduleDTO.getEducationalProcessId());
+
+        if(!educationalProcess.isPresent())
+            throw new NotFoundException("Educational process not found");
+
+        Schedule schedule = new Schedule(attachScheduleDTO.getFrom(), attachScheduleDTO.getTo(), attachScheduleDTO.getWeekNum(), groupDiscipline.get(), educationalProcess.get());
 
         schedule = scheduleRepository.save(schedule);
 
@@ -64,6 +75,16 @@ public class ScheduleService implements IScheduleService {
 
         return Schedule.toDisciplineDto(schedule.get()).setItemList(new ArrayList<>(Arrays.asList(Schedule.toItemDto(schedule.get()))));
 
+    }
+
+    @Override
+    public List<DDLResponseDTO<Integer>> findLessonsDDL() {
+        return educationalProcessRepository.findLessons();
+    }
+
+    @Override
+    public List<DDLResponseDTO<Integer>> findExamsDDL() {
+        return educationalProcessRepository.findExams();
     }
 
     private List<ScheduleDisciplineDTO> findScheduleDiscipline(Integer groupId, List<Schedule> schedules) {

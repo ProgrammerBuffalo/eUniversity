@@ -2,6 +2,7 @@ package com.website.eUniversity.service;
 
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.AttachScheduleDTO;
+import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.ScheduleDisciplineDTO;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface IScheduleService {
     ScheduleDisciplineDTO attachSchedule(AttachScheduleDTO attachScheduleDTO) throws NotFoundException;
 
     ScheduleDisciplineDTO detachSchedule(Integer scheduleId) throws NotFoundException;
+
+    List<DDLResponseDTO<Integer>> findLessonsDDL();
+
+    List<DDLResponseDTO<Integer>> findExamsDDL();
 }
