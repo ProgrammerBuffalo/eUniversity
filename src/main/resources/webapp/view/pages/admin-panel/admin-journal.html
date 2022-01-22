@@ -1,0 +1,263 @@
+<!--WHAT TO USE
+-------------------------------------------------------------------------------------
+1. aside-menu component
+2. table-admin-journal component
+3. add-journal component
+4. modal component
+------------------------------------------------------------------------------------>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="../../general/null.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+	<link rel="stylesheet" href="../../general/general.css" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="../../components/aside menu/style.css">
+	<link rel="stylesheet" href="../../components/modal/style.css" />
+	<link rel="stylesheet" href="../../shared/modal.css" />
+	<link rel="stylesheet" href="../../shared/table-block.css" />
+
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
+
+	<title>Admin journal</title>
+</head>
+
+<body>
+	<aside>
+		<!--ASIDE MENU-->
+		<div class="nav-side-menu">
+			<div class="brand">
+				<div class="brand-logo">
+					<img src="../../images/header-logo.jpg" alt="header logo" />
+				</div>
+				<h2>EUniversity</h2>
+				<div class="burger">
+					<span></span>
+				</div>
+			</div>
+
+			<div class="menu-list">
+				<ul id="menu-content" class="menu-content collapse out">
+					<li>
+						<a href="admin-panel.html">
+							<i class="fas fa-home fa-lg"></i> Home
+						</a>
+					</li>
+
+					<li data-toggle="collapse" data-target="#accounts" class="collapsed">
+						<a><i class="fa fa-users fa-lg"></i> Accounts
+							<span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="accounts">
+						<li><a href="admin-students.html">Students</a></li>
+						<li><a href="admin-teachers.html">Teachers</a></li>
+						<li><a href="admin-admins.html">Admins</a></li>
+					</ul>
+
+					<li data-toggle="collapse" class="active" data-target="#groups" class="collapsed">
+						<a><i class="fa fa-users fa-lg"></i> Groups
+							<span class="arrow"></span></a>
+					</li>
+					<ul class="sub-menu collapse" id="groups">
+						<li class="active"><a href="admin-groups.html">Groups</a></li>
+						<li><a href="admin-groups-students.html">Students</a></li>
+						<li>
+							<a href="admin-groups-teachers.html">Teachers & Disciplines</a>
+						</li>
+						<li><a href="admin-students-attachment.html">Students attachment</a></li>
+						<li><a href="admin-discipline-teacher-assign.html">Discipline & teachers attachment</a></li>
+						<li><a href="admin-schedule.html">Schedule</a></li>
+						<li><a href="admin-journal.html">Journal</a></li>
+					</ul>
+
+					<li>
+						<a href="#">
+							<i class="fa fa-solid fa-book-open fa-lg"></i> Materials
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--ASIDE MENU-->
+	</aside>
+
+	<main class="main">
+
+		<div class="flex f-between col-gap-50">
+			<select class="selectpicker mb-20" data-live-search="true" name="groups" id="groups">
+				<option selected class="d-none">Select Group</option>
+				<option value="group1">Group 1</option>
+				<option value="group2">Group 2</option>
+				<option value="group3">Group 3</option>
+			</select>
+
+			<select class="selectpicker mb-20" data-live-search="true" name="students" id="students">
+				<option selected class="d-none">Select Student</option>
+				<option value="group1">John Johnson</option>
+				<option value="group2">Jack Jackson</option>
+				<option value="group3">Tom Tomson</option>
+				<option value="group3">Nick Nickson</option>
+			</select>
+		</div>
+
+
+		<!--TABLE-ADMIN-JOURNAL COMPONENT-->
+		<div class="table-block">
+			<div class="table-block__header">
+				<h3 class="table-block__title">Journal</h3>
+				<div class="btn btn-danger add-btn">Add</div>
+			</div>
+
+			<div class="table-block__content">
+				<div class="table-container">
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Discipline</th>
+								<th>Teacher</th>
+								<th>Educational Process</th>
+								<th>Date</th>
+								<th>Progress</th>
+								<th>Feedback</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<th>IT</th>
+								<td>Jack</td>
+								<td>Lecture</td>
+								<td>21.01.2020</td>
+								<td>A</td>
+								<td>Very good work</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>Math</th>
+								<td>John</td>
+								<td>Seminar</td>
+								<td>20.01.2020</td>
+								<td>Pr</td>
+								<td>-</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>Eng</th>
+								<td>Marry</td>
+								<td>Seminar</td>
+								<td>20.01.2020</td>
+								<td>Ab</td>
+								<td>-</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>Physics</th>
+								<td>John</td>
+								<td>Midterm</td>
+								<td>19.01.2020</td>
+								<td style="background-color: #75ff7e;">C</td>
+								<td>Normal work</td>
+								<td class="td-red">
+									<div class="table-btn remove-btn">
+										<i class="fas fa-times"></i>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--TABLE-ADMIN-JOURNAL COMPONENT-->
+
+
+		<div class="modal" id="students-add">
+			<div class="modal-content" style="width: 500px">
+				<span id="closeStudentsAddBtn" class="close">&times;</span>
+				<!--ADD-JOURNAL COMPONENT-->
+				<form class="register">
+					<select class="selectpicker mb-20" data-live-search="true" name="disciplines" id="disciplines">
+						<option selected class="d-none">Select discipline</option>
+						<option value="john-johnson">Programming</option>
+						<option value="jack-jackson">IT Essentials</option>
+						<option value="tom-tomson">Web design</option>
+						<option value="daniel-radcliffe">Game development</option>
+					</select>
+
+					<select class="selectpicker mb-20" data-live-search="true" name="teachers" id="teachers">
+						<option selected class="d-none">Select teacher</option>
+						<option value="john-johnson">John Johnson</option>
+						<option value="jack-jackson">Jack Jackson</option>
+						<option value="tom-tomson">Nick Nickson</option>
+						<option value="daniel-radcliffe">Tom Tomson</option>
+					</select>
+
+					<select class="selectpicker mb-20" data-live-search="true" name="teachers" id="teachers">
+						<option selected class="d-none">Select educational process</option>
+						<option value="lecture">Lecture</option>
+						<option value="seminar">Seminar</option>
+						<option value="midterm">Midterm</option>
+					</select>
+
+					<div class="form-group">
+						<span>Date: </span>
+						<input type="date" class="form-field">
+					</div>
+
+					<select class="selectpicker mb-20" data-live-search="true" name="type" id="type">
+						<option selected class="d-none">Select progress</option>
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="D">D</option>
+						<option value="E">E</option>
+					</select>
+
+					<div class="form-group">
+						<span>Feedback: </span>
+						<input type="text" class="form-field">
+					</div>
+
+					<input type="submit" class="btn btn-danger" value="Add"></input>
+				</form>
+				<!--ADD-JOURNAL COMPONENT-->
+			</div>
+		</div>
+	</main>
+	<script src="../../components/aside menu/app.js"></script>
+	<script src="../../components/modal/app.js"></script>
+	<script src="app.js"></script>
+</body>
+
+</html>
