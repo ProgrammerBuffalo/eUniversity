@@ -184,7 +184,17 @@ public class GroupService implements IGroupService {
     }
 
     @Override
+    public List<DDLResponseDTO<Integer>> getStudentsOfGroupDDL(Integer groupId) {
+        return groupRepository.findStudentsOfGroup(groupId);
+    }
+
+    @Override
     public List<DDLResponseDTO<Integer>> findStudentsWithoutGroup() {
         return groupRepository.findStudentsWithoutGroup();
+    }
+
+    @Override
+    public List<DDLResponseDTO<Integer>> getTeachersOfGroupWithDisciplineDDL(Integer groupId, Integer disciplineId) {
+        return groupDisciplineRepository.findTeachersOfDisciplineAndGroup(groupId, disciplineId);
     }
 }

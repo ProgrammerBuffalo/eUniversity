@@ -26,4 +26,9 @@ public interface IGroupRepository extends JpaRepository<Group, Integer> {
             " FROM Student s LEFT OUTER JOIN Group g ON g.id = s.group.id" +
             " WHERE s.group.id is null")
     List<DDLResponseDTO<Integer>> findStudentsWithoutGroup();
+
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(s.id, s.account.fullName)" +
+            " FROM Student s INNER JOIN Group g ON g = s.group" +
+            " WHERE g.id = :id")
+    List<DDLResponseDTO<Integer>> findStudentsOfGroup(@Param("id") Integer groupId);
 }

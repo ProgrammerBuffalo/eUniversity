@@ -34,5 +34,9 @@ public interface IGroupService {
 
     List<DDLResponseDTO<Integer>> getGroupsDDL();
 
+    List<DDLResponseDTO<Integer>> getStudentsOfGroupDDL(Integer groupId);
+
     List<DDLResponseDTO<Integer>> findStudentsWithoutGroup();
+
+    List<DDLResponseDTO<Integer>> getTeachersOfGroupWithDisciplineDDL(Integer groupId, Integer disciplineId);
 }
