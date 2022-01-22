@@ -1,5 +1,6 @@
 package com.website.eUniversity.repository;
 
+import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.GroupDisciplineResponseDTO;
 import com.website.eUniversity.model.entity.Discipline;
 import com.website.eUniversity.model.entity.Group;
@@ -26,4 +27,8 @@ public interface IGroupDisciplineRepository extends JpaRepository<GroupDisciplin
     Optional<GroupDiscipline> findByGroup_IdAndDiscipline_IdAndTeacher_Id(Integer groupId, Integer disciplineId, Integer teacherId);
 
     Optional<GroupDiscipline> findByGroup_Id(Integer id);
+
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(gd.teacher.id, gd.teacher.account.fullName) FROM GroupDiscipline gd" +
+            " WHERE gd.group.id = :groupId AND gd.discipline.id = :disciplineId")
+    List<DDLResponseDTO<Integer>> findTeachersOfDisciplineAndGroup(@Param("groupId") Integer groupId, @Param("disciplineId") Integer disciplineId);
 }
