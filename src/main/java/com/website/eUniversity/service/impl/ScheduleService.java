@@ -5,6 +5,7 @@ import com.website.eUniversity.model.dto.entity.AttachScheduleDTO;
 import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.ScheduleDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.ScheduleItemDTO;
+import com.website.eUniversity.model.entity.EducationalProcess;
 import com.website.eUniversity.model.entity.GroupDiscipline;
 import com.website.eUniversity.model.entity.Schedule;
 import com.website.eUniversity.repository.IEducationalProcessRepository;
@@ -50,7 +51,12 @@ public class ScheduleService implements IScheduleService {
         if(!groupDiscipline.isPresent())
             throw new NotFoundException("Group, Discipline or Teacher not found");
 
-        Schedule schedule = new Schedule(attachScheduleDTO.getFrom(), attachScheduleDTO.getTo(), attachScheduleDTO.getWeekNum(), groupDiscipline.get());
+        Optional<EducationalProcess> educationalProcess = educationalProcessRepository.findById(attachScheduleDTO.getEducationalProcessId());
+
+        if(!educationalProcess.isPresent())
+            throw new NotFoundException("Educational process not found");
+
+        Schedule schedule = new Schedule(attachScheduleDTO.getFrom(), attachScheduleDTO.getTo(), attachScheduleDTO.getWeekNum(), groupDiscipline.get(), educationalProcess.get());
 
         schedule = scheduleRepository.save(schedule);
 

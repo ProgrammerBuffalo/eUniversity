@@ -20,6 +20,8 @@ public class AttachScheduleDTO {
 
     private Integer weekNum;
 
+    private Integer educationalProcessId;
+
     public AttachScheduleDTO() {
 
     }
@@ -79,5 +81,14 @@ public class AttachScheduleDTO {
 
     public void setWeekNum(Integer weekNum) {
         this.weekNum = weekNum;
+    }
+
+    public Integer getEducationalProcessId() {
+        return educationalProcessId;
+    }
+
+    public AttachScheduleDTO setEducationalProcessId(Integer educationalProcessId) {
+        this.educationalProcessId = educationalProcessId;
+        return this;
     }
 }
