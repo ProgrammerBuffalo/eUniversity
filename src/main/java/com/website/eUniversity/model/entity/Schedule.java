@@ -8,7 +8,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Schedule")
+@Table(name = "Schedule", uniqueConstraints={
+        @UniqueConstraint(columnNames = {"groupDiscipline_id", "id"})
+})
 public class Schedule {
 
     @Id

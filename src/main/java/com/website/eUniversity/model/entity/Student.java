@@ -21,6 +21,10 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
+    @OneToOne
+    @JoinColumn(name = "journal_id")
+    private Journal journal;
+
     public Student() { }
 
     public Student(Account account) {
@@ -49,5 +53,13 @@ public class Student {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public Journal getJournal() {
+        return journal;
+    }
+
+    public void setJournal(Journal journal) {
+        this.journal = journal;
     }
 }
