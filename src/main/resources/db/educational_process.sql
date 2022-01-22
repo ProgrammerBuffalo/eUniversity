@@ -1,0 +1,5 @@
+insert into educational_processes values ('Lecture')
+insert into educational_processes values ('Seminar')
+insert into educational_processes values ('Practise')
+insert into educational_processes values ('Midterm')
+insert into educational_processes values ('Exam')

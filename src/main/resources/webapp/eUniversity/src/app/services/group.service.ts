@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddGroupDTO } from '../core/DTOs/admin/add-group';
-import { AddScheduleDTO } from '../core/DTOs/admin/add-schedule.dto';
+import { AttachScheduleDTO } from '../core/DTOs/admin/add-schedule.dto';
 import { AttachStudentDTO } from '../core/DTOs/admin/attach-student-dto';
 import { GroupDisciplineDTO } from '../core/DTOs/admin/group-discipline-dto';
 import { UpdateGroupDTO } from '../core/DTOs/admin/updae-group';
@@ -88,5 +88,10 @@ export class GroupService {
     let url: string = PrepareApi.prepare(this.controllerName, 'detach-teacher-discipline');
     return this.http.delete(url, { body: dto });
   }
-  
+
+  getTeachersOfGroupDisciplineDDL(groupId: number, disciplineId: number): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-teachers-of-group-discipline-ddl');
+    let params = { groupId: groupId, disciplineId: disciplineId };
+    return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: params });
+  }
 }

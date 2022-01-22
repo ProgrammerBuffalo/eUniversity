@@ -10,11 +10,11 @@ export class WeekDay {
 
 export var weeks: WeekDay[] = [
   { id: 1, name: 'Monday' },
-  { id: 1, name: 'Tuesday ' },
-  { id: 1, name: 'Wednesday ' },
-  { id: 1, name: 'Thursday ' },
-  { id: 1, name: 'Friday ' },
-  { id: 1, name: 'Saturday ' },
-  { id: 1, name: 'Sunday ' }
+  { id: 2, name: 'Tuesday' },
+  { id: 3, name: 'Wednesday' },
+  { id: 4, name: 'Thursday' },
+  { id: 5, name: 'Friday' },
+  { id: 6, name: 'Saturday' },
+  { id: 7, name: 'Sunday' }
 ];
 

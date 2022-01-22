@@ -12,10 +12,10 @@ public class AttachScheduleDTO {
 
     private Integer teacherId;
 
-    @DateTimeFormat(pattern = "hh:mm")
+    //@DateTimeFormat(pattern = "hh:mm")
     private Date from;
 
-    @DateTimeFormat(pattern = "hh:mm")
+    //@DateTimeFormat(pattern = "hh:mm")
     private Date to;
 
     private Integer weekNum;

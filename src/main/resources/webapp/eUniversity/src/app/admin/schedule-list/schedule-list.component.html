@@ -51,11 +51,22 @@
       <small class="text-danger" *ngIf="addTeacher?.invalid && (addTeacher?.touched || addTeacher?.dirty)">Teacher is
         required</small>
 
-      <select class="selectpicker2 mb-20" data-live-search="true" formControlName='weekId'>
-        <option value="0" class="d-none">Select day</option>
+      <select class="selectpicker2 mb-20" data-live-search="true" formControlName='weekNum'>
+        <option value="0" class="d-none">Select day of the week</option>
         <option *ngFor="let item of weeksDDL" value="{{item.id}}">{{item.name}}</option>
       </select>
-      <small class="text-danger" *ngIf="addWeek?.invalid && (addWeek?.touched || addWeek?.dirty)">Day of week is
+      <small class="text-danger" *ngIf="addWeekNum?.invalid && (addWeekNum?.touched || addWeekNum?.dirty)">Day of week
+        is
+        required</small>
+
+      <select class="selectpicker2 mb-20" data-live-search="true" formControlName='educationalProcessId'>
+        <option value="0" class="d-none">Select educational process</option>
+        <option *ngFor="let item of typesDDL" value="{{item.id}}">{{item.name}}</option>
+      </select>
+      <small class="text-danger"
+        *ngIf="addEducationalProcess?.invalid && (addEducationalProcess?.touched || addEducationalProcess?.dirty)">Education
+        process
+        is
         required</small>
 
       <div class="form-group">

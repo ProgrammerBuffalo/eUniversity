@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddScheduleDTO } from '../core/DTOs/admin/add-schedule.dto';
+import { AttachScheduleDTO } from '../core/DTOs/admin/add-schedule.dto';
 import { Schedule } from '../core/models/admin/schedule';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
@@ -19,10 +19,35 @@ export class ScheduleService {
   ) { }
 
   //
-  getGroupSchedule(groupId: number): Observable<BaseResponse<Schedule[]>> {
-    let url: string = PrepareApi.prepare(this.controllerName, 'get-group-schedule');
+  getScheduleLessons(groupId: number): Observable<BaseResponse<Schedule[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-group-schedule-lessons');
     let params = { id: groupId };
     return this.http.get<BaseResponse<Schedule[]>>(url, { params: params });
+  }
+
+  getScheduleExams(groupId: number) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-group-schedule-exams');
+    let params = { id: groupId };
+    return this.http.get<BaseResponse<Schedule[]>>(url, { params: params });
+  }
+
+  attachSchedule(dto: AttachScheduleDTO) {
+    let url: string = PrepareApi.prepare(this.controllerName, 'attach-schedule-row');
+    return this.http.post<BaseResponse<string>>(url, dto);
+  }
+
+  detachSchedule() {
+    let url: string = PrepareApi.prepare(this.controllerName, 'detach-schedule-row');
+  }
+
+  getLessonsDDL(): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-lessons-ddl');
+    return this.http.get<BaseResponse<DDL<number>[]>>(url);
+  }
+
+  getExamsDDL(): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-exams-ddl');
+    return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
   //Observable<BaseResponse<DDL<number>[]>>
@@ -42,7 +67,7 @@ export class ScheduleService {
   }
 
   //
-  tempAddSchedule(dto: AddScheduleDTO) {
+  tempAddSchedule(dto: AttachScheduleDTO) {
     // let url: string = PrepareApi.prepare(this.controllerName, '');
     // this.http.post(url, dto);
   }

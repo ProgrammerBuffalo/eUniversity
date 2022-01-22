@@ -33,28 +33,30 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(): void {
-    if (this.loginForm.valid)
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (data: BaseResponse<Auth>) => {
-          this.authService.saveUser(data.data);
+    this.router.navigate(['/Admin']);
 
-          if (data.data.role == Role.Admin) {
-            this.router.navigate(['/Admin']);
-          }
-          else if (data.data.role == Role.Teacher) {
-            this.router.navigate(['/Teacher']);
-          }
-          else if (data.data.role == Role.Student) {
-            this.router.navigate(['/Student']);
-          }
-          else {
-            console.log('Announ login');
-          }
-        },
-        error: (data) => {
-          alert('wrong login or password');
-        }
-      });
+    // if (this.loginForm.valid)
+    //   this.authService.login(this.loginForm.value).subscribe({
+    //     next: (data: BaseResponse<Auth>) => {
+    //       this.authService.saveUser(data.data);
+
+    //       if (data.data.role == Role.Admin) {
+    //         this.router.navigate(['/Admin']);
+    //       }
+    //       else if (data.data.role == Role.Teacher) {
+    //         this.router.navigate(['/Teacher']);
+    //       }
+    //       else if (data.data.role == Role.Student) {
+    //         this.router.navigate(['/Student']);
+    //       }
+    //       else {
+    //         console.log('Announ login');
+    //       }
+    //     },
+    //     error: (data) => {
+    //       alert('wrong login or password');
+    //     }
+    //   });
   }
 
 }
