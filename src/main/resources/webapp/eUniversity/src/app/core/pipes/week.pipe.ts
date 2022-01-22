@@ -8,8 +8,8 @@ export class WeekPipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
     for (let i = 0; i < weeks.length; i++) {
-      if(weeks[i].id == i)
-        return  weeks[i].name;
+      if (weeks[i].id == value)
+        return weeks[i].name;
     }
     return '';
   }

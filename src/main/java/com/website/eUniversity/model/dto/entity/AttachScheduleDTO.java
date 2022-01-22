@@ -1,5 +1,6 @@
 package com.website.eUniversity.model.dto.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -12,9 +13,11 @@ public class AttachScheduleDTO {
 
     private Integer teacherId;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm")
     //@DateTimeFormat(pattern = "hh:mm")
     private Date from;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm")
     //@DateTimeFormat(pattern = "hh:mm")
     private Date to;
 

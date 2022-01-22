@@ -86,8 +86,8 @@ public class DisciplineController {
 
     @GetMapping("/get-discipline-teachers-ddl")
     @ApiOperation("gets list of teachers that can teach selected discipline")
-    public ResponseEntity<BaseResponse<List<IDDLResponseDTO<Integer>>>> getTeacherDisciplineDDL(@RequestParam("teacherId") Integer teacherId) {
-        return ResponseEntity.ok(new BaseResponse<List<IDDLResponseDTO<Integer>>>().success(teacherDisciplineService.getTeacherDisciplineNames(teacherId), "list of teachers for ddl"));
+    public ResponseEntity<BaseResponse<List<IDDLResponseDTO<Integer>>>> getTeacherDisciplineDDL(@RequestParam("disciplineId") Integer disciplineId) {
+        return ResponseEntity.ok(new BaseResponse<List<IDDLResponseDTO<Integer>>>().success(teacherDisciplineService.getTeacherDisciplineNames(disciplineId), "list of teachers for ddl"));
     }
 
     @PostMapping("/attach-discipline")

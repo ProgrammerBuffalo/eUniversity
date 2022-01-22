@@ -31,13 +31,15 @@ export class ScheduleService {
     return this.http.get<BaseResponse<Schedule[]>>(url, { params: params });
   }
 
-  attachSchedule(dto: AttachScheduleDTO) {
+  attachSchedule(dto: AttachScheduleDTO): Observable<BaseResponse<Schedule>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'attach-schedule-row');
-    return this.http.post<BaseResponse<string>>(url, dto);
+    return this.http.post<BaseResponse<Schedule>>(url, dto);
   }
 
-  detachSchedule() {
+  detachSchedule(id: number) {
     let url: string = PrepareApi.prepare(this.controllerName, 'detach-schedule-row');
+    let params = { scheduleId: id };
+    return this.http.delete(url, { params: params });
   }
 
   getLessonsDDL(): Observable<BaseResponse<DDL<number>[]>> {

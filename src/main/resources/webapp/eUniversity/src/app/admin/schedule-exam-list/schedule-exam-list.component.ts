@@ -4,6 +4,12 @@ import { DDL } from 'src/app/core/models/ddl';
 import { GroupService } from 'src/app/services/group.service';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { TeacherService } from 'src/app/services/teacher.service';
+import { Schedule } from 'src/app/core/models/admin/schedule';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ScheduleService } from 'src/app/services/schedule.service';
+import { WeekDay, weeks } from 'src/app/core/util/weeks';
+import { AttachScheduleDTO } from 'src/app/core/DTOs/admin/add-schedule.dto';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-schedule-exam-list',
@@ -12,44 +18,141 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class ScheduleExamListComponent implements OnInit {
 
+  schedules: Schedule[];
+
   groupId: number;
+  disciplineId: number;
+
+  showAddPopup: boolean;
+  addForm: FormGroup;
 
   groupsDDL: DDL<number>[];
-  disciplinesDDL: DDL<number>[];
   teachersDDL: DDL<number>[];
-
-  showAddModal: boolean;
+  weeksDDL: WeekDay[];
+  typesDDL: DDL<number>[];
 
   constructor(
     private groupService: GroupService,
+    private scheduleService: ScheduleService,
     private teacherService: TeacherService
   ) {
-    this.groupsDDL = [];
-    this.disciplinesDDL = [];
-    this.teachersDDL = [];
+
+    this.schedules = [];
 
     this.groupId = 0;
+    this.disciplineId = 0;
 
-    this.showAddModal = false;
+    this.showAddPopup = false;
+
+    this.addForm = new FormGroup({
+      teacherId: new FormControl(0, Validators.required),
+      weekNum: new FormControl(0, Validators.required,),
+      educationalProcessId: new FormControl(0, Validators.required),
+      timeFrom: new FormControl(Validators.required),
+      timeTo: new FormControl(Validators.required)
+    });
+
+    this.weeksDDL = weeks;
+    this.groupsDDL = [];
+    this.teachersDDL = [];
+    this.typesDDL = [];
   }
+
+  get addTeacher() { return this.addForm.get('teacherId'); }
+
+  get addWeekNum() { return this.addForm.get('weekNum'); }
+
+  get addEducationalProcess() { return this.addForm.get('educationalProcessId'); }
+
+  get addTimeFrom() { return this.addForm.get('timeFrom'); }
+
+  get addTimeTo() { return this.addForm.get('timeTo'); }
 
   ngOnInit(): void {
     this.groupService.getGroupsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.groupsDDL = res.data;
       refreshSelectPicker();
     });
+
+    this.scheduleService.getExamsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
+      this.typesDDL = res.data;
+      refreshSelectPicker();
+    })
+  }
+
+  closeAddForm() {
+    this.showAddPopup = false;
+
+    this.addTeacher?.setValue(0);
+    this.addWeekNum?.setValue(0);
+    this.addEducationalProcess?.setValue(0);
+    this.addTimeTo?.setValue('');
+    this.addTimeFrom?.setValue('');
+  }
+
+  showAddForm(disciplineId: number) {
+    this.disciplineId = disciplineId;
+
+    this.showAddPopup = true;
+
+    this.teacherService.getDisciplineTeachersDDL(disciplineId).subscribe((res: BaseResponse<DDL<number>[]>) => {
+      this.teachersDDL = res.data;
+      console.log(this.teachersDDL);
+      refreshSelectPicker();
+    });
   }
 
   groupChanged() {
-
+    this.scheduleService.getScheduleExams(this.groupId).subscribe((res: BaseResponse<Schedule[]>) => {
+      this.schedules = res.data;
+    });
   }
 
-  showAddPopup() {
-    this.showAddModal = true;
+  addSchedule() {
+    let dto: AttachScheduleDTO = new AttachScheduleDTO(this.groupId,
+      this.disciplineId,
+      this.addTeacher?.value,
+      this.addWeekNum?.value,
+      this.addEducationalProcess?.value,
+      this.addTimeFrom?.value,
+      this.addTimeTo?.value);
+
+    console.log(dto);
+
+    if (this.addForm.valid) {
+      this.scheduleService.attachSchedule(dto).subscribe({
+        next: (res: BaseResponse<Schedule>) => {
+          for (let i = 0; i < this.schedules.length; i++) {
+            if (this.schedules[i].disciplineId == this.disciplineId) {
+              this.schedules[i].itemList.push(res.data.itemList[0]);
+              break;
+            }
+          }
+          //this.closeAddForm();
+        },
+        error: (res: HttpErrorResponse) => {
+          alert(res.error.message);
+        }
+      });
+    }
   }
 
-  closeAddPopup() {
-    this.showAddModal = false;
+  removeSchedule(id: number) {
+    this.scheduleService.detachSchedule(id).subscribe({
+      next: (res: any) => {
+        for (let i = 0; i < this.schedules.length; i++) {
+          for (let j = 0; j < this.schedules[i].itemList.length; j++) {
+            if (this.schedules[i].itemList[j].scheduleId == id) {
+              this.schedules[i].itemList.splice(j, 1);
+              break;
+            }
+          }
+        }
+      },
+      error: (res: HttpErrorResponse) => {
+        alert(res.error.message);
+      }
+    });
   }
 
 }

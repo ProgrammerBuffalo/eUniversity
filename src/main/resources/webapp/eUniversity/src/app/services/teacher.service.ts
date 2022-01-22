@@ -35,9 +35,9 @@ export class TeacherService {
     return this.http.get<BaseResponse<TeacherDiscipline[]>>(url, { params: params });
   }
 
-  getDisciplineTeachersDDL(teacherId: number): Observable<BaseResponse<DDL<number>[]>> {
+  getDisciplineTeachersDDL(disciplineId: number): Observable<BaseResponse<DDL<number>[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-discipline-teachers-ddl');
-    let params = { teacherId: teacherId };
+    let params = { disciplineId: disciplineId };
     return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: params });
   }
 

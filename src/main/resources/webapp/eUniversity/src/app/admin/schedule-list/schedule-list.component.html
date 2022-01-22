@@ -18,16 +18,18 @@
             <th>Teacher</th>
             <th>Day</th>
             <th>Time</th>
+            <th>Educational Process</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr *ngFor="let item of schedule.scheduleDiscipline">
+          <tr *ngFor="let item of schedule.itemList">
             <td>{{item.teacherName}}</td>
             <td>{{item.weekNum | week}}</td>
-            <td>{{item.from | date:'shortTime'}} - {{item.to | date:'shortTime'}}</td>
+            <td>{{item.from}} - {{item.to}}</td>
+            <td>{{item.type}}</td>
             <td class="td-red">
-              <div class="table-btn remove-btn" (click)="removeSchedule()">
+              <div class="table-btn remove-btn" (click)="removeSchedule(item.scheduleId)">
                 <i class="fas fa-times"></i>
               </div>
             </td>

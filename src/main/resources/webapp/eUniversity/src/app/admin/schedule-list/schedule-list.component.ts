@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttachScheduleDTO } from 'src/app/core/DTOs/admin/add-schedule.dto';
-import { Schedule, ScheduleDiscipline } from 'src/app/core/models/admin/schedule';
+import { Schedule } from 'src/app/core/models/admin/schedule';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker'
@@ -113,23 +114,42 @@ export class ScheduleListComponent implements OnInit {
       this.addTimeFrom?.value,
       this.addTimeTo?.value);
 
-    if (this.addForm.valid) {
-      this.scheduleService.attachSchedule(dto).subscribe((res: any) => {
-        console.log(res);
-        this.closeAddForm();
+    console.log(dto);
 
-        for (let i = 0; i < this.schedules.length; i++) {
-          if (this.schedules[i].disciplineId == this.disciplineId) {
-            //this.schedules[i].scheduleDiscipline.push(new ScheduleDiscipline(1, ));
-            break;
+    if (this.addForm.valid) {
+      this.scheduleService.attachSchedule(dto).subscribe({
+        next: (res: BaseResponse<Schedule>) => {
+          for (let i = 0; i < this.schedules.length; i++) {
+            if (this.schedules[i].disciplineId == this.disciplineId) {
+              this.schedules[i].itemList.push(res.data.itemList[0]);
+              break;
+            }
           }
+          //this.closeAddForm();
+        },
+        error: (res: HttpErrorResponse) => {
+          alert(res.error.message);
         }
       });
     }
   }
 
-  removeSchedule() {
-
+  removeSchedule(id: number) {
+    this.scheduleService.detachSchedule(id).subscribe({
+      next: (res: any) => {
+        for (let i = 0; i < this.schedules.length; i++) {
+          for (let j = 0; j < this.schedules[i].itemList.length; j++) {
+            if (this.schedules[i].itemList[j].scheduleId == id) {
+              this.schedules[i].itemList.splice(j, 1);
+              break;
+            }
+          }
+        }
+      },
+      error: (res: HttpErrorResponse) => {
+        alert(res.error.message);
+      }
+    });
   }
 
 }

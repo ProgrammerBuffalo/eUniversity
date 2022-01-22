@@ -1,12 +1,12 @@
 export class Schedule {
   disciplineId: number;
   disciplineName: string;
-  scheduleDiscipline: ScheduleDiscipline[];
+  itemList: ScheduleDiscipline[];
 
   constructor(disciplineId: number, disciplineName: string, scheduleDiscipline: ScheduleDiscipline[]) {
     this.disciplineId = disciplineId;
     this.disciplineName = disciplineName;
-    this.scheduleDiscipline = scheduleDiscipline;
+    this.itemList = scheduleDiscipline;
   }
 }
 
