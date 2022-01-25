@@ -19,12 +19,12 @@ public class Schedule {
 
     @Column(name = "timeFrom")
     @Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
     private Date timeFrom;
 
     @Column(name = "timeTo")
     @Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
     private Date timeTo;
 
     @Column(name = "day")
