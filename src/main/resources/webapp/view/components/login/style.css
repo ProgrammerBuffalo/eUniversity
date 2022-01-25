@@ -1,5 +1,5 @@
 .container {
-	width: 600px;
+	max-width: 600px;
 	padding: 30px;
 	border-radius: 10px;
 	-webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -102,5 +102,45 @@
 h3 {
 	font-size: 24px;
 	margin: 0;
+}
+
+body {
+	background: rgb(132, 201, 210);
+	background: linear-gradient(90deg, rgba(132, 201, 210, 1) 35%, rgba(57, 134, 145, 1) 100%);
+}
+
+.login-bg {
+	height: 100vh;
+	background-image: url("../../images/login-bg2.jpg");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+@media (max-width: 1530px) {
+	.login-bg {
+		flex: 0 1 40% !important;
+	}
+
+	.fw-40 {
+		flex: 0 1 60% !important;
+	}
+}
+
+@media (max-width: 1050px) {
+	.login-bg {
+		display: none !important;
+	}
+
+	.fw-40 {
+		flex: 0 1 100% !important;
+	}
+}
+
+@media (max-width: 640px) {
+	.container {
+		margin: 0 20px;
+		margin-top: 300px;
+	}
 }
 /*# sourceMappingURL=style.css.map */
