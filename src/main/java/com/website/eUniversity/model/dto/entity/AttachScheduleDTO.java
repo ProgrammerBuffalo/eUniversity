@@ -13,7 +13,7 @@ public class AttachScheduleDTO {
 
     private Integer teacherId;
 
-    @DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
     @JsonFormat(pattern = "HH:mm")
     private Date from;
 
