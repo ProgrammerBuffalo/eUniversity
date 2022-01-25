@@ -13,12 +13,12 @@ public class AttachScheduleDTO {
 
     private Integer teacherId;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm")
-    //@DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm")
     private Date from;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm")
-    //@DateTimeFormat(pattern = "hh:mm")
+    @DateTimeFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm")
     private Date to;
 
     private Integer weekNum;

@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.dto.entity;
 
+import com.website.eUniversity.model.entity.Journal;
+
 import java.util.Date;
 
 public class JournalItemDTO {
@@ -16,7 +18,9 @@ public class JournalItemDTO {
 
     private Date date;
 
-    private String progress;
+    private Integer assess;
+
+    private Boolean isPresent;
 
     private String feedback;
 
@@ -92,21 +96,30 @@ public class JournalItemDTO {
         return this;
     }
 
-    public String getProgress() {
-        return progress;
-    }
-
-    public JournalItemDTO setProgress(String progress) {
-        this.progress = progress;
-        return this;
-    }
-
     public String getFeedback() {
         return feedback;
     }
 
     public JournalItemDTO setFeedback(String feedback) {
         this.feedback = feedback;
+        return this;
+    }
+
+    public Integer getAssess() {
+        return assess;
+    }
+
+    public JournalItemDTO setAssess(Integer assess) {
+        this.assess = assess;
+        return this;
+    }
+
+    public Boolean getPresent() {
+        return isPresent;
+    }
+
+    public JournalItemDTO setPresent(Boolean present) {
+        isPresent = present;
         return this;
     }
 }
