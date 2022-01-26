@@ -212,6 +212,15 @@
 	background-color: #ffb1b1 !important;
 }
 
+.td-green {
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+}
+
+.td-green:hover {
+	background-color: #b1ffb1 !important;
+}
+
 /*TABLE*/
 /*MARGINS & PADDINGS*/
 .m-0 {

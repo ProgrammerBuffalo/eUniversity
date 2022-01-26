@@ -1,0 +1,18 @@
+<form class="register">
+
+	<select class="selectpicker mb-20" data-live-search="true" name="days" id="days">
+		<option selected class="d-none">Education process</option>
+		<option value="monday">Lecture</option>
+		<option value="tuesday">Seminar</option>
+		<option value="wednesday">Exam</option>
+	</select>
+
+	<div class="form-group download-btn" onclick="handleClick()">
+		<span>Choose file: </span>
+		<input type="text" placeholder="Input file..." disabled class="form-field">
+		<input type="file" id="upload-file" name="upload-file" onclick="addAttachment(event)">
+	</div>
+
+
+	<input type="submit" class="btn btn-danger" value="Add"></input>
+</form>

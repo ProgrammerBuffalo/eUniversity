@@ -171,6 +171,13 @@
 		background-color: #ffb1b1 !important;
 	}
 }
+
+.td-green {
+	transition: all 0.3s ease 0s;
+	&:hover {
+		background-color: #b1ffb1 !important;
+	}
+}
 /*TABLE*/
 
 /*MARGINS & PADDINGS*/
