@@ -15,11 +15,11 @@ import { TeacherDisciplineListComponent } from './teacher-discipline-list/teache
 import { GroupListComponent } from './group-list/group-list.component';
 import { GroupStudentListComponent } from './group-student-list/group-student-list.component';
 import { GroupDisciplineListComponent } from './group-discipline-list/group-discipline-list.component';
-import { DateToSemestrPipe } from '../core/pipes/date-to-semestr.pipe';
 import { PipeModule } from '../core/pipes/pipe.module';
 import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 import { HomeComponent } from './home/home.component';
 import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-list.component';
+import { JournalListComponent } from './journal-list/journal-list.component';
 
 
 @NgModule({
@@ -37,6 +37,7 @@ import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-li
     ScheduleListComponent,
     HomeComponent,
     ScheduleExamListComponent,
+    JournalListComponent,
   ],
   imports: [
     CommonModule,

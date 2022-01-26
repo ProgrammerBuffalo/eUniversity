@@ -1,16 +1,32 @@
-<form class="container" [formGroup]="loginForm">
-  <div class="form__group">
-    <input type="text" class="form__input" placeholder="Login" formControlName="login" />
-    <label class="form__text">Login</label>
-    <small class="text-danger" *ngIf="login?.invalid && (login?.touched || login?.dirty)">login is required</small>
+<div class="flex f-between">
+  <div class="fw-60 login-bg">
   </div>
+  <div class="fw-40 body-bg">
+    <div class="container-lg">
+      <div class="flex f-between align-center">
+        <div class="login-icon">
+          <img src="../../../assets/images/header-logo.jpg" alt="">
+        </div>
+        <h3>EUniversity</h3>
+      </div>
 
-  <div class="form__group">
-    <input type="password" class="form__input" placeholder="Password" formControlName="password" />
-    <label class="form__text">Password</label>
-    <small class="text-danger" *ngIf="password?.invalid && (password?.touched || password?.dirty)">password is
-      required</small>
+      <form [formGroup]="loginForm">
+        <div class="form__group" [formGroup]="loginForm">
+          <input type="text" class="form__field" placeholder="Login" formControlName="login" />
+          <label for="login" class="form__label">Login</label>
+          <small class="text-danger" *ngIf="login?.invalid && (login?.touched || login?.dirty)">login is
+            required</small>
+        </div>
+
+        <div class="form__group">
+          <input type="password" class="form__field" placeholder="Password" formControlName="password" />
+          <label for="password" class="form__label">Password</label>
+          <small class="text-danger" *ngIf="password?.invalid && (password?.touched || password?.dirty)">password is
+            required</small>
+
+          <input type="submit" value="Sign In" class="btn btn-info mt-20" (click)="signIn()" />
+        </div>
+      </form>
+    </div>
   </div>
-
-  <input type="submit" value="Sign In" class="btn btn-info mt-20" (click)="signIn()" />
-</form>
+</div>

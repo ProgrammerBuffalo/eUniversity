@@ -52,6 +52,11 @@ export class ScheduleService {
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
+  getEduProccessesDDL(): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-education-processes-ddl');
+    return this.http.get<BaseResponse<DDL<number>[]>>(url);
+  }
+
   //Observable<BaseResponse<DDL<number>[]>>
   tempGetGroupDisciplinesDDL(groupId: number) {
     let url: string = PrepareApi.prepare(this.controllerName, '');

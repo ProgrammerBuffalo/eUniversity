@@ -14,6 +14,7 @@ import { GroupDisciplineListComponent } from './group-discipline-list/group-disc
 import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 import { HomeComponent } from './home/home.component';
 import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-list.component';
+import { JournalListComponent } from './journal-list/journal-list.component';
 
 const routes: Routes = [
   {
@@ -44,7 +45,9 @@ const routes: Routes = [
 
       { path: 'schedule-schedule-list', component: ScheduleListComponent },
 
-      { path: 'schedule-exam-list', component: ScheduleExamListComponent }
+      { path: 'schedule-exam-list', component: ScheduleExamListComponent },
+
+      { path: 'journal-list', component: JournalListComponent }
     ]
   },
 ];

@@ -51,6 +51,12 @@ export class GroupService {
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
+  getGroupDisciplinesDDL(groupId: number): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-group-disciplines-ddl');
+    let params = { groupId: groupId };
+    return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: params });
+  }
+
   getAllStudentsWithoutGroup(): Observable<BaseResponse<DDL<number>[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-students-without-group');
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
