@@ -20,4 +20,6 @@ public interface IScheduleService {
     List<DDLResponseDTO<Integer>> findLessonsDDL();
 
     List<DDLResponseDTO<Integer>> findExamsDDL();
+
+    List<DDLResponseDTO<Integer>> getAllEducationProcessesDDL();
 }

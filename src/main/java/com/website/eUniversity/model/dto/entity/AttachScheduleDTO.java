@@ -13,12 +13,10 @@ public class AttachScheduleDTO {
 
     private Integer teacherId;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+04:00")
     private Date from;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+04:00")
     private Date to;
 
     private Integer weekNum;

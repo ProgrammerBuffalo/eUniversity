@@ -45,6 +45,12 @@ public class ScheduleController {
         return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(scheduleService.findExamsDDL(), "OK"));
     }
 
+    @GetMapping("/get-education-processes-ddl")
+    @ApiOperation("get`s all education processes for drop down")
+    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getAllEducationProcesses() {
+        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(scheduleService.getAllEducationProcessesDDL(), "OK"));
+    }
+
     @PostMapping("/attach-schedule-row")
     public ResponseEntity<BaseResponse<ScheduleDisciplineDTO>> attachRow(@RequestBody AttachScheduleDTO attachScheduleDTO)
             throws NotFoundException {

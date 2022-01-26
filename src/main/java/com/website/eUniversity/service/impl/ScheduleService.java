@@ -87,6 +87,11 @@ public class ScheduleService implements IScheduleService {
         return educationalProcessRepository.findExams();
     }
 
+    @Override
+    public  List<DDLResponseDTO<Integer>> getAllEducationProcessesDDL(){
+        return  educationalProcessRepository.getAll();
+    }
+
     private List<ScheduleDisciplineDTO> findScheduleDiscipline(Integer groupId, List<Schedule> schedules) {
         List<GroupDiscipline> groupDisciplineList = groupDisciplineRepository.findByGroupIdTeachersAndDisciplines(groupId);
 

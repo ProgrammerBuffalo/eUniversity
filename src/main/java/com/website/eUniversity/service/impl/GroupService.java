@@ -131,7 +131,7 @@ public class GroupService implements IGroupService {
 
         Optional<GroupDiscipline> grpDiscipline = groupDisciplineRepository.findByGroup_IdAndDiscipline_IdAndTeacher_Id(group.getId(), discipline.getId(), teacher.getId());
 
-        if(!grpDiscipline.isPresent()){
+        if (!grpDiscipline.isPresent()) {
             throw new NotFoundException("Group not found");
         }
 
@@ -186,6 +186,11 @@ public class GroupService implements IGroupService {
     @Override
     public List<DDLResponseDTO<Integer>> getStudentsOfGroupDDL(Integer groupId) {
         return groupRepository.findStudentsOfGroup(groupId);
+    }
+
+    @Override
+    public List<DDLResponseDTO<Integer>> getGroupDisciplinesDDL(Integer groupId) {
+        return groupDisciplineRepository.getGroupDisciplinesDDL(groupId);
     }
 
     @Override

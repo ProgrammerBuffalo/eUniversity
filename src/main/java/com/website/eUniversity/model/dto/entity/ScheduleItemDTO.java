@@ -1,8 +1,6 @@
 package com.website.eUniversity.model.dto.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class ScheduleItemDTO {
@@ -13,12 +11,10 @@ public class ScheduleItemDTO {
 
     private Integer weekNum;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+04:00")
     private Date from;
 
-    @DateTimeFormat(pattern = "HH:mm")
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+04:00")
     private Date to;
 
     private String type;

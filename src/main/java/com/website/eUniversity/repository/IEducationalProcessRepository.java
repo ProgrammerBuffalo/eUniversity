@@ -15,4 +15,7 @@ public interface IEducationalProcessRepository extends JpaRepository<Educational
 
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(e.id, e.name) FROM EducationalProcess e WHERE e.name IN ('Exam', 'Midterm')")
     List<DDLResponseDTO<Integer>> findExams();
+
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(e.id, e.name) FROM EducationalProcess e")
+    List<DDLResponseDTO<Integer>> getAll();
 }

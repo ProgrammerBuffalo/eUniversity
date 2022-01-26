@@ -31,4 +31,9 @@ public interface IGroupDisciplineRepository extends JpaRepository<GroupDisciplin
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(gd.teacher.id, gd.teacher.account.fullName) FROM GroupDiscipline gd" +
             " WHERE gd.group.id = :groupId AND gd.discipline.id = :disciplineId")
     List<DDLResponseDTO<Integer>> findTeachersOfDisciplineAndGroup(@Param("groupId") Integer groupId, @Param("disciplineId") Integer disciplineId);
+
+    @Query(value = "SELECT DISTINCT new com.website.eUniversity.model.dto.entity.DDLResponseDTO(d.id, d.name) FROM GroupDiscipline gd" +
+            " INNER JOIN Discipline d ON d.id = gd.discipline.id" +
+            " WHERE gd.group.id = :groupId")
+    List<DDLResponseDTO<Integer>> getGroupDisciplinesDDL(@Param("groupId") Integer groupId);
 }

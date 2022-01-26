@@ -66,6 +66,12 @@ public class GroupsController {
         return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(groupService.getTeachersOfGroupWithDisciplineDDL(groupId, disciplineId), "OK"));
     }
 
+    @GetMapping("/get-group-disciplines-ddl")
+    @ApiOperation("get disciplines of selected group for drop down")
+    public ResponseEntity<BaseResponse<List<DDLResponseDTO<Integer>>>> getGroupDisciplinesDDL(@RequestParam(name = "groupId") Integer groupId) {
+        return ResponseEntity.ok(new BaseResponse<List<DDLResponseDTO<Integer>>>().success(groupService.getGroupDisciplinesDDL(groupId), "OK"));
+    }
+
    @PostMapping("/attach-student")
    @ApiOperation("Add requested student to requested group")
    public ResponseEntity<BaseResponse<StudentShortInfoDTO>> attachStudent(@RequestBody AttachStudentDTO dto) {
