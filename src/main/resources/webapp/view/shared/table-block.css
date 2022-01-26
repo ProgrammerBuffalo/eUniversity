@@ -70,6 +70,10 @@
 	letter-spacing: 0.5rem;
 }
 
+.download-btn > input {
+	display: none;
+}
+
 @media (max-width: 1000px) {
 	.table-block__title {
 		-webkit-box-flex: 1;
