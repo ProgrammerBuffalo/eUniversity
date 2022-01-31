@@ -12,6 +12,10 @@ repositories {
 	mavenCentral()
 }
 
+jar {
+	processResources.exclude('webapp/*')
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
