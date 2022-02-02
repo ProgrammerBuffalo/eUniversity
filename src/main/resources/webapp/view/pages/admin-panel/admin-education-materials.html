@@ -1,8 +1,8 @@
 <!--WHAT TO USE
 -------------------------------------------------------------------------------------
 1. aside-menu component
-2. table-materials component
-3. add-material component
+2. table-education-materials component
+3. add-education-material component
 4. modal component
 ------------------------------------------------------------------------------------>
 
@@ -70,7 +70,7 @@
 						<li><a href="admin-admins.html">Admins</a></li>
 					</ul>
 
-					<li data-toggle="collapse" class="active" data-target="#groups" class="collapsed">
+					<li data-toggle="collapse" data-target="#groups" class="collapsed">
 						<a><i class="fa fa-users fa-lg"></i> Groups
 							<span class="arrow"></span></a>
 					</li>
@@ -85,11 +85,15 @@
 						<li><a href="admin-schedule.html">Schedule</a></li>
 					</ul>
 
-					<li>
+					<li data-toggle="collapse" class="active collapsed" data-target="#materials">
 						<a href="#">
-							<i class="fa fa-solid fa-book-open fa-lg"></i> Materials
+							<i class="fa fa-solid fa-book-open fa-lg"></i> Materials <span class="arrow"></span>
 						</a>
 					</li>
+					<ul class="sub-menu collapse" id="materials">
+						<li class="active"><a href="admin-groups.html">Education materials</a></li>
+						<li><a href="admin-groups-students.html">Student materials</a></li>
+					</ul>
 				</ul>
 			</div>
 		</div>
@@ -106,10 +110,18 @@
 			<option value="information-security">Information security</option>
 		</select>
 
-		<!--TABLE-MATERIALS COMPONENT-->
+		<select class="selectpicker mb-20" data-live-search="true" name="groups" id="groups">
+			<option selected class="d-none">Select group</option>
+			<option value="group1">Group 1</option>
+			<option value="group2">Group 2</option>
+			<option value="group3">Group 3</option>
+			<option value="group4">Group 4</option>
+		</select>
+
+		<!--TABLE-EDUCATION-MATERIALS COMPONENT-->
 		<div class="table-block">
 			<div class="table-block__header">
-				<h3 class="table-block__title">Materials</h3>
+				<h3 class="table-block__title">Education materials</h3>
 				<div class="btn btn-danger add-btn">Add</div>
 			</div>
 
@@ -121,6 +133,8 @@
 								<th>File id</th>
 								<th>File name</th>
 								<th>Education process</th>
+								<th>Description</th>
+								<th>Order</th>
 							</tr>
 						</thead>
 
@@ -129,6 +143,8 @@
 								<th>1</th>
 								<td>file 1</td>
 								<td>Lecture</td>
+								<td>Some description</td>
+								<td>Order 1</td>
 								<td class="td-green">
 									<div class="table-btn download-btn">
 										<i class="fas fa-file-download"></i>
@@ -145,6 +161,8 @@
 								<th>2</th>
 								<td>file 2</td>
 								<td>Seminar</td>
+								<td>Some description</td>
+								<td>Order 2</td>
 								<td class="td-green">
 									<div class="table-btn download-btn">
 										<i class="fas fa-file-download"></i>
@@ -161,6 +179,8 @@
 								<th>3</th>
 								<td>file 3</td>
 								<td>Seminar</td>
+								<td>Some description</td>
+								<td>Order 3</td>
 								<td class="td-green">
 									<div class="table-btn download-btn">
 										<i class="fas fa-file-download"></i>
@@ -177,6 +197,8 @@
 								<th>4</th>
 								<td>file 4</td>
 								<td>Lecture</td>
+								<td>Some description</td>
+								<td>Order 4</td>
 								<td class="td-green">
 									<div class="table-btn download-btn">
 										<i class="fas fa-file-download"></i>
@@ -193,13 +215,13 @@
 				</div>
 			</div>
 		</div>
-		<!--TABLE-MATERIALS COMPONENT-->
+		<!--TABLE-EDUCATION-MATERIALS COMPONENT-->
 
 
 		<div class="modal" id="students-add">
 			<div class="modal-content" style="width: 500px">
 				<span id="closeStudentsAddBtn" class="close">&times;</span>
-				<!-- ADD-MATERIAL COMPONENT -->
+				<!-- ADD-EDUCATION-MATERIAL COMPONENT -->
 				<form class="register">
 
 					<select class="selectpicker mb-20" data-live-search="true" name="days" id="days">
@@ -208,6 +230,16 @@
 						<option value="tuesday">Seminar</option>
 						<option value="wednesday">Exam</option>
 					</select>
+
+					<div class="form-group">
+						<span>Description: </span>
+						<input type="text" placeholder="description" class="form-field">
+					</div>
+
+					<div class="form-group">
+						<span>Order: </span>
+						<input type="number" placeholder="Order" class="form-field">
+					</div>
 
 					<div class="form-group download-btn" onclick="handleClick()">
 						<span>Choose file: </span>
@@ -218,7 +250,7 @@
 
 					<input type="submit" class="btn btn-danger" value="Add"></input>
 				</form>
-				<!-- ADD-MATERIAL COMPONENT -->
+				<!-- ADD-EDUCATION-MATERIAL COMPONENT -->
 			</div>
 		</div>
 	</main>
