@@ -8,47 +8,56 @@ import java.util.List;
 public class Material {
 
     @Id
-    @Column(columnDefinition="uniqueidentifier")
-    private String uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name = "file_path")
-    private String filePath;
+    @Column(name = "[ORDER]")
+    private Integer order;
 
-    @Column(name = "file_extension")
-    private String fileExtension;
+    @Column(name = "description")
+    private String description;
+
+    @OneToOne
+    @JoinColumn(name = "file_id", referencedColumnName = "id")
+    private File file;
 
     @ManyToOne
     @JoinColumn(name = "groupDiscipline_id")
     private GroupDiscipline groupDiscipline;
 
+    @ManyToOne
+    @JoinColumn(name = "educationalProcess_id")
+    private EducationalProcess educationalProcess;
+
+    @OneToMany(mappedBy = "material")
+    private List<StudentMaterial> studentMaterials;
+
     public Material() {
 
     }
 
-    public String getUuid() {
-        return uuid;
+    public Material(Integer order, File file, GroupDiscipline groupDiscipline, EducationalProcess educationalProcess) {
+        this.order = order;
+        this.file = file;
+        this.groupDiscipline = groupDiscipline;
+        this.educationalProcess = educationalProcess;
     }
 
-    public Material setUuid(String uuid) {
-        this.uuid = uuid;
+    public Integer getId() {
+        return id;
+    }
+
+    public Material setId(Integer id) {
+        this.id = id;
         return this;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public File getFile() {
+        return file;
     }
 
-    public Material setFilePath(String filePath) {
-        this.filePath = filePath;
-        return this;
-    }
-
-    public String getFileExtension() {
-        return fileExtension;
-    }
-
-    public Material setFileExtension(String fileExtension) {
-        this.fileExtension = fileExtension;
+    public Material setFile(File file) {
+        this.file = file;
         return this;
     }
 
@@ -58,6 +67,33 @@ public class Material {
 
     public Material setGroupDiscipline(GroupDiscipline groupDiscipline) {
         this.groupDiscipline = groupDiscipline;
+        return this;
+    }
+
+    public EducationalProcess getEducationalProcess() {
+        return educationalProcess;
+    }
+
+    public Material setEducationalProcess(EducationalProcess educationalProcess) {
+        this.educationalProcess = educationalProcess;
+        return this;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public Material setOrder(Integer order) {
+        this.order = order;
+        return this;
+    }
+
+    public List<StudentMaterial> getStudentMaterials() {
+        return studentMaterials;
+    }
+
+    public Material setStudentMaterials(List<StudentMaterial> studentMaterial) {
+        this.studentMaterials = studentMaterial;
         return this;
     }
 }

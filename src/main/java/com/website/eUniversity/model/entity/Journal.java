@@ -29,8 +29,7 @@ public class Journal {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    @OneToOne
-    @JoinColumn(name = "student_id")
+    @OneToOne(mappedBy = "journal")
     private Student student;
 
     public static JournalItemDTO fromEntityToDto(Journal journal) {

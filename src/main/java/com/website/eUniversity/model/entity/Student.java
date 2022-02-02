@@ -22,8 +22,11 @@ public class Student {
     private Group group;
 
     @OneToOne
-    @JoinColumn(name = "journal_id")
+    @JoinColumn(name = "journal_id", referencedColumnName = "id")
     private Journal journal;
+
+    @OneToMany(mappedBy = "student")
+    private List<StudentMaterial> studentMaterial;
 
     public Student() { }
 
@@ -61,5 +64,14 @@ public class Student {
 
     public void setJournal(Journal journal) {
         this.journal = journal;
+    }
+
+    public List<StudentMaterial> getStudentMaterial() {
+        return studentMaterial;
+    }
+
+    public Student setStudentMaterial(List<StudentMaterial> studentMaterial) {
+        this.studentMaterial = studentMaterial;
+        return this;
     }
 }
