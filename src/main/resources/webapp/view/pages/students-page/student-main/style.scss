@@ -1,0 +1,129 @@
+main {
+	margin-left: 270px;
+	.tiles {
+		display: flex;
+		justify-content: left;
+		column-gap: 30px;
+		row-gap: 30px;
+		padding: 50px;
+		flex-wrap: wrap;
+		.tile {
+			position: relative;
+			overflow: hidden;
+			flex: 0 1 30%;
+			background-color: #aaa;
+			height: 250px;
+			border-radius: 10%;
+			transition: all 0.3s ease 0s;
+			&:before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 1.5em;
+				height: 100%;
+				background-color: rgba(#fff, 0.6);
+				transform: translateX(-10em) skewX(-45deg);
+			}
+			&:hover {
+				border-radius: 11%;
+				transform: scale(0.97);
+
+				&:before {
+					animation: move-light 0.8s ease-in-out 0s;
+				}
+			}
+
+			&__image {
+				width: 64px;
+				height: 64px;
+				margin: 0 auto;
+				margin-top: 40px;
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			&__title {
+				font-size: 30px;
+				text-align: center;
+			}
+
+			&_violet {
+				background-color: #f1f0ff;
+				box-shadow: rgba(13, 13, 189, 0.2) 0px 5px 25px 0px;
+				&__title {
+					color: #4a42bb;
+				}
+				&:hover {
+					background-color: #d5d2ff;
+				}
+			}
+
+			&_blue {
+				background-color: #f0f3ff;
+				box-shadow: rgba(13, 95, 189, 0.2) 0px 5px 25px 0px;
+				&__title {
+					color: #426cbb;
+				}
+				&:hover {
+					background-color: #d8e0ff;
+				}
+			}
+
+			&_green {
+				background-color: #f0fff7;
+				box-shadow: rgba(13, 189, 92, 0.2) 0px 5px 25px 0px;
+				&__title {
+					color: #42bb56;
+				}
+				&:hover {
+					background-color: #d1ffe6;
+				}
+			}
+
+			&_yellow {
+				background-color: #fff9f0;
+				box-shadow: rgba(189, 177, 13, 0.2) 0px 5px 25px 0px;
+				&__title {
+					color: #bbaf42;
+				}
+				&:hover {
+					background-color: #ffedd1;
+				}
+			}
+
+			&_orange {
+				background-color: #fff5f0;
+				box-shadow: rgba(189, 78, 13, 0.2) 0px 5px 25px 0px;
+				&__title {
+					color: #bb7c42;
+				}
+				&:hover {
+					background-color: #ffe1d2;
+				}
+			}
+
+			&_red {
+				background-color: #fff0f0;
+				box-shadow: rgba(189, 13, 13, 0.2) 0px 5px 25px 0px;
+				&__title {
+					color: #bb4242;
+				}
+				&:hover {
+					background-color: #ffd6d6;
+				}
+			}
+		}
+	}
+}
+
+@keyframes move-light {
+	0% {
+		transform: translateX(-10em) skewX(-45deg);
+	}
+	100% {
+		transform: translateX(40em) skewX(-45deg);
+	}
+}
