@@ -12,7 +12,11 @@ public class MaterialRequestDTO {
 
     private String accountId;
 
-    private GroupDisciplineRequestDTO groupDisciplineRequestDTO;
+    private Integer groupId;
+
+    private Integer disciplineId;
+
+    private Integer teacherId;
 
     private Integer educationalProcessId;
 
@@ -52,21 +56,39 @@ public class MaterialRequestDTO {
         return this;
     }
 
-    public GroupDisciplineRequestDTO getGroupDisciplineRequestDTO() {
-        return groupDisciplineRequestDTO;
-    }
-
-    public MaterialRequestDTO setGroupDisciplineRequestDTO(GroupDisciplineRequestDTO groupDisciplineRequestDTO) {
-        this.groupDisciplineRequestDTO = groupDisciplineRequestDTO;
-        return this;
-    }
-
     public Integer getEducationalProcessId() {
         return educationalProcessId;
     }
 
     public MaterialRequestDTO setEducationalProcessId(Integer educationalProcessId) {
         this.educationalProcessId = educationalProcessId;
+        return this;
+    }
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public MaterialRequestDTO setGroupId(Integer groupId) {
+        this.groupId = groupId;
+        return this;
+    }
+
+    public Integer getDisciplineId() {
+        return disciplineId;
+    }
+
+    public MaterialRequestDTO setDisciplineId(Integer disciplineId) {
+        this.disciplineId = disciplineId;
+        return this;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public MaterialRequestDTO setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
         return this;
     }
 }

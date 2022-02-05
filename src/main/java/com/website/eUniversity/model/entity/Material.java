@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -41,6 +43,13 @@ public class Material {
         this.file = file;
         this.groupDiscipline = groupDiscipline;
         this.educationalProcess = educationalProcess;
+    }
+
+    public static MaterialResponseDTO toDTO(Material material) {
+        return new MaterialResponseDTO().setId(material.id)
+                .setFileName(material.file.getFileName())
+                .setDescription(material.description)
+                .setEducationalProcess(material.educationalProcess.getName());
     }
 
     public Integer getId() {
