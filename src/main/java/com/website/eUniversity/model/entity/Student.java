@@ -1,5 +1,6 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.entity.StudentDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,6 +33,16 @@ public class Student {
 
     public Student(Account account) {
         this.account = account;
+    }
+
+    public static StudentDTO toDTO(Student student) {
+        return new StudentDTO(
+                student.getAccount().getId(),
+                student.getId(),
+                student.getAccount().getFullName(),
+                student.getAccount().getAge(),
+                student.getAccount().getLogin(),
+                student.getAccount().getPassword());
     }
 
     public Integer getId() {

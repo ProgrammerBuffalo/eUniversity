@@ -1,7 +1,6 @@
 package com.website.eUniversity.repository;
 
-import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
+import com.website.eUniversity.model.dto.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
 import com.website.eUniversity.model.entity.TeacherDiscipline;

@@ -3,10 +3,12 @@ package com.website.eUniversity.repository;
 import com.website.eUniversity.model.dto.entity.StudentDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Student;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,4 +34,18 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
     @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentDTO(s.account.id, s.id, s.account.fullName, s.account.age, s.account.login, s.account.password)" +
                    "FROM Student s WHERE s.group.id = ?1")
     List<StudentDTO> getAllByGroup(Integer groupId);
-}
+
+    @Query(value = "SELECT * FROM students " +
+            "INNER JOIN accounts on students.account_id = accounts.id " +
+            "WHERE accounts.full_name LIKE %:search% " +
+            "ORDER BY students.id DESC " +
+            "OFFSET (:pageIndex * :pageSize) " +
+            "ROWS FETCH NEXT :pageSize " +
+            "ROWS ONLY", nativeQuery = true)
+    List<Student> getPaginatedStudents(@Param("search") String search,
+                                       @Param("pageIndex") Integer pageIndex,
+                                       @Param("pageSize") Integer pageSize);
+
+    @Query(value = "SELECT COUNT(*) FROM students s INNER JOIN accounts acc on acc.id = s.account_id where acc.full_name LIKE %:search%",
+            nativeQuery = true)
+    Integer countAllByAccount_FullNameIsLike(@Param("search") String search);}

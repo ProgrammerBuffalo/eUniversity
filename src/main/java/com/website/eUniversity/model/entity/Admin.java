@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.entity.AdminDTO;
+import com.website.eUniversity.model.dto.entity.StudentDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,6 +17,16 @@ public class Admin {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name = "account_id")
     private Account account;
+
+    public static AdminDTO toDTO(Admin admin) {
+        return new AdminDTO(
+                admin.getAccount().getId(),
+                admin.getId(),
+                admin.getAccount().getFullName(),
+                admin.getAccount().getAge(),
+                admin.getAccount().getLogin(),
+                admin.getAccount().getPassword());
+    }
 
     public Admin() { }
 
