@@ -1,6 +1,7 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
 import com.website.eUniversity.model.dto.entity.StudentDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
@@ -10,10 +11,12 @@ import com.website.eUniversity.repository.IStudentRepository;
 import com.website.eUniversity.service.IStudentService;
 import com.website.eUniversity.service.func.AccountSaver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService extends AccountSaver implements IStudentService {
@@ -69,7 +72,14 @@ public class StudentService extends AccountSaver implements IStudentService {
     }
 
     @Override
-    public List<StudentDTO> getUserList(String search) {
-        return studentRepository.findAllStudents(search);
+    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
+
+        return new PaginatedListDTO<StudentDTO>().setItems(studentRepository
+                .getPaginatedStudents(search, pageIndex, pageSize)
+                .stream()
+                .map(Student::toDTO)
+                .collect(Collectors.toList()))
+                .setAllItemsCount(studentRepository.countAllByAccount_FullNameIsLike(search));
     }
+
 }

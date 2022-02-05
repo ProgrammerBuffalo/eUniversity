@@ -1,9 +1,6 @@
 package com.website.eUniversity.model.entity;
 
 
-import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.GroupDisciplineResponseDTO;
-
 import javax.persistence.*;
 
 @Entity

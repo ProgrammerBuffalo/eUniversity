@@ -1,4 +1,4 @@
-package com.website.eUniversity.model.dto.entity;
+package com.website.eUniversity.model.dto;
 
 public interface IDDLResponseDTO<T> {
     T getId();

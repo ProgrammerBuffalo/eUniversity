@@ -1,4 +1,6 @@
-package com.website.eUniversity.model.dto.entity;
+package com.website.eUniversity.model.dto;
+
+import com.website.eUniversity.model.dto.IDDLResponseDTO;
 
 public class DDLResponseDTO<T> implements IDDLResponseDTO {
     public T id;

@@ -1,20 +1,25 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.entity.AdminDTO;
 import com.website.eUniversity.model.dto.entity.TeacherDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
+import com.website.eUniversity.model.entity.Admin;
 import com.website.eUniversity.model.entity.Teacher;
 import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.ITeacherRepository;
 import com.website.eUniversity.service.ITeacherService;
 import com.website.eUniversity.service.func.AccountSaver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TeacherService extends AccountSaver implements ITeacherService {
@@ -70,7 +75,12 @@ public class TeacherService extends AccountSaver implements ITeacherService {
     }
 
     @Override
-    public List<TeacherDTO> getUserList(String search) {
-        return teacherRepository.findAllTeachers(search);
+    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
+        return new PaginatedListDTO<TeacherDTO>().setItems(teacherRepository
+                .getPaginatedTeachers(search, pageIndex, pageSize)
+                .stream()
+                .map(Teacher::toDTO)
+                .collect(Collectors.toList()))
+                .setAllItemsCount(teacherRepository.countAllByAccount_FullNameIsLike(search));
     }
 }

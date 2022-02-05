@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Material {
     @Column(name = "description")
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private File file;
 
@@ -29,7 +31,7 @@ public class Material {
     @JoinColumn(name = "educationalProcess_id")
     private EducationalProcess educationalProcess;
 
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterials;
 
     public Material() {
@@ -41,6 +43,13 @@ public class Material {
         this.file = file;
         this.groupDiscipline = groupDiscipline;
         this.educationalProcess = educationalProcess;
+    }
+
+    public static MaterialResponseDTO toDTO(Material material) {
+        return new MaterialResponseDTO().setId(material.id)
+                .setFileName(material.file.getFileName())
+                .setDescription(material.description)
+                .setEducationalProcess(material.educationalProcess.getName());
     }
 
     public Integer getId() {

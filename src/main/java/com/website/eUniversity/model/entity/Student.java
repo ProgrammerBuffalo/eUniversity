@@ -1,5 +1,6 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.entity.StudentDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -25,13 +26,23 @@ public class Student {
     @JoinColumn(name = "journal_id", referencedColumnName = "id")
     private Journal journal;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterial;
 
     public Student() { }
 
     public Student(Account account) {
         this.account = account;
+    }
+
+    public static StudentDTO toDTO(Student student) {
+        return new StudentDTO(
+                student.getAccount().getId(),
+                student.getId(),
+                student.getAccount().getFullName(),
+                student.getAccount().getAge(),
+                student.getAccount().getLogin(),
+                student.getAccount().getPassword());
     }
 
     public Integer getId() {
