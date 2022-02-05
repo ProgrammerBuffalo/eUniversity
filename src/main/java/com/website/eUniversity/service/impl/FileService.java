@@ -56,4 +56,10 @@ public class FileService implements IFileService {
         );
     }
 
+    @Override
+    public void deleteFile(File file) throws IOException {
+        fileRepository.delete(file);
+        Files.delete(Paths.get(file.getFilePath()));
+    }
+
 }

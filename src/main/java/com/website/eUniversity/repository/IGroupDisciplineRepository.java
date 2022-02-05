@@ -23,6 +23,8 @@ public interface IGroupDisciplineRepository extends JpaRepository<GroupDisciplin
 
     Optional<GroupDiscipline> findByGroup_IdAndDiscipline_IdAndTeacher_Id(Integer groupId, Integer disciplineId, Integer teacherId);
 
+    Optional<GroupDiscipline> findByGroup_IdAnAndDiscipline_Id(Integer groupId, Integer disciplineId);
+
     Optional<GroupDiscipline> findByGroup_Id(Integer id);
 
     @Query(value = "SELECT new com.website.eUniversity.model.dto.DDLResponseDTO(gd.teacher.id, gd.teacher.account.fullName) FROM GroupDiscipline gd" +

@@ -11,13 +11,13 @@ import java.util.List;
 
 public interface IMaterialService {
 
-    List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId);
+    List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId) throws NotFoundException;
 
-    List<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId);
+    List<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId) throws NotFoundException;
 
     MaterialResponseDTO uploadMaterial(MaterialRequestDTO materialRequestDTO) throws NotFoundException, IOException;
 
     ByteArrayResource downloadMaterial(Integer materialId) throws NotFoundException, IOException;
 
-    MaterialResponseDTO deleteFile(Integer materialId);
+    MaterialResponseDTO deleteFile(Integer materialId) throws NotFoundException;
 }

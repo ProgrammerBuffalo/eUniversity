@@ -21,6 +21,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MaterialService implements IMaterialService {
@@ -38,13 +39,27 @@ public class MaterialService implements IMaterialService {
     private IFileService fileService;
 
     @Override
-    public List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId) {
-        return null;
+    public List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId) throws NotFoundException {
+        GroupDiscipline groupDiscipline =
+                groupDisciplineRepository.findByGroup_IdAnAndDiscipline_Id(groupId, disciplineId)
+                .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
+
+        return materialRepository.findAllByGroupDiscipline(groupDiscipline)
+                .stream()
+                .map(Material::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId) {
-        return null;
+    public List<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId) throws NotFoundException {
+        GroupDiscipline groupDiscipline =
+                groupDisciplineRepository.findByGroup_IdAnAndDiscipline_Id(groupId, disciplineId)
+                        .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
+
+        return materialRepository.findAllStudentMaterials(studentId, groupDiscipline)
+                .stream()
+                .map(Material::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -81,7 +96,13 @@ public class MaterialService implements IMaterialService {
     }
 
     @Override
-    public MaterialResponseDTO deleteFile(Integer materialId) {
-        return null;
+    @Transactional
+    public MaterialResponseDTO deleteFile(Integer materialId) throws NotFoundException {
+        Material material = materialRepository.findById(materialId)
+                .orElseThrow(() -> new NotFoundException("Material not found"));
+
+        MaterialResponseDTO materialResponseDTO = Material.toDTO(material);
+
+        return materialResponseDTO;
     }
 }

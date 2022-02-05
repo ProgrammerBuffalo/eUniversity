@@ -24,7 +24,7 @@ public class File {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @OneToOne(mappedBy = "file")
+    @OneToOne(mappedBy = "file", cascade = CascadeType.ALL)
     private Material material;
 
     public File() {

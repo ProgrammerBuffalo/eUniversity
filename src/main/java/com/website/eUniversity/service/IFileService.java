@@ -11,4 +11,6 @@ public interface IFileService {
     File uploadFile(MultipartFile multipartFile) throws IOException;
 
     ByteArrayResource downloadFile(File file) throws IOException;
+
+    void deleteFile(File file) throws IOException;
 }

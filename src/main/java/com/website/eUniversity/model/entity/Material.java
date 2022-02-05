@@ -19,7 +19,7 @@ public class Material {
     @Column(name = "description")
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private File file;
 
@@ -31,7 +31,7 @@ public class Material {
     @JoinColumn(name = "educationalProcess_id")
     private EducationalProcess educationalProcess;
 
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterials;
 
     public Material() {

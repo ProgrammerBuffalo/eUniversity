@@ -26,7 +26,7 @@ public class Student {
     @JoinColumn(name = "journal_id", referencedColumnName = "id")
     private Journal journal;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterial;
 
     public Student() { }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.entity.MaterialRequestDTO;
+import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
 import com.website.eUniversity.service.IMaterialService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin-panel/materials")
@@ -29,8 +31,15 @@ public class MaterialsController {
 
     @GetMapping(value = "/educational")
     public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam Integer groupId,
-                                                        @RequestParam Integer disciplineId) {
-        return null;
+                                                        @RequestParam Integer disciplineId) throws NotFoundException {
+        return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getEducationalMaterials(groupId, disciplineId), "Material are found"));
+    }
+
+    @GetMapping(value = "/posted-by-student")
+    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam Integer groupId,
+                                                        @RequestParam Integer disciplineId,
+                                                        @RequestParam Integer studentId) throws NotFoundException {
+        return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getFilesPostedByStudent(groupId, disciplineId, studentId), "Material are found"));
     }
 
     @GetMapping(value = "/download-file")
@@ -49,5 +58,10 @@ public class MaterialsController {
     public ResponseEntity<BaseResponse<?>> upload(@ModelAttribute MaterialRequestDTO materialRequestDTO)
             throws NotFoundException, IOException {
         return ResponseEntity.ok(new BaseResponse<>().success(materialService.uploadMaterial(materialRequestDTO), "File uploaded successfully"));
+    }
+
+    @DeleteMapping(value = "/remove")
+    public ResponseEntity<BaseResponse<?>> delete(@RequestParam("materialId") Integer id) throws NotFoundException {
+        return ResponseEntity.ok(new BaseResponse<>().success(materialService.deleteFile(id), "File is deleted"));
     }
 }
