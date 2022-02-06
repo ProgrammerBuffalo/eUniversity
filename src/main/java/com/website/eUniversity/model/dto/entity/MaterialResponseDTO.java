@@ -4,6 +4,10 @@ public class MaterialResponseDTO {
 
     private Integer id;
 
+    private String accountId;
+
+    private Integer order;
+
     private String description;
 
     private String educationalProcess;
@@ -43,6 +47,24 @@ public class MaterialResponseDTO {
 
     public MaterialResponseDTO setEducationalProcess(String educationalProcess) {
         this.educationalProcess = educationalProcess;
+        return this;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public MaterialResponseDTO setAccountId(String accountId) {
+        this.accountId = accountId;
+        return this;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public MaterialResponseDTO setOrder(Integer order) {
+        this.order = order;
         return this;
     }
 }
