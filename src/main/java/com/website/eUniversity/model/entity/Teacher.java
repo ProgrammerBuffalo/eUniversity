@@ -1,6 +1,9 @@
 package com.website.eUniversity.model.entity;
 
 
+import com.website.eUniversity.model.dto.entity.AdminDTO;
+import com.website.eUniversity.model.dto.entity.TeacherDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,6 +24,16 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<TeacherDiscipline> teacherDisciplines;
+
+    public static TeacherDTO toDTO(Teacher teacher) {
+        return new TeacherDTO(
+                teacher.getAccount().getId(),
+                teacher.getId(),
+                teacher.getAccount().getFullName(),
+                teacher.getAccount().getAge(),
+                teacher.getAccount().getLogin(),
+                teacher.getAccount().getPassword());
+    }
 
     public Teacher() { }
 

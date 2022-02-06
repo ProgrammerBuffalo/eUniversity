@@ -2,8 +2,10 @@ package com.website.eUniversity.repository;
 
 import com.website.eUniversity.model.dto.entity.TeacherDTO;
 import com.website.eUniversity.model.entity.Account;
+import com.website.eUniversity.model.entity.Admin;
 import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.model.entity.Teacher;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -28,4 +30,19 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Integer> {
             " WHERE a.fullName LIKE %:search% OR a.login LIKE %:search%" +
             " ORDER BY a.id DESC")
     List<TeacherDTO> findAllTeachers(@Param("search") String search);
+
+    @Query(value = "SELECT * FROM teachers " +
+            "INNER JOIN accounts on teachers.account_id = accounts.id " +
+            "WHERE accounts.full_name LIKE %:search% " +
+            "ORDER BY teachers.id DESC " +
+            "OFFSET (:pageIndex * :pageSize) " +
+            "ROWS FETCH NEXT :pageSize " +
+            "ROWS ONLY", nativeQuery = true)
+    List<Teacher> getPaginatedTeachers(@Param("search") String search,
+                                       @Param("pageIndex") Integer pageIndex,
+                                       @Param("pageSize") Integer pageSize);
+
+    @Query(value = "SELECT COUNT(*) FROM teachers t INNER JOIN accounts acc on acc.id = t.account_id where acc.full_name LIKE %:search%",
+            nativeQuery = true)
+    Integer countAllByAccount_FullNameIsLike(@Param("search") String search);
 }

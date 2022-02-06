@@ -1,6 +1,6 @@
 package com.website.eUniversity.service.impl;
 
-import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
+import com.website.eUniversity.model.dto.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;

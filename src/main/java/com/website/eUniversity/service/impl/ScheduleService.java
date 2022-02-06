@@ -2,9 +2,8 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.AttachScheduleDTO;
-import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
+import com.website.eUniversity.model.dto.DDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.ScheduleDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.ScheduleItemDTO;
 import com.website.eUniversity.model.entity.EducationalProcess;
 import com.website.eUniversity.model.entity.GroupDiscipline;
 import com.website.eUniversity.model.entity.Schedule;
@@ -20,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ScheduleService implements IScheduleService {

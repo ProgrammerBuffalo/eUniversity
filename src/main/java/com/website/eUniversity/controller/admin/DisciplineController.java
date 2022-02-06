@@ -1,8 +1,8 @@
 package com.website.eUniversity.controller.admin;
 
 import com.website.eUniversity.model.base.BaseResponse;
-import com.website.eUniversity.model.dto.entity.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.IDDLResponseDTO;
+import com.website.eUniversity.model.dto.DDLResponseDTO;
+import com.website.eUniversity.model.dto.IDDLResponseDTO;
 import com.website.eUniversity.model.dto.entity.discipline.AddDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.discipline.UpdateDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
