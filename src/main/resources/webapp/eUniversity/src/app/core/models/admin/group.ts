@@ -1,5 +1,3 @@
-import { DateToSemestrPipe } from "../../pipes/date-to-semestr.pipe";
-
 export class Group {
   id: number;
   name: string;

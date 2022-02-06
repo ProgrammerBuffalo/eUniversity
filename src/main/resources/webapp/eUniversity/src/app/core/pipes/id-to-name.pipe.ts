@@ -1,4 +1,4 @@
-import { Input, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { DDL } from '../models/ddl';
 
 @Pipe({
@@ -10,13 +10,9 @@ export class IdToNamePipe implements PipeTransform {
   }
 
   transform(value: number, array: DDL<number>[]): unknown {
-    //console.log(value);
-    //console.log(array);
     for (let i = 0; i < array.length; i++) {
-      if (array[i].id = value) {
+      if (array[i].id = value)
         return array[i].name;
-        break;
-      }
     }
     return '';
   }

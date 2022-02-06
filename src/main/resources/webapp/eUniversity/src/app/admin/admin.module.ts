@@ -20,6 +20,7 @@ import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 import { HomeComponent } from './home/home.component';
 import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-list.component';
 import { JournalListComponent } from './journal-list/journal-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { JournalListComponent } from './journal-list/journal-list.component';
     ScheduleListComponent,
     HomeComponent,
     ScheduleExamListComponent,
-    JournalListComponent,
+    JournalListComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +46,8 @@ import { JournalListComponent } from './journal-list/journal-list.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    PipeModule
+    PipeModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/update-student-dto';
-import { Student } from 'src/app/core/models/admin/student';
+import { UpdateStudentDTO } from 'src/app/core/DTOs/admin/account/update-student-dto';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination-dto';
+import { Student } from 'src/app/core/models/admin/account/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
+import { PaginatedList } from 'src/app/core/models/paginated-list';
 import { AccountService } from 'src/app/services/accounts.service';
 
 @Component({
@@ -15,8 +17,10 @@ export class StudentListComponent implements OnInit {
   showEditPopup: boolean;
 
   selectedStudent!: Student;
-  students: Student[];
-  search: string;
+  students: PaginatedList<Student>;
+
+  paginationDTO: PaginationDTO;
+  pageCount: number;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -54,14 +58,13 @@ export class StudentListComponent implements OnInit {
       age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
-    this.students = [];
-    this.search = '';
+    this.students = new PaginatedList([], 0);
+    this.pageCount = 0;
+    this.paginationDTO = new PaginationDTO(0, 12, '');
   }
 
   ngOnInit(): void {
-    this.accountService.getStudents(this.search).subscribe((res: BaseResponse<Student[]>) => {
-      this.students = res.data;
-    });
+    this.getStudents();
   }
 
   showAddModal() {
@@ -94,7 +97,8 @@ export class StudentListComponent implements OnInit {
     if (this.addForm.valid)
       this.accountService.registerStudent(this.addForm.value).subscribe({
         next: (data: BaseResponse<Student>) => {
-          this.students.unshift(data.data);
+          //this.students.unshift(data.data);
+          this.getStudents();
 
           this.showAddPopup = false;
         },
@@ -127,12 +131,14 @@ export class StudentListComponent implements OnInit {
   removeStudent(id: string) {
     this.accountService.deleteStudent(id).subscribe({
       next: (data) => {
-        for (let i = 0; i < this.students.length; i++) {
-          if (this.students[i].accountId == id) {
-            this.students.splice(i, 1);
-            break;
-          }
-        }
+        this.getStudents();
+
+        // for (let i = 0; i < this.students.length; i++) {
+        //   if (this.students[i].accountId == id) {
+        //     this.students.splice(i, 1);
+        //     break;
+        //   }
+        // }
       },
       error: (data) => {
         alert('cant remove this student');
@@ -141,7 +147,16 @@ export class StudentListComponent implements OnInit {
   }
 
   searchStudents() {
-    this.accountService.getStudents(this.search).subscribe((res: BaseResponse<Student[]>) => {
+    this.getStudents();
+  }
+
+  onPageChanged(pageIndex: number) {
+    this.paginationDTO.pageIndex = pageIndex;
+    this.getStudents();
+  }
+
+  getStudents() {
+    this.accountService.getStudents(this.paginationDTO).subscribe((res: BaseResponse<PaginatedList<Student>>) => {
       this.students = res.data;
     });
   }

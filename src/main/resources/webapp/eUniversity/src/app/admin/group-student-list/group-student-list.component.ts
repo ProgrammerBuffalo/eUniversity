@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AttachStudentDTO } from 'src/app/core/DTOs/admin/attach-student-dto';
-import { Student } from 'src/app/core/models/admin/student';
+import { AttachStudentDTO } from 'src/app/core/DTOs/admin/group/attach-student-dto';
+import { Student } from 'src/app/core/models/admin/account/student';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker';

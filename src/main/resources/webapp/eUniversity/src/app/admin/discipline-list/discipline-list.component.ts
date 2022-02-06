@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UpdateDisciplineDTO } from 'src/app/core/DTOs/admin/update-discipline-dto';
-import { PaginationDTO } from 'src/app/core/DTOs/pagination';
+import { UpdateDisciplineDTO } from 'src/app/core/DTOs/admin/discipline/update-discipline-dto';
 import { Discipline } from 'src/app/core/models/admin/discipline';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DisciplineService } from 'src/app/services/discipline.service';
@@ -12,8 +11,6 @@ import { DisciplineService } from 'src/app/services/discipline.service';
   styleUrls: ['../../shared/table-block.scss', '../../shared/modal.scss', '../../shared/input.scss']
 })
 export class DisciplineListComponent implements OnInit {
-
-  pagination: PaginationDTO;
 
   showAddPopup: boolean;
   showEditPopup: boolean;
@@ -49,11 +46,10 @@ export class DisciplineListComponent implements OnInit {
     });
 
     this.disciplines = [];
-    this.pagination = new PaginationDTO('', 0, 5);
   }
 
   ngOnInit(): void {
-    this.disciplineService.getDisciplines(this.pagination).subscribe((res: BaseResponse<Discipline[]>) => {
+    this.disciplineService.getDisciplines().subscribe((res: BaseResponse<Discipline[]>) => {
       this.disciplines = res.data;
     });
   }

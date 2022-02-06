@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UpdateTeacherDTO } from 'src/app/core/DTOs/admin/update-teacher-dto';
-import { Teacher } from 'src/app/core/models/admin/teacher';
+import { UpdateTeacherDTO } from 'src/app/core/DTOs/admin/account/update-teacher-dto';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination-dto';
+import { Teacher } from 'src/app/core/models/admin/account/teacher';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
+import { PaginatedList } from 'src/app/core/models/paginated-list';
 import { AccountService } from 'src/app/services/accounts.service';
 
 @Component({
@@ -15,9 +17,12 @@ export class TeacherListComponent implements OnInit {
   showAddPopup: boolean;
   showEditPopup: boolean;
 
+  teachers: PaginatedList<Teacher>;
   selectedTeacher!: Teacher;
-  teachers: Teacher[];
-  search: string;
+
+
+  paginationDTO: PaginationDTO;
+  pageCount: number;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -55,14 +60,13 @@ export class TeacherListComponent implements OnInit {
       age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
-    this.teachers = [];
-    this.search = '';
+    this.teachers = new PaginatedList([], 0);
+    this.pageCount = 0;
+    this.paginationDTO = new PaginationDTO(0, 12, '');
   }
 
   ngOnInit(): void {
-    this.accountService.getTeachers(this.search).subscribe((res: BaseResponse<Teacher[]>) => {
-      this.teachers = res.data;
-    });
+    this.getTeachers();
   }
 
   showAddModal() {
@@ -95,7 +99,7 @@ export class TeacherListComponent implements OnInit {
     if (this.addForm.valid)
       this.accountService.registerTeacher(this.addForm.value).subscribe({
         next: (data: BaseResponse<Teacher>) => {
-          this.teachers.unshift(data.data);
+          this.getTeachers();
 
           this.showAddPopup = false;
         },
@@ -128,12 +132,7 @@ export class TeacherListComponent implements OnInit {
   removeTeacher(id: string) {
     this.accountService.deleteTeacher(id).subscribe({
       next: (data) => {
-        for (let i = 0; i < this.teachers.length; i++) {
-          if (this.teachers[i].accountId == id) {
-            this.teachers.splice(i, 1);
-            break;
-          }
-        }
+        this.getTeachers();
       },
       error: (data) => {
         alert('cant remove this teacher');
@@ -141,8 +140,17 @@ export class TeacherListComponent implements OnInit {
     })
   }
 
+  onPageChanged(pageIndex: number) {
+    this.paginationDTO.pageIndex = pageIndex;
+    this.getTeachers();
+  }
+
   searchTeachers() {
-    this.accountService.getTeachers(this.search).subscribe((res: BaseResponse<Teacher[]>) => {
+    this.getTeachers();
+  }
+
+  getTeachers() {
+    this.accountService.getTeachers(this.paginationDTO).subscribe((res: BaseResponse<PaginatedList<Teacher>>) => {
       this.teachers = res.data;
     });
   }

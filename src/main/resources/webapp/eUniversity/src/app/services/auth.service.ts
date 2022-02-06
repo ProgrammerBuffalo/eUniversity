@@ -31,8 +31,8 @@ export class AuthService {
 
   refreshTokens(rt: string): Observable<BaseResponse<Auth>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'refresh-tokens');
-    let headers = { Rt: rt };
-    return this.http.post<BaseResponse<Auth>>(url, { headers: headers });
+    //let headers = { Rt: rt };
+    return this.http.post<BaseResponse<Auth>>(url, rt);
   }
 
   saveUser(data: Auth) {
@@ -40,7 +40,7 @@ export class AuthService {
 
     localStorage.setItem('rt', data.refreshToken);
     sessionStorage.setItem('jwtToken', data.jwtToken);
-    sessionStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   getRefrehToken(): string {

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UpdateAdminDTO } from 'src/app/core/DTOs/admin/update-admin-dto';
-import { Admin } from 'src/app/core/models/admin/admin';
+import { UpdateAdminDTO } from 'src/app/core/DTOs/admin/account/update-admin-dto';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination-dto';
+import { Admin } from 'src/app/core/models/admin/account/admin';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
+import { PaginatedList } from 'src/app/core/models/paginated-list';
 import { AccountService } from 'src/app/services/accounts.service';
 
 @Component({
@@ -16,8 +18,10 @@ export class AdminListComponent implements OnInit {
   showEditPopup: boolean;
 
   selectedAdmin!: Admin;
-  admins: Admin[];
-  search: string;
+  admins: PaginatedList<Admin>;
+
+  paginationDTO: PaginationDTO;
+  pageCount: number;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -55,14 +59,13 @@ export class AdminListComponent implements OnInit {
       age: new FormControl('', [Validators.required, Validators.min(16), Validators.max(100)])
     });
 
-    this.admins = [];
-    this.search = '';
+    this.admins = new PaginatedList([], 0);
+    this.pageCount = 0;
+    this.paginationDTO = new PaginationDTO(0, 12, '');
   }
 
   ngOnInit(): void {
-    this.accountService.getAdmins(this.search).subscribe((res: BaseResponse<Admin[]>) => {
-      this.admins = res.data;
-    });
+    this.getAdmins();
   }
 
   showAddModal() {
@@ -95,7 +98,8 @@ export class AdminListComponent implements OnInit {
     if (this.addForm.valid)
       this.accountService.registerAdmin(this.addForm.value).subscribe({
         next: (data: BaseResponse<Admin>) => {
-          this.admins.unshift(data.data);
+          this.getAdmins();
+
           this.showAddPopup = false;
         },
         error: (data) => {
@@ -127,12 +131,7 @@ export class AdminListComponent implements OnInit {
   removeAdmin(id: string) {
     this.accountService.deleteAdmin(id).subscribe({
       next: (data) => {
-        for (let i = 0; i < this.admins.length; i++) {
-          if (this.admins[i].accountId == id) {
-            this.admins.splice(i, 1);
-            break;
-          }
-        }
+        this.getAdmins();
       },
       error: (data) => {
         alert('cant remove this admin');
@@ -140,8 +139,17 @@ export class AdminListComponent implements OnInit {
     })
   }
 
+  onPageChanged(pageIndex: number) {
+    this.paginationDTO.pageIndex = pageIndex;
+    this.getAdmins();
+  }
+
   searchAdmins() {
-    this.accountService.getAdmins(this.search).subscribe((res: BaseResponse<Admin[]>) => {
+    this.getAdmins();
+  }
+
+  getAdmins() {
+    this.accountService.getAdmins(this.paginationDTO).subscribe((res: BaseResponse<PaginatedList<Admin>>) => {
       this.admins = res.data;
     });
   }

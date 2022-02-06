@@ -51,11 +51,13 @@
           <li routerLinkActive="active"><a routerLink="journal-list">Journal</a></li>
         </ul>
 
-        <li>
-          <a href="#">
-            <i class="fa fa-solid fa-book-open fa-lg"></i> Materials
-          </a>
+        <li data-toggle="collapse" data-target="#materials" class="collapsed">
+          <a><i class="fa fa-solid fa-book-open fa-lg"></i> Materials <span class="arrow"></span></a>
         </li>
+        <ul class="sub-menu collapse" id="materials">
+          <li routerLinkActive="active"><a routerLink="material-education-list">Educational</a></li>
+          <li routerLinkActive="active"><a routerLink="material-student-list">Students</a></li>
+        </ul>
       </ul>
     </div>
   </div>

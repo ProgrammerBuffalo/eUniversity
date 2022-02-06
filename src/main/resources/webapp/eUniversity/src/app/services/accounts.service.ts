@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddAdminDTO } from '../core/DTOs/admin/add-admin-dto';
-import { AddStudentDTO } from '../core/DTOs/admin/add-student-dto';
-import { AddTeacherDTO } from '../core/DTOs/admin/add-teacher-dto';
-import { UpdateAdminDTO } from '../core/DTOs/admin/update-admin-dto';
-import { UpdateStudentDTO } from '../core/DTOs/admin/update-student-dto';
-import { UpdateTeacherDTO } from '../core/DTOs/admin/update-teacher-dto';
-import { Admin } from '../core/models/admin/admin';
-import { Student } from '../core/models/admin/student';
-import { Teacher } from '../core/models/admin/teacher';
+import { AddAdminDTO } from '../core/DTOs/admin/account/add-admin-dto';
+import { AddStudentDTO } from '../core/DTOs/admin/account/add-student-dto';
+import { AddTeacherDTO } from '../core/DTOs/admin/account/add-teacher-dto';
+import { UpdateAdminDTO } from '../core/DTOs/admin/account/update-admin-dto';
+import { UpdateStudentDTO } from '../core/DTOs/admin/account/update-student-dto';
+import { UpdateTeacherDTO } from '../core/DTOs/admin/account/update-teacher-dto';
+import { PaginationDTO } from '../core/DTOs/pagination-dto';
+import { Admin } from '../core/models/admin/account/admin';
+import { Student } from '../core/models/admin/account/student';
+import { Teacher } from '../core/models/admin/account/teacher';
 import { BaseResponse } from '../core/models/base/base-response';
+import { PaginatedList } from '../core/models/paginated-list';
 import { PrepareApi } from './prepare-api';
 
 @Injectable({
@@ -29,10 +31,9 @@ export class AccountService {
     return this.http.post<BaseResponse<Admin>>(url, dto);
   }
 
-  getAdmins(search: string): Observable<BaseResponse<Admin[]>> {
+  getAdmins(dto: Readonly<PaginationDTO>): Observable<BaseResponse<PaginatedList<Admin>>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'admins');
-    let params = { search: search };
-    return this.http.get<BaseResponse<Admin[]>>(url, { params: params });
+    return this.http.get<BaseResponse<PaginatedList<Admin>>>(url, { params: dto });
   }
 
   updateAdmin(dto: UpdateAdminDTO) {
@@ -51,10 +52,9 @@ export class AccountService {
     return this.http.post<BaseResponse<Teacher>>(url, dto);
   }
 
-  getTeachers(search: string): Observable<BaseResponse<Teacher[]>> {
+  getTeachers(dto: Readonly<PaginationDTO>): Observable<BaseResponse<PaginatedList<Teacher>>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'teachers');
-    let params = { search: search };
-    return this.http.get<BaseResponse<Teacher[]>>(url, { params: params });
+    return this.http.get<BaseResponse<PaginatedList<Teacher>>>(url, { params: dto });
   }
 
   updateTeacher(dto: UpdateTeacherDTO) {
@@ -73,10 +73,9 @@ export class AccountService {
     return this.http.post<BaseResponse<Student>>(url, dto);
   }
 
-  getStudents(search: string): Observable<BaseResponse<Student[]>> {
+  getStudents(dto: Readonly<PaginationDTO>): Observable<BaseResponse<PaginatedList<Student>>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'students');
-    let params = { search: search };
-    return this.http.get<BaseResponse<Student[]>>(url, { params: params });
+    return this.http.get<BaseResponse<PaginatedList<Student>>>(url, { params: dto });
   }
 
   updateStudent(dto: UpdateStudentDTO) {
