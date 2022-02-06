@@ -19,6 +19,9 @@ public class Material {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "user_id")
+    private String userId;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private File file;
@@ -38,18 +41,32 @@ public class Material {
 
     }
 
-    public Material(Integer order, File file, GroupDiscipline groupDiscipline, EducationalProcess educationalProcess) {
+    public Material(Integer id, Integer order, String description, String userId, GroupDiscipline groupDiscipline,
+                    EducationalProcess educationalProcess) {
+        this.description = description;
+        this.id = id;
+        this.order = order;
+        this.userId = userId;
+        this.groupDiscipline = groupDiscipline;
+        this.educationalProcess = educationalProcess;
+    }
+
+    public Material(Integer order, File file,
+                    GroupDiscipline groupDiscipline, EducationalProcess educationalProcess, String accountId) {
         this.order = order;
         this.file = file;
         this.groupDiscipline = groupDiscipline;
         this.educationalProcess = educationalProcess;
+        this.userId = accountId;
     }
 
     public static MaterialResponseDTO toDTO(Material material) {
         return new MaterialResponseDTO().setId(material.id)
                 .setFileName(material.file.getFileName())
                 .setDescription(material.description)
-                .setEducationalProcess(material.educationalProcess.getName());
+                .setEducationalProcess(material.educationalProcess.getName())
+                .setAccountId(material.userId)
+                .setOrder(material.order);
     }
 
     public Integer getId() {
@@ -104,5 +121,14 @@ public class Material {
     public Material setStudentMaterials(List<StudentMaterial> studentMaterial) {
         this.studentMaterials = studentMaterial;
         return this;
+    }
+
+    public Material setUserId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

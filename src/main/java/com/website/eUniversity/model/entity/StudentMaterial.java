@@ -18,9 +18,6 @@ public class StudentMaterial {
     @JoinColumn(name = "material_id")
     private Material material;
 
-    @Column(name = "is_sent")
-    private Boolean isSent;
-
     public StudentMaterial() {
 
     }
@@ -52,12 +49,4 @@ public class StudentMaterial {
         return this;
     }
 
-    public Boolean getSent() {
-        return isSent;
-    }
-
-    public StudentMaterial setSent(Boolean sent) {
-        isSent = sent;
-        return this;
-    }
 }

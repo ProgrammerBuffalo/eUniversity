@@ -3,10 +3,8 @@ package com.website.eUniversity.service.impl;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.MaterialRequestDTO;
 import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
-import com.website.eUniversity.model.entity.EducationalProcess;
-import com.website.eUniversity.model.entity.File;
-import com.website.eUniversity.model.entity.GroupDiscipline;
-import com.website.eUniversity.model.entity.Material;
+import com.website.eUniversity.model.entity.*;
+import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.IEducationalProcessRepository;
 import com.website.eUniversity.repository.IGroupDisciplineRepository;
 import com.website.eUniversity.repository.IMaterialRepository;
@@ -38,10 +36,13 @@ public class MaterialService implements IMaterialService {
     @Autowired
     private IFileService fileService;
 
+    @Autowired
+    private IAccountRepository accountRepository;
+
     @Override
     public List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId) throws NotFoundException {
         GroupDiscipline groupDiscipline =
-                groupDisciplineRepository.findByGroup_IdAnAndDiscipline_Id(groupId, disciplineId)
+                groupDisciplineRepository.findByGroup_IdAndDiscipline_Id(groupId, disciplineId)
                 .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
 
         return materialRepository.findAllByGroupDiscipline(groupDiscipline)
@@ -53,7 +54,7 @@ public class MaterialService implements IMaterialService {
     @Override
     public List<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId) throws NotFoundException {
         GroupDiscipline groupDiscipline =
-                groupDisciplineRepository.findByGroup_IdAnAndDiscipline_Id(groupId, disciplineId)
+                groupDisciplineRepository.findByGroup_IdAndDiscipline_Id(groupId, disciplineId)
                         .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
 
         return materialRepository.findAllStudentMaterials(studentId, groupDiscipline)
@@ -66,14 +67,16 @@ public class MaterialService implements IMaterialService {
     @Transactional
     public MaterialResponseDTO uploadMaterial(MaterialRequestDTO materialRequestDTO) throws NotFoundException, IOException {
         GroupDiscipline groupDiscipline = groupDisciplineRepository
-                .findByGroup_IdAndDiscipline_IdAndTeacher_Id(materialRequestDTO.getGroupId(),
-                                                            materialRequestDTO.getDisciplineId(),
-                                                            materialRequestDTO.getTeacherId())
+                .findByGroup_IdAndDiscipline_Id(materialRequestDTO.getGroupId(),
+                                                materialRequestDTO.getDisciplineId())
                 .orElseThrow(() -> new NotFoundException("Group, Discipline or Teacher not found"));
 
         EducationalProcess educationalProcess = educationalProcessRepository
                 .findById(materialRequestDTO.getEducationalProcessId())
                 .orElseThrow(() -> new NotFoundException("Educational process id not found"));
+
+        Account account = accountRepository.findAccountById(materialRequestDTO.getAccountId())
+                .orElseThrow(() -> new NotFoundException("Account not found"));
 
 
         File file = fileService.uploadFile(materialRequestDTO.getMultipartFile());
@@ -82,7 +85,8 @@ public class MaterialService implements IMaterialService {
                 new Material().setOrder(materialRequestDTO.getOrder())
                         .setFile(file)
                         .setGroupDiscipline(groupDiscipline)
-                        .setEducationalProcess(educationalProcess));
+                        .setEducationalProcess(educationalProcess)
+                        .setUserId(account.getId()));
 
         return Material.toDTO(material);
     }
