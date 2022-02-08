@@ -1,11 +1,26 @@
 .aside {
   position: fixed;
+  z-index: 2;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 300px;
+  width: 70px;
   height: 100%;
   background: #252c33;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.aside:hover {
+  width: 300px;
+}
+
+.aside .item-content {
+  display: none;
+}
+
+.aside.active .item-content {
+  display: inline;
 }
 
 .aside .logo {

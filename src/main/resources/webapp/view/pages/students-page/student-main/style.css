@@ -1,5 +1,11 @@
 .main {
-  margin-left: 320px;
+  margin-left: 100px;
+}
+
+.main p {
+  font-size: 18px;
+  line-height: 120%;
+  color: #494949;
 }
 
 .main .tiles {

@@ -17,12 +17,25 @@ $dark-blue: #62c4ce;
 
 .aside {
 	position: fixed;
+	z-index: 2;
 	left: 0;
 	top: 0;
 	bottom: 0;
-	width: 300px;
+	width: 70px;
 	height: 100%;
 	background: $aside-main;
+	transition: all 0.3s ease 0s;
+	&:hover {
+		width: 300px;
+	}
+	.item-content {
+		display: none;
+	}
+	&.active {
+		.item-content {
+			display: inline;
+		}
+	}
 
 	.logo {
 		text-transform: uppercase;

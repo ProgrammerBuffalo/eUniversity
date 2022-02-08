@@ -1,5 +1,10 @@
 .main {
-	margin-left: 320px;
+	margin-left: 100px;
+	p {
+		font-size: 18px;
+		line-height: 120%;
+		color: #494949;
+	}
 	.tiles {
 		display: flex;
 		justify-content: left;
