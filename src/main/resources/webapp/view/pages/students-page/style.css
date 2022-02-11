@@ -284,6 +284,11 @@
   background: #412e2e;
 }
 
+.main {
+  margin-left: 100px;
+  padding-right: 50px;
+}
+
 .footer {
   position: relative;
   margin-top: 150px;

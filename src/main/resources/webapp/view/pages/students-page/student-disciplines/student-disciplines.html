@@ -1,5 +1,5 @@
 <!--WHAT TO USE
-1. Student main component
+1. Student disciplines component
 2. Student aside manu component
 3. Student footer component
 4. Student header component-->
@@ -15,11 +15,10 @@
 	<link rel="stylesheet" href="../../../general/general.css">
 	<link rel="stylesheet" href="../style.css">
 	<link rel="stylesheet" href="style.css">
-	<title>Main page</title>
+	<title>Students Discipline</title>
 </head>
 
 <body>
-
 	<!--STUDENT-HEADER-->
 	<header class="header">
 		<div class="header-arrow">
@@ -37,7 +36,7 @@
 	</header>
 	<!--STUDENT-HEADER-->
 
-	<!--STUDENT-ASIDE-MENU-->
+	<!--STUDENT-ASIDE-->
 	<aside class="aside">
 		<h1 class="logo">
 			<img src="../../../images/header-logo.jpg" alt="logo">
@@ -63,64 +62,43 @@
 			</nav>
 		</div>
 	</aside>
-	<!--STUDENT-ASIDE-MENU-->
+	<!--STUDENT-ASIDE-->
 
-	<!--STUDENT-MAIN-->
+	<!--STUDENT-DISCIPLINES-->
 	<main class="main">
-		<!--STUDENT MAIN COMPONENT-->
-		<div class="tiles">
-			<a href="#" class="tile tile_violet">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-journal.png" alt="journal">
-				</div>
+		<div class="tile tile_journal">
+			<span>
+				<h3 class="tile__title">Journal</h3>
+			</span>
 
-				<h3 class="tile__title tile_violet__title">Journal</h3>
-			</a>
-
-			<a href="#" class="tile tile_blue">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-discipline.png" alt="discipline">
-				</div>
-
-				<h3 class="tile__title tile_blue__title">Discipline</h3>
-			</a>
-
-			<a href="#" class="tile tile_green">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-schedule.png" alt="schedule">
-				</div>
-
-				<h3 class="tile__title tile_green__title">Schedule</h3>
-			</a>
-
-			<a href="#" class="tile tile_yellow">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-exam.png" alt="exam">
-				</div>
-
-				<h3 class="tile__title tile_yellow__title">Exams</h3>
-			</a>
-
-			<a href="#" class="tile tile_orange">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-teachers.png" alt="teachers">
-				</div>
-
-				<h3 class="tile__title tile_orange__title">Teachers</h3>
-			</a>
-
-			<a href="#" class="tile tile_red">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-group.png" alt="groups">
-				</div>
-
-				<h3 class="tile__title tile_red__title">Groups</h3>
-			</a>
 		</div>
-		<!--STUDENT MAIN COMPONENT-->
+
+		<div class="tile tile_material">
+			<span>
+				<h3 class="tile__title">Education Materials</h3>
+			</span>
+
+		</div>
+
+
+		<div class="tile tile_uploads">
+			<span>
+				<h3 class="tile__title">Uploads</h3>
+			</span>
+
+		</div>
+
+
+		<div class="tile tile_themes">
+			<span>
+				<h3 class="tile__title">Themes</h3>
+			</span>
+
+		</div>
+
 
 	</main>
-	<!--STUDENT-MAIN-->
+	<!--STUDENT-DISCIPLINES-->
 
 	<!--STUDENT-FOOTER-->
 	<footer class="footer">
@@ -187,6 +165,7 @@
 	</footer>
 	<!--STUDENT-FOOTER-->
 	<script src="../app.js"></script>
+	<script src="app.js"></script>
 </body>
 
 </html>
