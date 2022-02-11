@@ -31,7 +31,9 @@ public class FileService implements IFileService {
         this.fileRepository = fileRepository;
         this.resourceLoader = resourceLoader;
 
-        storagePath = Paths.get(this.resourceLoader.getResource("classpath:" + fileStorageName).getURI());
+        storagePath = Paths.get(fileStorageName).toAbsolutePath().normalize();
+        System.out.println(storagePath);
+        Files.createDirectories(storagePath);
     }
 
     @Override
