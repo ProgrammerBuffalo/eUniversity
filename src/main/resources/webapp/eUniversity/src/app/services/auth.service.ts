@@ -14,6 +14,9 @@ import { Auth } from '../core/models/auth/auth';
 export class AuthService {
 
   private readonly controllerName: string = 'authentication';
+  private readonly jwtKey: string = 'jwtToken';
+  private readonly rtKey: string = 'rt';
+  private readonly userKey: string = 'user';
 
   constructor(
     private http: HttpClient
@@ -25,8 +28,8 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('jwtToken');
+    sessionStorage.removeItem(this.userKey);
+    sessionStorage.removeItem(this.jwtKey);
   }
 
   refreshTokens(rt: string): Observable<BaseResponse<Auth>> {
@@ -44,11 +47,16 @@ export class AuthService {
   }
 
   getRefrehToken(): string {
-    return localStorage.getItem('rt')!;
+    return localStorage.getItem(this.rtKey)!;
   }
 
   getJwtToken(): string {
-    return sessionStorage.getItem('jwtToken')!;
+    return sessionStorage.getItem(this.jwtKey)!;
+  }
+
+  getAccountId() {
+    let user: User = JSON.parse(localStorage.getItem(this.userKey)!);
+    return user.id;
   }
 
 }

@@ -21,6 +21,8 @@ import { HomeComponent } from './home/home.component';
 import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-list.component';
 import { JournalListComponent } from './journal-list/journal-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialEduListComponent } from './material-edu-list/material-edu-list.component';
+import { MaterialStudentListComponent } from './material-student-list/material-student-list.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { SharedModule } from '../shared/shared.module';
     ScheduleListComponent,
     HomeComponent,
     ScheduleExamListComponent,
-    JournalListComponent
+    JournalListComponent,
+    MaterialEduListComponent,
+    MaterialStudentListComponent
   ],
   imports: [
     CommonModule,

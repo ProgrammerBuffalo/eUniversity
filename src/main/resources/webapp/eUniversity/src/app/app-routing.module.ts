@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'Admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
+  {
+    path: 'Student',
+    loadChildren: () => import('./student/student.module').then(m => m.StudentModule)
+  },
   { path: 'page-404', component: Page404Component },
   { path: 'page-505', component: Page404Component },
   { path: '**', component: Page404Component }
