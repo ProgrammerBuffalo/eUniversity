@@ -33,12 +33,13 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Integer> {
 
     @Query(value = "SELECT * FROM teachers " +
             "INNER JOIN accounts on teachers.account_id = accounts.id " +
-            "WHERE accounts.full_name LIKE %:search% " +
+            "WHERE accounts.full_name LIKE %:search% OR %:login% " +
             "ORDER BY teachers.id DESC " +
             "OFFSET (:pageIndex * :pageSize) " +
             "ROWS FETCH NEXT :pageSize " +
             "ROWS ONLY", nativeQuery = true)
-    List<Teacher> getPaginatedTeachers(@Param("search") String search,
+    List<Teacher> getPaginatedTeachers(@Param("searchName") String name,
+                                       @Param("searchLogin") String login,
                                        @Param("pageIndex") Integer pageIndex,
                                        @Param("pageSize") Integer pageSize);
 

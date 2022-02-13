@@ -51,17 +51,20 @@ public class Material {
         this.educationalProcess = educationalProcess;
     }
 
-    public Material(Integer order, File file,
-                    GroupDiscipline groupDiscipline, EducationalProcess educationalProcess, String accountId) {
+    public Material(Integer id, Integer order, File file, String description, String accountId,
+                    GroupDiscipline groupDiscipline, EducationalProcess educationalProcess) {
+        this.id = id;
         this.order = order;
         this.file = file;
+        this.description = description;
         this.groupDiscipline = groupDiscipline;
         this.educationalProcess = educationalProcess;
         this.userId = accountId;
     }
 
     public static MaterialResponseDTO toDTO(Material material) {
-        return new MaterialResponseDTO().setId(material.id)
+        return new MaterialResponseDTO()
+                .setId(material.id)
                 .setFileName(material.file.getFileName())
                 .setDescription(material.description)
                 .setEducationalProcess(material.educationalProcess.getName())
@@ -131,4 +134,14 @@ public class Material {
     public String getUserId() {
         return userId;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Material setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
 }

@@ -42,7 +42,9 @@ public class Student {
                 student.getAccount().getFullName(),
                 student.getAccount().getAge(),
                 student.getAccount().getLogin(),
-                student.getAccount().getPassword());
+                student.getAccount().getPassword(),
+                student.getGroup().getName()
+        );
     }
 
     public Integer getId() {
