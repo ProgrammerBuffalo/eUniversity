@@ -1,0 +1,72 @@
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+}
+
+.header-arrow {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  top: 10px;
+  right: 30px;
+  border: solid #252c33;
+  border-width: 0 5px 5px 0;
+  display: inline-block;
+  padding: 10px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.header-arrow.active {
+  top: 30px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  border-color: #f1f1f1;
+}
+
+.header .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 10;
+  background-color: #252c33;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: -300%;
+  left: 0;
+  padding: 10px 100px 10px 30px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.header .profile.active {
+  top: 0;
+}
+
+.header .profile-avatar {
+  width: 64px;
+  height: 64px;
+}
+
+.header .profile-avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.header .profile p {
+  color: #f1f1f1;
+  font-size: 20px;
+}
+/*# sourceMappingURL=style.css.map */
