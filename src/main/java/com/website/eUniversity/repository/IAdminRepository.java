@@ -31,14 +31,15 @@ public interface IAdminRepository extends JpaRepository<Admin, Integer> {
 
     @Query(value = "SELECT * FROM admins " +
             "INNER JOIN accounts on admins.account_id = accounts.id " +
-            "WHERE accounts.full_name LIKE %:search% " +
+            "WHERE accounts.full_name LIKE %:search% OR %:login% " +
             "ORDER BY admins.id DESC " +
             "OFFSET (:pageIndex * :pageSize) " +
             "ROWS FETCH NEXT :pageSize " +
             "ROWS ONLY", nativeQuery = true)
-    List<Admin> getPaginatedAdmins(@Param("search") String search,
-                                       @Param("pageIndex") Integer pageIndex,
-                                       @Param("pageSize") Integer pageSize);
+    List<Admin> getPaginatedAdmins(@Param("searchName") String name,
+                                   @Param("searchLogin") String login,
+                                   @Param("pageIndex") Integer pageIndex,
+                                   @Param("pageSize") Integer pageSize);
 
     @Query(value = "SELECT COUNT(*) FROM admins a INNER JOIN accounts acc on acc.id = a.account_id where acc.full_name LIKE %:search%",
             nativeQuery = true)

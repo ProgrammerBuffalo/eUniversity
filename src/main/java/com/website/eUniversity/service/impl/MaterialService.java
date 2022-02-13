@@ -4,10 +4,7 @@ import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.entity.MaterialRequestDTO;
 import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
 import com.website.eUniversity.model.entity.*;
-import com.website.eUniversity.repository.IAccountRepository;
-import com.website.eUniversity.repository.IEducationalProcessRepository;
-import com.website.eUniversity.repository.IGroupDisciplineRepository;
-import com.website.eUniversity.repository.IMaterialRepository;
+import com.website.eUniversity.repository.*;
 import com.website.eUniversity.service.IFileService;
 import com.website.eUniversity.service.IMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +35,12 @@ public class MaterialService implements IMaterialService {
 
     @Autowired
     private IAccountRepository accountRepository;
+
+    @Autowired
+    private IStudentRepository studentRepository;
+
+    @Autowired
+    private IStudentMaterialRepository studentMaterialRepository;
 
     @Override
     public List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId) throws NotFoundException {
@@ -78,15 +81,23 @@ public class MaterialService implements IMaterialService {
         Account account = accountRepository.findAccountById(materialRequestDTO.getAccountId())
                 .orElseThrow(() -> new NotFoundException("Account not found"));
 
-
         File file = fileService.uploadFile(materialRequestDTO.getMultipartFile());
 
         Material material = materialRepository.save(
                 new Material().setOrder(materialRequestDTO.getOrder())
+                        .setDescription(materialRequestDTO.getDescription())
                         .setFile(file)
                         .setGroupDiscipline(groupDiscipline)
                         .setEducationalProcess(educationalProcess)
                         .setUserId(account.getId()));
+
+        studentRepository.findByAccount(account)
+                .ifPresent(student -> {
+                    studentMaterialRepository.save(new StudentMaterial()
+                            .setStudent(student)
+                            .setMaterial(material));
+                }
+        );
 
         return Material.toDTO(material);
     }
@@ -106,6 +117,8 @@ public class MaterialService implements IMaterialService {
                 .orElseThrow(() -> new NotFoundException("Material not found"));
 
         MaterialResponseDTO materialResponseDTO = Material.toDTO(material);
+
+        materialRepository.delete(material);
 
         return materialResponseDTO;
     }
