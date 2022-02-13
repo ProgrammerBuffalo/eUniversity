@@ -37,7 +37,7 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
 
     @Query(value = "SELECT * FROM students " +
             "INNER JOIN accounts on students.account_id = accounts.id " +
-            "WHERE accounts.full_name LIKE %:name% OR %:login% " +
+            "WHERE accounts.full_name LIKE %:searchName% OR %:searchLogin% " +
             "ORDER BY students.id DESC " +
             "OFFSET (:pageIndex * :pageSize) " +
             "ROWS FETCH NEXT :pageSize " +
@@ -47,6 +47,8 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
                                        @Param("pageIndex") Integer pageIndex,
                                        @Param("pageSize") Integer pageSize);
 
-    @Query(value = "SELECT COUNT(*) FROM students s INNER JOIN accounts acc on acc.id = s.account_id where acc.full_name LIKE %:search%",
+    @Query(value = "SELECT COUNT(*) FROM students s INNER JOIN accounts acc on acc.id = s.account_id where acc.full_name LIKE %:searchName% AND %:searchLogin%",
             nativeQuery = true)
-    Integer countAllByAccount_FullNameIsLike(@Param("search") String search);}
+    Integer countAllByAccount_FullNameIsLike(@Param("searchName") String name, @Param("searchLogin") String login);
+
+}

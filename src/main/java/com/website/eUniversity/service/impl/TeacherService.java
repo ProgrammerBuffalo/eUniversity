@@ -75,12 +75,12 @@ public class TeacherService extends AccountSaver implements ITeacherService {
     }
 
     @Override
-    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
+    public PaginatedListDTO getUserList(String name, String login, Integer pageIndex, Integer pageSize) {
         return new PaginatedListDTO<TeacherDTO>().setItems(teacherRepository
-                .getPaginatedTeachers(search, pageIndex, pageSize)
+                .getPaginatedTeachers(name, login, pageIndex, pageSize)
                 .stream()
                 .map(Teacher::toDTO)
                 .collect(Collectors.toList()))
-                .setAllItemsCount(teacherRepository.countAllByAccount_FullNameIsLike(search));
+                .setAllItemsCount(teacherRepository.countAllByAccount_FullNameIsLike(name, login));
     }
 }
