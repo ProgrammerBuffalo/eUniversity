@@ -6,7 +6,8 @@ import { GroupService } from 'src/app/services/group.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker'
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class MaterialEduListComponent implements OnInit {
   constructor(
     private groupService: GroupService,
     private materialService: MaterialService,
-    private sheduleService: ScheduleService
+    private sheduleService: ScheduleService,
+    private authService: AuthService
   ) {
     this.groupId = 0;
     this.disciplineId = 0;
@@ -100,8 +102,8 @@ export class MaterialEduListComponent implements OnInit {
     let formData = new FormData();
     formData.append('groupId', this.groupId.toString());
     formData.append('disciplineId', this.disciplineId.toString());
-    formData.append('accountId', '1');
-    formData.append('educationalProccessId', this.EducationalProcessId?.value);
+    formData.append('accountId', this.authService.getAccountId());
+    formData.append('educationalProcessId', this.EducationalProcessId?.value);
     formData.append('description', this.Description?.value);
     formData.append('order', this.Order?.value);
     formData.append('multipartFile', this.getFiles()![0]);

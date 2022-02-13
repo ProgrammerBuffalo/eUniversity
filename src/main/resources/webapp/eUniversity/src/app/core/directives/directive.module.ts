@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { GradeDirective } from './grade.directive';
 
 
@@ -7,9 +6,7 @@ import { GradeDirective } from './grade.directive';
   declarations: [
     GradeDirective
   ],
-  imports: [
-    BrowserModule,
-  ],
+  imports: [],
   exports: [
     GradeDirective
   ]

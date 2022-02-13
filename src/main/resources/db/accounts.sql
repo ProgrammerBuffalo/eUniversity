@@ -25,3 +25,7 @@ insert into accounts values ('109d2e13-5038-4629-830a-349f9b71fa76', 24, 'a4', '
 insert into accounts values ('afc02350-f906-4503-832c-d9dbb5fe181d', 25, 'a5', 'a5','a5','STUDENT');
 insert into accounts values ('24897dc8-9a91-4b4f-8be7-f2a9df5ff4a5', 26, 'a6', 'a6','a6','STUDENT');
 insert into accounts values ('923779e1-57ff-41a3-a229-fd0a8f6dabfa', 27, 'a7', 'a7','a7','STUDENT');
+
+--S-8
+insert into accounts values ('A1BAE09D-6D3B-4149-9BFE-184F8BFCB9DA', 23, 'a7', 'a7','a7','STUDENT');
+insert into accounts values ('B8E08F81-F8AB-4167-8208-B5A570E98D43', 28, 'a7', 'a7','a7','STUDENT');

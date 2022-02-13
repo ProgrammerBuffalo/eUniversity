@@ -69,11 +69,7 @@ export class StudentListComponent implements OnInit {
 
   showAddModal() {
     this.showAddPopup = true;
-
-    this.editForm.get('login')!.setValue('');
-    this.editForm.get('password')!.setValue('');
-    this.editForm.get('fullName')!.setValue('');
-    this.editForm.get('age')!.setValue('');
+    this.addForm.reset();
   }
 
   showEditModal(student: Student) {

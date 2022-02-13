@@ -16,5 +16,4 @@ insert into students values ('B793C037-B459-4583-B688-DCFEEE1D0F71', 4, null);
 insert into students values ('0C26B203-75F9-4AAC-9AB3-E904E322CB9A', 4, null);
 insert into students values ('24897DC8-9A91-4B4F-8BE7-F2A9DF5FF4A5', null, null);
 insert into students values ('0277437C-3F5C-474F-907E-F6EA26D2FC82', null, null);
-insert into students values ('0277437C-3F5C-474F-907E-F6EA26D2FC82', null, null);
 
