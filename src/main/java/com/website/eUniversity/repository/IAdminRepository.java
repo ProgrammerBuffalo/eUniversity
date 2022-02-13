@@ -31,7 +31,7 @@ public interface IAdminRepository extends JpaRepository<Admin, Integer> {
 
     @Query(value = "SELECT * FROM admins " +
             "INNER JOIN accounts on admins.account_id = accounts.id " +
-            "WHERE accounts.full_name LIKE %:search% OR %:login% " +
+            "WHERE accounts.full_name LIKE %:searchName% OR %:searchLogin% " +
             "ORDER BY admins.id DESC " +
             "OFFSET (:pageIndex * :pageSize) " +
             "ROWS FETCH NEXT :pageSize " +
@@ -41,7 +41,7 @@ public interface IAdminRepository extends JpaRepository<Admin, Integer> {
                                    @Param("pageIndex") Integer pageIndex,
                                    @Param("pageSize") Integer pageSize);
 
-    @Query(value = "SELECT COUNT(*) FROM admins a INNER JOIN accounts acc on acc.id = a.account_id where acc.full_name LIKE %:search%",
+    @Query(value = "SELECT COUNT(*) FROM admins a INNER JOIN accounts acc on acc.id = a.account_id where acc.full_name LIKE %:searchName% AND %:searchLogin%",
             nativeQuery = true)
-    Integer countAllByAccount_FullNameIsLike(@Param("search") String search);
+    Integer countAllByAccount_FullNameIsLike(@Param("searchName") String name, @Param("searchLogin") String login);
 }
