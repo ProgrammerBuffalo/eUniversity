@@ -33,29 +33,26 @@ public class AccountsController {
 
     @GetMapping("/students")
     @ApiOperation("Returns students")
-    public ResponseEntity<BaseResponse<?>> getStudents(@RequestParam("nameSearch") String name,
-                                                       @RequestParam("loginSearch") String login,
+    public ResponseEntity<BaseResponse<?>> getStudents(@RequestParam("search") String search,
                                                        @RequestParam("pageIndex") Integer pageIndex,
                                                        @RequestParam("pageSize") Integer pageSize) {
-        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(studentService.getUserList(name, login, pageIndex, pageSize), "Students are returned"));
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(studentService.getUserList(search, pageIndex, pageSize), "Students are returned"));
     }
 
     @GetMapping("/teachers")
     @ApiOperation("Returns teachers")
-    public ResponseEntity<BaseResponse<?>> getTeachers(@RequestParam("nameSearch") String name,
-                                                       @RequestParam("loginSearch") String login,
+    public ResponseEntity<BaseResponse<?>> getTeachers(@RequestParam("search") String search,
                                                        @RequestParam("pageIndex") Integer pageIndex,
                                                        @RequestParam("pageSize") Integer pageSize) {
-        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(teacherService.getUserList(name, login, pageIndex, pageSize), "Teachers are returned"));
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(teacherService.getUserList(search, pageIndex, pageSize), "Teachers are returned"));
     }
 
     @GetMapping("/admins")
     @ApiOperation("Returns admins")
-    public ResponseEntity<BaseResponse<?>> getAdmins(@RequestParam("nameSearch") String name,
-                                                     @RequestParam("loginSearch") String login,
+    public ResponseEntity<BaseResponse<?>> getAdmins(@RequestParam("search") String search,
                                                      @RequestParam("pageIndex") Integer pageIndex,
                                                      @RequestParam("pageSize") Integer pageSize) {
-        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(adminService.getUserList(name, login, pageIndex, pageSize), "Teachers are returned"));
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(adminService.getUserList(search, pageIndex, pageSize), "Teachers are returned"));
     }
 
     @PostMapping("/register-student")

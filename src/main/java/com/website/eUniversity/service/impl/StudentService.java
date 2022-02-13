@@ -72,14 +72,13 @@ public class StudentService extends AccountSaver implements IStudentService {
     }
 
     @Override
-    public PaginatedListDTO getUserList(String name, String login, Integer pageIndex, Integer pageSize) {
-
+    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
         return new PaginatedListDTO<StudentDTO>().setItems(studentRepository
-                .getPaginatedStudents(name, login, pageIndex, pageSize)
+                .getPaginatedStudents(search, pageIndex, pageSize)
                 .stream()
                 .map(Student::toDTO)
                 .collect(Collectors.toList()))
-                .setAllItemsCount(studentRepository.countAllByAccount_FullNameIsLike(name, login));
+                .setAllItemsCount(studentRepository.countAllByAccount_FullNameIsLike(search));
     }
 
 }

@@ -13,5 +13,5 @@ public interface IUserService <T extends UserDTO> {
 
     String delete(String uuid);
 
-    PaginatedListDTO getUserList(String name, String login, Integer pageIndex, Integer pageSize);
+    PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize);
 }

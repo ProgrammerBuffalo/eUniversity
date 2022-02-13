@@ -50,8 +50,7 @@ export class MaterialEduListComponent implements OnInit {
     this.addForm = new FormGroup({
       educationalProcessId: new FormControl(0),
       description: new FormControl(''),
-      order: new FormControl(null),
-      multipartFile: new FormControl(null)
+      order: new FormControl(null)
     });
   }
 
@@ -95,7 +94,9 @@ export class MaterialEduListComponent implements OnInit {
   }
 
   changeMaterial() {
-
+    this.materialService.getEduMaterials(this.groupId, this.disciplineId).subscribe((res: any) => {
+      this.materials = res.data;
+    });
   }
 
   addMaterial() {
