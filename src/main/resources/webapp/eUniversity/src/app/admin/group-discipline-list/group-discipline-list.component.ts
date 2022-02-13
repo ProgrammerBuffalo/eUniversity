@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { GroupDisciplineDTO } from 'src/app/core/DTOs/admin/group-discipline-dto';
+import { GroupDisciplineDTO } from 'src/app/core/DTOs/admin/group/group-discipline-dto';
 import { GroupDiscipline } from 'src/app/core/models/admin/group-discipline';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
@@ -106,7 +106,7 @@ export class GroupDisciplineListComponent implements OnInit {
         }
       },
       error: (res: any) => {
-        alert(res.data);
+        alert('can`t remove teacher with discipline');
       }
     })
   }

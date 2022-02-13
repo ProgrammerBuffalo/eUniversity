@@ -125,7 +125,7 @@ export class ScheduleListComponent implements OnInit {
               break;
             }
           }
-          //this.closeAddForm();
+          this.closeAddForm();
         },
         error: (res: HttpErrorResponse) => {
           alert(res.error.message);

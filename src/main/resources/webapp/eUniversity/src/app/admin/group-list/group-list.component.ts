@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UpdateGroupDTO } from 'src/app/core/DTOs/admin/updae-group';
+import { UpdateGroupDTO } from 'src/app/core/DTOs/admin/group/updae-group';
 import { Group } from 'src/app/core/models/admin/group';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { GroupService } from 'src/app/services/group.service';

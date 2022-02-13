@@ -74,12 +74,12 @@ public class AdminService extends AccountSaver implements IAdminService {
     }
 
     @Override
-    public PaginatedListDTO getUserList(String name, String login, Integer pageIndex, Integer pageSize) {
+    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
         return new PaginatedListDTO<AdminDTO>().setItems(adminRepository
-                .getPaginatedAdmins(name, login, pageIndex, pageSize)
+                .getPaginatedAdmins(search, pageIndex, pageSize)
                 .stream()
                 .map(Admin::toDTO)
                 .collect(Collectors.toList()))
-                .setAllItemsCount(adminRepository.countAllByAccount_FullNameIsLike(name, login));
+                .setAllItemsCount(adminRepository.countAllByAccount_FullNameIsLike(search));
     }
 }

@@ -5,7 +5,7 @@
   </div>
 
   <div class="input-group mt-30">
-    <input type="text" class="form-control" name="search" [(ngModel)]="search" placeholder="Search" />
+    <input type="text" class="form-control" name="search" [(ngModel)]="paginationDTO.search" placeholder="Search" />
     <div class="input-group-btn">
       <button class="btn btn-primary" type="submit" (click)="searchTeachers()">
         <span class="glyphicon glyphicon-search"></span>
@@ -26,7 +26,7 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let item of teachers">
+          <tr *ngFor="let item of teachers.items">
             <th>{{item.userId}}</th>
             <td>{{item.fullName}}</td>
             <td>{{item.login}}</td>
@@ -43,8 +43,11 @@
             </td>
           </tr>
         </tbody>
-
       </table>
+
+      <app-pagination [allItemsCount]="teachers.allItemsCount" [pageSize]="paginationDTO.pageSize"
+        [lengthOfComponent]="10" (pageChange)="onPageChanged($event)">
+      </app-pagination>
     </div>
   </div>
 </div>

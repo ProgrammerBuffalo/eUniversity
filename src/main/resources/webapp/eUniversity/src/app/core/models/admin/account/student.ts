@@ -1,5 +1,3 @@
-import { getTranslationDeclStmts } from "@angular/compiler/src/render3/view/template";
-
 export class Student {
   accountId: string;
   userId: number;

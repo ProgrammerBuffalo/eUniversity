@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddGroupDTO } from '../core/DTOs/admin/add-group';
-import { AttachScheduleDTO } from '../core/DTOs/admin/add-schedule.dto';
-import { AttachStudentDTO } from '../core/DTOs/admin/attach-student-dto';
-import { GroupDisciplineDTO } from '../core/DTOs/admin/group-discipline-dto';
-import { UpdateGroupDTO } from '../core/DTOs/admin/updae-group';
+import { AddGroupDTO } from '../core/DTOs/admin/group/add-group';
+import { AttachStudentDTO } from '../core/DTOs/admin/group/attach-student-dto';
+import { GroupDisciplineDTO } from '../core/DTOs/admin/group/group-discipline-dto';
+import { UpdateGroupDTO } from '../core/DTOs/admin/group/updae-group';
 import { Group } from '../core/models/admin/group';
 import { GroupDiscipline } from '../core/models/admin/group-discipline';
-import { Schedule, ScheduleDiscipline } from '../core/models/admin/schedule';
-import { Student } from '../core/models/admin/student';
+import { Student } from '../core/models/admin/account/student';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
 import { PrepareApi } from './prepare-api';
@@ -62,10 +60,16 @@ export class GroupService {
     return this.http.get<BaseResponse<DDL<number>[]>>(url);
   }
 
-  getStudentsByGroup(id: number): Observable<BaseResponse<Student[]>> {
+  getStudentsByGroup(groupId: number): Observable<BaseResponse<Student[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-students-by-group');
-    let param = { groupId: id }
+    let param = { groupId: groupId }
     return this.http.get<BaseResponse<Student[]>>(url, { params: param });
+  }
+
+  getStudentsByGroupDDL(groupId: number): Observable<BaseResponse<DDL<number>[]>> {
+    let url: string = PrepareApi.prepare(this.controllerName, 'get-all-students-from-group-ddl');
+    let param = { groupId: groupId }
+    return this.http.get<BaseResponse<DDL<number>[]>>(url, { params: param });
   }
 
   attachStudent(dto: AttachStudentDTO): Observable<BaseResponse<any>> {

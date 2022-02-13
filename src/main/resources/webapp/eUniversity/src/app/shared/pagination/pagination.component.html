@@ -1,0 +1,8 @@
+<div class="pagination-wrapper">
+  <div class="pagination">
+    <button class="prev page-numbers" (click)="movePrev()">prev</button>
+    <button [ngClass]="{current: pageIndex==item}" class="page-numbers" *ngFor="let item of pages"
+      (click)="movePage(item)">{{item + 1}}</button>
+    <button class="next page-numbers" (click)="moveNext()">next</button>
+  </div>
+</div>

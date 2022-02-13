@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddDisciplineDTO } from '../core/DTOs/admin/add-discipline-dto';
-import { UpdateDisciplineDTO } from '../core/DTOs/admin/update-discipline-dto';
-import { PaginationDTO } from '../core/DTOs/pagination';
+import { AddDisciplineDTO } from '../core/DTOs/admin/discipline/add-discipline-dto';
+import { UpdateDisciplineDTO } from '../core/DTOs/admin/discipline/update-discipline-dto';
 import { Discipline } from '../core/models/admin/discipline';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
@@ -26,10 +25,10 @@ export class DisciplineService {
     return this.http.post<BaseResponse<number>>(url, discipline);
   }
 
-  getDisciplines(dto: PaginationDTO): Observable<BaseResponse<Discipline[]>> {
+  getDisciplines(): Observable<BaseResponse<Discipline[]>> {
     let url = PrepareApi.prepare(this.controllerName, 'get-all-disciplines');
-    let params = { search: dto.search, index: dto.index, size: dto.size };
-    return this.http.get<BaseResponse<Discipline[]>>(url, { params: params });
+    // let params = { search: dto.search, index: dto.index, size: dto.size };
+    return this.http.get<BaseResponse<Discipline[]>>(url);
   }
 
   getDisciplinesDLL(): Observable<BaseResponse<DDL<number>[]>> {
