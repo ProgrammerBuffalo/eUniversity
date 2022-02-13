@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "Students")
@@ -43,7 +44,7 @@ public class Student {
                 student.getAccount().getAge(),
                 student.getAccount().getLogin(),
                 student.getAccount().getPassword(),
-                student.getGroup().getName()
+                Optional.ofNullable(student.getGroup()).map(Group::getName).orElse("Without group")
         );
     }
 
