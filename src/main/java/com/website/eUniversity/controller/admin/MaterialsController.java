@@ -30,15 +30,15 @@ public class MaterialsController {
     private IMaterialService materialService;
 
     @GetMapping(value = "/educational")
-    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam Integer groupId,
-                                                        @RequestParam Integer disciplineId) throws NotFoundException {
+    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam("groupId") Integer groupId,
+                                                        @RequestParam("disciplineId") Integer disciplineId) throws NotFoundException {
         return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getEducationalMaterials(groupId, disciplineId), "Material are found"));
     }
 
     @GetMapping(value = "/posted-by-student")
-    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam Integer groupId,
-                                                        @RequestParam Integer disciplineId,
-                                                        @RequestParam Integer studentId) throws NotFoundException {
+    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam("groupId") Integer groupId,
+                                                        @RequestParam("disciplineId") Integer disciplineId,
+                                                        @RequestParam("studentId") Integer studentId) throws NotFoundException {
         return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getFilesPostedByStudent(groupId, disciplineId, studentId), "Material are found"));
     }
 

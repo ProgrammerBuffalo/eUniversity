@@ -20,9 +20,8 @@ public class File {
     @Column(name = "file_name")
     private String fileName;
 
-    @Column(name = "created_at", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(name = "created_at")
+    private Date createdAt = new Date();
 
     @OneToOne(mappedBy = "file", cascade = CascadeType.ALL)
     private Material material;
