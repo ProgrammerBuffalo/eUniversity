@@ -6,8 +6,9 @@ import { GroupService } from 'src/app/services/group.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
 import { refreshSelectPicker } from 'src/app/core/util/select-picker'
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -48,9 +49,10 @@ export class MaterialEduListComponent implements OnInit {
     this.showAddPopup = false;
 
     this.addForm = new FormGroup({
-      educationalProcessId: new FormControl(0),
+      educationalProcessId: new FormControl(0, Validators.required),
       description: new FormControl(''),
-      order: new FormControl(null)
+      order: new FormControl('1', Validators.required),
+      fileName: new FormControl('')
     });
   }
 
@@ -59,6 +61,8 @@ export class MaterialEduListComponent implements OnInit {
   get Description() { return this.addForm.get('description') }
 
   get Order() { return this.addForm.get('order'); }
+
+  get FileName() { return this.addForm.get('fileName'); }
 
   ngOnInit(): void {
     this.groupService.getGroupsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
@@ -74,6 +78,7 @@ export class MaterialEduListComponent implements OnInit {
 
   groupChanged() {
     this.groupService.getGroupDisciplinesDDL(this.groupId).subscribe((res: BaseResponse<DDL<number>[]>) => {
+      this.materials = [];
       this.disciplineId = 0;
       this.disciplinesDDL = res.data;
       refreshSelectPicker();
@@ -94,33 +99,48 @@ export class MaterialEduListComponent implements OnInit {
   }
 
   changeMaterial() {
+    this.getMaterilas();
+  }
+
+  getMaterilas() {
     this.materialService.getEduMaterials(this.groupId, this.disciplineId).subscribe((res: any) => {
       this.materials = res.data;
     });
   }
 
   addMaterial() {
-    let formData = new FormData();
-    formData.append('groupId', this.groupId.toString());
-    formData.append('disciplineId', this.disciplineId.toString());
-    formData.append('accountId', this.authService.getAccountId());
-    formData.append('educationalProcessId', this.EducationalProcessId?.value);
-    formData.append('description', this.Description?.value);
-    formData.append('order', this.Order?.value);
-    formData.append('multipartFile', this.getFiles()![0]);
+    if (this.addForm.valid) {
+      let formData = new FormData();
+      formData.append('groupId', this.groupId.toString());
+      formData.append('disciplineId', this.disciplineId.toString());
+      formData.append('accountId', this.authService.getAccountId());
+      formData.append('educationalProcessId', this.EducationalProcessId?.value);
+      formData.append('description', this.Description?.value);
+      formData.append('order', this.Order?.value);
+      formData.append('multipartFile', this.getFiles()![0]);
 
-    this.materialService.uploadMaterial(formData).subscribe((res: any) => {
-      alert('file added');
-      this.showAddPopup = false;
-    });
+      this.materialService.uploadMaterial(formData).subscribe((res: any) => {
+        this.showAddPopup = false;
+        this.getMaterilas();
+      });
+    }
   }
 
   removeMaterial(id: number) {
-
+    this.materialService.removeFile(id).subscribe((res: any) => {
+      for (let i = 0; i < this.materials.length; i++) {
+        if (this.materials[i].id == id) {
+          this.materials.splice(i, 1);
+          break;
+        }
+      }
+    });
   }
 
-  downloadMaterial() {
-
+  downloadMaterial(material: EduMaterial) {
+    this.materialService.downloadFile(material.id).subscribe((res: Blob) => {
+      //saveAs(res, 'aa.jpg');
+    })
   }
 
   handleClick() {

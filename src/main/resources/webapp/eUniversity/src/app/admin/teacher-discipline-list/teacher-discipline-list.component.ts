@@ -10,6 +10,7 @@ import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { DisciplineService } from 'src/app/services/discipline.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 
+
 @Component({
   selector: 'app-teacher-discipline-list',
   templateUrl: './teacher-discipline-list.component.html',

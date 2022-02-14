@@ -95,7 +95,7 @@ export class ScheduleExamListComponent implements OnInit {
 
     this.showAddPopup = true;
 
-    this.teacherService.getDisciplineTeachersDDL(disciplineId).subscribe((res: BaseResponse<DDL<number>[]>) => {
+    this.groupService.getTeachersOfGroupDisciplineDDL(this.groupId, disciplineId).subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.teachersDDL = res.data;
       console.log(this.teachersDDL);
       refreshSelectPicker();

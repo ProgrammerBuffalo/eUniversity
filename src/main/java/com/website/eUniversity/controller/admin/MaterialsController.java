@@ -43,14 +43,14 @@ public class MaterialsController {
     }
 
     @GetMapping(value = "/download-file")
-    public ResponseEntity<BaseResponse<?>> download(@RequestParam Integer materialId)
+    public ResponseEntity<?> download(@RequestParam Integer materialId)
             throws NotFoundException, IOException {
         ByteArrayResource byteArrayResource = materialService.downloadMaterial(materialId);
         return ResponseEntity
                 .ok()
                 .contentLength(byteArrayResource.contentLength())
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(new BaseResponse<>().success(byteArrayResource, "File successfully returned"));
+                .body(byteArrayResource);
 
     }
 
