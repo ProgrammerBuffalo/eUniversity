@@ -32,7 +32,6 @@ public class FileService implements IFileService {
         this.resourceLoader = resourceLoader;
 
         storagePath = Paths.get(fileStorageName).toAbsolutePath().normalize();
-        System.out.println(storagePath);
         Files.createDirectories(storagePath);
     }
 
@@ -48,6 +47,7 @@ public class FileService implements IFileService {
                 .setFileName(fileName)
                 .setFilePath(fullPath.toString())
                 .setFileExtension(extension)
+                .setOriginalFileName(multipartFile.getOriginalFilename())
         );
     }
 
