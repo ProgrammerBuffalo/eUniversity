@@ -6,6 +6,8 @@ public class MaterialResponseDTO {
 
     private String accountId;
 
+    private String userFullName;
+
     private Integer order;
 
     private String description;
@@ -65,6 +67,15 @@ public class MaterialResponseDTO {
 
     public MaterialResponseDTO setOrder(Integer order) {
         this.order = order;
+        return this;
+    }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public MaterialResponseDTO setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
         return this;
     }
 }

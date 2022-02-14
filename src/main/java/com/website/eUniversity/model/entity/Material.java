@@ -37,6 +37,9 @@ public class Material {
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterials;
 
+    @Transient
+    private String userName;
+
     public Material() {
 
     }
@@ -51,7 +54,7 @@ public class Material {
         this.educationalProcess = educationalProcess;
     }
 
-    public Material(Integer id, Integer order, File file, String description, String accountId,
+    public Material(Integer id, Integer order, File file, String description, String accountId, String userName,
                     GroupDiscipline groupDiscipline, EducationalProcess educationalProcess) {
         this.id = id;
         this.order = order;
@@ -60,16 +63,18 @@ public class Material {
         this.groupDiscipline = groupDiscipline;
         this.educationalProcess = educationalProcess;
         this.userId = accountId;
+        this.userName = userName;
     }
 
     public static MaterialResponseDTO toDTO(Material material) {
         return new MaterialResponseDTO()
-                .setId(material.id)
-                .setFileName(material.file.getFileName())
-                .setDescription(material.description)
-                .setEducationalProcess(material.educationalProcess.getName())
-                .setAccountId(material.userId)
-                .setOrder(material.order);
+                .setId(material.getId())
+                .setFileName(material.getFile().getOriginalFileName())
+                .setDescription(material.getDescription())
+                .setEducationalProcess(material.getEducationalProcess().getName())
+                .setAccountId(material.getUserId())
+                .setUserFullName(material.getUserName())
+                .setOrder(material.getOrder());
     }
 
     public Integer getId() {
@@ -144,4 +149,12 @@ public class Material {
         return this;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public Material setUserName(String userName) {
+        this.userName = userName;
+        return this;
+    }
 }
