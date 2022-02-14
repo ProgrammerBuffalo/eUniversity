@@ -1,5 +1,5 @@
 <!--WHAT TO USE
-1. Student disciplines component
+1. Student table themes component
 2. Student aside manu component
 3. Student footer component
 4. Student header component-->
@@ -11,17 +11,25 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<link rel="stylesheet" href="../../../general/null.css">
+
+
+
 	<link rel="stylesheet" href="../../../general/general.css">
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
 
 	<link rel="stylesheet" href="../../../components/student-aside-menu/style.css">
 	<link rel="stylesheet" href="../../../components/student-header/style.css">
 	<link rel="stylesheet" href="../../../components/student-footer/style.css">
 	<link rel="stylesheet" href="../../../components/student-table-materials/style.css">
+	<link rel="stylesheet" href="../../../shared/student-table.css">
 
-	<link rel="stylesheet" href="../style.css">
-	<link rel="stylesheet" href="style.css">
-	<title>Students Discipline</title>
+
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
+	<title>Students Materials</title>
 </head>
 
 <body>
@@ -70,41 +78,54 @@
 	</aside>
 	<!--STUDENT-ASIDE-->
 
-	<!--STUDENT-DISCIPLINES-->
+
 	<main class="main">
-		<div class="tile tile_journal">
-			<span>
-				<h3 class="tile__title">Journal</h3>
-			</span>
+		<!--STUDENT-TABLE-THEMES-->
+		<table>
+			<thead>
+				<tr>
+					<th>Order</th>
+					<th>Theme name</th>
+					<th>Dates</th>
+				</tr>
+			</thead>
 
-		</div>
+			<tbody>
+				<tr>
+					<td>Order 1</td>
+					<td>Theme 1</td>
+					<td>12.01.2020</td>
+				</tr>
 
-		<div class="tile tile_material">
-			<span>
-				<h3 class="tile__title">Education Materials</h3>
-			</span>
+				<tr>
+					<td>Order 2</td>
+					<td>Theme 2</td>
+					<td>12.01.2020</td>
+				</tr>
 
-		</div>
+				<tr>
+					<td>Order 3</td>
+					<td>Theme 3</td>
+					<td>12.01.2020</td>
 
+				</tr>
 
-		<div class="tile tile_uploads">
-			<span>
-				<h3 class="tile__title">Uploads</h3>
-			</span>
+				<tr>
+					<td>Order 4</td>
+					<td>Theme 4</td>
+					<td>12.01.2020</td>
+				</tr>
 
-		</div>
-
-
-		<div class="tile tile_themes">
-			<span>
-				<h3 class="tile__title">Themes</h3>
-			</span>
-
-		</div>
-
-
+				<tr>
+					<td>Order 5</td>
+					<td>Theme 5</td>
+					<td>12.01.2020</td>
+				</tr>
+			</tbody>
+		</table>
+		<!--STUDENT-TABLE-THEMES-->
 	</main>
-	<!--STUDENT-DISCIPLINES-->
+
 
 	<!--STUDENT-FOOTER-->
 	<footer class="footer">
