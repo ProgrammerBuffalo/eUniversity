@@ -14,6 +14,14 @@
 
 	<link rel="stylesheet" href="../../../general/null.css">
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 	<link rel="stylesheet" href="../../../components/student-aside-menu/style.css">
 	<link rel="stylesheet" href="../../../components/student-header/style.css">
 	<link rel="stylesheet" href="../../../components/student-footer/style.css">
@@ -33,22 +41,185 @@
 </head>
 
 <body>
-	<!--STUDENT-HEADER-->
-	<header class="header">
-		<div class="header-arrow">
-		</div>
-
-		<div class="profile">
-			<div class="profile-avatar">
-				<img src="../../../images/icons/avatar-icon.png" alt="avatar">
+	<div class="wrapper">
+		<!--STUDENT-HEADER-->
+		<header class="header">
+			<div class="header-arrow">
 			</div>
 
-			<p>John Johnson</p>
-			<p>Course: 1</p>
-			<p>Faculty: Web development</p>
-		</div>
-	</header>
-	<!--STUDENT-HEADER-->
+			<div class="profile">
+				<div class="profile-avatar">
+					<img src="../../../images/icons/avatar-icon.png" alt="avatar">
+				</div>
+
+				<p>John Johnson</p>
+				<p>Course: 1</p>
+				<p>Faculty: Web development</p>
+			</div>
+		</header>
+		<!--STUDENT-HEADER-->
+
+		<main class="main">
+			<div class="flex col-gap-20 mb-20 f-between">
+
+				<!--ANGULAR SELECT HERE-->
+				<select class="selectpicker" data-live-search="true" name="works" id="works" class="fw-80">
+					<option value="lab">Labs</option>
+					<option value="presentation">Presentations</option>
+				</select>
+				<!--ANGULAR SELECT HERE-->
+
+				<div class="btn btn-info fw-10">Upload file</div>
+			</div>
+
+			<!--STUDENT-TABLE-UPLOADS-->
+			<table>
+				<table>
+					<thead>
+						<tr>
+							<th>Theme</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Order</th>
+							<th class="download">Download</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>Theme 1</td>
+							<td>Lecture</td>
+							<td>Description 1</td>
+							<td>Order 1</td>
+							<td>
+								<div class="table-img">
+									<img src="../../../images/icons/download-icon.png" alt="download">
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Theme 2</td>
+							<td>Self</td>
+							<td>Description 2</td>
+							<td>Order 2</td>
+							<td>
+								<div class="table-img">
+									<img src="../../../images/icons/download-icon.png" alt="download">
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Theme 3</td>
+							<td>Lecture</td>
+							<td>Description 3</td>
+							<td>Order 3</td>
+							<td>
+								<div class="table-img">
+									<img src="../../../images/icons/download-icon.png" alt="download">
+								</div>
+							</td>
+
+						</tr>
+
+						<tr>
+							<td>Theme 4</td>
+							<td>Self</td>
+							<td>Description 4</td>
+							<td>Order 4</td>
+							<td>
+								<div class="table-img">
+									<img src="../../../images/icons/download-icon.png" alt="download">
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Theme 5</td>
+							<td>Lecture</td>
+							<td>Description 5</td>
+							<td>Order 5</td>
+							<td>
+								<div class="table-img">
+									<img src="../../../images/icons/download-icon.png" alt="download">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--STUDENT-TABLE-UPLOADS-->
+		</main>
+
+
+		<!--STUDENT-FOOTER-->
+		<footer class="footer">
+			<div class="footer-info">
+				<div class="footer-column">
+					<h5>About</h5>
+					<ul>
+						<li>
+							<a href="#">Company</a>
+						</li>
+						<li>
+							<a href="#">Team</a>
+						</li>
+						<li>
+							<a href="#">Career</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-column">
+					<h5>Contact us</h5>
+					<ul>
+						<li>
+							+994-51-123-12-12
+						</li>
+						<li>
+							+994-70-123-12-12
+						</li>
+						<li>
+							+994-12-156-12-12
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-column">
+					<h5>EUniversity</h5>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tenetur dolorum, neque ab consequatur
+						eius
+						pariatur dicta suscipit? Deserunt, nesciunt rem. Debitis maiores nam ut molestiae, officia quos
+						aliquam!
+						Sunt!</p>
+				</div>
+			</div>
+
+			<div class="footer-links">
+				<a class="footer-btn footer-btn_violet" href="#">
+					<img src="../../../images/icons/facebook-logo.png" alt="facebook">
+				</a>
+
+				<a class="footer-btn footer-btn_blue" href="#">
+					<img src="../../../images/icons/twitter-logo.png" alt="twitter">
+				</a>
+
+				<a class="footer-btn footer-btn_red" href="#">
+					<img src="../../../images/icons/instagram-logo.png" alt="instagram">
+				</a>
+
+				<a class="footer-btn footer-btn_green" href="#">
+					<img src="../../../images/icons/whatsapp-logo.png" alt="whatsapp">
+				</a>
+			</div>
+
+			<p class="footer-bottom">
+				EUniversity © 2022
+			</p>
+		</footer>
+		<!--STUDENT-FOOTER-->
+	</div>
+
 
 	<!--STUDENT-ASIDE-->
 	<aside class="aside">
@@ -79,163 +250,7 @@
 	<!--STUDENT-ASIDE-->
 
 
-	<main class="main">
-		<div class="flex col-gap-20 mb-20 f-between">
 
-			<!--ANGULAR SELECT HERE-->
-			<select name="works" id="works" class="fw-80">
-				<option value="lab">Labs</option>
-				<option value="presentation">Presentations</option>
-			</select>
-			<!--ANGULAR SELECT HERE-->
-
-			<div class="btn btn-info fw-10">Upload file</div>
-		</div>
-
-		<!--STUDENT-TABLE-UPLOADS-->
-		<table>
-			<table>
-				<thead>
-					<tr>
-						<th>Theme</th>
-						<th>Type</th>
-						<th>Description</th>
-						<th>Order</th>
-						<th class="download">Download</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr>
-						<td>Theme 1</td>
-						<td>Lecture</td>
-						<td>Description 1</td>
-						<td>Order 1</td>
-						<td>
-							<div class="table-img">
-								<img src="../../../images/icons/download-icon.png" alt="download">
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<td>Theme 2</td>
-						<td>Self</td>
-						<td>Description 2</td>
-						<td>Order 2</td>
-						<td>
-							<div class="table-img">
-								<img src="../../../images/icons/download-icon.png" alt="download">
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<td>Theme 3</td>
-						<td>Lecture</td>
-						<td>Description 3</td>
-						<td>Order 3</td>
-						<td>
-							<div class="table-img">
-								<img src="../../../images/icons/download-icon.png" alt="download">
-							</div>
-						</td>
-
-					</tr>
-
-					<tr>
-						<td>Theme 4</td>
-						<td>Self</td>
-						<td>Description 4</td>
-						<td>Order 4</td>
-						<td>
-							<div class="table-img">
-								<img src="../../../images/icons/download-icon.png" alt="download">
-							</div>
-						</td>
-					</tr>
-
-					<tr>
-						<td>Theme 5</td>
-						<td>Lecture</td>
-						<td>Description 5</td>
-						<td>Order 5</td>
-						<td>
-							<div class="table-img">
-								<img src="../../../images/icons/download-icon.png" alt="download">
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!--STUDENT-TABLE-UPLOADS-->
-	</main>
-
-
-	<!--STUDENT-FOOTER-->
-	<footer class="footer">
-		<div class="footer-info">
-			<div class="footer-column">
-				<h5>About</h5>
-				<ul>
-					<li>
-						<a href="#">Company</a>
-					</li>
-					<li>
-						<a href="#">Team</a>
-					</li>
-					<li>
-						<a href="#">Career</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="footer-column">
-				<h5>Contact us</h5>
-				<ul>
-					<li>
-						+994-51-123-12-12
-					</li>
-					<li>
-						+994-70-123-12-12
-					</li>
-					<li>
-						+994-12-156-12-12
-					</li>
-				</ul>
-			</div>
-
-			<div class="footer-column">
-				<h5>EUniversity</h5>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tenetur dolorum, neque ab consequatur eius
-					pariatur dicta suscipit? Deserunt, nesciunt rem. Debitis maiores nam ut molestiae, officia quos aliquam!
-					Sunt!</p>
-			</div>
-		</div>
-
-		<div class="footer-links">
-			<a class="footer-btn footer-btn_violet" href="#">
-				<img src="../../../images/icons/facebook-logo.png" alt="facebook">
-			</a>
-
-			<a class="footer-btn footer-btn_blue" href="#">
-				<img src="../../../images/icons/twitter-logo.png" alt="twitter">
-			</a>
-
-			<a class="footer-btn footer-btn_red" href="#">
-				<img src="../../../images/icons/instagram-logo.png" alt="instagram">
-			</a>
-
-			<a class="footer-btn footer-btn_green" href="#">
-				<img src="../../../images/icons/whatsapp-logo.png" alt="whatsapp">
-			</a>
-		</div>
-
-		<p class="footer-bottom">
-			EUniversity © 2022
-		</p>
-	</footer>
-	<!--STUDENT-FOOTER-->
 	<script src="../app.js"></script>
 	<script src="app.js"></script>
 </body>

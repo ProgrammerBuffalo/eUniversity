@@ -12,6 +12,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../../../general/null.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 	<link rel="stylesheet" href="../../../general/general.css">
 
 	<link rel="stylesheet" href="../../../components/student-aside-menu/style.css">
@@ -26,22 +35,148 @@
 
 <body>
 
-	<!--STUDENT-HEADER-->
-	<header class="header">
-		<div class="header-arrow">
-		</div>
-
-		<div class="profile">
-			<div class="profile-avatar">
-				<img src="../../../images/icons/avatar-icon.png" alt="avatar">
+	<div class="wrapper">
+		<!--STUDENT-HEADER-->
+		<header class="header">
+			<div class="header-arrow">
 			</div>
 
-			<p>John Johnson</p>
-			<p>Course: 1</p>
-			<p>Faculty: Web development</p>
-		</div>
-	</header>
-	<!--STUDENT-HEADER-->
+			<div class="profile">
+				<div class="profile-avatar">
+					<img src="../../../images/icons/avatar-icon.png" alt="avatar">
+				</div>
+
+				<p>John Johnson</p>
+				<p>Course: 1</p>
+				<p>Faculty: Web development</p>
+			</div>
+		</header>
+		<!--STUDENT-HEADER-->
+
+		<!--STUDENT-MAIN-->
+		<main class="main">
+			<!--STUDENT MAIN COMPONENT-->
+			<div class="tiles">
+				<a href="#" class="tile tile_violet">
+					<div class="tile__image">
+						<img src="../../../images/icons/student-journal.png" alt="journal">
+					</div>
+
+					<h3 class="tile__title tile_violet__title">Journal</h3>
+				</a>
+
+				<a href="#" class="tile tile_blue">
+					<div class="tile__image">
+						<img src="../../../images/icons/student-discipline.png" alt="discipline">
+					</div>
+
+					<h3 class="tile__title tile_blue__title">Discipline</h3>
+				</a>
+
+				<a href="#" class="tile tile_green">
+					<div class="tile__image">
+						<img src="../../../images/icons/student-schedule.png" alt="schedule">
+					</div>
+
+					<h3 class="tile__title tile_green__title">Schedule</h3>
+				</a>
+
+				<a href="#" class="tile tile_yellow">
+					<div class="tile__image">
+						<img src="../../../images/icons/student-exam.png" alt="exam">
+					</div>
+
+					<h3 class="tile__title tile_yellow__title">Exams</h3>
+				</a>
+
+				<a href="#" class="tile tile_orange">
+					<div class="tile__image">
+						<img src="../../../images/icons/student-teachers.png" alt="teachers">
+					</div>
+
+					<h3 class="tile__title tile_orange__title">Teachers</h3>
+				</a>
+
+				<a href="#" class="tile tile_red">
+					<div class="tile__image">
+						<img src="../../../images/icons/student-group.png" alt="groups">
+					</div>
+
+					<h3 class="tile__title tile_red__title">Groups</h3>
+				</a>
+			</div>
+			<!--STUDENT MAIN COMPONENT-->
+
+		</main>
+		<!--STUDENT-MAIN-->
+
+		<!--STUDENT-FOOTER-->
+		<footer class="footer">
+			<div class="footer-info">
+				<div class="footer-column">
+					<h5>About</h5>
+					<ul>
+						<li>
+							<a href="#">Company</a>
+						</li>
+						<li>
+							<a href="#">Team</a>
+						</li>
+						<li>
+							<a href="#">Career</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-column">
+					<h5>Contact us</h5>
+					<ul>
+						<li>
+							+994-51-123-12-12
+						</li>
+						<li>
+							+994-70-123-12-12
+						</li>
+						<li>
+							+994-12-156-12-12
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-column">
+					<h5>EUniversity</h5>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tenetur dolorum, neque ab consequatur
+						eius
+						pariatur dicta suscipit? Deserunt, nesciunt rem. Debitis maiores nam ut molestiae, officia quos
+						aliquam!
+						Sunt!</p>
+				</div>
+			</div>
+
+			<div class="footer-links">
+				<a class="footer-btn footer-btn_violet" href="#">
+					<img src="../../../images/icons/facebook-logo.png" alt="facebook">
+				</a>
+
+				<a class="footer-btn footer-btn_blue" href="#">
+					<img src="../../../images/icons/twitter-logo.png" alt="twitter">
+				</a>
+
+				<a class="footer-btn footer-btn_red" href="#">
+					<img src="../../../images/icons/instagram-logo.png" alt="instagram">
+				</a>
+
+				<a class="footer-btn footer-btn_green" href="#">
+					<img src="../../../images/icons/whatsapp-logo.png" alt="whatsapp">
+				</a>
+			</div>
+
+			<p class="footer-bottom">
+				EUniversity © 2022
+			</p>
+		</footer>
+		<!--STUDENT-FOOTER-->
+	</div>
 
 	<!--STUDENT-ASIDE-MENU-->
 	<aside class="aside">
@@ -71,127 +206,6 @@
 	</aside>
 	<!--STUDENT-ASIDE-MENU-->
 
-	<!--STUDENT-MAIN-->
-	<main class="main">
-		<!--STUDENT MAIN COMPONENT-->
-		<div class="tiles">
-			<a href="#" class="tile tile_violet">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-journal.png" alt="journal">
-				</div>
-
-				<h3 class="tile__title tile_violet__title">Journal</h3>
-			</a>
-
-			<a href="#" class="tile tile_blue">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-discipline.png" alt="discipline">
-				</div>
-
-				<h3 class="tile__title tile_blue__title">Discipline</h3>
-			</a>
-
-			<a href="#" class="tile tile_green">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-schedule.png" alt="schedule">
-				</div>
-
-				<h3 class="tile__title tile_green__title">Schedule</h3>
-			</a>
-
-			<a href="#" class="tile tile_yellow">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-exam.png" alt="exam">
-				</div>
-
-				<h3 class="tile__title tile_yellow__title">Exams</h3>
-			</a>
-
-			<a href="#" class="tile tile_orange">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-teachers.png" alt="teachers">
-				</div>
-
-				<h3 class="tile__title tile_orange__title">Teachers</h3>
-			</a>
-
-			<a href="#" class="tile tile_red">
-				<div class="tile__image">
-					<img src="../../../images/icons/student-group.png" alt="groups">
-				</div>
-
-				<h3 class="tile__title tile_red__title">Groups</h3>
-			</a>
-		</div>
-		<!--STUDENT MAIN COMPONENT-->
-
-	</main>
-	<!--STUDENT-MAIN-->
-
-	<!--STUDENT-FOOTER-->
-	<footer class="footer">
-		<div class="footer-info">
-			<div class="footer-column">
-				<h5>About</h5>
-				<ul>
-					<li>
-						<a href="#">Company</a>
-					</li>
-					<li>
-						<a href="#">Team</a>
-					</li>
-					<li>
-						<a href="#">Career</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="footer-column">
-				<h5>Contact us</h5>
-				<ul>
-					<li>
-						+994-51-123-12-12
-					</li>
-					<li>
-						+994-70-123-12-12
-					</li>
-					<li>
-						+994-12-156-12-12
-					</li>
-				</ul>
-			</div>
-
-			<div class="footer-column">
-				<h5>EUniversity</h5>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tenetur dolorum, neque ab consequatur eius
-					pariatur dicta suscipit? Deserunt, nesciunt rem. Debitis maiores nam ut molestiae, officia quos aliquam!
-					Sunt!</p>
-			</div>
-		</div>
-
-		<div class="footer-links">
-			<a class="footer-btn footer-btn_violet" href="#">
-				<img src="../../../images/icons/facebook-logo.png" alt="facebook">
-			</a>
-
-			<a class="footer-btn footer-btn_blue" href="#">
-				<img src="../../../images/icons/twitter-logo.png" alt="twitter">
-			</a>
-
-			<a class="footer-btn footer-btn_red" href="#">
-				<img src="../../../images/icons/instagram-logo.png" alt="instagram">
-			</a>
-
-			<a class="footer-btn footer-btn_green" href="#">
-				<img src="../../../images/icons/whatsapp-logo.png" alt="whatsapp">
-			</a>
-		</div>
-
-		<p class="footer-bottom">
-			EUniversity © 2022
-		</p>
-	</footer>
-	<!--STUDENT-FOOTER-->
 	<script src="../app.js"></script>
 </body>
 
