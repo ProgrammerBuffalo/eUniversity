@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { saveAs } from 'file-saver';
+import { MaterialFile } from 'src/app/core/models/admin/material-file';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
+import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { GroupService } from 'src/app/services/group.service';
 import { MaterialService } from 'src/app/services/material.service';
 
@@ -19,6 +22,8 @@ export class MaterialStudentListComponent implements OnInit {
   disciplinesDDL: DDL<number>[];
   studentsDDL: DDL<number>[];
 
+  materials: MaterialFile[];
+
   constructor(
     private groupService: GroupService,
     private materialService: MaterialService
@@ -30,6 +35,8 @@ export class MaterialStudentListComponent implements OnInit {
     this.groupsDDL = [];
     this.disciplinesDDL = [];
     this.studentsDDL = [];
+
+    this.materials = [];
   }
 
   ngOnInit(): void {
@@ -40,22 +47,42 @@ export class MaterialStudentListComponent implements OnInit {
 
   groupChanged() {
     this.groupService.getGroupDisciplinesDDL(this.groupId).subscribe((res: BaseResponse<DDL<number>[]>) => {
-      this.disciplineId = 0;
       this.disciplinesDDL = res.data;
+      refreshSelectPicker();
     })
+
+    this.groupService.getStudentsByGroupDDL(this.groupId).subscribe((res: BaseResponse<DDL<number>[]>) => {
+      this.studentsDDL = res.data;
+      refreshSelectPicker();
+    })
+
+    this.disciplineId = 0;
+    this.studentId = 0;
+    this.materials = [];
   }
 
   changeMaterial() {
-
-  }
-
-  addMaterial() {
-    if (this.groupId != 0 && this.disciplineId != 0) {
-
+    if (this.groupId != 0 && this.disciplineId != 0 && this.studentId != 0) {
+      this.materialService.getStudentMaterials(this.groupId, this.disciplineId, this.studentId).subscribe((res: BaseResponse<MaterialFile[]>) => {
+        this.materials = res.data;
+      })
     }
   }
 
-  removeMaterial() {
+  downloadMaterial(material: MaterialFile) {
+    this.materialService.downloadFile(material.id).subscribe((res: Blob) => {
+      saveAs(res, material.fileName);
+    })
+  }
 
+  removeMaterial(id: number) {
+    this.materialService.removeFile(id).subscribe((res: any) => {
+      for (let i = 0; i < this.materials.length; i++) {
+        if (this.materials[i].id == id) {
+          this.materials.splice(i, 1);
+          break;
+        }
+      }
+    });
   }
 }

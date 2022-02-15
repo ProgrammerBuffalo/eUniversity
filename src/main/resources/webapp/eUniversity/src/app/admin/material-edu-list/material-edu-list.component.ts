@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EduMaterial } from 'src/app/core/models/admin/material/edu-material';
+import { MaterialFile } from 'src/app/core/models/admin/material-file';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
 import { GroupService } from 'src/app/services/group.service';
@@ -25,7 +25,7 @@ export class MaterialEduListComponent implements OnInit {
   disciplinesDDL: DDL<number>[];
   eduProccessesDDL: DDL<number>[];
 
-  materials: EduMaterial[];
+  materials: MaterialFile[];
 
   showAddPopup: boolean;
 
@@ -137,9 +137,9 @@ export class MaterialEduListComponent implements OnInit {
     });
   }
 
-  downloadMaterial(material: EduMaterial) {
+  downloadMaterial(material: MaterialFile) {
     this.materialService.downloadFile(material.id).subscribe((res: Blob) => {
-      //saveAs(res, 'aa.jpg');
+      saveAs(res, material.fileName);
     })
   }
 

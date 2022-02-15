@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EduMaterial } from '../core/models/admin/material/edu-material';
-import { StudentMaterial } from '../core/models/admin/material/student-material';
+import { MaterialFile } from '../core/models/admin/material-file';
 import { BaseResponse } from '../core/models/base/base-response';
 import { PrepareApi } from './prepare-api';
 import { saveAs } from 'file-saver';
@@ -24,16 +23,16 @@ export class MaterialService {
     return this.http.post(url, formData);
   }
 
-  getEduMaterials(groupId: number, disciplineId: number): Observable<BaseResponse<EduMaterial[]>> {
+  getEduMaterials(groupId: number, disciplineId: number): Observable<BaseResponse<MaterialFile[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'educational');
     let params = { groupId: groupId, disciplineId: disciplineId };
-    return this.http.get<BaseResponse<EduMaterial[]>>(url, { params: params });
+    return this.http.get<BaseResponse<MaterialFile[]>>(url, { params: params });
   }
 
-  getStudentMaterials(groupId: number, disciplineId: number, studentId: number): Observable<BaseResponse<EduMaterial[]>> {
+  getStudentMaterials(groupId: number, disciplineId: number, studentId: number): Observable<BaseResponse<MaterialFile[]>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'posted-by-student');
     let params = { groupId: groupId, disciplineId: disciplineId, studentId: studentId };
-    return this.http.get<BaseResponse<EduMaterial[]>>(url, { params: params });
+    return this.http.get<BaseResponse<MaterialFile[]>>(url, { params: params });
   }
 
   //guid
