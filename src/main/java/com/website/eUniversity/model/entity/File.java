@@ -20,6 +20,9 @@ public class File {
     @Column(name = "file_name")
     private String fileName;
 
+    @Column(name = "original_file_name")
+    private String originalFileName;
+
     @Column(name = "created_at")
     private Date createdAt = new Date();
 
@@ -81,6 +84,15 @@ public class File {
 
     public File setMaterial(Material material) {
         this.material = material;
+        return this;
+    }
+
+    public String getOriginalFileName() {
+        return originalFileName;
+    }
+
+    public File setOriginalFileName(String originalFileName) {
+        this.originalFileName = originalFileName;
         return this;
     }
 }
