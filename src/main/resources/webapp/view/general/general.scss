@@ -28,6 +28,14 @@
 		overflow: scroll;
 	}
 }
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.main {
+	flex: 1 1 auto;
+}
 /*CONTAINER*/
 
 /*BUTTONS*/
@@ -158,28 +166,29 @@
 }
 /*INPUTS*/
 
-/*TABLE*/
-.td-blue {
+/*ICONS*/
+.fa-file-download {
 	transition: all 0.3s ease 0s;
+	text-align: center;
 	&:hover {
-		background-color: #bec5ff !important;
+		color: #60aaff;
 	}
 }
-
-.td-red {
+.fa-times {
 	transition: all 0.3s ease 0s;
+	text-align: center;
 	&:hover {
-		background-color: #ffb1b1 !important;
+		color: #ff6060;
 	}
 }
-
-.td-green {
+.fa-pencil-alt {
 	transition: all 0.3s ease 0s;
+	text-align: center;
 	&:hover {
-		background-color: #b1ffb1 !important;
+		color: #34a500;
 	}
 }
-/*TABLE*/
+/*ICONS*/
 
 /*MARGINS & PADDINGS*/
 .m-0 {
