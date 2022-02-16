@@ -11,7 +11,6 @@
 </div>
 
 
-<!--TABLE-ADMIN-JOURNAL COMPONENT-->
 <div class="table-block">
   <div class="table-block__header">
     <h3 class="table-block__title">Journal</h3>
@@ -45,7 +44,7 @@
             <td>{{item.feedback}}</td>
             <td class="td-red">
               <div class="table-btn remove-btn">
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times fa-lg"></i>
               </div>
             </td>
           </tr>
@@ -116,13 +115,11 @@
     </div>
   </div>
 </div>
-<!--TABLE-ADMIN-JOURNAL COMPONENT-->
 
 
 <div *ngIf="showEditPopup" class="modal">
   <div class="modal-content" style="width: 500px">
     <span class="close" (click)="closeEditModal()">&times;</span>
-    <!--ADD-JOURNAL COMPONENT-->
     <form class="register">
       <select class="selectpicker2 mb-20" data-live-search="true" name="disciplines" id="disciplines">
         <option selected class="d-none">Select discipline</option>
@@ -168,6 +165,5 @@
 
       <input type="submit" class="btn btn-danger" value="Add">
     </form>
-    <!--ADD-JOURNAL COMPONENT-->
   </div>
 </div>
