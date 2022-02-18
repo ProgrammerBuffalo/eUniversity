@@ -154,4 +154,15 @@
 .tile_themes:hover span {
   background-color: rgba(97, 52, 0, 0.6);
 }
+
+#parallax {
+  position: relative;
+  background-image: url("../../../images/student-bg2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: scroll;
+  width: 100%;
+  height: 100vh;
+}
 /*# sourceMappingURL=style.css.map */
