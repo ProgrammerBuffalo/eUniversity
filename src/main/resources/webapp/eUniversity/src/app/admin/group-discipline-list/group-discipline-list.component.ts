@@ -28,7 +28,7 @@ export class GroupDisciplineListComponent implements OnInit {
   selectedTeacherId;
   selectedDisciplineId;
 
-  showAddPopup: boolean;
+  isAddFormVisible: boolean;
 
   constructor(
     private groupService: GroupService,
@@ -45,7 +45,7 @@ export class GroupDisciplineListComponent implements OnInit {
     this.selectedDisciplineId = 0;
     this.selectedTeacherId = 0;
 
-    this.showAddPopup = false;
+    this.isAddFormVisible = false;
 
     this.addForm = new FormGroup({
       teacher: new FormControl(''),
@@ -111,14 +111,14 @@ export class GroupDisciplineListComponent implements OnInit {
     })
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  showAddForm() {
+    this.isAddFormVisible = true;
     this.selectedDisciplineId = 0
     this.selectedTeacherId = 0;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
     this.selectedDisciplineId = 0
     this.selectedTeacherId = 0;
   }

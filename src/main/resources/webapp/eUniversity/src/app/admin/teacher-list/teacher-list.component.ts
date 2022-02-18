@@ -14,8 +14,8 @@ import { AccountService } from 'src/app/services/accounts.service';
 })
 export class TeacherListComponent implements OnInit {
 
-  showAddPopup: boolean;
-  showEditPopup: boolean;
+  isAddFormVisible: boolean;
+  isEditFormVisible: boolean;
 
   teachers: PaginatedList<Teacher>;
   selectedTeacher!: Teacher;
@@ -44,8 +44,8 @@ export class TeacherListComponent implements OnInit {
   constructor(
     private accountService: AccountService
   ) {
-    this.showAddPopup = false;
-    this.showEditPopup = false;
+    this.isAddFormVisible = false;
+    this.isEditFormVisible = false;
 
     this.addForm = new FormGroup({
       login: new FormControl('', Validators.required),
@@ -69,13 +69,13 @@ export class TeacherListComponent implements OnInit {
     this.getTeachers();
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  showAddForm() {
+    this.isAddFormVisible = true;
     this.addForm.reset();
   }
 
-  showEditModal(teacher: Teacher) {
-    this.showEditPopup = true;
+  showEditForm(teacher: Teacher) {
+    this.isEditFormVisible = true;
     this.selectedTeacher = teacher;
 
     this.editForm.get('login')!.setValue(teacher.login);
@@ -83,12 +83,12 @@ export class TeacherListComponent implements OnInit {
     this.editForm.get('age')!.setValue(teacher.age);
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   addTeacher() {
@@ -97,7 +97,7 @@ export class TeacherListComponent implements OnInit {
         next: (data: BaseResponse<Teacher>) => {
           this.getTeachers();
 
-          this.showAddPopup = false;
+          this.isAddFormVisible = false;
         },
         error: (data) => {
           alert('can`t add teacher');
@@ -116,7 +116,7 @@ export class TeacherListComponent implements OnInit {
           this.selectedTeacher.fullName = this.editFullName?.value;
           this.selectedTeacher.age = this.editAge?.value;
 
-          this.showEditPopup = false;
+          this.isEditFormVisible = false;
         },
         error: (data) => {
           alert('this login alredy exsists');

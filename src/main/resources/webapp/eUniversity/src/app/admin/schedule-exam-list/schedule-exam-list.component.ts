@@ -23,7 +23,7 @@ export class ScheduleExamListComponent implements OnInit {
   groupId: number;
   disciplineId: number;
 
-  showAddPopup: boolean;
+  isAddFormVisible: boolean;
   addForm: FormGroup;
 
   groupsDDL: DDL<number>[];
@@ -42,7 +42,7 @@ export class ScheduleExamListComponent implements OnInit {
     this.groupId = 0;
     this.disciplineId = 0;
 
-    this.showAddPopup = false;
+    this.isAddFormVisible = false;
 
     this.addForm = new FormGroup({
       teacherId: new FormControl(0, Validators.required),
@@ -81,7 +81,7 @@ export class ScheduleExamListComponent implements OnInit {
   }
 
   closeAddForm() {
-    this.showAddPopup = false;
+    this.isAddFormVisible = false;
 
     this.addTeacher?.setValue(0);
     this.addWeekNum?.setValue(0);
@@ -93,7 +93,7 @@ export class ScheduleExamListComponent implements OnInit {
   showAddForm(disciplineId: number) {
     this.disciplineId = disciplineId;
 
-    this.showAddPopup = true;
+    this.isAddFormVisible = true;
 
     this.groupService.getTeachersOfGroupDisciplineDDL(this.groupId, disciplineId).subscribe((res: BaseResponse<DDL<number>[]>) => {
       this.teachersDDL = res.data;

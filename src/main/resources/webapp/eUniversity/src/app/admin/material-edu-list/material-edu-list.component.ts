@@ -27,7 +27,7 @@ export class MaterialEduListComponent implements OnInit {
 
   materials: MaterialFile[];
 
-  showAddPopup: boolean;
+  isAddFormVisible: boolean;
 
   addForm: FormGroup;
 
@@ -46,7 +46,7 @@ export class MaterialEduListComponent implements OnInit {
 
     this.materials = [];
 
-    this.showAddPopup = false;
+    this.isAddFormVisible = false;
 
     this.addForm = new FormGroup({
       educationalProcessId: new FormControl(0, Validators.required),
@@ -85,17 +85,17 @@ export class MaterialEduListComponent implements OnInit {
     })
   }
 
-  showAddModal() {
+  showAddForm() {
     if (this.groupId != 0 && this.disciplineId != 0) {
       this.addForm.reset();
-      this.showAddPopup = true;
+      this.isAddFormVisible = true;
     }
     else
       alert('select group and discipline');
   }
 
-  closeEditModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   changeMaterial() {
@@ -120,7 +120,7 @@ export class MaterialEduListComponent implements OnInit {
       formData.append('multipartFile', this.getFiles()![0]);
 
       this.materialService.uploadMaterial(formData).subscribe((res: any) => {
-        this.showAddPopup = false;
+        this.isAddFormVisible = false;
         this.getMaterilas();
       });
     }

@@ -12,8 +12,8 @@ import { GroupService } from 'src/app/services/group.service';
 })
 export class GroupListComponent implements OnInit {
 
-  showAddPopup: boolean;
-  showEditPopup: boolean;
+  isAddFormVisible: boolean;
+  isEditFormVisible: boolean;
 
   selectedGroup!: Group;
   groups: Group[];
@@ -28,8 +28,8 @@ export class GroupListComponent implements OnInit {
   constructor(
     private groupService: GroupService
   ) {
-    this.showAddPopup = false;
-    this.showEditPopup = false;
+    this.isAddFormVisible = false;
+    this.isEditFormVisible = false;
 
     this.addForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -48,25 +48,25 @@ export class GroupListComponent implements OnInit {
     });
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  showAddForm() {
+    this.isAddFormVisible = true;
 
     this.editName?.setValue('');
   }
 
-  showEditModal(group: Group) {
-    this.showEditPopup = true;
+  showEditForm(group: Group) {
+    this.isEditFormVisible = true;
     this.selectedGroup = group;
 
     this.editName?.setValue(group.name);
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   addGroup() {

@@ -12,8 +12,8 @@ import { DisciplineService } from 'src/app/services/discipline.service';
 })
 export class DisciplineListComponent implements OnInit {
 
-  showAddPopup: boolean;
-  showEditPopup: boolean;
+  isAddFormVisible: boolean;
+  isEditFormVisible: boolean;
 
   selectedDiscipline!: Discipline;
   disciplines: Discipline[];
@@ -32,8 +32,8 @@ export class DisciplineListComponent implements OnInit {
   constructor(
     private disciplineService: DisciplineService
   ) {
-    this.showAddPopup = false;
-    this.showEditPopup = false;
+    this.isAddFormVisible = false;
+    this.isEditFormVisible = false;
 
     this.addForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -54,27 +54,27 @@ export class DisciplineListComponent implements OnInit {
     });
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  showAddForm() {
+    this.isAddFormVisible = true;
 
     this.editForm.get('name')!.setValue('');
     this.editForm.get('shortName')!.setValue('');
   }
 
-  showEditModal(discipline: Discipline) {
-    this.showEditPopup = true;
+  showEditForm(discipline: Discipline) {
+    this.isEditFormVisible = true;
     this.selectedDiscipline = discipline;
 
     this.editForm.get('name')!.setValue(discipline.name);
     this.editForm.get('shortName')?.setValue(discipline.shortName);
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   addDiscipline() {
@@ -84,7 +84,7 @@ export class DisciplineListComponent implements OnInit {
           let discipline: Discipline = new Discipline(data.data, this.addName?.value, this.addShortName?.value);
           this.disciplines.unshift(discipline);
 
-          this.showAddPopup = false;
+          this.isAddFormVisible = false;
         },
         error: (data) => {
           alert('can`t add discipline with same name');
@@ -98,7 +98,7 @@ export class DisciplineListComponent implements OnInit {
 
       this.disciplineService.updateDiscipline(dto).subscribe({
         next: (data) => {
-          this.showEditPopup = false;
+          this.isEditFormVisible = false;
           this.selectedDiscipline.name = dto.name;
           this.selectedDiscipline.shortName = dto.shortName;
         },

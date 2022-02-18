@@ -14,7 +14,7 @@
 <div class="table-block">
   <div class="table-block__header">
     <h3 class="table-block__title">Journal</h3>
-    <div class="btn btn-danger add-btn" (click)="showEditModal()">Add</div>
+    <div class="btn btn-danger add-btn" (click)="showEditForm()">Add</div>
   </div>
 
   <div class="table-block__content">
@@ -117,9 +117,9 @@
 </div>
 
 
-<div *ngIf="showEditPopup" class="modal">
+<div *ngIf="isEditFormVisible" class="modal">
   <div class="modal-content" style="width: 500px">
-    <span class="close" (click)="closeEditModal()">&times;</span>
+    <span class="close" (click)="closeEditForm()">&times;</span>
     <form class="register">
       <select class="selectpicker2 mb-20" data-live-search="true" name="disciplines" id="disciplines">
         <option selected class="d-none">Select discipline</option>

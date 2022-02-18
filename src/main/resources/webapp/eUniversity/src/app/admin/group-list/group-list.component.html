@@ -1,7 +1,7 @@
 <div class="table-block">
   <div class="table-block__header">
     <h3 class="table-block__title">Groups list</h3>
-    <div class="btn btn-danger add-btn" (click)="showAddModal()">Add</div>
+    <div class="btn btn-danger add-btn" (click)="showAddForm()">Add</div>
   </div>
 
   <div class="table-block__content">
@@ -23,7 +23,7 @@
             <td>{{item.date | date}}</td>
             <td>{{item.date | semestr}}</td>
             <td class="td-blue">
-              <div class="table-btn change-btn" (click)="showEditModal(item)">
+              <div class="table-btn change-btn" (click)="showEditForm(item)">
                 <i class="fas fa-pencil-alt fa-lg"></i>
               </div>
             </td>
@@ -39,9 +39,9 @@
   </div>
 </div>
 
-<div class="modal" *ngIf="showAddPopup">
+<div class="modal" *ngIf="isAddFormVisible">
   <div class="modal-content" style="width: 500px">
-    <span class="close" (click)="closeAddModal()">&times;</span>
+    <span class="close" (click)="closeAddForm()">&times;</span>
     <form class="register" [formGroup]="addForm">
       <div class="form-group">
         <span>Name: </span>
@@ -52,9 +52,9 @@
   </div>
 </div>
 
-<div class="modal" *ngIf="showEditPopup">
+<div class="modal" *ngIf="isEditFormVisible">
   <div class="modal-content" style="width: 500px">
-    <span class="close" (click)="closeEditModal()">&times;</span>
+    <span class="close" (click)="closeEditForm()">&times;</span>
     <form class="register" [formGroup]="editForm">
       <div class="form-group">
         <span>Name: </span>

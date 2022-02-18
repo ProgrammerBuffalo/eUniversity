@@ -18,7 +18,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class TeacherDisciplineListComponent implements OnInit {
 
-  showEditPopup: boolean;
+  isEditFormVisible: boolean;
   teachersShortDisciplines!: TeacherShortDisciplines[];
   teacherDisciplines!: TeacherDiscipline[];
 
@@ -32,7 +32,7 @@ export class TeacherDisciplineListComponent implements OnInit {
     private teacherService: TeacherService,
     private disciplineService: DisciplineService
   ) {
-    this.showEditPopup = false;
+    this.isEditFormVisible = false;
 
     this.editForm = new FormGroup({
       disciplineId: new FormControl(0, Validators.required)
@@ -53,8 +53,8 @@ export class TeacherDisciplineListComponent implements OnInit {
     });
   }
 
-  showEditModal(teacherShorDiscipline: TeacherShortDisciplines) {
-    this.showEditPopup = true;
+  showEditForm(teacherShorDiscipline: TeacherShortDisciplines) {
+    this.isEditFormVisible = true;
 
     this.selectedTeacherDisciplines = teacherShorDiscipline;
 
@@ -63,8 +63,8 @@ export class TeacherDisciplineListComponent implements OnInit {
     });
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
   attachDiscipline() {

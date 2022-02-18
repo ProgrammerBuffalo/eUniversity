@@ -20,7 +20,7 @@
             <td>{{item.name}}</td>
             <td>{{item.shortDisciplines}}</td>
             <td class="td-blue">
-              <div class="table-btn change-btn" (click)="showEditModal(item)">
+              <div class="table-btn change-btn" (click)="showEditForm(item)">
                 <i class="fas fa-pencil-alt fa-lg"></i>
               </div>
             </td>
@@ -32,9 +32,9 @@
 </div>
 
 
-<div class="modal" *ngIf="showEditPopup">
+<div class="modal" *ngIf="isEditFormVisible">
   <div class="modal-content" style="width: 500px">
-    <span class="close" (click)="closeEditModal()">&times;</span>
+    <span class="close" (click)="closeEditForm()">&times;</span>
     <span>Teacher name: {{selectedTeacherDisciplines.name}}</span>
 
     <form class="register" [formGroup]="editForm">
