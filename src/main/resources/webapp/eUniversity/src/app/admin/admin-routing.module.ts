@@ -17,6 +17,7 @@ import { ScheduleExamListComponent } from './schedule-exam-list/schedule-exam-li
 import { JournalListComponent } from './journal-list/journal-list.component';
 import { MaterialEduListComponent } from './material-edu-list/material-edu-list.component';
 import { MaterialStudentListComponent } from './material-student-list/material-student-list.component';
+import { ThemeListComponent } from './theme-list/theme-list.component';
 
 const routes: Routes = [
   {
@@ -53,7 +54,9 @@ const routes: Routes = [
 
       { path: 'material-education-list', component: MaterialEduListComponent },
 
-      { path: 'material-student-list', component: MaterialStudentListComponent }
+      { path: 'material-student-list', component: MaterialStudentListComponent },
+
+      { path: 'theme-list', component: ThemeListComponent }
     ]
   },
 ];
