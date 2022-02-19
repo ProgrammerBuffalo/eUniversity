@@ -9,6 +9,8 @@ import { refreshSelectPicker } from 'src/app/core/util/select-picker'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { saveAs } from 'file-saver';
+import { PaginatedList } from 'src/app/core/models/paginated-list';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination-dto';
 
 
 @Component({
@@ -25,7 +27,10 @@ export class MaterialEduListComponent implements OnInit {
   disciplinesDDL: DDL<number>[];
   eduProccessesDDL: DDL<number>[];
 
-  materials: MaterialFile[];
+  materials: PaginatedList<MaterialFile>;
+
+  paginationDTO: PaginationDTO;
+  pageCount: number;
 
   isAddFormVisible: boolean;
 
@@ -44,8 +49,6 @@ export class MaterialEduListComponent implements OnInit {
     this.disciplinesDDL = [];
     this.eduProccessesDDL = [];
 
-    this.materials = [];
-
     this.isAddFormVisible = false;
 
     this.addForm = new FormGroup({
@@ -54,6 +57,10 @@ export class MaterialEduListComponent implements OnInit {
       order: new FormControl('1', Validators.required),
       fileName: new FormControl('')
     });
+
+    this.materials = new PaginatedList([], 0);
+    this.paginationDTO = new PaginationDTO(0, 8, '');
+    this.pageCount = 0;
   }
 
   get EducationalProcessId() { return this.addForm.get('educationalProcessId'); }
@@ -78,11 +85,27 @@ export class MaterialEduListComponent implements OnInit {
 
   groupChanged() {
     this.groupService.getGroupDisciplinesDDL(this.groupId).subscribe((res: BaseResponse<DDL<number>[]>) => {
-      this.materials = [];
+      this.materials.reset();
       this.disciplineId = 0;
       this.disciplinesDDL = res.data;
       refreshSelectPicker();
     })
+  }
+
+  getMaterilas() {
+    this.materialService.getEduMaterials(this.groupId, this.disciplineId, this.paginationDTO).subscribe((res: any) => {
+      this.materials = res.data;
+    });
+  }
+
+  onPageChanged(pageIndex: number) {
+    this.paginationDTO.pageIndex = pageIndex;
+    this.getMaterilas();
+  }
+
+  searchMaterials(searchText: string) {
+    this.paginationDTO.search = searchText;
+    this.getMaterilas();
   }
 
   showAddForm() {
@@ -100,12 +123,6 @@ export class MaterialEduListComponent implements OnInit {
 
   changeMaterial() {
     this.getMaterilas();
-  }
-
-  getMaterilas() {
-    this.materialService.getEduMaterials(this.groupId, this.disciplineId).subscribe((res: any) => {
-      this.materials = res.data;
-    });
   }
 
   addMaterial() {
@@ -128,12 +145,7 @@ export class MaterialEduListComponent implements OnInit {
 
   removeMaterial(id: number) {
     this.materialService.removeFile(id).subscribe((res: any) => {
-      for (let i = 0; i < this.materials.length; i++) {
-        if (this.materials[i].id == id) {
-          this.materials.splice(i, 1);
-          break;
-        }
-      }
+      this.getMaterilas();
     });
   }
 

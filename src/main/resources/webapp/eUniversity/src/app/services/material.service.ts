@@ -5,6 +5,8 @@ import { MaterialFile } from '../core/models/admin/material-file';
 import { BaseResponse } from '../core/models/base/base-response';
 import { PrepareApi } from './prepare-api';
 import { saveAs } from 'file-saver';
+import { PaginationDTO } from '../core/DTOs/pagination-dto';
+import { PaginatedList } from '../core/models/paginated-list';
 
 
 @Injectable({
@@ -23,16 +25,16 @@ export class MaterialService {
     return this.http.post(url, formData);
   }
 
-  getEduMaterials(groupId: number, disciplineId: number): Observable<BaseResponse<MaterialFile[]>> {
+  getEduMaterials(groupId: number, disciplineId: number, pagination: PaginationDTO): Observable<BaseResponse<PaginatedList<MaterialFile>>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'educational');
-    let params = { groupId: groupId, disciplineId: disciplineId };
-    return this.http.get<BaseResponse<MaterialFile[]>>(url, { params: params });
+    let params = { groupId: groupId, disciplineId: disciplineId, pagination: JSON.stringify(pagination) };
+    return this.http.get<BaseResponse<PaginatedList<MaterialFile>>>(url, { params: params });
   }
 
-  getStudentMaterials(groupId: number, disciplineId: number, studentId: number): Observable<BaseResponse<MaterialFile[]>> {
+  getStudentMaterials(groupId: number, disciplineId: number, studentId: number, pagination: PaginationDTO): Observable<BaseResponse<PaginatedList<MaterialFile>>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'posted-by-student');
-    let params = { groupId: groupId, disciplineId: disciplineId, studentId: studentId };
-    return this.http.get<BaseResponse<MaterialFile[]>>(url, { params: params });
+    let params = { groupId: groupId, disciplineId: disciplineId, studentId: studentId, pagination: JSON.stringify(pagination) };
+    return this.http.get<BaseResponse<PaginatedList<MaterialFile>>>(url, { params: params });
   }
 
   //guid

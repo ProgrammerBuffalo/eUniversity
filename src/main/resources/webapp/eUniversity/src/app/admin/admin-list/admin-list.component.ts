@@ -140,7 +140,8 @@ export class AdminListComponent implements OnInit {
     this.getAdmins();
   }
 
-  searchAdmins() {
+  searchAdmins(searchText: string) {
+    this.paginationDTO.search = searchText;
     this.getAdmins();
   }
 

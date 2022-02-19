@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpdateDisciplineDTO } from 'src/app/core/DTOs/admin/discipline/update-discipline-dto';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination-dto';
 import { Discipline } from 'src/app/core/models/admin/discipline';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
+import { PaginatedList } from 'src/app/core/models/paginated-list';
 import { DisciplineService } from 'src/app/services/discipline.service';
 
 @Component({
@@ -16,7 +18,10 @@ export class DisciplineListComponent implements OnInit {
   isEditFormVisible: boolean;
 
   selectedDiscipline!: Discipline;
-  disciplines: Discipline[];
+  disciplines: PaginatedList<Discipline>;
+
+  paginationDTO: PaginationDTO;
+  pageCount: number;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -45,12 +50,29 @@ export class DisciplineListComponent implements OnInit {
       shortName: new FormControl('', Validators.required)
     });
 
-    this.disciplines = [];
+    this.disciplines = new PaginatedList([], 0);
+    this.paginationDTO = new PaginationDTO(0, 3, '');
+    this.pageCount = 0;
   }
 
   ngOnInit(): void {
-    this.disciplineService.getDisciplines().subscribe((res: BaseResponse<Discipline[]>) => {
+    this.getDisciplines();
+  }
+
+  onPageChanged(pageIndex: number) {
+    this.paginationDTO.pageIndex = pageIndex;
+    this.getDisciplines();
+  }
+
+  searchDisciplines(searchText: string) {
+    this.paginationDTO.search = searchText;
+    this.getDisciplines();
+  }
+
+  getDisciplines() {
+    this.disciplineService.getDisciplines(this.paginationDTO).subscribe((res: BaseResponse<PaginatedList<Discipline>>) => {
       this.disciplines = res.data;
+      console.log(this.disciplines);
     });
   }
 
@@ -80,9 +102,10 @@ export class DisciplineListComponent implements OnInit {
   addDiscipline() {
     if (this.addForm.valid)
       this.disciplineService.addDiscipline(this.addForm.value).subscribe({
-        next: (data: BaseResponse<number>) => {
-          let discipline: Discipline = new Discipline(data.data, this.addName?.value, this.addShortName?.value);
-          this.disciplines.unshift(discipline);
+        next: () => {
+          this.getDisciplines();
+          // let discipline: Discipline = new Discipline(data.data, this.addName?.value, this.addShortName?.value);
+          // this.disciplines.unshift(discipline);
 
           this.isAddFormVisible = false;
         },
@@ -97,12 +120,12 @@ export class DisciplineListComponent implements OnInit {
       let dto: UpdateDisciplineDTO = new UpdateDisciplineDTO(this.selectedDiscipline.id, this.editName?.value, this.editShortName?.value);
 
       this.disciplineService.updateDiscipline(dto).subscribe({
-        next: (data) => {
+        next: () => {
           this.isEditFormVisible = false;
           this.selectedDiscipline.name = dto.name;
           this.selectedDiscipline.shortName = dto.shortName;
         },
-        error: (data) => {
+        error: () => {
           alert('this discipline alredy exsists');
         }
       });
@@ -111,15 +134,10 @@ export class DisciplineListComponent implements OnInit {
 
   removeDiscipline(id: number) {
     this.disciplineService.deleteDiscipline(id).subscribe({
-      next: (data) => {
-        for (let i = 0; i < this.disciplines.length; i++) {
-          if (this.disciplines[i].id == id) {
-            this.disciplines.splice(i, 1);
-            break;
-          }
-        }
+      next: () => {
+        this.getDisciplines();
       },
-      error: (data) => {
+      error: () => {
         alert('cant remove this discipline');
       }
     })

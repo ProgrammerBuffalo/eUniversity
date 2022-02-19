@@ -142,7 +142,8 @@ export class StudentListComponent implements OnInit {
     })
   }
 
-  searchStudents() {
+  searchStudents(searchText: string) {
+    this.paginationDTO.search = searchText;
     this.getStudents();
   }
 

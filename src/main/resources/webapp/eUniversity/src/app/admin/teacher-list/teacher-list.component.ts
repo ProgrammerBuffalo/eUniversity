@@ -141,7 +141,8 @@ export class TeacherListComponent implements OnInit {
     this.getTeachers();
   }
 
-  searchTeachers() {
+  searchTeachers(searchText: string) {
+    this.paginationDTO.search = searchText;
     this.getTeachers();
   }
 
