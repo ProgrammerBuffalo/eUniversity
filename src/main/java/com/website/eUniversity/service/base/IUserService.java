@@ -1,6 +1,7 @@
 package com.website.eUniversity.service.base;
 
 import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.entity.base.UserDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 
@@ -13,5 +14,5 @@ public interface IUserService <T extends UserDTO> {
 
     String delete(String uuid);
 
-    PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize);
+    PaginatedListDTO getUserList(PaginationDTO dto);
 }

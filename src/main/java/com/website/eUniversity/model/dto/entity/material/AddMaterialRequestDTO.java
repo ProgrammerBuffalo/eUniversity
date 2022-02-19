@@ -1,8 +1,8 @@
-package com.website.eUniversity.model.dto.entity;
+package com.website.eUniversity.model.dto.entity.material;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class MaterialRequestDTO {
+public class AddMaterialRequestDTO {
 
     private Integer order;
 
@@ -22,7 +22,7 @@ public class MaterialRequestDTO {
         return order;
     }
 
-    public MaterialRequestDTO setOrder(Integer order) {
+    public AddMaterialRequestDTO setOrder(Integer order) {
         this.order = order;
         return this;
     }
@@ -31,7 +31,7 @@ public class MaterialRequestDTO {
         return description;
     }
 
-    public MaterialRequestDTO setDescription(String description) {
+    public AddMaterialRequestDTO setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -40,7 +40,7 @@ public class MaterialRequestDTO {
         return multipartFile;
     }
 
-    public MaterialRequestDTO setMultipartFile(MultipartFile multipartFile) {
+    public AddMaterialRequestDTO setMultipartFile(MultipartFile multipartFile) {
         this.multipartFile = multipartFile;
         return this;
     }
@@ -49,7 +49,7 @@ public class MaterialRequestDTO {
         return accountId;
     }
 
-    public MaterialRequestDTO setAccountId(String accountId) {
+    public AddMaterialRequestDTO setAccountId(String accountId) {
         this.accountId = accountId;
         return this;
     }
@@ -58,7 +58,7 @@ public class MaterialRequestDTO {
         return educationalProcessId;
     }
 
-    public MaterialRequestDTO setEducationalProcessId(Integer educationalProcessId) {
+    public AddMaterialRequestDTO setEducationalProcessId(Integer educationalProcessId) {
         this.educationalProcessId = educationalProcessId;
         return this;
     }
@@ -67,7 +67,7 @@ public class MaterialRequestDTO {
         return groupId;
     }
 
-    public MaterialRequestDTO setGroupId(Integer groupId) {
+    public AddMaterialRequestDTO setGroupId(Integer groupId) {
         this.groupId = groupId;
         return this;
     }
@@ -76,7 +76,7 @@ public class MaterialRequestDTO {
         return disciplineId;
     }
 
-    public MaterialRequestDTO setDisciplineId(Integer disciplineId) {
+    public AddMaterialRequestDTO setDisciplineId(Integer disciplineId) {
         this.disciplineId = disciplineId;
         return this;
     }

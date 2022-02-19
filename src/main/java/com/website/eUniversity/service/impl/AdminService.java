@@ -2,22 +2,19 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
-import com.website.eUniversity.model.dto.entity.AdminDTO;
-import com.website.eUniversity.model.dto.entity.StudentDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
+import com.website.eUniversity.model.dto.entity.account.AdminDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Admin;
-import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.repository.IAccountRepository;
 import com.website.eUniversity.repository.IAdminRepository;
 import com.website.eUniversity.service.IAdminService;
 import com.website.eUniversity.service.func.AccountSaver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,8 +45,7 @@ public class AdminService extends AccountSaver implements IAdminService {
             adminDTO.setLogin(admin.getAccount().getLogin());
             adminDTO.setPassword(admin.getAccount().getPassword());
             adminDTO.setFullName(admin.getAccount().getFullName());
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw ex;
         }
         return adminDTO;
@@ -67,19 +63,18 @@ public class AdminService extends AccountSaver implements IAdminService {
         try {
             adminRepository.deleteByAccount_Id(uuid);
             return uuid;
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw ex;
         }
     }
 
     @Override
-    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
+    public PaginatedListDTO getUserList(PaginationDTO dto) {
         return new PaginatedListDTO<AdminDTO>().setItems(adminRepository
-                .getPaginatedAdmins(search, pageIndex, pageSize)
+                .getPaginatedAdmins(dto.getSearch(), dto.getPageIndex(), dto.getPageSize())
                 .stream()
                 .map(Admin::toDTO)
                 .collect(Collectors.toList()))
-                .setAllItemsCount(adminRepository.countAllByAccount_FullNameIsLike(search));
+                .setAllItemsCount(adminRepository.countAllByAccount_FullNameIsLike(dto.getSearch()));
     }
 }

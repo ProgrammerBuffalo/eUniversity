@@ -2,9 +2,10 @@ package com.website.eUniversity.controller.admin;
 
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
-import com.website.eUniversity.model.dto.entity.AdminDTO;
-import com.website.eUniversity.model.dto.entity.StudentDTO;
-import com.website.eUniversity.model.dto.entity.TeacherDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
+import com.website.eUniversity.model.dto.entity.account.AdminDTO;
+import com.website.eUniversity.model.dto.entity.account.StudentDTO;
+import com.website.eUniversity.model.dto.entity.account.TeacherDTO;
 import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.service.IAdminService;
 import com.website.eUniversity.service.IStudentService;
@@ -14,8 +15,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/admin-panel/accounts")
@@ -33,26 +32,20 @@ public class AccountsController {
 
     @GetMapping("/students")
     @ApiOperation("Returns students")
-    public ResponseEntity<BaseResponse<?>> getStudents(@RequestParam("search") String search,
-                                                       @RequestParam("pageIndex") Integer pageIndex,
-                                                       @RequestParam("pageSize") Integer pageSize) {
-        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(studentService.getUserList(search, pageIndex, pageSize), "Students are returned"));
+    public ResponseEntity<BaseResponse<?>> getStudents(PaginationDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(studentService.getUserList(dto), "Students are returned"));
     }
 
     @GetMapping("/teachers")
     @ApiOperation("Returns teachers")
-    public ResponseEntity<BaseResponse<?>> getTeachers(@RequestParam("search") String search,
-                                                       @RequestParam("pageIndex") Integer pageIndex,
-                                                       @RequestParam("pageSize") Integer pageSize) {
-        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(teacherService.getUserList(search, pageIndex, pageSize), "Teachers are returned"));
+    public ResponseEntity<BaseResponse<?>> getTeachers(PaginationDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(teacherService.getUserList(dto), "Teachers are returned"));
     }
 
     @GetMapping("/admins")
     @ApiOperation("Returns admins")
-    public ResponseEntity<BaseResponse<?>> getAdmins(@RequestParam("search") String search,
-                                                     @RequestParam("pageIndex") Integer pageIndex,
-                                                     @RequestParam("pageSize") Integer pageSize) {
-        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(adminService.getUserList(search, pageIndex, pageSize), "Teachers are returned"));
+    public ResponseEntity<BaseResponse<?>> getAdmins(PaginationDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO>().success(adminService.getUserList(dto), "Teachers are returned"));
     }
 
     @PostMapping("/register-student")

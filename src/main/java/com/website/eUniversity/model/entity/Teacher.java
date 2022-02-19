@@ -1,8 +1,7 @@
 package com.website.eUniversity.model.entity;
 
 
-import com.website.eUniversity.model.dto.entity.AdminDTO;
-import com.website.eUniversity.model.dto.entity.TeacherDTO;
+import com.website.eUniversity.model.dto.entity.account.TeacherDTO;
 
 import javax.persistence.*;
 import java.util.List;

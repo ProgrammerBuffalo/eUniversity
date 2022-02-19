@@ -3,6 +3,8 @@ package com.website.eUniversity.controller.admin;
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.DDLResponseDTO;
 import com.website.eUniversity.model.dto.IDDLResponseDTO;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.entity.discipline.AddDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.discipline.UpdateDisciplineDTO;
 import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
@@ -42,8 +44,8 @@ public class DisciplineController {
 
     @GetMapping("/get-all-disciplines")
     @ApiOperation("gets all disciplines")
-    public ResponseEntity<BaseResponse<List<Discipline>>> getAllDisciplines() {
-        return ResponseEntity.ok(new BaseResponse<List<Discipline>>().success(disciplineService.getAllDisciplines(), "list of disciplines are returned"));
+    public ResponseEntity<BaseResponse<PaginatedListDTO<Discipline>>> getAllDisciplines(PaginationDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO<Discipline>>().success(disciplineService.getAllDisciplines(dto), "list of disciplines are returned"));
     }
 
     @GetMapping("/get-disciplines-ddl")

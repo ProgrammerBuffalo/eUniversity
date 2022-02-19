@@ -2,16 +2,20 @@ package com.website.eUniversity.service;
 
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.DDLResponseDTO;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.entity.*;
+import com.website.eUniversity.model.dto.entity.account.StudentDTO;
 import com.website.eUniversity.model.dto.entity.group.AddGroupDTO;
 import com.website.eUniversity.model.dto.entity.group.AttachStudentDTO;
+import com.website.eUniversity.model.dto.entity.group.GroupDTO;
 import com.website.eUniversity.model.dto.entity.group.UpdateGroupDTO;
 
 import java.util.List;
 
 public interface IGroupService {
 
-    List<GroupDTO> getAllGroups();
+    PaginatedListDTO<GroupDTO> getAllGroups(PaginationDTO dto);
 
     List<StudentShortInfoDTO> getAllStudents(Integer groupId);
 

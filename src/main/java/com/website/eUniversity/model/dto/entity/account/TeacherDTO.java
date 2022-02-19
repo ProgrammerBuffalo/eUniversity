@@ -1,4 +1,4 @@
-package com.website.eUniversity.model.dto.entity;
+package com.website.eUniversity.model.dto.entity.account;
 
 import com.website.eUniversity.model.dto.entity.base.UserDTO;
 
