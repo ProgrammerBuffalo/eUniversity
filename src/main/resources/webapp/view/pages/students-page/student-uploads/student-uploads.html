@@ -2,7 +2,9 @@
 1. Student table uploads component
 2. Student aside manu component
 3. Student footer component
-4. Student header component-->
+4. Student header component
+5. Modal component
+6. Student upload modal component-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +29,7 @@
 	<link rel="stylesheet" href="../../../components/student-footer/style.css">
 	<link rel="stylesheet" href="../../../components/student-table-uploads/style.css">
 	<link rel="stylesheet" href="../../../shared/student-table.css">
+	<link rel="stylesheet" href="../../../shared/modal.css">
 
 
 
@@ -67,7 +70,7 @@
 					<option value="presentation">Presentations</option>
 				</select>
 
-				<div class="btn btn-info fw-10">Upload file</div>
+				<div class="btn btn-info fw-10 upload-btn">Upload file</div>
 			</div>
 
 			<!--STUDENT-TABLE-UPLOADS-->
@@ -147,6 +150,31 @@
 					</tbody>
 				</table>
 				<!--STUDENT-TABLE-UPLOADS-->
+
+
+				<div class="modal" id="students-add">
+					<div class="modal-content" style="width: 500px">
+						<span id="closeStudentsAddBtn" class="close">&times;</span>
+						<!--STUDENT-UPLOAD-MODAL COMPONENT-->
+						<form class="register">
+
+							<div class="form-group">
+								<span>Description: </span>
+								<input type="text" class="form-field">
+							</div>
+
+							<div class="form-group download-btn" onclick="handleClick()">
+								<span>Choose file: </span>
+								<input type="text" placeholder="Input file..." disabled class="form-field">
+								<input type="file" class="d-none" id="upload-file" name="upload-file">
+							</div>
+
+
+							<input type="submit" class="btn btn-danger" value="Add file"></input>
+						</form>
+						<!--STUDENT-UPLOAD-MODAL COMPONENT-->
+					</div>
+				</div>
 		</main>
 
 
@@ -248,7 +276,7 @@
 	<!--STUDENT-ASIDE-->
 
 
-
+	<script src="../../../components/modal/app.js"></script>
 	<script src="../app.js"></script>
 	<script src="app.js"></script>
 </body>
