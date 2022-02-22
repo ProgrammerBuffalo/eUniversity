@@ -1,0 +1,118 @@
+.journal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+}
+
+.journal .date {
+  background-color: #fff;
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.journal .date h3 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.journal .tile {
+  height: 400px;
+  width: 20%;
+  overflow: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.journal .tile .date {
+  background-color: #fff;
+  margin: 0;
+}
+
+.journal .tile .date h3 {
+  color: #000;
+  font-weight: 700;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.journal .tile .content {
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.journal .tile:hover {
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97);
+}
+
+.journal .tile h3 {
+  font-weight: 500;
+}
+
+.journal .tile h3 span {
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 150%;
+}
+
+.journal .tile .center {
+  font-weight: 700;
+  text-align: center;
+}
+
+.journal .tile_green {
+  background: -webkit-gradient(linear, left bottom, left top, from(#58b47b), to(#43b1a8));
+  background: linear-gradient(to top, #58b47b, #43b1a8);
+}
+
+.journal .tile_green h3 {
+  color: #faffdc;
+}
+
+.journal .tile_green h3 span {
+  color: #4301ac;
+}
+
+.journal .tile_green .center {
+  color: #4301ac;
+}
+
+.journal .tile_red {
+  background: -webkit-gradient(linear, left bottom, left top, from(#ce746c), to(#8b313a));
+  background: linear-gradient(to top, #ce746c, #8b313a);
+}
+
+.journal .tile_red .center {
+  color: #ffdcdc;
+  font-size: 30px;
+}
+
+.journal .tile_blue {
+  background: -webkit-gradient(linear, left top, left bottom, from(#7fa6da), to(#409bb9));
+  background: linear-gradient(to bottom, #7fa6da, #409bb9);
+}
+
+.journal .tile_blue .center {
+  color: #e2f4ff;
+  font-size: 30px;
+}
+
+.journal .tile_grey {
+  background: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#c9c9c9));
+  background: linear-gradient(to bottom, #dddddd, #c9c9c9);
+}
+/*# sourceMappingURL=style.css.map */
