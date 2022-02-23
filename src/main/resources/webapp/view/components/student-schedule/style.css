@@ -1,0 +1,192 @@
+.schedule {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.schedule .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  width: 100%;
+}
+
+.schedule .row .date {
+  font-size: 30px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.schedule .row .tile {
+  width: 100%;
+  height: 200px;
+  background-color: transparent;
+  border-radius: 10px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.schedule .row .tile__inner {
+  position: relative;
+  -webkit-transition: all 0.6s ease 0s;
+  transition: all 0.6s ease 0s;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.schedule .row .tile:hover .tile__inner {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.schedule .row .tile__front {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.schedule .row .tile__front h5 {
+  font-size: 30px;
+  font-weight: 500;
+  color: #333;
+}
+
+.schedule .row .tile__front_green {
+  background-color: #f1fff9;
+}
+
+.schedule .row .tile__front_red {
+  background-color: #fff1f1;
+}
+
+.schedule .row .tile__front_violet {
+  background-color: #faf1ff;
+}
+
+.schedule .row .tile__front_yellow {
+  background-color: #fffef1;
+}
+
+.schedule .row .tile__front_blue {
+  background-color: #f1fcff;
+}
+
+.schedule .row .tile__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: #efffff;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  overflow: auto;
+}
+
+.schedule .row .tile__back h5 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  line-height: 142%;
+}
+
+.schedule .row .tile__back h5 span {
+  color: #fff;
+  font-weight: 700;
+}
+
+.schedule .row .tile__back_green {
+  background: -webkit-gradient(linear, left bottom, left top, from(#38ef7d), to(#11998e));
+  background: linear-gradient(to top, #38ef7d, #11998e);
+}
+
+.schedule .row .tile__back_green h5 {
+  color: #e9fff1;
+}
+
+.schedule .row .tile__back_red {
+  background: -webkit-gradient(linear, left bottom, left top, from(#93291e), to(#ed213a));
+  background: linear-gradient(to top, #93291e, #ed213a);
+}
+
+.schedule .row .tile__back_red h5 {
+  color: #ffe9e9;
+}
+
+.schedule .row .tile__back_violet {
+  background: -webkit-gradient(linear, left bottom, left top, from(#4a00e0), to(#8e2de2));
+  background: linear-gradient(to top, #4a00e0, #8e2de2);
+}
+
+.schedule .row .tile__back_violet h5 {
+  color: #f0e9ff;
+}
+
+.schedule .row .tile__back_yellow {
+  background: -webkit-gradient(linear, left bottom, left top, from(#f2c94c), to(#f2994a));
+  background: linear-gradient(to top, #f2c94c, #f2994a);
+}
+
+.schedule .row .tile__back_yellow h5 {
+  color: #fff9e9;
+}
+
+.schedule .row .tile__back_blue {
+  background: -webkit-gradient(linear, left bottom, left top, from(#2f80ed), to(#56ccf2));
+  background: linear-gradient(to top, #2f80ed, #56ccf2);
+}
+
+.schedule .row .tile__back_blue h5 {
+  color: #e9f4ff;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,144 @@
+.schedule {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	width: 100%;
+	height: 100%;
+
+	.row {
+		display: flex;
+		column-gap: 20px;
+		width: 100%;
+
+		.date {
+			font-size: 30px;
+			align-self: center;
+		}
+
+		.tile {
+			width: 100%;
+			height: 200px;
+			background-color: transparent;
+			border-radius: 10px;
+			backface-visibility: hidden;
+			perspective: 1000px;
+
+			&__inner {
+				position: relative;
+				transition: all 0.6s ease 0s;
+				width: 100%;
+				height: 100%;
+				box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+				transform-style: preserve-3d;
+			}
+
+			&:hover .tile__inner {
+				transform: rotateY(180deg);
+			}
+			&__front {
+				backface-visibility: hidden;
+				width: 100%;
+				height: 100%;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+				background-color: #fff;
+				h5 {
+					font-size: 30px;
+					font-weight: 500;
+					color: #333;
+				}
+
+				&_green {
+					background-color: #f1fff9;
+				}
+
+				&_red {
+					background-color: #fff1f1;
+				}
+
+				&_violet {
+					background-color: #faf1ff;
+				}
+
+				&_yellow {
+					background-color: #fffef1;
+				}
+
+				&_blue {
+					background-color: #f1fcff;
+				}
+			}
+
+			&__back {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				padding: 10px;
+				background-color: #efffff;
+				border-radius: 10px;
+
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+
+				backface-visibility: hidden;
+				box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+				transform: rotateY(180deg);
+
+				overflow: auto;
+				h5 {
+					font-size: 24px;
+					letter-spacing: 1px;
+					line-height: 142%;
+
+					span {
+						color: #fff;
+						font-weight: 700;
+					}
+				}
+
+				&_green {
+					background: linear-gradient(to top, #38ef7d, #11998e);
+					h5 {
+						color: #e9fff1;
+					}
+				}
+
+				&_red {
+					background: linear-gradient(to top, #93291e, #ed213a);
+					h5 {
+						color: #ffe9e9;
+					}
+				}
+
+				&_violet {
+					background: linear-gradient(to top, #4a00e0, #8e2de2);
+					h5 {
+						color: #f0e9ff;
+					}
+				}
+
+				&_yellow {
+					background: linear-gradient(to top, #f2c94c, #f2994a);
+					h5 {
+						color: #fff9e9;
+					}
+				}
+
+				&_blue {
+					background: linear-gradient(to top, #2f80ed, #56ccf2);
+					h5 {
+						color: #e9f4ff;
+					}
+				}
+			}
+		}
+	}
+}

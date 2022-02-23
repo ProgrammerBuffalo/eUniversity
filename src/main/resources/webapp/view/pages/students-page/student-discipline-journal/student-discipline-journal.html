@@ -1,7 +1,9 @@
 <!--WHAT TO USE
 2. Student aside manu component
 3. Student footer component
-4. Student header component-->
+4. Student header component
+5. Student discipline journal component
+6. Pagination component-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +30,7 @@
 	<link rel="stylesheet" href="../../../shared/student-table.css">
 	<link rel="stylesheet" href="../../../shared/modal.css">
 	<link rel="stylesheet" href="../../../components/pagination/style.css">
-
+	<link rel="stylesheet" href="../../../components/student-discipline-journal/style.css">
 
 
 	<link rel="stylesheet" href="../../../general/general.css">
@@ -61,66 +63,75 @@
 		<!--STUDENT-HEADER-->
 
 		<main class="main">
+			<!--STUDENT DISCIPLINE JOURNAL-->
 			<div class="journal">
-				<div class="tile tile_green">
+				<div class="journal__dates">
 					<div class="date">
 						<h3>12.01.2020</h3>
 						<h3>19:00</h3>
 					</div>
-					<div class="content">
-						<h3 class="center">Seminar</h3>
-						<h3><span>Grade: </span>A</h3>
-						<h3><span>Teacher: </span>John Johnson</h3>
-						<h3><span>Work: </span>Self work</h3>
-						<h3><span>Feedback: </span>Excellent work</h3>
-					</div>
-				</div>
-
-				<div class="tile tile_red">
 					<div class="date">
 						<h3>13.01.2020</h3>
-						<h3>11:00</h3>
+						<h3>17:00</h3>
 					</div>
-					<div class="content">
-						<h3 class="center">Seminar</h3>
-						<h3 class="center">Absent</h3>
-					</div>
-
-				</div>
-
-				<div class="tile tile_blue">
 					<div class="date">
 						<h3>14.01.2020</h3>
+						<h3>18:00</h3>
+					</div>
+					<div class="date">
+						<h3>15.01.2020</h3>
 						<h3>15:00</h3>
 					</div>
-					<div class="content">
-						<h3 class="center">Seminar</h3>
-						<h3 class="center">Present</h3>
-					</div>
-
-				</div>
-
-				<div class="tile tile_blue">
 					<div class="date">
-						<h3>15.01.2020</h3>
-						<h3>17:00</h3>
-					</div>
-					<div class="content">
-						<h3 class="center">Seminar</h3>
-						<h3 class="center">Present</h3>
-					</div>
-
-				</div>
-
-				<div class="tile tile_grey">
-					<div class="date">
-						<h3>15.01.2020</h3>
-						<h3>17:00</h3>
-					</div>
-					<div class="content">
+						<h3>16.01.2020</h3>
+						<h3>13:00</h3>
 					</div>
 				</div>
+
+				<div class="journal__tiles">
+					<div class="tile tile_green">
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3><span>Grade: </span>A</h3>
+							<h3><span>Teacher: </span>John Johnson</h3>
+							<h3><span>Work: </span>Self work</h3>
+							<h3><span>Feedback: </span>Excellent work</h3>
+						</div>
+					</div>
+
+					<div class="tile tile_red">
+
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3 class="center">Absent</h3>
+						</div>
+
+					</div>
+
+					<div class="tile tile_blue">
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3 class="center">Present</h3>
+						</div>
+
+					</div>
+
+					<div class="tile tile_blue">
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3 class="center">Present</h3>
+						</div>
+
+					</div>
+
+					<div class="tile tile_grey">
+						<div class="content">
+						</div>
+					</div>
+				</div>
+
 			</div>
+			<!--STUDENT DISCIPLINE JOURNAL-->
 
 			<!--PAGINATION-->
 			<div class="pagination-wrapper">

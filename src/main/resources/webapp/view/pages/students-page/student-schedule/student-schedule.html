@@ -1,0 +1,464 @@
+<!--WHAT TO USE
+2. Student aside manu component
+3. Student footer component
+4. Student header component
+5. Student schedule component
+6. Pagination component-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="../../../general/null.css">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+	<link rel="stylesheet" href="../../../components/student-aside-menu/style.css">
+	<link rel="stylesheet" href="../../../components/student-header/style.css">
+	<link rel="stylesheet" href="../../../components/student-footer/style.css">
+	<link rel="stylesheet" href="../../../components/student-table-uploads/style.css">
+	<link rel="stylesheet" href="../../../shared/student-table.css">
+	<link rel="stylesheet" href="../../../shared/modal.css">
+	<link rel="stylesheet" href="../../../components/pagination/style.css">
+	<link rel="stylesheet" href="../../../components/student-schedule/style.css">
+
+
+	<link rel="stylesheet" href="../../../general/general.css">
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="style.css">
+
+
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
+	<title>Students schedule</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<!--STUDENT-HEADER-->
+		<header class="header">
+			<div class="header-arrow">
+			</div>
+
+			<div class="profile">
+				<div class="profile-avatar">
+					<img src="../../../images/icons/avatar-icon.png" alt="avatar">
+				</div>
+
+				<p>John Johnson</p>
+				<p>Course: 1</p>
+				<p>Faculty: Web development</p>
+			</div>
+		</header>
+		<!--STUDENT-HEADER-->
+
+		<main class="main">
+			<!--STUDENT-SCHEDULE-->
+			<div class="schedule">
+				<div class="row">
+					<h3 class="date">12.01.2020</h3>
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_green">
+								<h5>Web development</h5>
+								<h5>9:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_green">
+								<h5><span>Lecture</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_red">
+								<h5>IT Essentials</h5>
+								<h5>11:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_red">
+								<h5><span>Seminar</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_green">
+								<h5>Math</h5>
+								<h5>17:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_green">
+								<h5><span>Lecture</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<h3 class="date">13.01.2020</h3>
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_yellow">
+								<h5>IT Essentials</h5>
+								<h5>15:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_yellow">
+								<h5><span>Midterm</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_violet">
+								<h5>Physics</h5>
+								<h5>17:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_violet">
+								<h5><span>Lab</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class=" tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<h3 class="date">14.01.2020</h3>
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_red">
+								<h5>Web development</h5>
+								<h5>13:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_red">
+								<h5><span>Seminar</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_blue">
+								<h5>Math</h5>
+								<h5>15:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_blue">
+								<h5><span>Exam</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_green">
+								<h5>Web development</h5>
+								<h5>17:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_green">
+								<h5><span>Lecture</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_green">
+								<h5>IT Essentials</h5>
+								<h5>19:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_green">
+								<h5><span>Lecture</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<h3 class="date">15.01.2020</h3>
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_green">
+								<h5>Chemistry</h5>
+								<h5>9:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_green">
+								<h5><span>Lecture</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_violet">
+								<h5>Math</h5>
+								<h5>11:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_violet">
+								<h5><span>Lab</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<h3 class="date">16.01.2020</h3>
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_red">
+								<h5>Web development</h5>
+								<h5>11:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_red">
+								<h5><span>Seminar</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_red">
+								<h5>IT Essentials</h5>
+								<h5>13:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_red">
+								<h5><span>Seminar</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__inner">
+							<div class="tile__front tile__front_violet">
+								<h5>Math</h5>
+								<h5>15:00</h5>
+							</div>
+
+							<div class="tile__back tile__back_violet">
+								<h5><span>Lab</span></h5>
+								<h5><span>Teacher: </span>John Johnson</h5>
+								<h5><span>Cabinet: </span>215</h5>
+							</div>
+						</div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+
+					<div class="tile">
+						<div class="tile__front"></div>
+					</div>
+				</div>
+
+			</div>
+			<!--STUDENT-SCHEDULE-->
+
+			<!--PAGINATION-->
+			<div class="pagination-wrapper">
+				<div class="pagination">
+					<button class="prev page-numbers" href="#">prev</button>
+					<button class="page-numbers current">1</button>
+					<button class="page-numbers" href="#">2</button>
+					<button class="page-numbers" href="#">3</button>
+					<button class="page-numbers" href="#">4</button>
+					<button class="page-numbers" href="#">5</button>
+					<button class="page-numbers" href="#">6</button>
+					<button class="page-numbers" href="#">7</button>
+					<button class="page-numbers" href="#">8</button>
+					<button class="page-numbers" href="#">9</button>
+					<button class="page-numbers" href="#">10</button>
+					<button class="next page-numbers" href="#">next</button>
+				</div>
+			</div>
+			<!--PAGINATION-->
+		</main>
+
+
+		<!--STUDENT-FOOTER-->
+		<footer class="footer">
+			<div class="footer-info">
+				<div class="footer-column">
+					<h5>About</h5>
+					<ul>
+						<li>
+							<a href="#">Company</a>
+						</li>
+						<li>
+							<a href="#">Team</a>
+						</li>
+						<li>
+							<a href="#">Career</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-column">
+					<h5>Contact us</h5>
+					<ul>
+						<li>
+							+994-51-123-12-12
+						</li>
+						<li>
+							+994-70-123-12-12
+						</li>
+						<li>
+							+994-12-156-12-12
+						</li>
+					</ul>
+				</div>
+
+				<div class="footer-column">
+					<h5>EUniversity</h5>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tenetur dolorum, neque ab consequatur
+						eius
+						pariatur dicta suscipit? Deserunt, nesciunt rem. Debitis maiores nam ut molestiae, officia quos
+						aliquam!
+						Sunt!</p>
+				</div>
+			</div>
+
+			<div class="footer-links">
+				<a class="footer-btn footer-btn_violet" href="#">
+					<img src="../../../images/icons/facebook-logo.png" alt="facebook">
+				</a>
+
+				<a class="footer-btn footer-btn_blue" href="#">
+					<img src="../../../images/icons/twitter-logo.png" alt="twitter">
+				</a>
+
+				<a class="footer-btn footer-btn_red" href="#">
+					<img src="../../../images/icons/instagram-logo.png" alt="instagram">
+				</a>
+
+				<a class="footer-btn footer-btn_green" href="#">
+					<img src="../../../images/icons/whatsapp-logo.png" alt="whatsapp">
+				</a>
+			</div>
+
+			<p class="footer-bottom">
+				EUniversity © 2022
+			</p>
+		</footer>
+		<!--STUDENT-FOOTER-->
+	</div>
+
+
+	<!--STUDENT-ASIDE-->
+	<aside class="aside">
+		<h1 class="logo">
+			<img src="../../../images/header-logo.jpg" alt="logo">
+			<a href="#"><span class="item-content">E<span>University</span></span></a>
+		</h1>
+
+		<div class="nav-wrap">
+			<nav class="main-nav">
+				<ul class="list-hover-slide">
+					<li class="item_violet"><a href="#"> <img src="../../../images/icons/student-journal.png" alt="journal">
+							<span class="item-content">Journal</span></a></li>
+					<li class="item_blue"><a href="#"> <img src="../../../images/icons/student-discipline.png"
+								alt="discipline"><span class="item-content">Discipline</span></a></li>
+					<li class="item_green"><a href="#"> <img src="../../../images/icons/student-schedule.png"
+								alt="schedule"><span class="item-content">Schedule</span></a></li>
+					<li class="item_yellow"><a href="#"> <img src="../../../images/icons/student-exam.png" alt="exams"><span
+								class="item-content">Exams</span></a></li>
+					<li class="item_orange"><a href="#"> <img src="../../../images/icons/student-teachers.png"
+								alt="teachers"><span class="item-content">Teachers</span></a></li>
+					<li class="item_red"><a href="#"> <img src="../../../images/icons/student-group.png" alt="groups"><span
+								class="item-content">Groups</span></a></li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+	<!--STUDENT-ASIDE-->
+
+
+	<script src="../../../components/modal/app.js"></script>
+	<script src="../app.js"></script>
+	<script src="app.js"></script>
+</body>
+
+</html>

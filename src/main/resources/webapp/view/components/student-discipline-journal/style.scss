@@ -1,0 +1,107 @@
+.journal {
+	&__tiles {
+		display: flex;
+		column-gap: 20px;
+	}
+
+	&__dates {
+		display: flex;
+		width: 100%;
+		border-radius: 10px;
+		background-color: #fff;
+
+		margin-bottom: 20px;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		.date {
+			width: 20%;
+			position: relative;
+			padding: 20px;
+			h3 {
+				text-align: center;
+				font-weight: 700;
+			}
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+				width: 2px;
+				color: black;
+				background-color: black;
+			}
+		}
+	}
+
+	.tile {
+		height: 400px;
+		width: 20%;
+		overflow: auto;
+		border-radius: 10px;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+		transition: all 0.3s ease 0s;
+		user-select: none;
+		.date {
+			background-color: #fff;
+			margin: 0;
+			h3 {
+				color: #000;
+				font-weight: 700;
+				margin: 0;
+				padding: 10px 0;
+			}
+		}
+		.content {
+			padding: 10px;
+			padding-left: 30px;
+		}
+		&:hover {
+			transform: scale(0.97);
+		}
+		h3 {
+			font-weight: 500;
+			span {
+				font-weight: 700;
+				letter-spacing: 1px;
+				line-height: 150%;
+			}
+		}
+		.center {
+			font-weight: 700;
+			text-align: center;
+		}
+
+		&_green {
+			background: linear-gradient(to top, #58b47b, #43b1a8);
+			h3 {
+				color: #faffdc;
+				span {
+					color: #4301ac;
+				}
+			}
+			.center {
+				color: #4301ac;
+			}
+		}
+		&_red {
+			background: linear-gradient(to top, #ce746c, #8b313a);
+			.center {
+				color: #ffdcdc;
+				font-size: 30px;
+			}
+		}
+
+		&_blue {
+			background: linear-gradient(to bottom, #7fa6da, #409bb9);
+
+			.center {
+				color: #e2f4ff;
+				font-size: 30px;
+			}
+		}
+
+		&_grey {
+			background: linear-gradient(to bottom, #dddddd, #c9c9c9);
+		}
+	}
+}
