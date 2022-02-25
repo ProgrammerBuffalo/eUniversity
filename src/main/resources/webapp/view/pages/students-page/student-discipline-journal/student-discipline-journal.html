@@ -1,10 +1,9 @@
 <!--WHAT TO USE
-1. Student table uploads component
 2. Student aside manu component
 3. Student footer component
 4. Student header component
-5. Modal component
-6. Student upload modal component-->
+5. Student discipline journal component
+6. Pagination component-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +29,8 @@
 	<link rel="stylesheet" href="../../../components/student-table-uploads/style.css">
 	<link rel="stylesheet" href="../../../shared/student-table.css">
 	<link rel="stylesheet" href="../../../shared/modal.css">
-
+	<link rel="stylesheet" href="../../../components/pagination/style.css">
+	<link rel="stylesheet" href="../../../components/student-discipline-journal/style.css">
 
 
 	<link rel="stylesheet" href="../../../general/general.css">
@@ -40,7 +40,7 @@
 
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
-	<title>Students Materials</title>
+	<title>Students journal</title>
 </head>
 
 <body>
@@ -63,118 +63,94 @@
 		<!--STUDENT-HEADER-->
 
 		<main class="main">
-			<div class="flex col-gap-20 mb-20 f-between">
-
-				<select class="selectpicker" data-live-search="true" name="works" id="works" class="fw-80">
-					<option value="lab">Labs</option>
-					<option value="presentation">Presentations</option>
-				</select>
-
-				<div class="btn btn-info fw-10 upload-btn">Upload file</div>
-			</div>
-
-			<!--STUDENT-TABLE-UPLOADS-->
-			<table>
-				<table>
-					<thead>
-						<tr>
-							<th>Theme</th>
-							<th>Type</th>
-							<th>Description</th>
-							<th>Order</th>
-							<th class="download">Download</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>Theme 1</td>
-							<td>Lecture</td>
-							<td>Description 1</td>
-							<td>Order 1</td>
-							<td>
-								<div class="table-img">
-									<img src="../../../images/icons/download-icon.png" alt="download">
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<td>Theme 2</td>
-							<td>Self</td>
-							<td>Description 2</td>
-							<td>Order 2</td>
-							<td>
-								<div class="table-img">
-									<img src="../../../images/icons/download-icon.png" alt="download">
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<td>Theme 3</td>
-							<td>Lecture</td>
-							<td>Description 3</td>
-							<td>Order 3</td>
-							<td>
-								<div class="table-img">
-									<img src="../../../images/icons/download-icon.png" alt="download">
-								</div>
-							</td>
-
-						</tr>
-
-						<tr>
-							<td>Theme 4</td>
-							<td>Self</td>
-							<td>Description 4</td>
-							<td>Order 4</td>
-							<td>
-								<div class="table-img">
-									<img src="../../../images/icons/download-icon.png" alt="download">
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<td>Theme 5</td>
-							<td>Lecture</td>
-							<td>Description 5</td>
-							<td>Order 5</td>
-							<td>
-								<div class="table-img">
-									<img src="../../../images/icons/download-icon.png" alt="download">
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<!--STUDENT-TABLE-UPLOADS-->
-
-
-				<div class="modal" id="students-add">
-					<div class="modal-content" style="width: 500px">
-						<span id="closeStudentsAddBtn" class="close">&times;</span>
-						<!--STUDENT-UPLOAD-MODAL COMPONENT-->
-						<form class="register">
-
-							<div class="form-group">
-								<span>Description: </span>
-								<input type="text" class="form-field">
-							</div>
-
-							<div class="form-group download-btn" onclick="handleClick()">
-								<span>Choose file: </span>
-								<input type="text" placeholder="Input file..." disabled class="form-field">
-								<input type="file" class="d-none" id="upload-file" name="upload-file">
-							</div>
-
-
-							<input type="submit" class="btn btn-danger" value="Add file"></input>
-						</form>
-						<!--STUDENT-UPLOAD-MODAL COMPONENT-->
+			<!--STUDENT DISCIPLINE JOURNAL-->
+			<div class="journal">
+				<div class="journal__dates">
+					<div class="date">
+						<h3>12.01.2020</h3>
+						<h3>19:00</h3>
+					</div>
+					<div class="date">
+						<h3>13.01.2020</h3>
+						<h3>17:00</h3>
+					</div>
+					<div class="date">
+						<h3>14.01.2020</h3>
+						<h3>18:00</h3>
+					</div>
+					<div class="date">
+						<h3>15.01.2020</h3>
+						<h3>15:00</h3>
+					</div>
+					<div class="date">
+						<h3>16.01.2020</h3>
+						<h3>13:00</h3>
 					</div>
 				</div>
+
+				<div class="journal__tiles">
+					<div class="tile tile_green">
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3><span>Grade: </span>A</h3>
+							<h3><span>Teacher: </span>John Johnson</h3>
+							<h3><span>Work: </span>Self work</h3>
+							<h3><span>Feedback: </span>Excellent work</h3>
+						</div>
+					</div>
+
+					<div class="tile tile_red">
+
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3 class="center">Absent</h3>
+						</div>
+
+					</div>
+
+					<div class="tile tile_blue">
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3 class="center">Present</h3>
+						</div>
+
+					</div>
+
+					<div class="tile tile_blue">
+						<div class="content">
+							<h3 class="center">Seminar</h3>
+							<h3 class="center">Present</h3>
+						</div>
+
+					</div>
+
+					<div class="tile tile_grey">
+						<div class="content">
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!--STUDENT DISCIPLINE JOURNAL-->
+
+			<!--PAGINATION-->
+			<div class="pagination-wrapper">
+				<div class="pagination">
+					<button class="prev page-numbers" href="#">prev</button>
+					<button class="page-numbers current">1</button>
+					<button class="page-numbers" href="#">2</button>
+					<button class="page-numbers" href="#">3</button>
+					<button class="page-numbers" href="#">4</button>
+					<button class="page-numbers" href="#">5</button>
+					<button class="page-numbers" href="#">6</button>
+					<button class="page-numbers" href="#">7</button>
+					<button class="page-numbers" href="#">8</button>
+					<button class="page-numbers" href="#">9</button>
+					<button class="page-numbers" href="#">10</button>
+					<button class="next page-numbers" href="#">next</button>
+				</div>
+			</div>
+			<!--PAGINATION-->
 		</main>
 
 

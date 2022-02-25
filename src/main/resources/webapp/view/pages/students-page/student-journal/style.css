@@ -1,0 +1,162 @@
+.journal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.journal .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  width: 100%;
+}
+
+.journal .row .date {
+  font-size: 30px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.journal .row .tile {
+  width: 100%;
+  height: 200px;
+  background-color: transparent;
+  border-radius: 10px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  cursor: pointer;
+}
+
+.journal .row .tile__inner {
+  position: relative;
+  -webkit-transition: all 0.6s ease 0s;
+  transition: all 0.6s ease 0s;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.journal .row .tile:hover .tile__inner {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.journal .row .tile_present {
+  background: #a5da88;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#c7e0b9), to(#a5da88));
+  background: linear-gradient(to bottom, #c7e0b9, #a5da88);
+}
+
+.journal .row .tile_present h5 {
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+.journal .row .tile_present h5 span {
+  color: #3aa73a;
+  font-weight: 700;
+}
+
+.journal .row .tile_absent {
+  background: #cf646f;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#f38881), to(#cf646f));
+  background: linear-gradient(to bottom, #f38881, #cf646f);
+}
+
+.journal .row .tile_absent h5 {
+  font-size: 30px;
+  letter-spacing: 1px;
+  color: #4e0000;
+  font-weight: 700;
+}
+
+.journal .row .tile__front {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.journal .row .tile__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  overflow: auto;
+}
+
+.journal .row .tile__back_absent {
+  background: #994850;
+  background: -webkit-gradient(linear, left top, left bottom, from(#994850), to(#6b2d34));
+  background: linear-gradient(to bottom, #994850, #6b2d34);
+  color: #ffcfcf;
+}
+
+.journal .row .tile__back_present {
+  background: #c4eeff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#def6ff), to(#cee0fa));
+  background: linear-gradient(to bottom, #def6ff, #cee0fa);
+  color: #c4eeff;
+}
+
+.journal .row .tile__back h5 {
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 142%;
+}
+
+.journal .row .tile__back h5 span {
+  color: #ebd3ff;
+  font-weight: 700;
+}
+/*# sourceMappingURL=style.css.map */
