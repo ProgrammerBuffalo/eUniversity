@@ -51,7 +51,7 @@ export class DisciplineListComponent implements OnInit {
     });
 
     this.disciplines = new PaginatedList([], 0);
-    this.paginationDTO = new PaginationDTO(0, 3, '');
+    this.paginationDTO = new PaginationDTO(0, 12, '');
     this.pageCount = 0;
   }
 
