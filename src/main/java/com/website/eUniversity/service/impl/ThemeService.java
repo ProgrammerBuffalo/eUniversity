@@ -69,6 +69,6 @@ public class ThemeService implements IThemeService {
         Theme theme = themeRepository.findById(themeId)
                 .orElseThrow(() -> new NotFoundException("Theme not found"));
 
-        return Theme.toDTO(themeRepository.save(theme.sMaterial(null)));
+        return Theme.toDTO(themeRepository.save(theme.setMaterial(null)));
     }
 }
