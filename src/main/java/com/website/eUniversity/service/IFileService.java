@@ -1,5 +1,6 @@
 package com.website.eUniversity.service;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.entity.File;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,7 +11,7 @@ public interface IFileService {
 
     File uploadFile(MultipartFile multipartFile) throws IOException;
 
-    ByteArrayResource downloadFile(File file) throws IOException;
+    ByteArrayResource downloadFile(File file) throws IOException, NotFoundException;
 
     void deleteFile(File file) throws IOException;
 }

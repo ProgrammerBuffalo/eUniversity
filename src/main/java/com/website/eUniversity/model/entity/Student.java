@@ -23,6 +23,10 @@ public class Student {
     private Group group;
 
     @OneToOne
+    @JoinColumn(name = "image")
+    private File image;
+
+    @OneToOne
     @JoinColumn(name = "journal_id", referencedColumnName = "id")
     private Journal journal;
 
@@ -85,6 +89,15 @@ public class Student {
 
     public Student setStudentMaterial(List<StudentMaterial> studentMaterial) {
         this.studentMaterial = studentMaterial;
+        return this;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public Student setImage(File image) {
+        this.image = image;
         return this;
     }
 }
