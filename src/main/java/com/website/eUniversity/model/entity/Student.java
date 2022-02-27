@@ -23,7 +23,7 @@ public class Student {
     private Group group;
 
     @OneToOne
-    @JoinColumn(name = "image")
+    @JoinColumn(name = "image_id")
     private File image;
 
     @OneToOne
