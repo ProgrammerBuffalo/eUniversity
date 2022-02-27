@@ -1,8 +1,8 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.exception.NotFoundException;
-import com.website.eUniversity.model.dto.entity.MaterialRequestDTO;
-import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import com.website.eUniversity.model.entity.*;
 import com.website.eUniversity.repository.*;
 import com.website.eUniversity.service.IFileService;
@@ -10,12 +10,10 @@ import com.website.eUniversity.service.IMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

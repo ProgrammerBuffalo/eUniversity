@@ -1,8 +1,8 @@
 package com.website.eUniversity.repository;
 
 import com.website.eUniversity.model.dto.IDDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.teacher_discipline.ITeacherDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
 import com.website.eUniversity.model.entity.TeacherDiscipline;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

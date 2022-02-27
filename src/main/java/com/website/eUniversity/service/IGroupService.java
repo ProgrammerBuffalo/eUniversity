@@ -2,10 +2,10 @@ package com.website.eUniversity.service;
 
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.*;
-import com.website.eUniversity.model.dto.entity.group.AddGroupDTO;
-import com.website.eUniversity.model.dto.entity.group.AttachStudentDTO;
-import com.website.eUniversity.model.dto.entity.group.UpdateGroupDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.*;
+import com.website.eUniversity.model.dto.admin_panel.entity.group.AddGroupDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.group.AttachStudentDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.group.UpdateGroupDTO;
 
 import java.util.List;
 

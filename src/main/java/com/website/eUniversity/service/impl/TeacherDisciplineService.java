@@ -1,9 +1,9 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.dto.IDDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.teacher_discipline.AttachDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.teacher_discipline.AttachDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.teacher_discipline.ITeacherDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.teacher_discipline.ITeacherShortDisciplinesDTO;
 import com.website.eUniversity.model.entity.TeacherDiscipline;
 import com.website.eUniversity.repository.IDisciplineRepository;
 import com.website.eUniversity.repository.ITeacherDisciplineRepository;

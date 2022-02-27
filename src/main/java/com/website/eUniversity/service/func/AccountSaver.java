@@ -1,6 +1,6 @@
 package com.website.eUniversity.service.func;
 
-import com.website.eUniversity.model.dto.entity.base.UserDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.base.UserDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.repository.IAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;

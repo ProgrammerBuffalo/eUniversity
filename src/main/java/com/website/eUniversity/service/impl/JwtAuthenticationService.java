@@ -3,8 +3,8 @@ package com.website.eUniversity.service.impl;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.exception.RefreshTokenExpiredException;
 import com.website.eUniversity.exception.RefreshTokenNotFoundException;
-import com.website.eUniversity.model.dto.identification.AuthorizationRequestDTO;
-import com.website.eUniversity.model.dto.identification.AuthorizationResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.identification.AuthorizationRequestDTO;
+import com.website.eUniversity.model.dto.admin_panel.identification.AuthorizationResponseDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.RefreshToken;
 import com.website.eUniversity.repository.IAccountRepository;
@@ -18,7 +18,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

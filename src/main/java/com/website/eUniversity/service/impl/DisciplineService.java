@@ -1,8 +1,8 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.dto.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.discipline.AddDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.discipline.UpdateDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.discipline.AddDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.discipline.UpdateDisciplineDTO;
 import com.website.eUniversity.model.entity.Discipline;
 import com.website.eUniversity.repository.IDisciplineRepository;
 import com.website.eUniversity.service.IDisciplineService;

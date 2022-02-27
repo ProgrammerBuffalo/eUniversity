@@ -1,10 +1,9 @@
 package com.website.eUniversity.service;
 
 import com.website.eUniversity.exception.NotFoundException;
-import com.website.eUniversity.model.dto.entity.MaterialRequestDTO;
-import com.website.eUniversity.model.dto.entity.MaterialResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;

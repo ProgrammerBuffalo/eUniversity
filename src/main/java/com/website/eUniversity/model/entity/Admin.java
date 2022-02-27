@@ -1,8 +1,6 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.AdminDTO;
-import com.website.eUniversity.model.dto.entity.StudentDTO;
-import org.hibernate.annotations.GenericGenerator;
+import com.website.eUniversity.model.dto.admin_panel.entity.AdminDTO;
 
 import javax.persistence.*;
 

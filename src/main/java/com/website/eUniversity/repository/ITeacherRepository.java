@@ -1,11 +1,7 @@
 package com.website.eUniversity.repository;
 
-import com.website.eUniversity.model.dto.entity.TeacherDTO;
-import com.website.eUniversity.model.entity.Account;
-import com.website.eUniversity.model.entity.Admin;
-import com.website.eUniversity.model.entity.Student;
+import com.website.eUniversity.model.dto.admin_panel.entity.TeacherDTO;
 import com.website.eUniversity.model.entity.Teacher;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,7 +20,7 @@ public interface ITeacherRepository extends JpaRepository<Teacher, Integer> {
 
     Optional<Teacher> findByAccount_Id(String id);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.TeacherDTO(a.id, t.id, a.fullName, a.age, a.login, a.password)" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.admin_panel.entity.TeacherDTO(a.id, t.id, a.fullName, a.age, a.login, a.password)" +
             " FROM Teacher t" +
             " INNER JOIN Account a on t.account.id = a.id" +
             " WHERE a.fullName LIKE %:search% OR a.login LIKE %:search%" +

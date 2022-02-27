@@ -1,9 +1,12 @@
 package com.website.eUniversity.service.impl;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
-import com.website.eUniversity.model.dto.entity.StudentDTO;
-import com.website.eUniversity.model.dto.identification.RegistrationDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.StudentDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.StudentShortInfoDTO;
+import com.website.eUniversity.model.dto.admin_panel.identification.RegistrationDTO;
+import com.website.eUniversity.model.dto.student_panel.StudentInfoDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.repository.IAccountRepository;
@@ -11,11 +14,9 @@ import com.website.eUniversity.repository.IStudentRepository;
 import com.website.eUniversity.service.IStudentService;
 import com.website.eUniversity.service.func.AccountSaver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,6 +70,14 @@ public class StudentService extends AccountSaver implements IStudentService {
         catch (Exception ex) {
             throw ex;
         }
+    }
+
+    @Override
+    public StudentInfoDTO getStudentInfo(String accountId) throws NotFoundException {
+        return studentRepository.findByAccount(accountRepository.findAccountById(accountId)
+                .orElseThrow(() -> new NotFoundException("Account not found")))
+                    .map(StudentInfoDTO::toDTO)
+                    .orElseThrow(() -> new NotFoundException("Student not found"));
     }
 
     @Override
