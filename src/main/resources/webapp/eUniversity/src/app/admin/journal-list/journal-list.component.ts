@@ -24,7 +24,7 @@ export class JournalListComponent implements OnInit {
   groupId: number;
 
   editForm: FormGroup;
-  showEditPopup: boolean;
+  isEditFormVisible: boolean;
 
   constructor(
     private groupService: GroupService,
@@ -40,7 +40,7 @@ export class JournalListComponent implements OnInit {
     this.disciplineId = 0;
     this.groupId = 0;
 
-    this.showEditPopup = false;
+    this.isEditFormVisible = false;
     this.editForm = new FormGroup({});
 
     this.journals = [
@@ -69,12 +69,12 @@ export class JournalListComponent implements OnInit {
     });
   }
 
-  showEditModal() {
-    this.showEditPopup = true;
+  showEditForm() {
+    this.isEditFormVisible = true;
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
   disciplineChanged() {

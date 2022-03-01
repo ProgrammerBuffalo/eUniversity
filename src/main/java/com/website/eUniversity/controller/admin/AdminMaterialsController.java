@@ -1,7 +1,11 @@
 package com.website.eUniversity.controller.admin;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.base.BaseResponse;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import com.website.eUniversity.service.IMaterialService;
@@ -22,16 +26,24 @@ public class AdminMaterialsController {
     private IMaterialService materialService;
 
     @GetMapping(value = "/educational")
-    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam("groupId") Integer groupId,
-                                                        @RequestParam("disciplineId") Integer disciplineId) throws NotFoundException {
-        return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getEducationalMaterials(groupId, disciplineId), "Material are found"));
+    public ResponseEntity<BaseResponse<PaginatedListDTO<MaterialResponseDTO>>> getMaterials(@RequestParam("groupId") Integer groupId,
+                                                                                            @RequestParam("disciplineId") Integer disciplineId,
+                                                                                            @RequestParam("pagination") String pagination)
+            throws NotFoundException, JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        PaginationDTO paginationDTO = mapper.readValue(pagination, PaginationDTO.class);
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO<MaterialResponseDTO>>().success(materialService.getEducationalMaterials(groupId, disciplineId, paginationDTO), "Material are found"));
     }
 
     @GetMapping(value = "/posted-by-student")
-    public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam("groupId") Integer groupId,
-                                                        @RequestParam("disciplineId") Integer disciplineId,
-                                                        @RequestParam("studentId") Integer studentId) throws NotFoundException {
-        return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getFilesPostedByStudent(groupId, disciplineId, studentId), "Material are found"));
+    public ResponseEntity<BaseResponse<PaginatedListDTO<MaterialResponseDTO>>> getMaterials(@RequestParam("groupId") Integer groupId,
+                                                                                            @RequestParam("disciplineId") Integer disciplineId,
+                                                                                            @RequestParam("studentId") Integer studentId,
+                                                                                            @RequestParam("pagination") String pagination)
+            throws NotFoundException, JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        PaginationDTO paginationDTO = mapper.readValue(pagination, PaginationDTO.class);
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO<MaterialResponseDTO>>().success(materialService.getFilesPostedByStudent(groupId, disciplineId, studentId, paginationDTO), "Material are found"));
     }
 
     @GetMapping(value = "/download-file")

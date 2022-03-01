@@ -1,5 +1,7 @@
 package com.website.eUniversity.model.entity;
 
+import com.website.eUniversity.model.dto.admin_panel.entity.GroupDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +33,13 @@ public class Group {
     public Group(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public static GroupDTO toDTO(Group group) {
+        return new GroupDTO(
+                group.getId(),
+                group.getName(),
+                group.getDate());
     }
 
     public Integer getId() {

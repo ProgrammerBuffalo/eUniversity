@@ -32,6 +32,15 @@
     overflow: scroll;
   }
 }
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1 1 auto;
+}
 /*CONTAINER*/
 
 /*BUTTONS*/
@@ -160,6 +169,23 @@
   width: 100% !important;
 }
 /*INPUTS*/
+
+/*ICONS*/
+.fa-file-download {
+  text-align: center;
+  color: #60aaff;
+}
+
+.fa-times {
+  text-align: center;
+  color: #ff6060;
+}
+
+.fa-pencil-alt {
+  text-align: center;
+  color: #34a500;
+}
+/*ICONS*/
 
 /*TABLE*/
 .td-blue {

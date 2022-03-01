@@ -11,6 +11,8 @@ import { Student } from '../core/models/admin/account/student';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
 import { PrepareApi } from './prepare-api';
+import { PaginatedList } from '../core/models/paginated-list';
+import { PaginationDTO } from '../core/DTOs/pagination-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +30,9 @@ export class GroupService {
     return this.http.post<BaseResponse<number>>(url, dto);
   }
 
-  getAllGroups(): Observable<BaseResponse<Group[]>> {
+  getAllGroups(dto: Readonly<PaginationDTO>): Observable<BaseResponse<PaginatedList<Group>>> {
     let url: string = PrepareApi.prepare(this.controllerName, 'get-groups');
-    return this.http.get<BaseResponse<Group[]>>(url);
+    return this.http.get<BaseResponse<PaginatedList<Group>>>(url, { params: dto });
   }
 
   updateGroup(dto: UpdateGroupDTO): Observable<BaseResponse<string>> {

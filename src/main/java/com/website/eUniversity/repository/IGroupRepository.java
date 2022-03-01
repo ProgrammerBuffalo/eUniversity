@@ -11,6 +11,16 @@ import java.util.List;
 
 public interface IGroupRepository extends JpaRepository<Group, Integer> {
 
+    @Query(value = "SELECT * FROM groups g " +
+            "WHERE g.name LIKE %:search% " +
+            "ORDER BY g.id DESC " +
+            "OFFSET (:pageIndex * :pageSize) " +
+            "ROWS FETCH NEXT :pageSize " +
+            "ROWS ONLY", nativeQuery = true)
+    List<Group> getPaginatedGroups(@Param("search") String search,
+                                   @Param("pageIndex") Integer pageIndex,
+                                   @Param("pageSize") Integer pageSize);
+
     @Query(value = "SELECT new com.website.eUniversity.model.dto.admin_panel.entity.StudentShortInfoDTO" +
             " (s.id, a.fullName)" +
             " FROM Student s INNER JOIN Account a on s.account = a " +
@@ -31,4 +41,8 @@ public interface IGroupRepository extends JpaRepository<Group, Integer> {
             " FROM Student s INNER JOIN Group g ON g = s.group" +
             " WHERE g.id = :id")
     List<DDLResponseDTO<Integer>> findStudentsOfGroup(@Param("id") Integer groupId);
+
+    @Query(value = "SELECT COUNT(*) FROM groups g where g.name LIKE %:search%",
+            nativeQuery = true)
+    Integer countAllByGroups_Name_IsLike(@Param("search") String search);
 }

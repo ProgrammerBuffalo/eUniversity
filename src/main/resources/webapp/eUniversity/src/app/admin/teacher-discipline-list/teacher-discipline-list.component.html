@@ -20,8 +20,8 @@
             <td>{{item.name}}</td>
             <td>{{item.shortDisciplines}}</td>
             <td class="td-blue">
-              <div class="table-btn change-btn" (click)="showEditModal(item)">
-                <i class="fas fa-pencil-alt"></i>
+              <div class="table-btn change-btn" (click)="showEditForm(item)">
+                <i class="fas fa-pencil-alt fa-lg"></i>
               </div>
             </td>
           </tr>
@@ -32,14 +32,14 @@
 </div>
 
 
-<div class="modal" *ngIf="showEditPopup">
+<div class="modal" *ngIf="isEditFormVisible">
   <div class="modal-content" style="width: 500px">
-    <span class="close" (click)="closeEditModal()">&times;</span>
+    <span class="close" (click)="closeEditForm()">&times;</span>
     <span>Teacher name: {{selectedTeacherDisciplines.name}}</span>
 
     <form class="register" [formGroup]="editForm">
       <div class="flex f-between gap-50 mb-20">
-        <select formControlName='disciplineId'>
+        <select class="selectpicker2" formControlName='disciplineId'>
           <option value="0">Select discipline</option>
           <option value="{{item.id}}" *ngFor="let item of disciplines">{{item.name}}</option>
         </select>
@@ -68,7 +68,7 @@
                   <td>{{item.name}}</td>
                   <td class="td-red">
                     <div class="table-btn remove-btn" (click)="detachDiscipline(item.id)">
-                      <i class="fas fa-times"></i>
+                      <i class="fas fa-times fa-lg"></i>
                     </div>
                   </td>
                 </tr>

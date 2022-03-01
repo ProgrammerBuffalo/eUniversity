@@ -2,6 +2,7 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.AdminDTO;
 import com.website.eUniversity.model.dto.admin_panel.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
@@ -70,12 +71,12 @@ public class AdminService extends AccountSaver implements IAdminService {
     }
 
     @Override
-    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
+    public PaginatedListDTO getUserList(PaginationDTO dto) {
         return new PaginatedListDTO<AdminDTO>().setItems(adminRepository
-                .getPaginatedAdmins(search, pageIndex, pageSize)
+                .getPaginatedAdmins(dto.getSearch(), dto.getPageIndex(), dto.getPageSize())
                 .stream()
                 .map(Admin::toDTO)
                 .collect(Collectors.toList()))
-                .setAllItemsCount(adminRepository.countAllByAccount_FullNameIsLike(search));
+                .setAllItemsCount(adminRepository.countAllByAccount_FullNameIsLike(dto.getSearch()));
     }
 }

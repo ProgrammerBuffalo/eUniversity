@@ -1,6 +1,5 @@
 package com.website.eUniversity.repository;
 
-import com.website.eUniversity.model.entity.GroupDiscipline;
 import com.website.eUniversity.model.entity.Material;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,22 +9,61 @@ import java.util.List;
 
 public interface IMaterialRepository extends JpaRepository<Material, Integer> {
 
-    @Query(value = "SELECT new com.website.eUniversity.model.entity" +
-            ".Material(m.id, m.order, f, m.description, m.userId, acc.fullName, m.groupDiscipline, m.educationalProcess) " +
-            "FROM Material m INNER JOIN File f ON " +
-            "f.id = m.file.id " +
-            "INNER JOIN Account acc ON acc.id = m.userId " +
-            "LEFT JOIN StudentMaterial sm ON " +
-            "m.id = sm.material.id WHERE sm.material.id is null AND m.groupDiscipline = :groupDiscipline")
-    List<Material> findAllByGroupDiscipline(@Param("groupDiscipline") GroupDiscipline groupDiscipline);
+    @Query(value = "SELECT * FROM materials m " +
+            "INNER JOIN accounts a ON a.id = m.user_id " +
+            "INNER JOIN educational_processes ep ON ep.id = m.educational_process_id " +
+            "INNER JOIN files f ON f.id = m.file_id " +
+            "WHERE m.group_discipline_id = :groupDisciplineId " +
+            "AND (a.full_name LIKE %:search% OR f.original_file_name LIKE %:search% OR ep.name LIKE %:search%) " +
+            "ORDER BY m.id DESC " +
+            "OFFSET (:pageIndex * :pageSize) " +
+            "ROWS FETCH NEXT :pageSize " +
+            "ROWS ONLY", nativeQuery = true)
+    List<Material> getEducationPaginatedList(@Param("groupDisciplineId") Integer groupDisciplineId,
+                                             @Param("search") String search,
+                                             @Param("pageIndex") Integer pageIndex,
+                                             @Param("pageSize") Integer pageSize);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.entity.Material" +
-            "(m.id, m.order, f, m.description, m.userId, acc.fullName, m.groupDiscipline, m.educationalProcess) " +
-            "FROM Material m INNER JOIN StudentMaterial sm ON m.id = sm.material.id " +
-            "INNER JOIN File f ON m.file.id = f.id " +
-            "INNER JOIN Account acc ON acc.id = m.userId " +
-            "INNER JOIN GroupDiscipline gd on gd.id = m.groupDiscipline.id " +
-            "WHERE sm.student.id = :studentId AND gd = :groupDiscipline " +
-            "AND m.educationalProcess.name IN ('Seminar', 'Practise')")
-    List<Material> findAllStudentMaterials(@Param("studentId") Integer studentId, @Param("groupDiscipline") GroupDiscipline groupDiscipline);
+    @Query(value = "SELECT COUNT(*) " +
+            "FROM materials m " +
+            "INNER JOIN accounts a ON a.id = m.user_id " +
+            "INNER JOIN files f ON f.id = m.file_id " +
+            "INNER JOIN educational_processes ep ON ep.id = m.educational_process_id " +
+            "WHERE m.group_discipline_id = :groupDisciplineId " +
+            "AND (a.full_name LIKE %:search% OR f.original_file_name LIKE %:search% OR ep.name LIKE %:search%)", nativeQuery = true)
+    Integer countAllEducationBy_FileName_AccountFullName_EcuProcess_IsLike(@Param("groupDisciplineId") Integer groupDisciplineId, @Param("search") String search);
+
+    @Query(value = "SELECT * FROM materials m " +
+            "INNER JOIN students_materials sm on sm.material_id = m.id " +
+            "INNER JOIN accounts a ON a.id = m.user_id " +
+            "INNER JOIN files f ON f.id = m.file_id " +
+            "INNER JOIN educational_processes ep ON ep.id = m.educational_process_id " +
+            "WHERE m.group_discipline_id = :groupDisciplineId " +
+            "AND a.id = :studentId " +
+            "AND ep.id IN (2, 3)" +
+            "AND (a.full_name LIKE %:search% OR f.original_file_name LIKE %:search% OR ep.name LIKE %:search%)" +
+            "ORDER BY m.id DESC " +
+            "OFFSET (:pageIndex * :pageSize) " +
+            "ROWS FETCH NEXT :pageSize " +
+            "ROWS ONLY", nativeQuery = true)
+    List<Material> getStudentPaginatedList(@Param("groupDisciplineId") Integer groupDisciplineId,
+                                           @Param("studentId") Integer studentId,
+                                           @Param("search") String search,
+                                           @Param("pageIndex") Integer pageIndex,
+                                           @Param("pageSize") Integer pageSize);
+
+    @Query(value = "SELECT COUNT(*) " +
+            "FROM materials " +
+            "INNER JOIN students_materials sm on sm.material_id = m.id " +
+            "INNER JOIN accounts a ON a.id = m.user_id " +
+            "INNER JOIN files f ON f.id = m.file_id " +
+            "INNER JOIN educational_processes ep ON ep.id = m.educational_process_id " +
+            "WHERE m.group_discipline_id = :groupDisciplineId " +
+            "AND a.id = :studentId " +
+            "AND ep.id IN (2, 3)" +
+            "AND (a.full_name LIKE %:search% OR f.original_file_name LIKE %:search% OR ep.name LIKE %:search%)", nativeQuery = true)
+    Integer countAllStudentBy_FileName_AccountName_EcuProcess_IsLike(@Param("groupDisciplineId") Integer groupDisciplineId,
+                                                                     @Param("studentId") Integer studentId,
+                                                                     @Param("search") String search);
+
 }

@@ -1,0 +1,5 @@
+insert into schedule values (1, '04:07:00.0000000', '05:08:00.0000000', 1, 12)
+insert into schedule values (3, '19:06:00.0000000', '20:11:00.0000000', 2, 17)
+insert into schedule values (2, '06:06:00.0000000', '07:12:00.0000000', 1, 16)
+insert into schedule values (1, '04:08:00.0000000', '05:08:00.0000000', 1, 16)
+insert into schedule values (4, '06:08:00.0000000', '21:09:00.0000000', 3, 15)

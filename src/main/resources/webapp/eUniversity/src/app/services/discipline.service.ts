@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AddDisciplineDTO } from '../core/DTOs/admin/discipline/add-discipline-dto';
 import { UpdateDisciplineDTO } from '../core/DTOs/admin/discipline/update-discipline-dto';
+import { PaginationDTO } from '../core/DTOs/pagination-dto';
 import { Discipline } from '../core/models/admin/discipline';
 import { BaseResponse } from '../core/models/base/base-response';
 import { DDL } from '../core/models/ddl';
+import { PaginatedList } from '../core/models/paginated-list';
 import { PrepareApi } from './prepare-api';
 
 @Injectable({
@@ -25,10 +27,9 @@ export class DisciplineService {
     return this.http.post<BaseResponse<number>>(url, discipline);
   }
 
-  getDisciplines(): Observable<BaseResponse<Discipline[]>> {
+  getDisciplines(dto: Readonly<PaginationDTO>): Observable<BaseResponse<PaginatedList<Discipline>>> {
     let url = PrepareApi.prepare(this.controllerName, 'get-all-disciplines');
-    // let params = { search: dto.search, index: dto.index, size: dto.size };
-    return this.http.get<BaseResponse<Discipline[]>>(url);
+    return this.http.get<BaseResponse<PaginatedList<Discipline>>>(url, { params: dto });
   }
 
   getDisciplinesDLL(): Observable<BaseResponse<DDL<number>[]>> {

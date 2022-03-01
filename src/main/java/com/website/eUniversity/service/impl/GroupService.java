@@ -2,6 +2,8 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.DDLResponseDTO;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.*;
 import com.website.eUniversity.model.dto.admin_panel.entity.group.AddGroupDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.group.AttachStudentDTO;
@@ -36,12 +38,13 @@ public class GroupService implements IGroupService {
     private IGroupDisciplineRepository groupDisciplineRepository;
 
     @Override
-    public List<GroupDTO> getAllGroups() {
-        List<Group> groups = groupRepository.findAll();
-
-        return groups.stream()
-                .map(group -> new GroupDTO(group.getId(), group.getName(), group.getDate()))
-                .collect(Collectors.toList());
+    public PaginatedListDTO getAllGroups(PaginationDTO dto) {
+        return new PaginatedListDTO<GroupDTO>().setItems(groupRepository
+                .getPaginatedGroups(dto.getSearch(), dto.getPageIndex(), dto.getPageSize())
+                .stream()
+                .map(Group::toDTO)
+                .collect(Collectors.toList()))
+                .setAllItemsCount(groupRepository.countAllByGroups_Name_IsLike(dto.getSearch()));
     }
 
     @Override

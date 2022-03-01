@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UpdateGroupDTO } from 'src/app/core/DTOs/admin/group/updae-group';
+import { PaginationDTO } from 'src/app/core/DTOs/pagination-dto';
 import { Group } from 'src/app/core/models/admin/group';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
+import { PaginatedList } from 'src/app/core/models/paginated-list';
 import { GroupService } from 'src/app/services/group.service';
 
 @Component({
@@ -12,11 +14,14 @@ import { GroupService } from 'src/app/services/group.service';
 })
 export class GroupListComponent implements OnInit {
 
-  showAddPopup: boolean;
-  showEditPopup: boolean;
+  isAddFormVisible: boolean;
+  isEditFormVisible: boolean;
 
   selectedGroup!: Group;
-  groups: Group[];
+  groups: PaginatedList<Group>;
+
+  paginationDTO: PaginationDTO;
+  pageCount: number;
 
   addForm: FormGroup;
   editForm: FormGroup;
@@ -28,8 +33,8 @@ export class GroupListComponent implements OnInit {
   constructor(
     private groupService: GroupService
   ) {
-    this.showAddPopup = false;
-    this.showEditPopup = false;
+    this.isAddFormVisible = false;
+    this.isEditFormVisible = false;
 
     this.addForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -39,44 +44,59 @@ export class GroupListComponent implements OnInit {
       name: new FormControl('', Validators.required),
     });
 
-    this.groups = [];
+    this.groups = new PaginatedList([], 0);
+    this.pageCount = 0;
+    this.paginationDTO = new PaginationDTO(0, 12, '');
   }
 
   ngOnInit(): void {
-    this.groupService.getAllGroups().subscribe((res: BaseResponse<Group[]>) => {
+    this.getGroups();
+  }
+
+  getGroups() {
+    this.groupService.getAllGroups(this.paginationDTO).subscribe((res: BaseResponse<PaginatedList<Group>>) => {
       this.groups = res.data;
     });
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  onPageChanged(pageIndex: number) {
+    this.paginationDTO.pageIndex = pageIndex;
+    this.getGroups();
+  }
+
+  searchGroups(searchText: string) {
+    this.paginationDTO.search = searchText;
+    this.getGroups();
+  }
+
+  showAddForm() {
+    this.isAddFormVisible = true;
 
     this.editName?.setValue('');
   }
 
-  showEditModal(group: Group) {
-    this.showEditPopup = true;
+  showEditForm(group: Group) {
+    this.isEditFormVisible = true;
     this.selectedGroup = group;
 
     this.editName?.setValue(group.name);
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   addGroup() {
     if (this.addForm.valid)
       this.groupService.addGroup(this.addForm.value).subscribe({
-        next: (res) => {
-          let group: Group = new Group(res.data, this.addName?.value, new Date());
-          this.groups.unshift(group);
+        next: () => {
+          this.getGroups();
         },
-        error: (res) => {
+        error: () => {
           alert('group with this name already exsists');
         }
       })
@@ -98,15 +118,10 @@ export class GroupListComponent implements OnInit {
 
   removeGroup(id: number) {
     this.groupService.removeGroup(id).subscribe({
-      next: (res) => {
-        for (let i = 0; i < this.groups.length; i++) {
-          if (this.groups[i].id == id) {
-            this.groups.splice(i, 1);
-            break;
-          }
-        }
+      next: () => {
+        this.getGroups();
       },
-      error: (res) => {
+      error: () => {
         alert('can`t remove group it has dependencies');
       }
     })

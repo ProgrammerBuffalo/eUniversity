@@ -1,7 +1,11 @@
 package com.website.eUniversity.controller.student;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.base.BaseResponse;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import com.website.eUniversity.service.IMaterialService;
@@ -27,7 +31,10 @@ public class StudentDisciplineController {
 
     @GetMapping(value = "/materials/educational")
     public ResponseEntity<BaseResponse<?>> getMaterials(@RequestParam("groupId") Integer groupId,
-                                                        @RequestParam("disciplineId") Integer disciplineId) throws NotFoundException {
-        return ResponseEntity.ok(new BaseResponse<List<MaterialResponseDTO>>().success(materialService.getEducationalMaterials(groupId, disciplineId), "Material are found"));
+                                                        @RequestParam("disciplineId") Integer disciplineId,
+                                                        @RequestParam("pagination") String pagination) throws NotFoundException, JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        PaginationDTO paginationDTO = mapper.readValue(pagination, PaginationDTO.class);
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO<MaterialResponseDTO>>().success(materialService.getEducationalMaterials(groupId, disciplineId, paginationDTO), "Material are found"));
     }
 }

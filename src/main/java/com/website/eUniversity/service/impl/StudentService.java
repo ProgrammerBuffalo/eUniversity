@@ -4,15 +4,14 @@ import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.StudentDTO;
-import com.website.eUniversity.model.dto.admin_panel.entity.StudentShortInfoDTO;
 import com.website.eUniversity.model.dto.admin_panel.identification.RegistrationDTO;
 import com.website.eUniversity.model.dto.student_panel.AvatarRequestDTO;
 import com.website.eUniversity.model.dto.student_panel.StudentInfoDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.File;
 import com.website.eUniversity.model.entity.Student;
 import com.website.eUniversity.repository.IAccountRepository;
-import com.website.eUniversity.repository.IFileRepository;
 import com.website.eUniversity.repository.IStudentRepository;
 import com.website.eUniversity.service.IFileService;
 import com.website.eUniversity.service.IStudentService;
@@ -109,13 +108,13 @@ public class StudentService extends AccountSaver implements IStudentService {
     }
 
     @Override
-    public PaginatedListDTO getUserList(String search, Integer pageIndex, Integer pageSize) {
+    public PaginatedListDTO getUserList(PaginationDTO dto) {
         return new PaginatedListDTO<StudentDTO>().setItems(studentRepository
-                .getPaginatedStudents(search, pageIndex, pageSize)
+                .getPaginatedStudents(dto.getSearch(), dto.getPageIndex(), dto.getPageSize())
                 .stream()
                 .map(Student::toDTO)
                 .collect(Collectors.toList()))
-                .setAllItemsCount(studentRepository.countAllByAccount_FullNameIsLike(search));
+                .setAllItemsCount(studentRepository.countAllByAccount_FullNameIsLike(dto.getSearch()));
     }
 
 }

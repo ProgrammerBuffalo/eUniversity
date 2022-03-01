@@ -1,6 +1,8 @@
 package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.exception.NotFoundException;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import com.website.eUniversity.model.entity.*;
@@ -41,27 +43,31 @@ public class MaterialService implements IMaterialService {
     private IStudentMaterialRepository studentMaterialRepository;
 
     @Override
-    public List<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId) throws NotFoundException {
-        GroupDiscipline groupDiscipline =
-                groupDisciplineRepository.findByGroup_IdAndDiscipline_Id(groupId, disciplineId)
-                .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
-
-        return materialRepository.findAllByGroupDiscipline(groupDiscipline)
-                .stream()
-                .map(Material::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId) throws NotFoundException {
+    public PaginatedListDTO<MaterialResponseDTO> getEducationalMaterials(Integer groupId, Integer disciplineId, PaginationDTO pagination) throws NotFoundException {
         GroupDiscipline groupDiscipline =
                 groupDisciplineRepository.findByGroup_IdAndDiscipline_Id(groupId, disciplineId)
                         .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
 
-        return materialRepository.findAllStudentMaterials(studentId, groupDiscipline)
+        return new PaginatedListDTO<MaterialResponseDTO>().setItems(materialRepository
+                .getEducationPaginatedList(groupDiscipline.getId(), pagination.getSearch(), pagination.getPageIndex(), pagination.getPageSize())
                 .stream()
                 .map(Material::toDTO)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()))
+                .setAllItemsCount(materialRepository.countAllEducationBy_FileName_AccountFullName_EcuProcess_IsLike(groupDiscipline.getId(), pagination.getSearch()));
+    }
+
+    @Override
+    public PaginatedListDTO<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId, PaginationDTO pagination) throws NotFoundException {
+        GroupDiscipline groupDiscipline =
+                groupDisciplineRepository.findByGroup_IdAndDiscipline_Id(groupId, disciplineId)
+                        .orElseThrow(() -> new NotFoundException("Group or discipline not found"));
+
+        return new PaginatedListDTO<MaterialResponseDTO>().setItems(materialRepository
+                .getStudentPaginatedList(groupDiscipline.getId(), studentId, pagination.getSearch(), pagination.getPageIndex(), pagination.getPageSize())
+                .stream()
+                .map(Material::toDTO)
+                .collect(Collectors.toList()))
+                .setAllItemsCount(materialRepository.countAllStudentBy_FileName_AccountName_EcuProcess_IsLike(groupDiscipline.getId(), studentId, pagination.getSearch()));
     }
 
     @Override
