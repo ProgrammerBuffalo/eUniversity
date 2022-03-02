@@ -6,4 +6,9 @@ export class PaginatedList<T> {
     this.items = list;
     this.allItemsCount = allItemsCount;
   }
+
+  reset() {
+    this.items = [];
+    this.allItemsCount = 0;
+  }
 }

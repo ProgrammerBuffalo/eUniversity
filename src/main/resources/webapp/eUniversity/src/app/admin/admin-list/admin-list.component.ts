@@ -14,8 +14,8 @@ import { AccountService } from 'src/app/services/accounts.service';
 })
 export class AdminListComponent implements OnInit {
 
-  showAddPopup: boolean;
-  showEditPopup: boolean;
+  isAddFormVisible: boolean;
+  isEditFormVisible: boolean;
 
   selectedAdmin!: Admin;
   admins: PaginatedList<Admin>;
@@ -43,8 +43,8 @@ export class AdminListComponent implements OnInit {
   constructor(
     private accountService: AccountService
   ) {
-    this.showAddPopup = false;
-    this.showEditPopup = false;
+    this.isAddFormVisible = false;
+    this.isEditFormVisible = false;
 
     this.addForm = new FormGroup({
       login: new FormControl('', Validators.required),
@@ -68,13 +68,13 @@ export class AdminListComponent implements OnInit {
     this.getAdmins();
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  showAddForm() {
+    this.isAddFormVisible = true;
     this.addForm.reset();
   }
 
-  showEditModal(admin: Admin) {
-    this.showEditPopup = true;
+  showEditForm(admin: Admin) {
+    this.isEditFormVisible = true;
     this.selectedAdmin = admin;
 
     this.editForm.get('login')!.setValue(admin.login);
@@ -82,12 +82,12 @@ export class AdminListComponent implements OnInit {
     this.editForm.get('age')!.setValue(admin.age);
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   addAdmin() {
@@ -96,7 +96,7 @@ export class AdminListComponent implements OnInit {
         next: (data: BaseResponse<Admin>) => {
           this.getAdmins();
 
-          this.showAddPopup = false;
+          this.isAddFormVisible = false;
         },
         error: (data) => {
           alert('can`t add admin');
@@ -115,7 +115,7 @@ export class AdminListComponent implements OnInit {
           this.selectedAdmin.fullName = this.editFullName?.value;
           this.selectedAdmin.age = this.editAge?.value;
 
-          this.showEditPopup = false;
+          this.isEditFormVisible = false;
         },
         error: (data) => {
           alert('this login alredy exsists');
@@ -140,7 +140,8 @@ export class AdminListComponent implements OnInit {
     this.getAdmins();
   }
 
-  searchAdmins() {
+  searchAdmins(searchText: string) {
+    this.paginationDTO.search = searchText;
     this.getAdmins();
   }
 

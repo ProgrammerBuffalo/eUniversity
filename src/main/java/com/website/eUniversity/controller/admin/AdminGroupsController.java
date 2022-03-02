@@ -3,6 +3,8 @@ package com.website.eUniversity.controller.admin;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.base.BaseResponse;
 import com.website.eUniversity.model.dto.DDLResponseDTO;
+import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.PaginationDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.*;
 import com.website.eUniversity.model.dto.admin_panel.entity.group.AddGroupDTO;
 import com.website.eUniversity.model.dto.admin_panel.entity.group.AttachStudentDTO;
@@ -32,8 +34,8 @@ public class AdminGroupsController {
 
     @GetMapping("/get-groups")
     @ApiOperation("Returns all existing groups")
-    public ResponseEntity<BaseResponse<List<GroupDTO>>> getAllGroups() {
-        return ResponseEntity.ok(new BaseResponse<List<GroupDTO>>().success(groupService.getAllGroups(), "Groups successfully returned"));
+    public ResponseEntity<BaseResponse<PaginatedListDTO<GroupDTO>>> getAllGroups(PaginationDTO dto) {
+        return ResponseEntity.ok(new BaseResponse<PaginatedListDTO<GroupDTO>>().success(groupService.getAllGroups(dto), "Groups successfully returned"));
     }
 
     @GetMapping("/get-students-by-group")

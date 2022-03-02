@@ -13,8 +13,8 @@ import { AccountService } from 'src/app/services/accounts.service';
   styleUrls: ['../../shared/table-block.scss', '../../shared/modal.scss', '../../shared/input.scss']
 })
 export class StudentListComponent implements OnInit {
-  showAddPopup: boolean;
-  showEditPopup: boolean;
+  isAddFormVisible: boolean;
+  isEditFormVisible: boolean;
 
   selectedStudent!: Student;
   students: PaginatedList<Student>;
@@ -42,8 +42,8 @@ export class StudentListComponent implements OnInit {
   constructor(
     private accountService: AccountService
   ) {
-    this.showAddPopup = false;
-    this.showEditPopup = false;
+    this.isAddFormVisible = false;
+    this.isEditFormVisible = false;
 
     this.addForm = new FormGroup({
       login: new FormControl('', Validators.required),
@@ -67,13 +67,13 @@ export class StudentListComponent implements OnInit {
     this.getStudents();
   }
 
-  showAddModal() {
-    this.showAddPopup = true;
+  showAddForm() {
+    this.isAddFormVisible = true;
     this.addForm.reset();
   }
 
-  showEditModal(student: Student) {
-    this.showEditPopup = true;
+  showEditForm(student: Student) {
+    this.isEditFormVisible = true;
     this.selectedStudent = student;
 
     this.editForm.get('login')!.setValue(student.login);
@@ -81,12 +81,12 @@ export class StudentListComponent implements OnInit {
     this.editForm.get('age')!.setValue(student.age);
   }
 
-  closeEditModal() {
-    this.showEditPopup = false;
+  closeEditForm() {
+    this.isEditFormVisible = false;
   }
 
-  closeAddModal() {
-    this.showAddPopup = false;
+  closeAddForm() {
+    this.isAddFormVisible = false;
   }
 
   addStudent() {
@@ -96,7 +96,7 @@ export class StudentListComponent implements OnInit {
           //this.students.unshift(data.data);
           this.getStudents();
 
-          this.showAddPopup = false;
+          this.isAddFormVisible = false;
         },
         error: (data) => {
           alert('can`t add student');
@@ -115,7 +115,7 @@ export class StudentListComponent implements OnInit {
           this.selectedStudent.fullName = this.editFullName?.value;
           this.selectedStudent.age = this.editAge?.value;
 
-          this.showEditPopup = false;
+          this.isEditFormVisible = false;
         },
         error: (data) => {
           alert('this login alredy exsists');
@@ -142,7 +142,8 @@ export class StudentListComponent implements OnInit {
     })
   }
 
-  searchStudents() {
+  searchStudents(searchText: string) {
+    this.paginationDTO.search = searchText;
     this.getStudents();
   }
 

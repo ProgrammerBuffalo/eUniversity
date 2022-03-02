@@ -1,6 +1,8 @@
 package com.website.eUniversity.model.entity;
 
 
+import com.website.eUniversity.model.dto.entity.DisciplineDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -33,6 +35,13 @@ public class Discipline {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
+    }
+
+    public static DisciplineDTO toDTO(Discipline discipline) {
+        return new DisciplineDTO(
+                discipline.getId(),
+                discipline.getName(),
+                discipline.getShortName());
     }
 
     public Integer getId() {

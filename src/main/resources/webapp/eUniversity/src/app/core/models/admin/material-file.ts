@@ -1,6 +1,6 @@
-export class EduMaterial {
+export class MaterialFile {
   id: number;
-  account: string;
+  userFullName: string;
   fileId: string;
   fileName: string;
   educationalProcess: number;
@@ -9,7 +9,7 @@ export class EduMaterial {
 
   constructor(id: number, account: string, fileId: string, fileName: string, eduProccess: number, description: string, order: number) {
     this.id = id;
-    this.account = account
+    this.userFullName = account
     this.fileId = fileId
     this.fileName = fileName
     this.educationalProcess = eduProccess

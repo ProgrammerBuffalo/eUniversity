@@ -1,0 +1,9 @@
+<div class="input-group mt-30">
+  <input type="text" class="form-control" name="search" [(ngModel)]="searchText" (keyup.enter)="search()"
+    placeholder="Search" />
+  <div class="input-group-btn">
+    <button class="btn btn-primary" type="submit" (click)="search()">
+      <span class="glyphicon glyphicon-search"></span>
+    </button>
+  </div>
+</div>

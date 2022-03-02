@@ -23,6 +23,7 @@ import { JournalListComponent } from './journal-list/journal-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialEduListComponent } from './material-edu-list/material-edu-list.component';
 import { MaterialStudentListComponent } from './material-student-list/material-student-list.component';
+import { ThemeListComponent } from './theme-list/theme-list.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { MaterialStudentListComponent } from './material-student-list/material-s
     ScheduleExamListComponent,
     JournalListComponent,
     MaterialEduListComponent,
-    MaterialStudentListComponent
+    MaterialStudentListComponent,
+    ThemeListComponent
   ],
   imports: [
     CommonModule,
