@@ -75,9 +75,42 @@
 
 .table-block_yellow {
   background-color: #fffff0;
+  width: 100%;
 }
 
 .table-block_yellow .table-block__title {
   color: #636e00;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1235px) {
+  .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 20px;
+  }
+  .table-block {
+    min-height: 200px !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .w-70 {
+    width: 100% !important;
+  }
+  .w-30 {
+    width: 100% !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */
