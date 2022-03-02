@@ -1,6 +1,6 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.account.StudentDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.StudentDTO;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +21,10 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
+
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private File image;
 
     @OneToOne
     @JoinColumn(name = "journal_id", referencedColumnName = "id")
@@ -85,6 +89,15 @@ public class Student {
 
     public Student setStudentMaterial(List<StudentMaterial> studentMaterial) {
         this.studentMaterial = studentMaterial;
+        return this;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public Student setImage(File image) {
+        this.image = image;
         return this;
     }
 }

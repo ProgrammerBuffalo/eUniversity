@@ -36,6 +36,18 @@ body {
 	}
 }
 
+@media (max-width: 1158px) {
+	.table-block__title {
+		flex: 1 0 85% !important;
+	}
+}
+
+@media (max-width: 900px) {
+	.table-block__title {
+		flex: 1 0 80% !important;
+	}
+}
+
 @media (max-width: 767px) {
 	.main {
 		margin-top: 70px;
@@ -43,17 +55,16 @@ body {
 	}
 }
 
-@media (max-width: 670px) {
-	.flex {
+@media (max-width: 450px) {
+	.table-block__header {
+		flex-direction: column !important;
+	}
+
+	.journal-selects {
 		flex-direction: column;
-		row-gap: 20px;
 	}
 
-	.w-70 {
-		width: 100% !important;
-	}
-
-	.w-30 {
-		width: 100% !important;
+	.add-btn {
+		margin-bottom: 20px;
 	}
 }

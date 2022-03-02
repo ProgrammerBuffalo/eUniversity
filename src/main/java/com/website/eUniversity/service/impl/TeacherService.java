@@ -2,9 +2,9 @@ package com.website.eUniversity.service.impl;
 
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.TeacherDTO;
+import com.website.eUniversity.model.dto.admin_panel.identification.RegistrationDTO;
 import com.website.eUniversity.model.dto.PaginationDTO;
-import com.website.eUniversity.model.dto.entity.account.TeacherDTO;
-import com.website.eUniversity.model.dto.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Teacher;
 import com.website.eUniversity.repository.IAccountRepository;

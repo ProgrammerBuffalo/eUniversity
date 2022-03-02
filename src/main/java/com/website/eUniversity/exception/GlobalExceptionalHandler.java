@@ -24,9 +24,9 @@ public class GlobalExceptionalHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new BaseResponse<>().error(ex.getMessage(), HttpStatus.NOT_FOUND.value()));
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<BaseResponse> exceptionCatch(Exception ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BaseResponse<>().error(ex.getMessage(), HttpStatus.BAD_REQUEST.value()));
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<BaseResponse> exceptionCatch(Exception ex) {
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BaseResponse<>().error("Server cannot execute your request", HttpStatus.BAD_REQUEST.value()));
+//    }
 
 }

@@ -1,2 +1,15 @@
 // Shared/table-block.scss
 // general.scss
+@media (max-width: 967px) {
+	.attachment {
+		flex-direction: column;
+		.flex {
+			flex-direction: column;
+		}
+		.w-70,
+		.w-50,
+		.w-30 {
+			width: 100% !important;
+		}
+	}
+}

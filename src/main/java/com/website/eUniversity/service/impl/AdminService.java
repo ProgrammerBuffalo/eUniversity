@@ -3,8 +3,8 @@ package com.website.eUniversity.service.impl;
 import com.website.eUniversity.model.Role;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
 import com.website.eUniversity.model.dto.PaginationDTO;
-import com.website.eUniversity.model.dto.entity.account.AdminDTO;
-import com.website.eUniversity.model.dto.identification.RegistrationDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.AdminDTO;
+import com.website.eUniversity.model.dto.admin_panel.identification.RegistrationDTO;
 import com.website.eUniversity.model.entity.Account;
 import com.website.eUniversity.model.entity.Admin;
 import com.website.eUniversity.repository.IAccountRepository;
@@ -45,7 +45,8 @@ public class AdminService extends AccountSaver implements IAdminService {
             adminDTO.setLogin(admin.getAccount().getLogin());
             adminDTO.setPassword(admin.getAccount().getPassword());
             adminDTO.setFullName(admin.getAccount().getFullName());
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             throw ex;
         }
         return adminDTO;
@@ -63,7 +64,8 @@ public class AdminService extends AccountSaver implements IAdminService {
         try {
             adminRepository.deleteByAccount_Id(uuid);
             return uuid;
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             throw ex;
         }
     }

@@ -3,9 +3,8 @@ package com.website.eUniversity.service;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
 import com.website.eUniversity.model.dto.PaginationDTO;
-import com.website.eUniversity.model.dto.entity.material.AddMaterialRequestDTO;
-import com.website.eUniversity.model.dto.entity.material.GetMaterialRequestDTO;
-import com.website.eUniversity.model.dto.entity.material.MaterialResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import org.springframework.core.io.ByteArrayResource;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ public interface IMaterialService {
 
     PaginatedListDTO<MaterialResponseDTO> getFilesPostedByStudent(Integer groupId, Integer disciplineId, Integer studentId, PaginationDTO pagination) throws NotFoundException;
 
-    MaterialResponseDTO uploadMaterial(AddMaterialRequestDTO materialRequestDTO) throws NotFoundException, IOException;
+    MaterialResponseDTO uploadMaterial(MaterialRequestDTO materialRequestDTO) throws NotFoundException, IOException;
 
     ByteArrayResource downloadMaterial(Integer materialId) throws NotFoundException, IOException;
 

@@ -1,7 +1,7 @@
 package com.website.eUniversity.repository;
 
 import com.website.eUniversity.model.dto.DDLResponseDTO;
-import com.website.eUniversity.model.dto.entity.StudentShortInfoDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.StudentShortInfoDTO;
 import com.website.eUniversity.model.entity.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +21,7 @@ public interface IGroupRepository extends JpaRepository<Group, Integer> {
                                    @Param("pageIndex") Integer pageIndex,
                                    @Param("pageSize") Integer pageSize);
 
-    @Query(value = "SELECT new com.website.eUniversity.model.dto.entity.StudentShortInfoDTO" +
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.admin_panel.entity.StudentShortInfoDTO" +
             " (s.id, a.fullName)" +
             " FROM Student s INNER JOIN Account a on s.account = a " +
             "                INNER JOIN Group g on s.group = g" +

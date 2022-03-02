@@ -61,7 +61,34 @@
 }
 .table-block_yellow {
 	background-color: #fffff0;
+	width: 100%;
 	.table-block__title {
 		color: #636e00;
+	}
+}
+
+.row {
+	margin-bottom: 20px;
+}
+
+@media (max-width: 1235px) {
+	.row {
+		flex-direction: column;
+		row-gap: 20px;
+	}
+
+	.table-block {
+		min-height: 200px !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.w-70 {
+		width: 100% !important;
+	}
+
+	.w-30 {
+		width: 100% !important;
 	}
 }

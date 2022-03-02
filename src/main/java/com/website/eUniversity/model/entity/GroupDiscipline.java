@@ -1,9 +1,8 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.GroupDisciplineResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.GroupDisciplineResponseDTO;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "GroupsDisciplines")

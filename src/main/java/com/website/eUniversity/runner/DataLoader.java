@@ -1,6 +1,6 @@
 package com.website.eUniversity.runner;
 
-import com.website.eUniversity.model.dto.identification.RegistrationDTO;
+import com.website.eUniversity.model.dto.admin_panel.identification.RegistrationDTO;
 import com.website.eUniversity.service.IAdminService;
 import com.website.eUniversity.service.IStudentService;
 import com.website.eUniversity.service.ITeacherService;

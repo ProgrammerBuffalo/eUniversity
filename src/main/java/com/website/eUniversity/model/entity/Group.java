@@ -1,7 +1,6 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.DisciplineDTO;
-import com.website.eUniversity.model.dto.entity.group.GroupDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.GroupDTO;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -21,12 +21,12 @@
 
 .table-container {
   width: 100%;
+  overflow: auto;
 }
 
 @media (max-width: 500px) {
   .table-container {
     max-width: 500px;
-    overflow: scroll;
   }
 }
 

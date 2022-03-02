@@ -38,6 +38,22 @@ body {
   height: 100%;
 }
 
+@media (max-width: 1158px) {
+  .table-block__title {
+    -webkit-box-flex: 1 !important;
+        -ms-flex: 1 0 85% !important;
+            flex: 1 0 85% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .table-block__title {
+    -webkit-box-flex: 1 !important;
+        -ms-flex: 1 0 80% !important;
+            flex: 1 0 80% !important;
+  }
+}
+
 @media (max-width: 767px) {
   .main {
     margin-top: 70px;
@@ -45,19 +61,21 @@ body {
   }
 }
 
-@media (max-width: 670px) {
-  .flex {
+@media (max-width: 450px) {
+  .table-block__header {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+  .journal-selects {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    row-gap: 20px;
   }
-  .w-70 {
-    width: 100% !important;
-  }
-  .w-30 {
-    width: 100% !important;
+  .add-btn {
+    margin-bottom: 20px;
   }
 }
 /*# sourceMappingURL=style.css.map */

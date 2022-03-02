@@ -1,7 +1,7 @@
 package com.website.eUniversity.service;
 
 import com.website.eUniversity.exception.NotFoundException;
-import com.website.eUniversity.model.dto.entity.JournalItemDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.JournalItemDTO;
 
 import java.util.List;
 

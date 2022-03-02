@@ -3,8 +3,8 @@ package com.website.eUniversity.service.impl;
 import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
 import com.website.eUniversity.model.dto.PaginationDTO;
-import com.website.eUniversity.model.dto.entity.material.AddMaterialRequestDTO;
-import com.website.eUniversity.model.dto.entity.material.MaterialResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialRequestDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 import com.website.eUniversity.model.entity.*;
 import com.website.eUniversity.repository.*;
 import com.website.eUniversity.service.IFileService;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,10 +72,10 @@ public class MaterialService implements IMaterialService {
 
     @Override
     @Transactional
-    public MaterialResponseDTO uploadMaterial(AddMaterialRequestDTO materialRequestDTO) throws NotFoundException, IOException {
+    public MaterialResponseDTO uploadMaterial(MaterialRequestDTO materialRequestDTO) throws NotFoundException, IOException {
         GroupDiscipline groupDiscipline = groupDisciplineRepository
                 .findByGroup_IdAndDiscipline_Id(materialRequestDTO.getGroupId(),
-                        materialRequestDTO.getDisciplineId())
+                                                materialRequestDTO.getDisciplineId())
                 .orElseThrow(() -> new NotFoundException("Group, Discipline or Teacher not found"));
 
         EducationalProcess educationalProcess = educationalProcessRepository
@@ -96,11 +97,11 @@ public class MaterialService implements IMaterialService {
 
         studentRepository.findByAccount(account)
                 .ifPresent(student -> {
-                            studentMaterialRepository.save(new StudentMaterial()
-                                    .setStudent(student)
-                                    .setMaterial(material));
-                        }
-                );
+                    studentMaterialRepository.save(new StudentMaterial()
+                            .setStudent(student)
+                            .setMaterial(material));
+                }
+        );
 
         return Material.toDTO(material);
     }

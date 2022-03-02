@@ -3,8 +3,8 @@ package com.website.eUniversity.service;
 import com.website.eUniversity.model.dto.DDLResponseDTO;
 import com.website.eUniversity.model.dto.PaginatedListDTO;
 import com.website.eUniversity.model.dto.PaginationDTO;
-import com.website.eUniversity.model.dto.entity.discipline.AddDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.discipline.UpdateDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.discipline.AddDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.discipline.UpdateDisciplineDTO;
 import com.website.eUniversity.model.entity.Discipline;
 
 import java.util.List;

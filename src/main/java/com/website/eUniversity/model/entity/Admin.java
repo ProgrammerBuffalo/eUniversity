@@ -1,6 +1,6 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.account.AdminDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.AdminDTO;
 
 import javax.persistence.*;
 

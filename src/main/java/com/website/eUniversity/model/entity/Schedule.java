@@ -1,7 +1,7 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.ScheduleDisciplineDTO;
-import com.website.eUniversity.model.dto.entity.ScheduleItemDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.ScheduleDisciplineDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.ScheduleItemDTO;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

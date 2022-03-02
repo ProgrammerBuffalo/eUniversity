@@ -1,6 +1,6 @@
 package com.website.eUniversity.model.entity;
 
-import com.website.eUniversity.model.dto.entity.material.MaterialResponseDTO;
+import com.website.eUniversity.model.dto.admin_panel.entity.MaterialResponseDTO;
 
 import javax.persistence.*;
 import java.util.List;

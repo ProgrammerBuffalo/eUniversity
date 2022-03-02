@@ -1,5 +1,6 @@
 package com.website.eUniversity.service.impl;
 
+import com.website.eUniversity.exception.NotFoundException;
 import com.website.eUniversity.model.entity.File;
 import com.website.eUniversity.repository.IFileRepository;
 import com.website.eUniversity.service.IFileService;
@@ -52,7 +53,11 @@ public class FileService implements IFileService {
     }
 
     @Override
-    public ByteArrayResource downloadFile(File file) throws IOException {
+    public ByteArrayResource downloadFile(File file) throws IOException, NotFoundException {
+
+        if(file == null)
+            throw new NotFoundException("File not found");
+
         return new ByteArrayResource(
                 Files.readAllBytes(Paths.get(file.getFilePath()))
         );
