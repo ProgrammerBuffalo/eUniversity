@@ -11,10 +11,6 @@
   transition: all 0.3s ease 0s;
 }
 
-.aside:hover {
-  width: 300px;
-}
-
 .aside .item-content {
   display: none;
 }
@@ -38,6 +34,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .aside .logo img {
@@ -210,5 +208,111 @@
 .aside .item_red a:before {
   border-right: solid 5px #dd6767;
   background: #412e2e;
+}
+
+.aside.active {
+  width: 300px;
+}
+
+.aside .burger {
+  margin-left: 15px;
+  margin-top: 15px;
+  width: 35px;
+  height: 30px;
+  position: relative;
+}
+
+.aside .burger:before, .aside .burger:after {
+  right: 0;
+  content: "";
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  background-color: #fff;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.aside .burger:before {
+  top: 0;
+}
+
+.aside .burger:after {
+  bottom: 0;
+}
+
+.aside .burger span {
+  right: 0;
+  top: 13px;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  background-color: #fff;
+}
+
+.aside .burger.active span {
+  display: none;
+}
+
+.aside .burger.active:before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: 13px;
+}
+
+.aside .burger.active:after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  bottom: 13px;
+}
+
+@media (max-width: 700px) {
+  .aside {
+    width: 100%;
+    height: 70px;
+  }
+  .aside .burger {
+    margin-right: 10px;
+  }
+  .aside .top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+  }
+  .aside.active {
+    width: 100%;
+    height: 100%;
+  }
+  .aside.active .item-content {
+    display: inline;
+  }
+  .aside.active .nav-wrap {
+    display: block;
+  }
+  .aside .logo {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .aside .nav-wrap {
+    display: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */

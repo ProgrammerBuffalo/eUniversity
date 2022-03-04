@@ -52,9 +52,9 @@
 					<img src="../../../images/icons/avatar-icon.png" alt="avatar">
 				</div>
 
-				<p>John Johnson</p>
-				<p>Course: 1</p>
-				<p>Faculty: Web development</p>
+				<p id="name">John Johnson</p>
+				<p id="course">Course: 1</p>
+				<p id="faculty">Faculty: Web development</p>
 			</div>
 		</header>
 		<!--STUDENT-HEADER-->
@@ -364,7 +364,7 @@
 					</ul>
 				</div>
 
-				<div class="footer-column">
+				<div class="footer-column" id="description">
 					<h5>EUniversity</h5>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui tenetur dolorum, neque ab consequatur
 						eius
@@ -402,10 +402,15 @@
 
 	<!--STUDENT-ASIDE-->
 	<aside class="aside">
-		<h1 class="logo">
-			<img src="../../../images/header-logo.jpg" alt="logo">
-			<a href="#"><span class="item-content">E<span>University</span></span></a>
-		</h1>
+		<div class="top">
+			<div class="burger"><span></span></div>
+			<h1 class="logo">
+				<img src="../../../images/header-logo.jpg" alt="logo">
+				<a href="#"><span class="item-content">E<span>University</span></span></a>
+
+			</h1>
+		</div>
+
 
 		<div class="nav-wrap">
 			<nav class="main-nav">
@@ -430,6 +435,7 @@
 
 
 	<script src="../../../components/modal/app.js"></script>
+	<script src="../../../components/student-aside-menu/app.js"></script>
 	<script src="../app.js"></script>
 	<script src="app.js"></script>
 </body>
