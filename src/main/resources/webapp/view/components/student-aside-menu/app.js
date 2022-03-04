@@ -1,7 +1,8 @@
 let aside = document.getElementsByClassName('aside')[0];
-aside.addEventListener('mouseover', () => {
-	aside.classList.add('active');
-})
-aside.addEventListener('mouseleave', () => {
-	aside.classList.remove('active');
-})
+let burger = document.getElementsByClassName('burger')[0];
+
+console.log(burger);
+burger.addEventListener('click', () => {
+	aside.classList.toggle('active');
+	burger.classList.toggle('active');
+});

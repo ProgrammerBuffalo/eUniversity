@@ -161,6 +161,44 @@
   background-color: #ffd6d6;
 }
 
+@media (max-width: 970px) {
+  .main .tiles {
+    -webkit-column-gap: 20px;
+            column-gap: 20px;
+    padding: 20px;
+  }
+  .main .tiles .tile {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 45%;
+            flex: 0 1 45%;
+  }
+}
+
+@media (max-width: 700px) {
+  .main .tiles {
+    -webkit-column-gap: 20px;
+            column-gap: 20px;
+    padding: 0;
+  }
+  .main .tiles .tile {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 100%;
+            flex: 0 1 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .main .tiles .tile {
+    height: 200px;
+  }
+}
+
+@media (max-width: 350px) {
+  .main .tiles .tile {
+    height: 180px;
+  }
+}
+
 @-webkit-keyframes move-light {
   0% {
     -webkit-transform: translateX(-10em) skewX(-45deg);

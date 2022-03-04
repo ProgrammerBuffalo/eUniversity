@@ -86,4 +86,32 @@
 		font-weight: 400;
 		color: #a0a0a0;
 	}
+
+	@media (max-width: 767px) {
+		&-info {
+			flex-direction: column;
+		}
+		&-column {
+			flex: 0 1 100%;
+		}
+	}
+
+	@media (max-width: 560px) {
+		padding: 20px;
+		&-links {
+			justify-content: left;
+			column-gap: 20px;
+		}
+	}
+
+	@media (max-width: 360px) {
+		padding: 10px;
+		&-links {
+			justify-content: left;
+			column-gap: 10px;
+		}
+		#description {
+			display: none;
+		}
+	}
 }
