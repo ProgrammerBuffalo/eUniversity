@@ -3,6 +3,7 @@ package com.website.eUniversity.model.entity;
 import com.website.eUniversity.model.dto.admin_panel.entity.GroupDisciplineResponseDTO;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "GroupsDisciplines")
@@ -23,6 +24,9 @@ public class GroupDiscipline {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
+    private List<Theme> themes;
 
     public static GroupDisciplineResponseDTO fromEntityToDto(GroupDiscipline groupDiscipline) {
         return new GroupDisciplineResponseDTO(
@@ -78,4 +82,12 @@ public class GroupDiscipline {
         return discipline.getId();
     }
 
+    public List<Theme> getThemes() {
+        return themes;
+    }
+
+    public GroupDiscipline setThemes(List<Theme> themes) {
+        this.themes = themes;
+        return this;
+    }
 }

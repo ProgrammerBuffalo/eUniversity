@@ -12,13 +12,11 @@ public class ThemeDTO {
 
     private Integer materialId;
 
-    private Boolean isCompleted;
-
     private Integer groupId;
 
     private Integer disciplineId;
 
-    private Integer teacherId;
+    private Integer order;
 
     public ThemeDTO() {
     }
@@ -59,15 +57,6 @@ public class ThemeDTO {
         return this;
     }
 
-    public Boolean getCompleted() {
-        return isCompleted;
-    }
-
-    public ThemeDTO setCompleted(Boolean completed) {
-        isCompleted = completed;
-        return this;
-    }
-
     public Integer getGroupId() {
         return groupId;
     }
@@ -86,12 +75,12 @@ public class ThemeDTO {
         return this;
     }
 
-    public Integer getTeacherId() {
-        return teacherId;
+    public Integer getOrder() {
+        return order;
     }
 
-    public ThemeDTO setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
+    public ThemeDTO setOrder(Integer order) {
+        this.order = order;
         return this;
     }
 }

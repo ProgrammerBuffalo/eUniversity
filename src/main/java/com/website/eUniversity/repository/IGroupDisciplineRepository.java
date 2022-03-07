@@ -35,4 +35,11 @@ public interface IGroupDisciplineRepository extends JpaRepository<GroupDisciplin
             " INNER JOIN Discipline d ON d.id = gd.discipline.id" +
             " WHERE gd.group.id = :groupId")
     List<DDLResponseDTO<Integer>> getGroupDisciplinesDDL(@Param("groupId") Integer groupId);
+
+    @Query(value = "SELECT new com.website.eUniversity.model.dto.DDLResponseDTO(m.id, f.originalFileName) FROM GroupDiscipline gd" +
+            " INNER JOIN Group g ON gd.group = g" +
+            " INNER JOIN Material m ON m.groupDiscipline = gd" +
+            " INNER JOIN File f ON m.file = f" +
+            " WHERE gd.group.id = :groupId AND gd.discipline.id = :disciplineId")
+    List<DDLResponseDTO<Integer>> getGroupMaterialsDDL(@Param("groupId") Integer groupId, @Param("disciplineId") Integer disciplineId);
 }

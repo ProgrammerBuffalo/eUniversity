@@ -37,6 +37,9 @@ public class Material {
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterials;
 
+    @OneToMany(mappedBy = "material")
+    private List<Theme> themes;
+
     @Transient
     private String userName;
 
@@ -155,6 +158,15 @@ public class Material {
 
     public Material setUserName(String userName) {
         this.userName = userName;
+        return this;
+    }
+
+    public List<Theme> getThemes() {
+        return themes;
+    }
+
+    public Material setThemes(List<Theme> themes) {
+        this.themes = themes;
         return this;
     }
 }
