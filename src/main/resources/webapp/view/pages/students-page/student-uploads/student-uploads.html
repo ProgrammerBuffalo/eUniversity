@@ -74,7 +74,7 @@
 			</div>
 
 			<!--STUDENT-TABLE-UPLOADS-->
-			<table>
+			<div class="table-container">
 				<table>
 					<thead>
 						<tr>
@@ -149,32 +149,34 @@
 						</tr>
 					</tbody>
 				</table>
-				<!--STUDENT-TABLE-UPLOADS-->
+			</div>
+
+			<!--STUDENT-TABLE-UPLOADS-->
 
 
-				<div class="modal" id="students-add">
-					<div class="modal-content" style="width: 500px">
-						<span id="closeStudentsAddBtn" class="close">&times;</span>
-						<!--STUDENT-UPLOAD-MODAL COMPONENT-->
-						<form class="register">
+			<div class="modal" id="students-add">
+				<div class="modal-content" style="width: 500px">
+					<span id="closeStudentsAddBtn" class="close">&times;</span>
+					<!--STUDENT-UPLOAD-MODAL COMPONENT-->
+					<form class="register">
 
-							<div class="form-group">
-								<span>Description: </span>
-								<input type="text" class="form-field">
-							</div>
+						<div class="form-group">
+							<span>Description: </span>
+							<input type="text" class="form-field">
+						</div>
 
-							<div class="form-group download-btn" onclick="handleClick()">
-								<span>Choose file: </span>
-								<input type="text" placeholder="Input file..." disabled class="form-field">
-								<input type="file" class="d-none" id="upload-file" name="upload-file">
-							</div>
+						<div class="form-group download-btn" onclick="handleClick()">
+							<span>Choose file: </span>
+							<input type="text" placeholder="Input file..." disabled class="form-field">
+							<input type="file" class="d-none" id="upload-file" name="upload-file">
+						</div>
 
 
-							<input type="submit" class="btn btn-danger" value="Add file"></input>
-						</form>
-						<!--STUDENT-UPLOAD-MODAL COMPONENT-->
-					</div>
+						<input type="submit" class="btn btn-danger" value="Add file"></input>
+					</form>
+					<!--STUDENT-UPLOAD-MODAL COMPONENT-->
 				</div>
+			</div>
 		</main>
 
 
