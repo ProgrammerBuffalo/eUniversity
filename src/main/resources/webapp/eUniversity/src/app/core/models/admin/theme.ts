@@ -1,13 +1,13 @@
 export class Theme {
   id: number;
-  title: string;
+  name: string;
   order: number;
-  description: string;
+  fileName: string;
 
-  constructor(id: number, title: string, order: number, description: string) {
+  constructor(id: number, name: string, order: number, fileName: string) {
     this.id = id;
-    this.title = title;
+    this.name = name;
     this.order = order;
-    this.description = description;
+    this.fileName = fileName;
   }
 }

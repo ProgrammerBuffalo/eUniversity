@@ -1,11 +1,11 @@
 export class AddThemeDTO {
-  title: string;
+  name: string;
   order: number;
-  description: string;
+  fileName: string;
 
-  constructor(title: string, order: number, description: string) {
-    this.title = title;
+  constructor(name: string, order: number) {
+    this.name = name;
     this.order = order;
-    this.description = description;
+    this.fileName = '';
   }
 }

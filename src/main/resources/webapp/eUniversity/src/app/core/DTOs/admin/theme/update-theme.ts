@@ -1,13 +1,11 @@
 export class UpdateThemeDTO {
   id: number;
-  title: string;
+  name: string;
   order: number;
-  description: string;
 
-  constructor(id: number, title: string, order: number, description: string) {
+  constructor(id: number, name: string, order: number) {
     this.id = id;
-    this.title = title;
+    this.name = name;
     this.order = order;
-    this.description = description;
   }
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { AddThemeDTO } from 'src/app/core/DTOs/admin/theme/add-theme';
-import { UpdateThemeDTO } from 'src/app/core/DTOs/admin/theme/update-theme';
-import { Theme } from 'src/app/core/models/admin/theme';
 import { BaseResponse } from 'src/app/core/models/base/base-response';
 import { DDL } from 'src/app/core/models/ddl';
-import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 import { GroupService } from 'src/app/services/group.service';
+import { Theme } from 'src/app/core/models/admin/theme';
 import { ThemeService } from 'src/app/services/theme.service';
+import { UpdateThemeDTO } from 'src/app/core/DTOs/admin/theme/update-theme';
+import { refreshSelectPicker } from 'src/app/core/util/select-picker';
 
 @Component({
   selector: 'app-theme-list',
@@ -25,11 +26,13 @@ export class ThemeListComponent implements OnInit {
 
   isAddFormVisible: boolean;
   isEditFormVisible: boolean;
+  isUploadFileFormVisible: boolean;
 
   themes: Theme[];
 
   addForm: FormGroup;
   editForm: FormGroup;
+  uploadFileForm: FormGroup;
 
   constructor(
     private groupService: GroupService,
@@ -38,6 +41,7 @@ export class ThemeListComponent implements OnInit {
 
     this.isAddFormVisible = false;
     this.isEditFormVisible = false;
+    this.isUploadFileFormVisible = false;
 
     this.groupsDDL = [];
     this.disciplinesDDL = [];
@@ -47,31 +51,30 @@ export class ThemeListComponent implements OnInit {
     this.selectedThemeId = 0;
 
     this.addForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      order: new FormControl(Validators.required),
-      description: new FormControl('')
+      name: new FormControl('', Validators.required),
+      order: new FormControl(Validators.required)
     });
 
     this.editForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      order: new FormControl(Validators.required),
-      description: new FormControl('')
+      name: new FormControl('', Validators.required),
+      order: new FormControl(Validators.required)
+    });
+
+    this.uploadFileForm = new FormGroup({
+      groups: new FormControl(0, Validators.required),
+      fileName: new FormControl('', Validators.required),
     });
 
     this.themes = [];
   }
 
-  get AddTitle() { return this.addForm.get('title'); }
+  get AddName() { return this.addForm.get('name'); }
 
   get AddOrder() { return this.addForm.get('order'); }
 
-  get AddDescription() { return this.addForm.get('description'); }
-
-  get EditTitle() { return this.editForm.get('title'); }
+  get EditName() { return this.editForm.get('name'); }
 
   get EditOrder() { return this.editForm.get('order'); }
-
-  get EditDescription() { return this.editForm.get('description'); }
 
   ngOnInit(): void {
     this.groupService.getGroupsDDL().subscribe((res: BaseResponse<DDL<number>[]>) => {
@@ -106,17 +109,42 @@ export class ThemeListComponent implements OnInit {
   showEditForm(theme: Theme) {
     this.isEditFormVisible = true;
     this.selectedThemeId = theme.id;
-    this.EditTitle?.setValue(theme.title);
+    this.EditName?.setValue(theme.name);
     this.EditOrder?.setValue(theme.order);
-    this.EditDescription?.setValue(theme.description);
   }
 
   closeEditForm() {
     this.isEditFormVisible = false;
   }
 
+  showUploadFileForm() {
+    this.uploadFileForm.reset();
+    this.isUploadFileFormVisible = true;
+  }
+
+  closeUploadFileForm() {
+    this.isUploadFileFormVisible = false;
+  }
+
+  handleClick() {
+    document.getElementById('upload-file')!.click();
+  }
+
+  addAttachment(fileInput: any) {
+    const fileName = this.getFiles()![0].name;
+    (document.getElementById('file-text')! as HTMLInputElement).value = fileName;
+  }
+
+  getFiles() {
+    return (document.getElementById('upload-file')! as HTMLInputElement).files;
+  }
+
+  uploadFile() {
+
+  }
+
   addTheme() {
-    let dto = new AddThemeDTO(this.AddTitle?.value, this.AddOrder?.value, this.AddDescription?.value);
+    let dto = new AddThemeDTO(this.AddName?.value, this.AddOrder?.value);
     this.themeService.addTheme(dto).subscribe({
       next: (res: any) => {
 
@@ -128,7 +156,7 @@ export class ThemeListComponent implements OnInit {
   }
 
   updateTheme() {
-    let dto = new UpdateThemeDTO(this.selectedThemeId, this.EditTitle?.value, this.EditOrder?.value, this.EditDescription?.value);
+    let dto = new UpdateThemeDTO(this.selectedThemeId, this.EditName?.value, this.EditOrder?.value);
     this.themeService.updateTheme(dto).subscribe({
       next: (res: any) => {
 
