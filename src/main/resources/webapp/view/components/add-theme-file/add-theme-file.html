@@ -1,0 +1,13 @@
+<form class="register">
+	<select class="selectpicker mt-10 mb-20" data-live-search="true" name="groups" id="groups">
+		<option selected value="group1">Group 1</option>
+		<option value="group2">Group 2</option>
+		<option value="group3">Group 3</option>
+	</select>
+	<div class="form-group download-btn" onclick="handleClick()">
+		<span>Choose file: </span>
+		<input type="text" placeholder="Input file..." disabled class="form-field">
+		<input type="file" id="upload-file" name="upload-file" onclick="addAttachment(event)">
+	</div>
+	<input type="submit" class="btn btn-info" value="Save changes"></input>
+</form>

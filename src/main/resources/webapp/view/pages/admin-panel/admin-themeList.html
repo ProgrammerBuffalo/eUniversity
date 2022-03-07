@@ -34,11 +34,12 @@
 	<link rel="stylesheet" href="../../components/modal/style.css" />
 	<link rel="stylesheet" href="../../shared/modal.css" />
 	<link rel="stylesheet" href="../../shared/table-block.css" />
+	<link rel="stylesheet" href="../../components/add-theme-file/style.css">
 
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/531ea72487.js" crossorigin="anonymous"></script>
 
-	<title>Admin students</title>
+	<title>Admin theme list</title>
 </head>
 
 <body>
@@ -109,11 +110,6 @@
 				<h3 class="table-block__title">Theme list</h3>
 				<div class="btn btn-danger add-btn">Add</div>
 			</div>
-			<select class="selectpicker" data-live-search="true" name="groups" id="groups">
-				<option selected value="group1">Group 1</option>
-				<option value="group2">Group 2</option>
-				<option value="group3">Group 3</option>
-			</select>
 			<select class="selectpicker mt-10" data-live-search="true" name="disciplines" id="disciplines">
 				<option selected value="discipline1">Discipline 1</option>
 				<option value="discipline2">Discipline 2</option>
@@ -125,18 +121,23 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Title</th>
+								<th>Name</th>
 								<th>Order</th>
-								<th>Description</th>
+								<th>File name</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
 								<th>1</th>
-								<td>Title1</td>
+								<td>Name1</td>
 								<td>Order1</td>
-								<td>Lorem ipsum dolor sit amet.</td>
+								<td>File1</td>
+								<td>
+									<div class="table-btn download-btn">
+										<i class="fas fa-file-download fa-lg"></i>
+									</div>
+								</td>
 								<td class="td-blue">
 									<div class="table-btn change-btn">
 										<i class="fas fa-pencil-alt fa-lg"></i>
@@ -151,9 +152,14 @@
 
 							<tr>
 								<th>2</th>
-								<td>Title2</td>
+								<td>Name2</td>
 								<td>Order2</td>
-								<td>Lorem ipsum dolor sit amet.</td>
+								<td>No file here...</td>
+								<td class="td-blue">
+									<div class="table-btn upload-btn">
+										<i class="fas fa-solid fa-upload fa-lg"></i>
+									</div>
+								</td>
 								<td class="td-blue">
 									<div class="table-btn change-btn">
 										<i class="fas fa-pencil-alt fa-lg"></i>
@@ -168,9 +174,14 @@
 
 							<tr>
 								<th>3</th>
-								<td>Title3</td>
+								<td>Name3</td>
 								<td>Order3</td>
-								<td>Lorem ipsum dolor sit amet.</td>
+								<td>File3</td>
+								<td>
+									<div class="table-btn download-btn">
+										<i class="fas fa-file-download fa-lg"></i>
+									</div>
+								</td>
 								<td class="td-blue">
 									<div class="table-btn change-btn">
 										<i class="fas fa-pencil-alt fa-lg"></i>
@@ -187,7 +198,12 @@
 								<th>4</th>
 								<td>Title4</td>
 								<td>Order4</td>
-								<td>Lorem ipsum dolor sit amet.</td>
+								<td>No file here...</td>
+								<td class="td-blue">
+									<div class="table-btn upload-btn">
+										<i class="fas fa-solid fa-upload fa-lg"></i>
+									</div>
+								</td>
 								<td class="td-blue">
 									<div class="table-btn change-btn">
 										<i class="fas fa-pencil-alt fa-lg"></i>
@@ -212,18 +228,13 @@
 				<!--ADD-THEMELIST COMPONENT-->
 				<form class="register">
 					<div class="form-group">
-						<span>Title: </span>
+						<span>Name: </span>
 						<input type="text" class="form-field" placeholder="Title">
 					</div>
 
 					<div class="form-group">
 						<span>Order: </span>
 						<input type="number" class="form-field" placeholder="Order">
-					</div>
-
-					<div class="form-group">
-						<span>Description: </span>
-						<input type="text" class="form-field" placeholder="Description">
 					</div>
 					<input style="margin-top: 20px;" type="submit" class="btn btn-danger" value="Add theme"></input>
 				</form>
@@ -238,7 +249,7 @@
 				<!--EDIT-THEMELIST COMPONENT-->
 				<form class="register">
 					<div class="form-group">
-						<span>Theme: </span>
+						<span>Name: </span>
 						<input type="text" class="form-field" placeholder="Title">
 					</div>
 
@@ -246,19 +257,36 @@
 						<span>Order: </span>
 						<input type="text" class="form-field" placeholder="Order">
 					</div>
-
-					<div class="form-group">
-						<span>Description: </span>
-						<input type="text" class="form-field" placeholder="Description">
-					</div>
 					<input type="submit" class="btn btn-info" value="Save changes"></input>
 				</form>
 				<!--EDIT-THEMELIST COMPONENT-->
 			</div>
 		</div>
 
+		<div class="modal" id="upload-file-modal">
+			<div class="modal-content" style="width: 500px">
+				<span id="closeUploadFileModal" class="close">&times;</span>
+				<!--ADD-THEME-FILE COMPONENT-->
+				<form class="register">
+					<select class="selectpicker mt-10 mb-20" data-live-search="true" name="groups" id="groups">
+						<option selected value="group1">Group 1</option>
+						<option value="group2">Group 2</option>
+						<option value="group3">Group 3</option>
+					</select>
+					<div class="form-group download-btn" onclick="handleClick()">
+						<span>Choose file: </span>
+						<input type="text" placeholder="Input file..." disabled class="form-field">
+						<input type="file" id="upload-file" name="upload-file" onclick="addAttachment(event)">
+					</div>
+					<input type="submit" class="btn btn-info" value="Save changes"></input>
+				</form>
+				<!--ADD-THEME-FILE COMPONENT-->
+			</div>
+		</div>
+
 
 	</main>
+	<script src="../../components/add-theme-file/app.js"></script>
 	<script src="../../components/modal/app.js"></script>
 	<script src="app.js"></script>
 </body>
