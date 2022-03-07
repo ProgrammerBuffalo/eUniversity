@@ -15,22 +15,22 @@ public class Theme {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "isComplete")
-    private Boolean isCompleted = false;
+    @Column(name = "[order]")
+    private Integer order;
 
     @ManyToOne
+    @JoinColumn(name = "material_id")
     private Material material;
 
     @ManyToOne
+    @JoinColumn(name = "groupDiscipline_id")
     private GroupDiscipline groupDiscipline;
 
     public static ThemeDTO toDTO(Theme theme) {
         return new ThemeDTO().setThemeId(theme.getId())
                 .setThemeName(theme.getName())
                 .setOriginalFileName(theme.getMaterial().getFile().getOriginalFileName())
-                .setCompleted(theme.getCompleted())
                 .setGroupId(theme.getGroupDiscipline().getGroup().getId())
-                .setTeacherId(theme.getGroupDiscipline().getTeacher().getId())
                 .setMaterialId(theme.getMaterial().getId());
     }
 
@@ -55,15 +55,6 @@ public class Theme {
         return this;
     }
 
-    public Boolean getCompleted() {
-        return isCompleted;
-    }
-
-    public Theme setCompleted(Boolean completed) {
-        isCompleted = completed;
-        return this;
-    }
-
     public Material getMaterial() {
         return material;
     }
@@ -79,6 +70,15 @@ public class Theme {
 
     public Theme setGroupDiscipline(GroupDiscipline groupDiscipline) {
         this.groupDiscipline = groupDiscipline;
+        return this;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public Theme setOrder(Integer order) {
+        this.order = order;
         return this;
     }
 }
