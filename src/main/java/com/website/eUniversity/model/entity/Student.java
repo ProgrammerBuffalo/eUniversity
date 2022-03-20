@@ -26,9 +26,8 @@ public class Student {
     @JoinColumn(name = "image_id")
     private File image;
 
-    @OneToOne
-    @JoinColumn(name = "journal_id", referencedColumnName = "id")
-    private Journal journal;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<JournalItem> journalItems;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<StudentMaterial> studentMaterial;
@@ -75,12 +74,13 @@ public class Student {
         this.group = group;
     }
 
-    public Journal getJournal() {
-        return journal;
+    public List<JournalItem> getJournalItems() {
+        return journalItems;
     }
 
-    public void setJournal(Journal journal) {
-        this.journal = journal;
+    public Student setJournalItems(List<JournalItem> journalItems) {
+        this.journalItems = journalItems;
+        return this;
     }
 
     public List<StudentMaterial> getStudentMaterial() {

@@ -16,6 +16,8 @@ public class JournalItemDTO {
 
     private Date date;
 
+    private Integer dayNumber;
+
     private Integer assess;
 
     private Boolean isPresent;
@@ -118,6 +120,15 @@ public class JournalItemDTO {
 
     public JournalItemDTO setPresent(Boolean present) {
         isPresent = present;
+        return this;
+    }
+
+    public Integer getDayNumber() {
+        return dayNumber;
+    }
+
+    public JournalItemDTO setDayNumber(Integer dayNumber) {
+        this.dayNumber = dayNumber;
         return this;
     }
 }

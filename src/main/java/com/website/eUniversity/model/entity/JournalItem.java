@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Journal")
-public class Journal {
+@Table(name = "JournalItems")
+public class JournalItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,11 @@ public class Journal {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    @OneToOne(mappedBy = "journal")
+    @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
 
-    public static JournalItemDTO fromEntityToDto(Journal journal) {
+    public static JournalItemDTO fromEntityToDto(JournalItem journal) {
         return new JournalItemDTO()
                 .setItemId(journal.getId())
                 .setDisciplineId(journal.getSchedule().getGroupDiscipline().getDisciplineId())
@@ -42,12 +43,13 @@ public class Journal {
                 .setEducationalProcessId(journal.getSchedule().getEducationalProcess().getId())
                 .setEducationalProcessName(journal.getSchedule().getEducationalProcess().getName())
                 .setDate(journal.getDate())
+                .setDayNumber(journal.getSchedule().getDay())
                 .setAssess(journal.getAssess())
                 .setPresent(journal.getPresent())
                 .setFeedback(journal.getFeedback());
     }
 
-    public Journal() {
+    public JournalItem() {
 
     }
 
@@ -87,7 +89,7 @@ public class Journal {
         return feedback;
     }
 
-    public Journal setFeedback(String feedback) {
+    public JournalItem setFeedback(String feedback) {
         this.feedback = feedback;
         return this;
     }
@@ -96,7 +98,7 @@ public class Journal {
         return isPresent;
     }
 
-    public Journal setPresent(Boolean present) {
+    public JournalItem setPresent(Boolean present) {
         isPresent = present;
         return this;
     }
@@ -105,7 +107,7 @@ public class Journal {
         return assess;
     }
 
-    public Journal setAssess(Integer assess) {
+    public JournalItem setAssess(Integer assess) {
         this.assess = assess;
         return this;
     }
